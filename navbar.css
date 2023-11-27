@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navBarCategories[aria-current="page"] {
+  background: #091931;
+}
+
+.navBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 232px;
+  z-index: 4;
+  background: #2a3647;
+  padding: 64px 0;
+  font-weight: 400;
+}
+
+.navBarCategories:hover,
+.privacy:hover,
+.legal:hover,
+.popupMenu a:hover {
+  background: #2a3d59;
+}
+
+.navBarCategories:active,
+.privacy:active,
+.legal:active {
+  background: #091931;
+}
+
+.navBarBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.navBarCategories {
+  padding: 8px 56px 8px 56px;
+}
+
+.navBarMenu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.privacyAndLegal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 242px 0 0;
+  width: 100%;
+}
+
+.privacy,
+.legal {
+  color: #a8a8a8;
+  padding: 8px 60px 8px 60px;
+}
