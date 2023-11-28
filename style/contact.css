@@ -80,7 +80,6 @@ body {
 }
 
 .fullColorButton {
-    margin-top: 10px;
     color: white;
     padding: 12px 15px;
     background: #2A3647; 
@@ -91,6 +90,8 @@ body {
     gap: 8px; 
     display: inline-flex;
     font-size: 21px;
+    margin: 24px 24px 0px 24px;
+    width: 100%;
 }
 
 .secondaryButton {
@@ -136,6 +137,14 @@ body {
     font-family: 'Inter';
     font-weight: 500;
     margin-right: 50px;
+}
+
+.contact {
+    position: relative;
+    left: 233px;
+    top: 103px;
+    width: 456px;
+    border: 1px solid #D1D1D1;
 }
 
 .addContactIcn {
@@ -205,4 +214,89 @@ body {
     position: absolute;
     left: 600px;
     top: 130px;
+}
+
+.contactButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.addressbookContainer {
+    padding: 24px;
+}
+
+.letter {
+    font-size: 20px;
+    margin: 17px 36px;
+}
+
+.shortContact {
+    margin: 17px 23px;
+    display: flex;
+    padding: 15px 24px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+}
+
+.shortContact:hover {
+    border: 1px solid #f3f3f3;
+    background-color: #f3f3f3;
+}
+
+.shortContact:focus {
+    background-color: #2A3647;
+    color: white;
+    border: 1px solid #2A3647;
+}
+
+.addressbookContactInitials{
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    font-family: 'Inter';
+    font-weight: 500;
+    margin-right: 50px;
+    border: 1px solid white;
+}
+
+.addressbookFullname {
+    font-size: 20px;
+}
+
+.addressbookEmail {
+    font-size: 16px;
+    color: #007CEE;
+    margin-top: 5px;
+}
+
+.contactHeader {
+    position: fixed;
+    top: 190px;
+    left: 750px;
+    display: flex;
+    align-items: center;
+}
+
+.contactHeader h1 {
+    font-size: 61px;
+    margin-right: 30px;
+}
+
+.contactHeader p {
+    font-size: 27px;
+    margin-left: 30px;
+}
+
+.spacer {
+    width: 3px;
+    height: 60px;
+    background-color: #007CEE;
 }
