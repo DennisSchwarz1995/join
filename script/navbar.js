@@ -28,7 +28,7 @@ function navbarHTML() {
           <h4>Add Task</h4>
         </div>
       </a>
-      <a class="navBarCategories" href="contacts.html">
+      <a class="navBarCategories" href="contact.html">
         <div class="navBarMenu">
           <img src="./img/contacts-icon.svg" alt="contacts-icon" />
           <h4>Contacts</h4>

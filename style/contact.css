@@ -47,13 +47,6 @@ body {
     margin-left: 45px;
 }
 
-.addContact {
-    width: 1212px;
-    height: 592px;
-    border: 1px solid #2A3647;
-    border-radius: 30px;
-}
-
 .editContact {
     width: 1212px;
     height: 592px;
@@ -61,7 +54,7 @@ body {
     background-color: white;
     position: absolute;
     left: 258px;
-    top: 230px;
+    top: 110px;
     z-index: 1000;
 }
 
@@ -72,7 +65,7 @@ body {
     background-color: white;
     position: absolute;
     left: 258px;
-    top: 230px;
+    top: 110px;
     z-index: 1000;
 }
 
@@ -111,6 +104,14 @@ body {
 }
 
 .flexContactForm {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 550px;
+    top: 111px;
+}
+
+.flexContactFormSaveEdit {
     display: flex;
     align-items: center;
     position: absolute;
@@ -380,4 +381,20 @@ body {
 
 .d-none {
     display: none;
+}
+
+.contactInformationSectionEdit {
+    position: absolute;
+    top: 130px;
+}
+
+.contactInformationEdit {
+    color: black;
+    font-size: 20px;
+    word-wrap: break-word;
+}
+
+.contactLabelEdit {
+    font-size: 16px;
+    word-wrap: break-word;
 }

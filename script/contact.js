@@ -11,6 +11,7 @@ function generateContacts() {
   function editContactPopup() {
     let editContactPopup = document.querySelector('.editContactPopup');
     editContactPopup.innerHTML = editContact();
+    document.querySelector('.flexContactFormSaveEdit').classList.add('d-none');
   }
 
   function addContactPopup() {
@@ -26,6 +27,11 @@ function generateContacts() {
   function closeAddContactPopup() {
     document.getElementById('closeAdd').classList.add('d-none');
     document.getElementById('backgroundAdd').classList.add('d-none');
+  }
+
+  function saveEditContact() {
+    document.querySelector('.flexContactForm').classList.add('d-none');
+    document.querySelector('.flexContactFormSaveEdit').classList.remove('d-none');
   }
 
   //Template functions
@@ -91,7 +97,7 @@ function generateContacts() {
             </div>
             <div class="blueLine"></div>
         </div>
-        <div class="flexContactForm">
+        <div class="flexContactForm" id="flexContactForm">
             <div class="contactInitials">
                 <div>LM</div>
             </div>
@@ -103,12 +109,27 @@ function generateContacts() {
                 </div>
                 <div class="actionEditContactButton">
                     <button class="secondaryButton interRegular" onclick="closeEditContactPopup()">Cancel</button>
-                    <button class="interBold saveContact">Save<img src="img/check.svg"></button>
+                    <button class="interBold saveContact" onclick="saveEditContact()">Save<img src="img/check.svg"></button>
                 </div>
             </div>
         </div>
-        <button class="close" onclick="closeEditContactPopup()"><img src="img/close.svg""></button>
+        <div class="flexContactFormSaveEdit">
+            <div class="afterEditName">
+                <span class="fullname" id="fullname">Anton Mayer</span>
+                <div class="thirdButtonGroup">
+                    <button class="thirdButton interRegular" onclick="editContactPopup()"><img src="img/edit-pencil.svg" alt="">Edit</button>
+                    <button class="thirdButton interRegular"><img src="img/delete-trash.svg" alt="">Delete</button>
+                </div>
+            </div>
+            <div class="contactInformationSectionEdit interRegular">
+                <p class="contactInformationEdit">Contact Information</p>
+                <p class="contactLabelEdit interBold">Email</p>
+                <p id="emailEdit">anton@gmail.com</p>
+                <p class="contactLabelEdit interBold">Phone</p>
+                <p id="phoneEdit">+49 111 11 111 1</p>
+            </div>
     </div>
+    <button class="close" onclick="closeEditContactPopup()"><img src="img/close.svg""></button>
     `
   }
 
