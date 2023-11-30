@@ -7,7 +7,7 @@ function headerHTML() {
   return `
     <h4>Kanban Project Management Tool</h4>
     <div class="headerMenu">
-      <a href="">
+      <a href="help.html">
         <img src="./img/help-icon.svg" alt="help-icon" />
       </a>
       <div class="userInitialsContainer" onclick="togglePopupMenu()">
