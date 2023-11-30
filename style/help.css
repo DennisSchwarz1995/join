@@ -1,0 +1,11 @@
+.help {
+    position: absolute;
+    left: 300px;
+    top: 120px;
+    width: 70%;
+    margin-right: 100px;
+}
+
+.blue {
+    color: #29ABE2;
+}
