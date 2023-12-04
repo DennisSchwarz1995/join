@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
 }
 
 .navBarCategories[aria-current="page"] {
@@ -24,10 +26,14 @@ body {
 }
 
 .navBarCategories:hover,
-.privacy:hover,
-.legal:hover,
 .popupMenu a:hover {
   background: #2a3d59;
+}
+
+.privacy:hover,
+.legal:hover {
+ color: #29abe2;
+ font-weight: 700;
 }
 
 .navBarCategories:active,
@@ -65,8 +71,6 @@ h3 {
 
 h4 {
   font-size: 16px;
-  margin-block-start: 0;
-  margin-block-end: 0;
 }
 
 .privacyAndLegal {

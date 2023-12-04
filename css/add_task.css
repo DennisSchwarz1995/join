@@ -1,0 +1,245 @@
+.addTask {
+  position: fixed;
+  inset: 106px 0px 0px 232px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 0 0 0 110px;
+  background: #f6f7f8;
+}
+
+.addTask h1 {
+  font-size: 61px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.confirmDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  align-self: stretch;
+}
+
+.taskSelector {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  max-width: 1000px;
+}
+
+.taskSelectorLeft {
+  display: flex;
+  width: 440px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.taskSelectorRight {
+  display: flex;
+  width: 440px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titleDiv,
+.descriptionDiv,
+.assignedDiv,
+.dueDateDiv,
+.prioDiv,
+.categoryDiv,
+.subtaskDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleInput {
+  padding: 12px 21px;
+}
+
+.descriptionTextArea {
+  padding: 18px 16px 18px 16px;
+  font-family: inherit;
+}
+
+.contactsSelect {
+  display: flex;
+  justify-content: space-between;
+  appearance: none;
+  padding: 12px 16px;
+  position: relative;
+  background-image: url(../img/arrow-drop-down.svg);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px) center;
+  background-size: 12px;
+}
+
+.dateInput {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.categorySelect {
+  display: flex;
+  justify-content: space-between;
+  appearance: none;
+  padding: 12px 16px;
+  position: relative;
+  background-image: url(../img/arrow-drop-down.svg);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px) center;
+  background-size: 12px;
+}
+
+.subtaskInput {
+  padding: 12px 16px 12px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  border: 1px solid #d1d1d1;
+  max-height: 433px;
+}
+
+.warningDiv {
+  color: #ff8190;
+  font-size: 12px;
+}
+
+.warningBorder {
+  border: 1px solid #ff8190;
+}
+
+.invisible {
+  color: #f6f7f8;
+}
+
+.titleInput,
+.descriptionTextArea,
+.contactsSelect,
+.dateInput,
+.categorySelect,
+.subtaskInput {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  outline: none;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.prioButtonsDiv {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.urgentButton,
+.mediumButton,
+.lowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  gap: 8px;
+  padding: 16px 10px;
+  border: 1px solid #d1d1d1;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 0.1);
+  background: #fff;
+  font-size: 20px;
+  width: 33%;
+}
+
+.urgentButton:hover,
+.mediumButton:hover,
+.lowButton:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.titleInput:hover,
+.descriptionTextArea:hover,
+.contactsSelect:hover,
+.dateInput:hover,
+.categorySelect:hover,
+.subtaskInput:hover,
+.urgentButton:hover,
+.mediumButton:hover,
+.lowButton:hover,
+.checkButton:hover,
+.clearButton:hover {
+  cursor: pointer;
+}
+
+label {
+  font-size: 20px;
+  color: #2a3647;
+  margin-bottom: 8px;
+}
+
+.prioLabel {
+  color: #000000;
+}
+
+.clearAndCheckButtonDiv {
+  display: flex;
+  gap: 16px;
+}
+
+.clearButton,
+.checkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #2a3647;
+  font-size: 20px;
+}
+
+.clearButton {
+  background: #f6f7f8;
+  color: #2a3647;
+}
+
+.checkButton {
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.clearButton:hover {
+  border: 2px solid #29abe2;
+  color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: -1px;
+}
+
+.clearButton:hover img {
+  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
+    brightness(94%) contrast(89%);
+}
+
+.checkButton:hover {
+  border: 1px solid #29abe2;
+  background: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border: 1px solid #29abe2;
+}

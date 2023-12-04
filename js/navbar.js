@@ -6,31 +6,31 @@ function generateNavbar() {
 function navbarHTML() {
   return `
     <a href="index.html">
-      <img src="./img/nav-icon.svg" alt="join-sidebar-logo" />
+      <img src="../img/nav-icon.svg" alt="join-sidebar-logo" />
     </a>
 
     <div class="navBarBoard">
       <a class="navBarCategories" href="summary.html">
         <div class="navBarMenu">
-          <img src="./img/summary-icon.svg" alt="summary-icon" />
+          <img src="../img/summary-icon.svg" alt="summary-icon" />
           <h4>Summary</h4>
         </div>
       </a>
       <a class="navBarCategories" href="board.html">
         <div class="navBarMenu">
-          <img src="./img/board-icon.svg" alt="board-icon" />
+          <img src="../img/board-icon.svg" alt="board-icon" />
           <h4>Board</h4>
         </div>
       </a>
-      <a class="navBarCategories" href="add-task.html">
+      <a class="navBarCategories" href="add_task.html">
         <div class="navBarMenu">
-          <img src="./img/task-icon.svg" alt="task-icon" />
+          <img src="../img/task-icon.svg" alt="task-icon" />
           <h4>Add Task</h4>
         </div>
       </a>
       <a class="navBarCategories" href="contacts.html">
         <div class="navBarMenu">
-          <img src="./img/contacts-icon.svg" alt="contacts-icon" />
+          <img src="../img/contacts-icon.svg" alt="contacts-icon" />
           <h4>Contacts</h4>
         </div>
       </a>
