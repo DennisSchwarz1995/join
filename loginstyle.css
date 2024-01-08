@@ -1,0 +1,313 @@
+HTML,
+body {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Martian Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+    margin: 0 !important;
+    padding: 0;
+    overflow: hidden;
+   
+}
+.loadingImage{ 
+    position: absolute;
+    z-index: 100;
+    object-fit: cover;
+
+}
+.backgroundColor {
+    background-color: rgb(246, 247, 248);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.joinLogo {
+    width: 100px;
+    height: 121px;
+    margin-top: 0;
+    margin-left: 0;
+    object-fit: contain;
+    object-position: center;
+    animation: logoAnimation 1.5s ease-out forwards;
+}
+
+@keyframes logoAnimation {
+    0% {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        width: 50vw;
+        height: 50vh;
+        z-index: 100;
+    }
+    100% {
+        position: absolute;
+        top: 80px; /* Ursprünglicher Top-Wert */
+        left: 77px; /* Ursprünglicher Left-Wert */
+        transform: translate(0, 0);
+        width: 100px;
+        height: 121px;
+    }
+}
+.signUpArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+    height: 49px;
+    margin-top: 67px;
+    left: 1039px;
+    gap: 35px;
+    white-space: nowrap;
+    margin-right: 40px;
+}
+
+.signUpButton {
+    background-color: #2A3647;
+    color: white;
+    border-radius: 8px;
+    width: 91px;
+    height: 49px;
+    padding: 15px 16px 15px 16px;
+    gap: 10px;
+    text-align: center;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 14px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.signUpButton:hover {
+    cursor: pointer;
+    background-color: rgba(41, 171, 226, 1);
+    border: rgba(41, 171, 226, 1);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01); 
+    box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01);
+}
+
+.signUpHeader {
+    font-family: 'Inter';
+    font-weight: 400;
+    size: 20px;
+    line-height: 20px;
+}
+
+.loginAreaFullScreenVision {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.loginArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 652px;
+    height: 493px;
+    top: 265px;
+    left: 394px;
+    border-radius: 30px;
+    padding: 48px 115px 48px 115px;
+    gap: 32px;
+    box-shadow: #0000000A 0px 5px 15px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+  
+.loginData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+}
+
+.loginText {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73px;
+    width: 315px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.blueStrokeContainer {
+    width: 315px;
+    height: 89;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+
+.email {
+    width: 422px;
+    height: 48px auto;
+    border-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    padding: 12px 21px 12px 21px;
+    gap: 10px;
+    background-image: url("images/mail.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.email:hover{ 
+    cursor: pointer;
+}
+
+.email::placeholder {
+    font-weight: 400;
+    size: 20px;
+    line-height: 24px;
+    color: #D1D1D1;
+}
+
+.password {
+    width: 422px;
+    height: 48px auto;
+    border-radius: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    padding: 12px 21px 12px 21px;
+    gap: 10px;
+    background-image: url("images/lock.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.password:hover{ 
+    cursor: pointer;
+}
+.password::placeholder {
+    font-weight: 400;
+    size: 20px;
+    line-height: 24px;
+    color: #D1D1D1;
+}
+
+.checkBox {
+    display: flex;
+    align-items: center;
+    width: 422px;
+    height: 24px;
+}
+
+.checkBox:hover{ 
+    cursor: pointer;
+}
+
+.labelContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkButton {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 2px solid rgba(42, 54, 71, 1);
+    margin-right: 8px;
+}
+
+
+.checkBox .checkButton {
+    border-radius: 3px;
+    border: 2px solid rgba(42, 54, 71, 1);
+}
+
+.rememberMeLabel {
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.loginButton {
+    text-align: center;
+    width: 110px;
+    height: 48px;
+    border-radius: 8px;
+    border: 0px;
+    padding: 15px 24px 15px 24px;
+    gap: 10px;
+    background-color: rgba(42, 54, 71, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 1);
+    margin-right: 35px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.loginButton:hover {
+    cursor: pointer;
+    background-color: rgba(41, 171, 226, 1);
+    border: rgba(41, 171, 226, 1);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01); 
+    box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01);
+}
+
+.guestLoginButton {
+    width: 177px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid rgba(42, 54, 71, 1);
+    background-color: white;
+    color: rgba(42, 54, 71, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.guestLoginButton:hover {
+    cursor: pointer;
+    color: rgba(41, 171, 226, 1);
+    border-color: rgba(41, 171, 226, 1);
+    border:2px solid rgba(41, 171, 226, 1); 
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01); 
+    box-shadow: 0px 10px 13px -7px #000000, 10px 14px 32px 8px rgba(0,0,0,0.01);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 80px;
+    height: 35px;
+
+}
+
+.footerText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(168, 168, 168, 1);
+    margin: 8px;
+}
+
+.footerText:hover{ 
+    font-size: 17px;
+    cursor: pointer;
+    color: rgba(41, 171, 226, 1);
+}

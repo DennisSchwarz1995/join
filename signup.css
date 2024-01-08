@@ -1,0 +1,222 @@
+HTML,
+body {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Martian Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+    margin: 0 !important;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.backgroundColor {
+    background-color: rgb(246, 247, 248);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.joinLogo {
+    width: 100px;
+    height: 121px;
+    margin-top: 80px;
+    margin-left: 77px;
+}
+
+.signupArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 598px;
+    height: 630px;
+    margin-top: -100px;
+    left: 394px;
+    border-radius: 30px;
+    padding: 48px 88px 48px 88px;
+    gap: 32px;
+    box-shadow: #0000000A 0px 5px 15px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.blueStrokeContainer {
+    width: 315px;
+    height: 89;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.signupAreaFullscreenVision{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signupData{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+}
+.checkBox {
+    display: flex;
+    align-items: center;
+    height: 54px;
+}
+
+.checkBox:hover{ 
+    cursor: pointer;
+}
+
+.labelContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.checkButton {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 2px solid rgba(42, 54, 71, 1);
+    margin-right: 8px;
+}
+
+
+.checkBox .checkButton {
+    border-radius: 3px;
+    border: 2px solid rgba(42, 54, 71, 1);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 60px;
+    height: 35px;
+} 
+
+.footerText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(168, 168, 168, 1);
+    margin: 8px;
+
+}
+
+.footerText:hover{ 
+    font-size: 17px;
+    cursor: pointer;
+    color: rgba(41, 171, 226, 1);
+}
+
+.privacyPolicyBlue{ 
+    color: rgba(41, 171, 226, 1); 
+}
+
+.privacyPolicyBlue:hover{
+    cursor: pointer;
+    text-decoration: underline ;
+ }
+
+.divForArrow{ 
+  height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.goBack{ 
+    position: absolute;
+    left: 35px;
+    top: -50px;
+}
+
+.name{ 
+    height: 24px;
+    width: 380px;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    gap: 10px;
+    color: rgba(209, 209, 209, 1);
+    background-image: url("images/person.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.email{ 
+    height: 24px;
+    width: 380px;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    gap: 10px;
+    color: rgba(209, 209, 209, 1);
+    background-image: url("images/mail.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.password{ 
+    height: 24px;
+    width: 380px;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    gap: 10px;
+    color: rgba(209, 209, 209, 1);
+    background-image: url("images/lock.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.confirmPassword{ 
+    height: 24px;
+    width: 380px;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    gap: 10px;
+    color: rgba(209, 209, 209, 1);
+    background-image: url("images/lock.png");
+    background-repeat: no-repeat;
+    background-position: right 5% center;
+}
+
+.signupButton{ 
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+    
+    line-height: 25px;
+    font-weight: 700;
+    font-size: 21px;
+    width: 126px;
+    height: 55px;
+    background-color: rgba(42, 54, 71, 1);
+    border: 0px;
+    border-radius: 8px;
+    padding: 15px 24px 15px 24px; 
+    gap: 10px;
+    color:rgba(255, 255, 255, 1);
+}
