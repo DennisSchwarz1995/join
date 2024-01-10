@@ -1,0 +1,192 @@
+.summary {
+  position: fixed;
+  inset: 106px 0px 0px 232px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 0 0 0 110px;
+  background: var(--bg-color-gray);
+}
+
+.summaryHeadline {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.summaryBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  min-width: 560px;
+}
+
+.summaryBoardWrapper {
+  display: flex;
+  gap: 28px;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.summaryHeadline span {
+  font-size: 27px;
+  color: var(--main-color-darkblue);
+}
+
+
+.urgentDivLeft {
+  display: flex;
+  gap: 18px;
+}
+
+.urgentDivRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.urgentDivider {
+  border: 2px solid var(--text-color-gray);
+  border-radius: 30px;
+  height: 100%;
+  margin: 0 61px;
+}
+
+.urgentDeadlineDate {
+  font-size: 21px;
+  color: var(--main-color-darkblue);
+  font-weight: 700;
+}
+
+.toDoDiv,
+.doneDiv {
+  gap: 18px;
+  padding: 38px 19px;
+}
+
+.toDoImage,
+.doneDivImage {
+  height: 69px;
+  width: 69px;
+  border-radius: 50%;
+}
+
+.toDoImage {
+  background: url(../img/summary-pencil-icon.svg) no-repeat;
+  background-size: cover;
+}
+
+.doneDivImage {
+  background: url(../img/summary-check-icon.svg) no-repeat;
+  background-size: cover;
+}
+
+.toDoDiv,
+.doneDiv,
+.urgentDiv,
+.tasksInBoardDiv,
+.tasksInProgressDiv,
+.awaitingFeedbackDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--text-color-white);
+  flex-shrink: 0;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  transition: ease-in-out 250ms;
+}
+
+.toDoDiv:hover,
+.doneDiv:hover,
+.urgentDiv:hover,
+.tasksInBoardDiv:hover,
+.tasksInProgressDiv:hover,
+.awaitingFeedbackDiv:hover {
+  background: var(--main-color-darkblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transform: scale(1.15);
+}
+
+.hoverDiv:hover span,
+.hoverDiv:hover p {
+  color: var(--text-color-white);
+}
+
+.toDoDiv:hover .toDoImage {
+  background: url(../img/summary-pencil-icon-white.svg) no-repeat;
+}
+
+.doneDiv:hover .doneDivImage {
+  background: url(../img/summary-check-icon-white.svg) no-repeat;
+}
+
+.toDoAmountDiv,
+.doneAmountDiv,
+.urgentAmountDiv,
+.tasksInBoardAmountDiv,
+.tasksInProgressAmountDiv,
+.awaitingFeedbackAmountDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--main-color-black);
+}
+
+.summaryBoard span {
+  font-size: 20px;
+  font-weight: 400;
+  color:  var(--main-color-darkblue);
+  text-align: center;
+}
+
+.urgentDiv {
+  padding: 28px 0;
+  width: 100%;
+}
+
+.tasksInBoardDiv,
+.tasksInProgressDiv,
+.awaitingFeedbackDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.greetingDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryBoardAndGreetingDiv {
+  display: flex;
+}
+
+.greetingDiv {
+  margin-left: 80px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.greetingDiv h2 {
+  font-size: 47px;
+  color: var(--main-color-darkblue);
+  font-weight: 500;
+}
+
+.greetingSpan {
+  font-size: 64px;
+  color: var(--main-color-lightblue);
+  font-weight: 700;
+}

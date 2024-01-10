@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/general_classes.css" />
+    <script src="../js/login.js"></script>
+    <title>Log in</title>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <section class="login">
+      <div class="header">
+        <div class="logoContainer">
+          <img src="../img/join-animation-logo.svg" class="joinLogo" />
+        </div>
+        <div class="signUpArea">
+          <h4 class="signUpHeader">Not a Join User?</h4>
+          <a href="signup.html">
+            <button class="signUpButton">Sign up</button>
+          </a>
+        </div>
+      </div>
+      <div class="loginAreaFullScreenVision">
+        <div class="loginArea">
+          <div class="blueStrokeContainer">
+            <h1 class="loginText">Log in</h1>
+            <div class="loginDivider"></div>
+          </div>
+          <div class="loginData">
+            <input
+              placeholder="Email"
+              class="emailInput"
+              type="email"
+              required
+              oninvalid="setCustomValidity('Please enter a valid Email.')"
+            />
+            <input
+              placeholder="Password"
+              class="passwordInput"
+              id="passwordInput"
+            />
+            <div class="checkBox">
+              <div class="labelContainer">
+                <div class="checkBoxIconDiv">
+                  <img
+                    onclick="toggleCheckBox()"
+                    class="checkBoxIcon"
+                    src="../img/checkbox-icon.svg"
+                  />
+                </div>
+                <label for="rememberMe" class="rememberMeLabel"
+                  >Remember me</label
+                >
+              </div>
+            </div>
+            <div class="buttonArea">
+              <button type="button" class="loginButton" onclick="checkInputs()">
+                Log in
+              </button>
+              <button type="button" class="guestLoginButton">
+                Guest Log in
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <a href="privacy_policy.html" class="footerLink">Privacy Policy</a>
+        <a href="legal_notice.html" class="footerLink">Legal notice</a>
+      </div>
+    </section>
+  </body>
+</html>

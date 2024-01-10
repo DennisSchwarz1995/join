@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter";
+  font-style: normal;
+  height: 100vh;
+  width: 100vw;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:not(:placeholder-shown):not(:focus):invalid {
+  border-color: var(--warning-color-red);
+}
+
+:root {
+  --main-color-black: #000000;
+  --main-color-darkblue: #2a3647;
+  --main-color-lightblue: #29abe2;
+  --text-color-white: #ffffff;
+  --text-color-gray: #a8a8a8;
+  --border-color-gray: #d1d1d1;
+  --hover-color-darkblue: #2a3d59;
+  --hover-color-blue: #0c2e621f;
+  --bg-color-gray: #f6f7f8;
+  --bg-color-red: #ff3d00;
+  --fill-color-gray: #EDF2FA;
+  --warning-color-red: #ff8190;
+  --active-color-darkblue: #091931;
+  --board-text-color-blue: #42526e;
+  --board-bg-color-gray: #e7e7e7;
+  --bg-gradient: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
+  --bg-user-initials-color-lightorange: #FFA35E;
+  --bg-user-initials-color-mediumorange: #FF745E;
+  --bg-user-initials-color-darkorange: #FF7A00;
+  --bg-user-initials-color-lightblue: #00BEE8;
+  --bg-user-initials-color-darkblue: #0038FF;
+  --bg-user-initials-color-cyan: #1FD7C1;
+  --bg-user-initials-color-lightpink: #FC71FF;
+  --bg-user-initials-color-mediumpink: #FF5EB3;
+  --bg-user-initials-color-darkpink: #9327FF;
+  --bg-user-initials-color-purple: #6E52FF;
+  --bg-user-initials-color-lightyellow: #FFE62B;
+  --bg-user-initials-color-mediumyellow: #FFC701;
+  --bg-user-initials-color-darkyellow: #FFBB2B;
+  --bg-user-initials-color-green: #C3FF2B;
+  --bg-user-initials-color-red: #FF4646;
+  --bg-user-initials-color-violet: #462F8A;
+}
+
+h1 {
+  font-size: 61px;
+}
+
+h2 {
+  font-size: 47px;
+}
+
+h3 {
+  font-size: 27px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.backArrowDiv {
+  position: fixed;
+  right: 52px;
+  display: flex;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.backArrowDiv img {
+  width: 100%;
+  height: 100%;
+}
+
+.backArrowDiv:hover {
+  background-color: var(--hover-color-blue);
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+.signUpBackArrowDiv:hover,
+.loginButton:hover,
+.guestLoginButton:hover,
+.footerText:hover,
+.emailInput:hover,
+.nameInput:hover,
+.passwordInput:hover,
+.confirmPasswordInput:hover,
+.checkBoxIcon:hover,
+.signUpButton:hover,
+.titleInput:hover,
+.descriptionTextArea:hover,
+.contactsSelect:hover,
+.dateInput:hover,
+.categorySelect:hover,
+.subtaskInput:hover,
+.urgentButton:hover,
+.mediumButton:hover,
+.lowButton:hover,
+.createButton:hover,
+.clearButton:hover,
+.taskBoardAddTaskDiv:hover,
+.addTaskButton:hover,
+.searchTaskInput:hover,
+.userInitialsContainer:hover,
+.toDoDiv:hover,
+.doneDiv:hover,
+.urgentDiv:hover,
+.tasksInBoardDiv:hover,
+.tasksInProgressDiv:hover,
+.awaitingFeedbackDiv:hover,
+.addNewContactButton:hover,
+.contactCard:hover,
+.backArrowDiv:hover,
+.floatingContactEdit:hover,
+.floatingContactDelete:hover,
+.dropDownArrowDiv:hover,
+.cancelButton:hover,
+.createContactButton:hover,
+.closeButtonDiv:hover,
+.footerLink:hover,
+.privacyPolicyLink:hover  {
+  cursor: pointer;
+}
+
+.active {
+  background: var(--active-color-darkblue);
+}
+
+.summaryHeadlinedivider,
+.contactHeadlineDivider {
+  border: 2px solid var(--main-color-lightblue);
+  border-radius: 30px;
+  height: 60px;
+}

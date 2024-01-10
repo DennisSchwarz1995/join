@@ -1,0 +1,252 @@
+.contactHeaderDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--main-color-darkblue);
+  height: 100%;
+  border: 1px solid var(--main-color-darkblue);
+  width: 40%;
+  border-radius: 30px 0 0 30px;
+  gap: 12px;
+  margin-left: -4px;
+}
+
+.contactHeader {
+  color: var(--text-color-white);
+  padding: 0 48px;
+  word-wrap: break-word;
+}
+
+.contactHeader h1 {
+  padding-top: 20px;
+  font-weight: 700;
+}
+
+.contactHeader h3 {
+  font-weight: 400;
+}
+
+.addContactDivider {
+  border: 3px solid var(--main-color-lightblue);
+  width: 100px;
+  margin-left: 45px;
+}
+
+.addContact {
+  display: flex;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
+  background: var(--text-color-white);
+}
+
+.editContact {
+  width: 1212px;
+  height: 592px;
+  border: 1px solid var(--main-color-darkblue);
+  border-radius: 30px;
+  background: var(--text-color-white);
+}
+
+.addContactForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+}
+
+.editContact {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.formAndButtonDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.addContactButtonDiv {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+}
+
+.createContactButton {
+  color: var(--text-color-white);
+  background: var(--main-color-darkblue);
+}
+
+.cancelButton {
+  color: var(--main-color-darkblue);
+  background: var(--text-color-white);
+  width: 120px;
+}
+
+.cancelButton,
+.createContactButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--main-color-darkblue);
+  font-size: 20px;
+  transition: ease-in-out 100ms;
+}
+
+.cancelButton img {
+  transition: ease-in-out 100ms;
+}
+
+.cancelButton:hover {
+  border: 2px solid var(--main-color-lightblue);
+  color: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cancelButton:hover img {
+  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
+    brightness(94%) contrast(89%);
+}
+
+.createContactButton:hover {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.thirdButtonGroup {
+  display: flex;
+}
+
+.thirdButton {
+  border: none;
+  background: var(--text-color-white);
+  display: flex;
+  align-items: center;
+  margin: 10px 5px 5px 0px;
+}
+
+.thirdButton img {
+  margin-right: 5px;
+}
+
+.userIconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: 120px;
+  background: var(--border-color-gray);
+  border-radius: 50%;
+  border: 2px solid var(--text-color-white);
+  margin: 50px 50px 0 0;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 422px;
+  margin-top: 130px;
+}
+
+.closeButtonDiv {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+  display: flex;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButtonDiv:hover {
+  background-color: var(--hover-color-blue);
+}
+
+.addContactField {
+  color: var(--border-color-gray);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.formFields {
+  border: 1px solid var(--border-color-gray);
+  word-wrap: break-word;
+  width: 100%;
+  font-size: 20px;
+  padding: 13px 23px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.fullanameWarningDiv,
+.emailWarningDiv,
+.phoneWarningDiv {
+  display: none;
+  font-size: 20px;
+  color: var(--warning-color-red);
+}
+
+.warning:focus,
+.warning  {
+  border: 1px solid #ff8190 !important;
+}
+
+.formFields:focus {
+  border: 1px solid var(--main-color-lightblue);
+}
+
+.addContactFormIcon {
+  position: absolute;
+  right: 86px;
+}
+
+.afterEditName {
+  width: 400px;
+}
+
+.fullname {
+  color: var(--main-color-black);
+  font-size: 47px;
+  font-family: "Inter";
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.contactInformationSection {
+  margin-top: 150px;
+  margin-left: 190px;
+}
+
+.contactInformation {
+  color: var(--main-color-black);
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.contactLabel {
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.flexContactEdit {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 600px;
+  top: 130px;
+}
