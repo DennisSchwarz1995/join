@@ -1,21 +1,22 @@
 function generateHeader() {
   let header = document.querySelector('.header');
   header.innerHTML = headerHTML();
+  setActiveNavItem();
 }
 
 function headerHTML() {
   return `
-    <h5>Kanban Project Management Tool</h5>
+    <h4>Kanban Project Management Tool</h4>
     <div class="headerMenu">
-      <a href="">
-        <img src="../img/help-icon.svg" alt="help-icon" />
+      <a href="help.html">
+        <img class="helpIcon" src="../img/help-icon.svg" alt="help-icon" />
       </a>
       <div class="userInitialsContainer" onclick="togglePopupMenu()">
         <h4 class="userInitials">DS</h4>
       </div>
       <div class="popupMenu">
-        <a href="">Legal Notice</a>
-        <a href="">Privacy Policy</a>
+        <a class="navBarActive" href="legal_notice.html">Legal Notice</a>
+        <a class="navBarActive" href="privacy_policy.html">Privacy Policy</a>
         <a href="">Log out</a>
       </div>
     </div>
@@ -30,11 +31,4 @@ function togglePopupMenu() {
       : "none";
 }
 
-/**
- * Active Background for the Links (doesn't work until the href refers to something)
- */
-document.querySelectorAll(".navBarCategories").forEach((link) => {
-  if (link.href === window.location.href) {
-    link.setAttribute("aria-current", "page");
-  }
-});
+

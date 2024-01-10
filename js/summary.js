@@ -1,7 +1,6 @@
-async function init() {
-  await generateNavbar();
-  await generateHeader();
-  generateSummary();
+ function init() {
+   generateNavbar();
+   generateHeader();
 }
 
 function generateSummary() {

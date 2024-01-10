@@ -1,0 +1,263 @@
+.contacts {
+  position: fixed;
+  inset: 106px 0px 0px 232px;
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  background: var(--bg-color-gray);
+}
+
+.contactBoard {
+  background: var(--text-color-white);
+  box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  width: 456px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.contactList {
+  display: flex;
+  padding: 0 52px 32px 52px;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 82px);
+}
+
+.contactButtonDiv {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  padding: 22.5px 52px 0 52px;
+  background: var(--text-color-white);
+}
+
+.addNewContactButton {
+  display: flex;
+  width: 352px;
+  padding: 12px 0px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--main-color-darkblue);
+  background: var(--main-color-darkblue);
+  color: var(--text-color-white);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.addNewContactButton:hover {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.contactCategoryDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  padding: 17px 36px;
+}
+
+.contactDividerDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.letterCategory {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.contactCard {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 35px;
+  padding: 15px 24px;
+  align-self: stretch;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.contactCard:hover {
+  background: var(--bg-gradient);
+}
+
+.contactInfoDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.userInitialsDiv {
+  display: flex;
+  min-height: 42px;
+  min-width: 42px;
+  border-radius: 45px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  border: 2px solid var(--text-color-white);
+}
+
+.contactNameDiv {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.contactMailDiv {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--main-color-lightblue);
+}
+
+.contactHeadline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.contactDetailedInfo {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.contactHeadlineSpan {
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--main-color-darkblue);
+}
+
+.floatingContactDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  margin-top: 40px;
+}
+
+.floatingContactUser {
+  height: 120px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  border: 3px solid var(--text-color-white);
+  background: var(--bg-user-initials-color-orange);
+  color: var(--text-color-white);
+}
+
+.floatingContactUser h2,
+.floatingContactName h2 {
+  font-weight: 500;
+}
+
+.floatingContactHeader {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.floatingContactEditAndDelete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--main-color-darkblue);
+}
+
+.floatingContactEdit,
+.floatingContactDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floatingContactEdit {
+  width: 62px;
+}
+
+.floatingContactInformation {
+  padding: 25px 0;
+}
+
+.floatingContactInformation h4 {
+  font-weight: 400;
+}
+
+.floatingContactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.floatingContactEmail,
+.floatingContactPhone {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floatingContactDetails p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.floatingContactEmail p {
+  color: var(--main-color-lightblue);
+}
+
+.floatingContactEditImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-edit-icon-darkblue.svg);
+}
+
+.floatingContactDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-darkblue.svg);
+}
+
+.floatingContactEdit:hover .floatingContactEditImage {
+  background: url(../img/contact-edit-icon-lightblue.svg);
+}
+
+.floatingContactDelete:hover .floatingContactDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-lightblue.svg);
+}
+
+.floatingContactEdit:hover,
+.floatingContactDelete:hover {
+  color: var(--main-color-lightblue);
+  font-weight: 700;
+}
+
+.contactOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+  
+}
+
+.contactOverlay.show {
+  z-index: 99;
+  transform: translate(-50%, -50%) scale(1);
+}

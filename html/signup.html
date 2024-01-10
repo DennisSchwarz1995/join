@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/signup.css" />
+    <link rel="stylesheet" href="../css/general_classes.css" />
+    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <script src="../js/sign_up.js"></script>
+    <title>Sign up</title>
+  </head>
+  <body>
+    <div class="signUp">
+      <div class="logoContainer">
+        <img src="../img/join-animation-logo.svg" class="joinLogo" />
+      </div>
+      <div class="signupAreaFullscreenVision">
+        <div class="signupArea">
+          <div class="blueStrokeContainer">
+            <div class="headlineAndArrowDiv">
+              <div class="signUpBackArrowDiv">
+                <img onclick="history.back()"
+                 class="backArrow" src="../img/back-arrow-lightblue.svg" alt="back-arrow-lightblue" />
+              </div>
+              <h1>Sign up</h1>
+              <div class="alignDiv"></div>
+            </div>
+            <div class="signUpDivider"></div>
+          </div>
+          <div class="signupData">
+            <input placeholder="Name" class="nameInput" />
+            <input placeholder="Email" class="emailInput" />
+            <input placeholder="Password" class="passwordInput" />
+            <input
+              placeholder="Confirm Password"
+              class="confirmPasswordInput"
+            />
+            <div class="checkBox">
+              <div class="labelContainer">
+                <div class="checkBoxIconDiv">
+                    <img
+                      onclick="toggleCheckBox()"
+                      class="checkBoxIcon"
+                      src="../img/checkbox-icon.svg"
+                    />
+                  </div>
+                <label for="rememberMe" class="privacyPolicy"
+                  >I accept the
+                  <a class="privacyPolicyLink" href="privacy_policy.html">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="buttonArea">
+              <button type="button" class="signUpButton">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <a href="privacy_policy.html" class="footerLink">Privacy Policy</a>
+        <a href="legal_notice.html" class="footerLink">Legal notice</a>
+      </div>
+    </div>
+  </body>
+</html>
