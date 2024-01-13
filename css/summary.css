@@ -190,3 +190,62 @@
   color: var(--main-color-lightblue);
   font-weight: 700;
 }
+
+@media (max-width: 1275px) {
+
+  .summary {
+    padding: 0 0 0 50px;
+  }
+
+  .summaryHeadline h1{
+    font-size: 46px;
+  }
+
+  .summaryHeadline span {
+    font-size: 25px;
+  }
+
+  .summaryBoardWrapper {
+    display: flex;
+    gap: 28px;
+    justify-content: space-between;
+    min-width: 73%;
+  }
+
+  .toDoDiv, .doneDiv {
+    padding: 38px 30px 39px 2px;
+  }
+
+  .urgentDiv {
+    width: 73%;
+  }
+
+  .urgentDivLeft img {
+    padding-left: 30px;
+  }
+
+  .urgentDivider {
+    margin: 0 31px;
+  }
+
+  .greetingDiv h2 {
+    font-size: 35px;
+  }
+
+  .greetingSpan {
+    font-size: 50px;
+  }
+
+  .greetingDiv {
+    margin-left: -105px;
+  }
+
+}
+
+@media (max-width: 1000px) {
+  
+}
+
+@media (max-width: 400px) {
+  
+}

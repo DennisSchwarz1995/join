@@ -55,7 +55,7 @@ function summaryHTML() {
         <div class="urgentDivider"></div>
         <div class="urgentDivRight">
           <p class="urgentDeadlineDate">Dezember 12, 2023</p>
-          <span>Upcoming Deadline</span>
+          <p>Upcoming Deadline</p>
         </div>
       </div>
       <div class="summaryBoardWrapper">
