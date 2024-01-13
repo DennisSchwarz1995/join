@@ -6,6 +6,7 @@ function generateHeader() {
 
 function headerHTML() {
   return `
+    <img class="logoMobile" src="../img/join-logo-mobile.svg" alt="join-logo">
     <h4 class="title">Kanban Project Management Tool</h4>
     <div class="headerMenu">
       <a href="help.html">

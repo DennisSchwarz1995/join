@@ -9,6 +9,9 @@
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1); 
 }
 
+.logoMobile {
+  display: none;
+}
 
 .headerMenu {
   display: flex;
@@ -79,5 +82,11 @@ h4 {
 
   .headerMenu {
     display: contents;
+  }
+
+  .logoMobile {
+    display: flex;
+    position: absolute;
+    left: 50px;
   }
 }

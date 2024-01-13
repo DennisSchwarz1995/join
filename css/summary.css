@@ -243,6 +243,14 @@
 }
 
 @media (max-width: 1000px) {
+
+  .navBar {
+    display: none;
+  }
+
+  .summary {
+    inset: 0;
+  }
   
 }
 
