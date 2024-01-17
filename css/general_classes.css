@@ -8,14 +8,13 @@ body {
   width: 100vw;
 }
 
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input:not(:placeholder-shown):not(:focus):invalid {
+.warning {
   border-color: var(--warning-color-red);
 }
 
@@ -30,28 +29,28 @@ input:not(:placeholder-shown):not(:focus):invalid {
   --hover-color-blue: #0c2e621f;
   --bg-color-gray: #f6f7f8;
   --bg-color-red: #ff3d00;
-  --fill-color-gray: #EDF2FA;
+  --fill-color-gray: #edf2fa;
   --warning-color-red: #ff8190;
   --active-color-darkblue: #091931;
   --board-text-color-blue: #42526e;
   --board-bg-color-gray: #e7e7e7;
   --bg-gradient: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
-  --bg-user-initials-color-lightorange: #FFA35E;
-  --bg-user-initials-color-mediumorange: #FF745E;
-  --bg-user-initials-color-darkorange: #FF7A00;
-  --bg-user-initials-color-lightblue: #00BEE8;
-  --bg-user-initials-color-darkblue: #0038FF;
-  --bg-user-initials-color-cyan: #1FD7C1;
-  --bg-user-initials-color-lightpink: #FC71FF;
-  --bg-user-initials-color-mediumpink: #FF5EB3;
-  --bg-user-initials-color-darkpink: #9327FF;
-  --bg-user-initials-color-purple: #6E52FF;
-  --bg-user-initials-color-lightyellow: #FFE62B;
-  --bg-user-initials-color-mediumyellow: #FFC701;
-  --bg-user-initials-color-darkyellow: #FFBB2B;
-  --bg-user-initials-color-green: #C3FF2B;
-  --bg-user-initials-color-red: #FF4646;
-  --bg-user-initials-color-violet: #462F8A;
+  --bg-user-initials-color-lightorange: #ffa35e;
+  --bg-user-initials-color-mediumorange: #ff745e;
+  --bg-user-initials-color-darkorange: #ff7a00;
+  --bg-user-initials-color-lightblue: #00bee8;
+  --bg-user-initials-color-darkblue: #0038ff;
+  --bg-user-initials-color-cyan: #1fd7c1;
+  --bg-user-initials-color-lightpink: #fc71ff;
+  --bg-user-initials-color-mediumpink: #ff5eb3;
+  --bg-user-initials-color-darkpink: #9327ff;
+  --bg-user-initials-color-purple: #6e52ff;
+  --bg-user-initials-color-lightyellow: #ffe62b;
+  --bg-user-initials-color-mediumyellow: #ffc701;
+  --bg-user-initials-color-darkyellow: #ffbb2b;
+  --bg-user-initials-color-green: #c3ff2b;
+  --bg-user-initials-color-red: #ff4646;
+  --bg-user-initials-color-violet: #462f8a;
 }
 
 h1 {
@@ -114,7 +113,7 @@ a {
 }
 
 .signUpBackArrowDiv:hover,
-.loginButton:hover,
+.loginButton:hover:not(:disabled),
 .guestLoginButton:hover,
 .footerText:hover,
 .emailInput:hover,
@@ -122,7 +121,7 @@ a {
 .passwordInput:hover,
 .confirmPasswordInput:hover,
 .checkBoxIcon:hover,
-.signUpButton:hover,
+.signUpButton:hover:not(:disabled),
 .titleInput:hover,
 .descriptionTextArea:hover,
 .contactsSelect:hover,
@@ -154,12 +153,22 @@ a {
 .createContactButton:hover,
 .closeButtonDiv:hover,
 .footerLink:hover,
-.privacyPolicyLink:hover  {
+.privacyPolicyLink:hover,
+.passwordIconDiv:hover,
+.confirmPasswordIconDiv:hover {
   cursor: pointer;
 }
 
 .active {
   background: var(--active-color-darkblue);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .summaryHeadlinedivider,

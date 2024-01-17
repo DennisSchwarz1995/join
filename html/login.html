@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
+    <script src="../js/storage.js"></script>
+    <script src="../js/user.js"></script>
     <script src="../js/login.js"></script>
     <title>Log in</title>
   </head>
-  <body>
+  <body onload="initLogin()">
     <div class="overlay"></div>
     <section class="login">
       <div class="header">
@@ -30,19 +32,36 @@
             <h1 class="loginText">Log in</h1>
             <div class="loginDivider"></div>
           </div>
-          <div class="loginData">
+          <form onsubmit="login(); return false;" class="loginForm">
+            <div class="emailDiv">
             <input
               placeholder="Email"
               class="emailInput"
               type="email"
               required
-              oninvalid="setCustomValidity('Please enter a valid Email.')"
+              id="emailInput"
+             
             />
+            <div class="emailIconDiv">
+              <img class="emailIcon" src="../img/mail-icon.svg" alt="mail-icon">
+            </div>
+            <div class="emailInvalidDiv invisible">Please enter a valid E-Mail.</div>
+          </div>
+            <div class="passwordDiv">
             <input
               placeholder="Password"
               class="passwordInput"
+              type="password"
+              required
               id="passwordInput"
-            />
+              autocomplete="on"
+              onmousedown="changePasswordInputIcon()"
+            >
+            <div class="passwordIconDiv" onclick="togglePasswordInputType()">
+              <img class="passwordIcon" src="../img/lock-icon.svg" alt="lock-icon">
+          </div>
+          <div class="passwordInvalidDiv invisible">Wrong password Ups! Try again.</div>
+          </div>
             <div class="checkBox">
               <div class="labelContainer">
                 <div class="checkBoxIconDiv">
@@ -52,20 +71,16 @@
                     src="../img/checkbox-icon.svg"
                   />
                 </div>
-                <label for="rememberMe" class="rememberMeLabel"
-                  >Remember me</label
-                >
+                <p class="rememberMe">Remember me</p>
               </div>
             </div>
             <div class="buttonArea">
-              <button type="button" class="loginButton" onclick="checkInputs()">
-                Log in
-              </button>
+              <button type="submit" class="loginButton">Log in</button>
               <button type="button" class="guestLoginButton">
                 Guest Log in
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div class="footer">
