@@ -10,11 +10,13 @@ function generateSummary() {
 
 function summaryHTML() {
   return `
-    <div class="summaryHeadline">
-      <h1>Join 360</h1>
-      <div class="summaryHeadlinedivider"></div>
-      <span>Key Metrics at a Glance</span>
-    </div>
+    
+      <div class="summaryHeadline">
+        <h1>Join 360</h1>
+        <div class="summaryHeadlinedivider"></div>
+        <span>Key Metrics at a Glance</span>
+        <div class="summaryHeadlinedividerMobile"></div>
+      </div>
 
 
     <div class="summaryBoardAndGreetingDiv">

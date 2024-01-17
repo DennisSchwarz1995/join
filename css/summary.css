@@ -193,6 +193,11 @@
 
 @media (max-width: 1275px) {
 
+  .greetingDiv {
+    display: none;
+  }
+
+  /**
   .summary {
     padding: 0 0 0 50px;
   }
@@ -238,7 +243,7 @@
 
   .greetingDiv {
     margin-left: -105px;
-  }
+  }*/
 
 }
 
@@ -249,11 +254,78 @@
   }
 
   .summary {
-    inset: 0;
+    position: fixed;
+    left: 0;
+    top: 82px;
+    bottom: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color-gray);
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .summaryHeadline {
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-bottom: 25px;
+  }
+
+  .summaryBoardAndGreetingDiv {
+    margin-left: 5%;
   }
   
 }
 
-@media (max-width: 400px) {
-  
+@media (max-width: 730px) {
+  .greetingDiv {
+    display: none;
+  }
+
+  .summaryHeadline {
+    margin-top: 30px;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 40px
+  }
+
+  .summaryHeadline h1 {
+    font-size: 47px;
+  }
+
+  .summaryHeadline span {
+    font-size: 20px;
+  }
+
+  /**
+  .summaryHeadlinedivider {
+    display: none;
+  }
+
+  .summaryHeadlinedividerMobile {
+    border: 2px solid var(--main-color-lightblue);
+    border-radius: 30px;
+    width: 100px;
+  }*/
+
+  .toDoAmountDiv,
+  .doneAmountDiv,
+  .urgentAmountDiv,
+  .tasksInBoardAmountDiv,
+  .tasksInProgressAmountDiv,
+  .awaitingFeedbackAmountDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 47px;
+    font-weight: 600;
+    color: var(--main-color-black);
+  }
+
+  .summaryBoard {
+    gap: 20px;
+  }
 }

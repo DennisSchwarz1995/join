@@ -72,6 +72,11 @@ h4 {
 }
 
 @media(max-width: 1000px) {
+
+  .header {
+    padding: 10px;
+  }
+
   .title {
     display: none;
   }

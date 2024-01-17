@@ -76,8 +76,8 @@ a {
   padding: 8px 60px 8px 60px;
 }
 
+
 @media (max-width: 1000px) {
-  
   .navBarMobile {
     display: flex;
     width: 100%;
@@ -86,6 +86,7 @@ a {
     z-index: 1000;
     bottom: 0;
     justify-content: space-evenly;
+    max-width: 1000px;
   }
 
   .navBarBoardMobile {
@@ -98,9 +99,9 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 45px;
-    width: 76px;
-    height: 76px;
+    margin: 0 10px;
+    width: 75px; 
+    height: 75px; 
     justify-content: center;
   }
 
@@ -111,5 +112,13 @@ a {
   .navBarActive {
     border-radius: 10px;
   }
+}
+
+@media (max-width: 300px) {
+  .navBarMobile {
+    justify-content: space-around; 
+  }
 
 }
+
+
