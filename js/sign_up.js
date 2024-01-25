@@ -13,6 +13,12 @@ function resetForm() {
   checkBoxIcon.src = "../img/checkbox-icon.svg";
 }
 
+function showRegistrationOverlay() {
+  let overlay = document.querySelector(".signUpOverlay");
+  overlay.classList.add("visible");
+  overlay.classList.remove("invisible");
+}
+
 function toggleCheckBox() {
   let checkBoxIcon = document.querySelector(".checkBoxIcon");
 
@@ -28,7 +34,7 @@ function toggleCheckBox() {
 }
 
 async function checkValuesForSignUp() {
-  const button = document.querySelector(".signUpButton");
+  let button = document.querySelector(".signUpButton");
   const isButtonEnabled = isSignUpButtonEnabled();
 
   if (isButtonEnabled) {
@@ -38,34 +44,12 @@ async function checkValuesForSignUp() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  let form = document.querySelector(".signUpForm");
-  let checkBoxIcon = document.querySelector(".checkBoxIcon");
-  let emailInput = document.getElementById("signUpEmailInput");
-
-  form.addEventListener("keyup", checkValuesForSignUp);
-  checkBoxIcon.addEventListener("click", checkValuesForSignUp);
-
-  emailInput.addEventListener("input", function () {
-    const existingUser = users.find((user) => user.email === emailInput.value);
-    if (existingUser) {
-      showUserExist();
-    } else {
-      let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
-      emailInvalidDiv.classList.add("invisible");
-      emailInvalidDiv.classList.remove("visible");
-      emailInput.classList.remove("warning");
-      checkValuesForSignUp();
-    }
-  });
-});
-
 function isSignUpButtonEnabled() {
-  const checkBoxIcon = document.querySelector(".checkBoxIcon");
-  const nameInput = document.querySelector(".nameInput");
-  const mailInput = document.querySelector(".emailInput");
-  const passwordInput = document.querySelector(".passwordInput");
-  const confirmPasswordInput = document.querySelector(".confirmPasswordInput");
+  let checkBoxIcon = document.querySelector(".checkBoxIcon");
+  let nameInput = document.querySelector(".nameInput");
+  let mailInput = document.querySelector(".emailInput");
+  let passwordInput = document.querySelector(".passwordInput");
+  let confirmPasswordInput = document.querySelector(".confirmPasswordInput");
 
   const isButtonEnabled =
     checkBoxIcon.src.includes("checkbox-icon-selected.svg") &&
@@ -73,7 +57,9 @@ function isSignUpButtonEnabled() {
     mailInput.value.trim() !== "" &&
     passwordInput.value.trim() !== "" &&
     confirmPasswordInput.value.trim() !== "" &&
-    document.querySelectorAll(".invisible").length === 4 &&
+    document.querySelectorAll(
+      ".nameInvalidDiv.invisible, .emailInvalidDiv.invisible, .passwordInvalidDiv.invisible, .confirmPasswordInvalidDiv.invisible"
+    ).length === 4 &&
     !document.querySelector(".warning");
 
   return isButtonEnabled;
@@ -94,7 +80,17 @@ function changePasswordInputIcon() {
       passwordInput.type = "password";
       icon.src = "../img/lock-icon.svg";
     } else {
-      icon.src = "../img/hide-password-icon.svg";
+      if (
+        passwordInput.type === "text" &&
+        !icon.src.includes("show-password-icon.svg")
+      ) {
+        icon.src = "../img/show-password-icon.svg";
+      } else if (
+        passwordInput.type === "password" &&
+        !icon.src.includes("hide-password-icon.svg")
+      ) {
+        icon.src = "../img/hide-password-icon.svg";
+      }
     }
   });
 }
@@ -114,7 +110,17 @@ function changeConfirmPasswordInputIcon() {
       confirmPasswordInput.type = "password";
       icon.src = "../img/lock-icon.svg";
     } else {
-      icon.src = "../img/hide-password-icon.svg";
+      if (
+        confirmPasswordInput.type === "text" &&
+        !icon.src.includes("show-password-icon.svg")
+      ) {
+        icon.src = "../img/show-password-icon.svg";
+      } else if (
+        confirmPasswordInput.type === "password" &&
+        !icon.src.includes("hide-password-icon.svg")
+      ) {
+        icon.src = "../img/hide-password-icon.svg";
+      }
     }
   });
 }
@@ -145,23 +151,9 @@ function toggleConfirmPasswordInputType() {
   }
 }
 
-function showRegistrationOverlay() {
-  let overlay = document.querySelector(".signUpOverlay");
-  overlay.style.right = "-100%";
-  overlay.style.display = "flex";
-
-  overlay.classList.add("overlaySlideIn");
-
-  setTimeout(() => {
-    overlay.classList.remove("overlaySlideIn");
-    overlay.style.right = "0";
-    overlay.style.display = "none";
-  }, 5000);
-}
-
 function showUserExist() {
-  const emailInvalidDiv = document.querySelector(".emailInvalidDiv");
-  const emailInput = document.getElementById("signUpEmailInput");
+  let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
+  let emailInput = document.getElementById("signUpEmailInput");
   emailInvalidDiv.textContent =
     "This user already exists, please pick another E-Mail or Login.";
   emailInvalidDiv.classList.add("visible");
@@ -170,10 +162,11 @@ function showUserExist() {
 }
 
 function checkNameValidity() {
-  const nameInput = document.getElementById("signUpNameInput");
-  const nameInvalidDiv = document.querySelector(".nameInvalidDiv");
+  let nameInput = document.getElementById("signUpNameInput");
+  let nameInvalidDiv = document.querySelector(".nameInvalidDiv");
 
   if (!nameInput.checkValidity() || nameInput.value.trim() === "") {
+    nameInvalidDiv.textContent = "Please enter a valid name.";
     nameInvalidDiv.classList.remove("invisible");
     nameInput.classList.add("warning");
   } else {
@@ -188,10 +181,11 @@ function checkNameValidity() {
 }
 
 function checkEmailValidity() {
-  const emailInput = document.getElementById("signUpEmailInput");
-  const emailInvalidDiv = document.querySelector(".emailInvalidDiv");
+  let emailInput = document.getElementById("signUpEmailInput");
+  let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailInput.checkValidity() || emailInput.value.trim() === "") {
+  if (!emailRegex.test(emailInput.value) || emailInput.value.trim() === "") {
     emailInvalidDiv.textContent = "Please enter a valid E-Mail.";
     emailInvalidDiv.classList.remove("invisible");
     emailInput.classList.add("warning");
@@ -206,9 +200,27 @@ function checkEmailValidity() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  let form = document.querySelector(".signUpForm");
+  let checkBoxIcon = document.querySelector(".checkBoxIcon");
+  let emailInput = document.getElementById("signUpEmailInput");
+
+  form.addEventListener("keyup", checkValuesForSignUp);
+  checkBoxIcon.addEventListener("click", checkValuesForSignUp);
+
+  emailInput.addEventListener("input", function () {
+    const existingUser = users.find((user) => user.email === emailInput.value);
+    if (existingUser) {
+      showUserExist();
+    } else {
+      checkEmailValidity();
+    }
+  });
+});
+
 function checkPasswordLength(password, confirmPassword) {
-  const passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
-  const confirmPasswordInvalidDiv = document.querySelector(
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+  let confirmPasswordInvalidDiv = document.querySelector(
     ".confirmPasswordInvalidDiv"
   );
 
@@ -234,8 +246,8 @@ function checkPasswordLength(password, confirmPassword) {
 }
 
 function checkPasswordValidity() {
-  const passwordInput = document.getElementById("signUpPasswordInput");
-  const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+  let passwordInput = document.getElementById("signUpPasswordInput");
+  let confirmPasswordInput = document.getElementById("confirmPasswordInput");
 
   if (passwordInput.value.length > 0 && confirmPasswordInput.value.length > 0) {
     if (passwordInput.value === confirmPasswordInput.value) {
@@ -249,12 +261,12 @@ function checkPasswordValidity() {
 }
 
 function showPasswordMismatch() {
-  const passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
-  const confirmPasswordInvalidDiv = document.querySelector(
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+  let confirmPasswordInvalidDiv = document.querySelector(
     ".confirmPasswordInvalidDiv"
   );
-  const passwordInput = document.getElementById("signUpPasswordInput");
-  const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+  let passwordInput = document.getElementById("signUpPasswordInput");
+  let confirmPasswordInput = document.getElementById("confirmPasswordInput");
 
   passwordInvalidDiv.textContent =
     "Passwords do not match, please enter two identical passwords";
@@ -268,12 +280,12 @@ function showPasswordMismatch() {
 }
 
 function hidePasswordInvalidDiv() {
-  const passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
-  const confirmPasswordInvalidDiv = document.querySelector(
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+  let confirmPasswordInvalidDiv = document.querySelector(
     ".confirmPasswordInvalidDiv"
   );
-  const passwordInput = document.getElementById("signUpPasswordInput");
-  const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+  let passwordInput = document.getElementById("signUpPasswordInput");
+  let confirmPasswordInput = document.getElementById("confirmPasswordInput");
 
   passwordInvalidDiv.classList.add("invisible");
   confirmPasswordInvalidDiv.classList.add("invisible");

@@ -1,18 +1,36 @@
 async function initLogin() {
- await loadUsers();
- checkValuesForLogin();
+  await loadUsers();
+  checkValuesForLogin();
 }
 
 function login() {
+  if (checkIfUserExists()) {
+
+  } else {
+    showUserPasswordMismatch();
+  }
+}
+
+function checkIfUserExists() {
   let email = document.getElementById("emailInput");
   let password = document.getElementById("passwordInput");
   let user = users.find(
     (u) => u.email == email.value && u.password == password.value
   );
-  console.log(user);
   if (user) {
-    console.log("user gefunden");
+    resetForm();
+    return true;
+  } else {
+    return false;
   }
+}
+
+function resetForm() {
+  emailInput.value = "";
+  passwordInput.value = "";
+  loginButton.disabled = true;
+  let checkBoxIcon = document.querySelector(".checkBoxIcon");
+  checkBoxIcon.src = "../img/checkbox-icon.svg";
 }
 
 function toggleCheckBox() {
@@ -30,38 +48,91 @@ function toggleCheckBox() {
 
 function checkValuesForLogin() {
   let button = document.querySelector(".loginButton");
-  let mailInput = document.querySelector(".emailInput");
-  let passwordInput = document.querySelector(".passwordInput");
-  if (
-    mailInput.value === "" ||
-    passwordInput.value === ""
-  ) {
-    button.setAttribute("disabled", "disabled");
-  } else {
+  const isButtonEnabled = isLoginButtonEnabled();
+
+  if (isButtonEnabled) {
     button.removeAttribute("disabled");
+  } else {
+    button.setAttribute("disabled", "disabled");
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   let form = document.querySelector(".loginForm");
-  form.addEventListener("keyup", function () {
-    checkValuesForLogin();
-  });
-
-  let checkBoxIcon = document.querySelector(".checkBoxIcon");
-  checkBoxIcon.addEventListener("click", function () {
-    checkValuesForLogin();
-  });
+  form.addEventListener("keyup", checkValuesForLogin);
 });
 
+function isLoginButtonEnabled() {
+  let emailInput = document.querySelector(".emailInput");
+  let passwordInput = document.querySelector(".passwordInput");
 
-document.addEventListener("DOMContentLoaded", function () {
-  var overlay = document.querySelector(".overlay");
+  const isButtonEnabled =
+    emailInput.value.trim() !== "" &&
+    passwordInput.value.trim() !== "" &&
+    document.querySelectorAll(
+      ".emailInvalidDiv.invisible, .passwordInvalidDiv.invisible"
+    ).length === 2 &&
+    !document.querySelector(".warning");
 
-  overlay.addEventListener("animationend", function () {
-    overlay.remove();
-  });
-});
+  return isButtonEnabled;
+}
+
+function checkEmailValidity() {
+  let emailInput = document.getElementById("emailInput");
+  let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(emailInput.value) || emailInput.value.trim() === "") {
+    if (emailInput.value !== "") {
+      emailInvalidDiv.textContent = "Please enter a valid E-Mail.";
+      emailInvalidDiv.classList.remove("invisible");
+      emailInput.classList.add("warning");
+    } else {
+      emailInvalidDiv.classList.add("invisible");
+      emailInput.classList.remove("warning");
+    }
+    return false;
+  } else {
+    emailInvalidDiv.classList.add("invisible");
+    emailInput.classList.remove("warning");
+    return true;
+  }
+}
+
+function checkPasswordValidity() {
+  let passwordInput = document.getElementById("passwordInput");
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+
+  if (passwordInput.value.length < 8 && passwordInput.value.length !== 0) {
+    showPasswordLengthInvalid();
+  } else {
+    passwordInvalidDiv.classList.add("invisible");
+    passwordInput.classList.remove("warning");
+  }
+}
+
+function showUserPasswordMismatch() {
+  let passwordInput = document.getElementById("passwordInput");
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+  passwordInvalidDiv.textContent = "Incorrect Email adress or password.";
+  passwordInvalidDiv.classList.remove("invisible");
+  passwordInput.classList.add("warning");
+
+  let emailInput = document.getElementById("emailInput");
+  let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
+  emailInvalidDiv.textContent = "Incorrect Email adress or password.";
+  emailInvalidDiv.classList.remove("invisible");
+  emailInput.classList.add("warning");
+}
+
+function showPasswordLengthInvalid() {
+  let passwordInput = document.getElementById("passwordInput");
+  let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
+  passwordInvalidDiv.textContent =
+    "Password must be at least 8 characters long";
+  passwordInvalidDiv.classList.remove("invisible");
+  passwordInput.classList.add("warning");
+}
 
 function changePasswordInputIcon() {
   let icon = document.querySelector(".passwordIcon");
@@ -78,7 +149,17 @@ function changePasswordInputIcon() {
       passwordInput.type = "password";
       icon.src = "../img/lock-icon.svg";
     } else {
-      icon.src = "../img/hide-password-icon.svg";
+      if (
+        passwordInput.type === "text" &&
+        !icon.src.includes("show-password-icon.svg")
+      ) {
+        icon.src = "../img/show-password-icon.svg";
+      } else if (
+        passwordInput.type === "password" &&
+        !icon.src.includes("hide-password-icon.svg")
+      ) {
+        icon.src = "../img/hide-password-icon.svg";
+      }
     }
   });
 }
@@ -86,10 +167,6 @@ function changePasswordInputIcon() {
 function togglePasswordInputType() {
   let icon = document.querySelector(".passwordIcon");
   let passwordInput = document.getElementById("passwordInput");
-
-  if (icon.src.includes("lock-icon.svg")) {
-    return;
-  }
 
   if (passwordInput.type === "password") {
     icon.src = "../img/show-password-icon.svg";
@@ -99,3 +176,11 @@ function togglePasswordInputType() {
     passwordInput.type = "password";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var overlay = document.querySelector(".overlay");
+
+  overlay.addEventListener("animationend", function () {
+    overlay.remove();
+  });
+});

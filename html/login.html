@@ -37,10 +37,10 @@
             <input
               placeholder="Email"
               class="emailInput"
-              type="email"
+              type="text"
               required
               id="emailInput"
-             
+              oninput="checkEmailValidity()"
             />
             <div class="emailIconDiv">
               <img class="emailIcon" src="../img/mail-icon.svg" alt="mail-icon">
@@ -55,12 +55,13 @@
               required
               id="passwordInput"
               autocomplete="on"
-              onmousedown="changePasswordInputIcon()"
+              onfocus="changePasswordInputIcon()"
+              oninput="checkPasswordValidity();"
             >
             <div class="passwordIconDiv" onclick="togglePasswordInputType()">
               <img class="passwordIcon" src="../img/lock-icon.svg" alt="lock-icon">
           </div>
-          <div class="passwordInvalidDiv invisible">Wrong password Ups! Try again.</div>
+          <div class="passwordInvalidDiv invisible">Incorrect Email adress or password.</div>
           </div>
             <div class="checkBox">
               <div class="labelContainer">
@@ -68,6 +69,7 @@
                   <img
                     onclick="toggleCheckBox()"
                     class="checkBoxIcon"
+                    id="checkBoxIcon"
                     src="../img/checkbox-icon.svg"
                   />
                 </div>
@@ -75,7 +77,7 @@
               </div>
             </div>
             <div class="buttonArea">
-              <button type="submit" class="loginButton">Log in</button>
+              <button type="submit" class="loginButton" id="loginButton">Log in</button>
               <button type="button" class="guestLoginButton">
                 Guest Log in
               </button>

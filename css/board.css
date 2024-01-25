@@ -124,10 +124,72 @@
   margin-top: 20px;
 }
 
+.toDoTaskList,
+.inProgressTaskList,
+.awaitFeedbackTaskList,
+.doneTaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .taskCard {
   display: flex;
-  padding: 16px;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  padding: 16px;
+  border-radius: 24px;
+  gap: 24px;
+  background: var(--text-color-white);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  max-width: 252px;
+}
+
+.taskCategory {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
+  color: var(--text-color-white);
+  background: var(--main-color-darkblue);
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.taskTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--main-color-darkblue);
+}
+
+.taskDescription {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-color-gray);
+}
+
+.taskProgressContainer {
+  display: flex;
+  align-items: center;
+  padding: 0px 8px 2px 0px;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+}
+
+.taskProgressBar {
+  width: 50%;
+  height: 8px;
+  border-radius: 16px;
+  background: var(--board-progressbar-color-blue);
+  overflow: hidden;
+}
+
+.taskProgressCount {
+  font-size: 12px;
+  font-weight: 400;
 }

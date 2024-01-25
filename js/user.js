@@ -11,7 +11,10 @@ async function registerUser() {
   await setItem("users", JSON.stringify(users));
   resetForm();
 
-  return { success: true };
+  showRegistrationOverlay();
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 3000);
 }
 
 async function loadUsers() {

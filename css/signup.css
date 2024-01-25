@@ -98,6 +98,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
 .footer {
@@ -255,7 +257,7 @@
 }
 
 .signUpOverlay {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -265,4 +267,21 @@
   background: var(--main-color-darkblue);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
   color: var(--text-color-white);
+  right: 0;
+  top: 45%;
+  transition: right 0.5s;
+}
+
+
+.signUpOverlay.visible {
+  animation: slideInOverlay 0.5s forwards;
+}
+
+@keyframes slideInOverlay {
+  from {
+    right: 0%; 
+  }
+  to {
+    right: calc(50% - 129px);
+  }
 }
