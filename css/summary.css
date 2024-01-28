@@ -7,6 +7,11 @@
   align-items: flex-start;
   padding: 0 0 0 110px;
   background: var(--bg-color-gray);
+  overflow-y: auto; 
+}
+
+.summary::-webkit-scrollbar {
+  width: 0;
 }
 
 .summaryHeadline {
@@ -196,7 +201,6 @@
   .greetingDiv {
     display: none;
   }
-
 }
 
 @media (max-width: 1000px) {
@@ -262,19 +266,19 @@
     color: var(--main-color-black);
   }
 
+  .toDoDiv:hover,
+  .doneDiv:hover,
+  .urgentDiv:hover,
+  .tasksInBoardDiv:hover,
+  .tasksInProgressDiv:hover,
+  .awaitingFeedbackDiv:hover {
+    background: var(--main-color-darkblue);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transform: scale(1.03);
+    }
+
   .summaryBoard {
     gap: 20px;
-  }
-
-.toDoDiv:hover,
-.doneDiv:hover,
-.urgentDiv:hover,
-.tasksInBoardDiv:hover,
-.tasksInProgressDiv:hover,
-.awaitingFeedbackDiv:hover {
-  background: var(--main-color-darkblue);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transform: scale(1.03);
   }
 }
 
