@@ -11,7 +11,7 @@
   background: var(--text-color-white);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   z-index: 2;
-  width: 456px;
+  min-width: 410px;
   overflow-y: auto;
   height: 100%;
 }
@@ -260,4 +260,68 @@
 .contactOverlay.show {
   z-index: 99;
   transform: translate(-50%, -50%) scale(1);
+}
+
+@media (max-width: 1200px) {
+
+  .contactDetailedInfo {
+    margin-top: 50px;
+  }
+
+  .contactHeadline {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .contactHeadlineDivider {
+    display: none;
+  }
+
+  .floatingContactUser {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+  }
+
+  .floatingContactHeader {
+    gap: 25px;
+  }
+
+  .floatingContactName h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .contacts {
+    position: initial;
+  }
+}
+
+@media (max-width: 800px) {
+  .contactDetailedInfo {
+    display: none;
+  }
+
+  .contactBoard {
+    width: 100%;
+  }
+
+  .categorySection {
+    width: 100%;
+  }
+
+  .contactButtonDiv {
+    justify-content: center;
+  }
+
+  .contactList {
+    display: block;
+    padding: 0 20px 32px 20px;
+  }
+
+  .contactDividerDiv {
+    align-items: normal;
+  }
 }
