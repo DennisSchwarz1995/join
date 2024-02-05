@@ -296,6 +296,10 @@ textarea:focus {
 }
 
 @media (max-width: 730px) {
+  .taskHeadline {
+    font-size: 47px;
+  }
+
   .taskSelector {
     display: block;
     margin: 0 auto; 
