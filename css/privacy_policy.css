@@ -53,3 +53,15 @@ ul li::before {
   width: 16px;
   margin-left: -16px;
 }
+
+@media (max-width: 1000px) {
+  .privacyPolicy {
+    inset: 0;
+    padding: 100px 20px;
+  }
+
+  .privacyPolicyHeadline {
+    align-items: baseline;
+  }
+
+}
