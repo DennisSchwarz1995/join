@@ -313,7 +313,11 @@
   }
 
   .contactButtonDiv {
-    justify-content: center;
+    background: unset;
+    top: 615px;
+    margin-right: 20px;
+    justify-content: flex-end;
+    padding: 0;
   }
 
   .contactList {
@@ -323,5 +327,15 @@
 
   .contactDividerDiv {
     align-items: normal;
+  }
+
+  .addNewContactButton {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+  }
+
+  .addNewContactButton p {
+    display: none;
   }
 }
