@@ -295,7 +295,8 @@
 
 @media (max-width: 1000px) {
   .contacts {
-    position: initial;
+    position: absolute;
+    inset: 30px 0px 0px 0px;
   }
 }
 
@@ -306,6 +307,9 @@
 
   .contactBoard {
     width: 100%;
+    min-width: unset;
+    height: 90%;
+    z-index: 0;
   }
 
   .categorySection {
@@ -314,8 +318,8 @@
 
   .contactButtonDiv {
     background: unset;
-    top: 615px;
-    margin-right: 20px;
+    top: 625px;
+    margin-right: 10px;
     justify-content: flex-end;
     padding: 0;
   }
@@ -330,8 +334,8 @@
   }
 
   .addNewContactButton {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
   }
 
