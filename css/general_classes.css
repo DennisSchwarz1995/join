@@ -14,7 +14,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
 :root {
   --main-color-black: #000000;
   --main-color-darkblue: #2a3647;
@@ -31,7 +30,7 @@ input::-webkit-inner-spin-button {
   --active-color-darkblue: #091931;
   --board-text-color-blue: #42526e;
   --board-bg-color-gray: #e7e7e7;
-  --board-progressbar-color-blue: #4589FF;
+  --board-progressbar-color-blue: #4589ff;
   --bg-gradient: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
   --bg-user-initials-color-lightorange: #ffa35e;
   --bg-user-initials-color-mediumorange: #ff745e;
@@ -148,17 +147,19 @@ a {
 .floatingContactDelete:hover,
 .dropDownArrowDiv:hover,
 .cancelButton:hover,
-.createContactButton:hover,
 .closeButtonDiv:hover,
 .footerLink:hover,
 .privacyPolicyLink:hover,
 .passwordIconDiv:hover,
-.confirmPasswordIconDiv:hover {
+.confirmPasswordIconDiv:hover,
+.createContactButton:hover:not(:disabled),
+.deleteButton, 
+.saveContactButton {
   cursor: pointer;
 }
 
 .warning {
-  border-color: var(--warning-color-red);
+  border-color: var(--warning-color-red) !important;
 }
 
 .active {

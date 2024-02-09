@@ -5,10 +5,39 @@ async function initLogin() {
 
 function login() {
   if (checkIfUserExists()) {
-
+    redirectToSummary();
   } else {
     showUserPasswordMismatch();
   }
+}
+
+function findUserNameByEmail(email) {
+  const user = users.find((u) => u.email === email);
+  if (user) {
+    localStorage.setItem("userFullName", JSON.stringify(user.name));
+    return user.name;
+  }
+  return null;
+}
+
+function redirectToSummary() {
+  const emailInput = document.getElementById("emailInput").value;
+  const userName = findUserNameByEmail(emailInput);
+  if (userName) {
+    saveUserName(name);
+  }
+
+  window.location.href = "summary.html";
+}
+
+function saveUserName(name) {
+  let initials = name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+  localStorage.setItem("userInitials", JSON.stringify(initials));
+  localStorage.setItem("userFullName", JSON.stringify(name));
 }
 
 function checkIfUserExists() {
@@ -26,6 +55,10 @@ function checkIfUserExists() {
 }
 
 function resetForm() {
+  const userName = findUserNameByEmail(emailInput.value);
+  if (userName) {
+    saveUserName(userName);
+  }
   emailInput.value = "";
   passwordInput.value = "";
   loginButton.disabled = true;

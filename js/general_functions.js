@@ -1,0 +1,5 @@
+ function initHeaderAndNavTemplates() {
+     generateNavbar();
+     generateHeader();
+}
+

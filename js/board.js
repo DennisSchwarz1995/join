@@ -1,7 +1,45 @@
+function initBoard() {
+  generateBoard();
+  generateNavbar();
+  generateHeader();
+}
+
 function generateBoard() {
   let board = document.querySelector(".board");
   board.innerHTML = boardHTML();
 }
+const tasks = [
+  {
+    category: "To do",
+    taskCategory: "Technical Task",
+    taskTitle: "Kochwelt Page & Recipe Recommender",
+    taskDescription: "Build start page with recipe recommendation",
+    progressCount: "1/2 Subtasks",
+  },
+  {
+    category: "In progress",
+    taskCategory: "Javascript",
+    taskTitle: "Kochwelt Page & Recipe Recommender",
+    taskDescription: "Build start page with recipe recommendation",
+    progressCount: "1/2 Subtasks",
+  },
+  {
+    category: "Await feedback",
+    taskCategory: "User Story",
+    taskTitle: "Kochwelt Page & Recipe Recommender",
+    taskDescription: "Build start page with recipe recommendation",
+    progressCount: "1/2 Subtasks",
+  },
+  {
+    category: "Done",
+    taskCategory: "HTML",
+    taskTitle: "Kochwelt Page & Recipe Recommender",
+    taskDescription: "Build start page with recipe recommendation",
+    progressCount: "1/2 Subtasks",
+  }
+];
+
+
 
 function boardHTML() {
   return `
@@ -9,13 +47,7 @@ function boardHTML() {
       <h1>Board</h1>
       <div class="searchTaskAndAddTask">
         <div class="searchTask">
-          <input
-            class="searchTaskInput"
-            placeholder="Find Task"
-            type="text"
-            name=""
-            id=""
-          />
+          <input class="searchTaskInput" placeholder="Find Task" type="text" name="" id="" />
         </div>
         <button class="addTaskButton">
           Add Task <img src="../img/add-icon.svg" alt="add-icon" />
@@ -31,21 +63,23 @@ function boardHTML() {
             <img src="../img/board-add-task-icon.svg" />
           </div>
         </div>
-        <div class="taskCard">
-          <div class="taskCategory">Technical Task</div>
-          <div class="taskTitle">Kochwelt Page & Recipe Recommender</div>
-          <div class="taskDescription">
-            Build start page with recipe recommendation
-          </div>
-          <div class="taskProgressContainer">
-            <div class="taskProgressBar"></div>
-            <div class="taskProgressCount">1/2 Subtasks</div>
-          </div>
-          <div class="taskContactAndPrio">
-            <div class="taskContact"></div>
-            <div class="taskPrio"></div>
-          </div>
-        </div>
+        ${tasks
+          .filter(task => task.category === "To do")
+          .map(task => `
+            <div class="taskCard">
+              <div class="taskCategory">${task.taskCategory}</div>
+              <div class="taskTitle">${task.taskTitle}</div>
+              <div class="taskDescription">${task.taskDescription}</div>
+              <div class="taskProgressContainer">
+                <div class="taskProgressBar"></div>
+                <div class="taskProgressCount">${task.progressCount}</div>
+              </div>
+              <div class="taskContactAndPrio">
+                <div class="taskContact"></div>
+                <div class="taskPrio"></div>
+              </div>
+            </div>
+          `).join('')}
       </div>
 
       <div class="inProgressTaskList">
@@ -55,21 +89,23 @@ function boardHTML() {
             <img src="../img/board-add-task-icon.svg" />
           </div>
         </div>
-        <div class="taskCard">
-          <div class="taskCategory">Javascript</div>
-          <div class="taskTitle">Kochwelt Page & Recipe Recommender</div>
-          <div class="taskDescription">
-            Build start page with recipe recommendation
-          </div>
-          <div class="taskProgressContainer">
-            <div class="taskProgressBar"></div>
-            <div class="taskProgressCount">1/2 Subtasks</div>
-          </div>
-          <div class="taskContactAndPrio">
-            <div class="taskContact"></div>
-            <div class="taskPrio"></div>
-          </div>
-        </div>
+        ${tasks
+          .filter(task => task.category === "In progress")
+          .map(task => `
+            <div class="taskCard">
+              <div class="taskCategory">${task.taskCategory}</div>
+              <div class="taskTitle">${task.taskTitle}</div>
+              <div class="taskDescription">${task.taskDescription}</div>
+              <div class="taskProgressContainer">
+                <div class="taskProgressBar"></div>
+                <div class="taskProgressCount">${task.progressCount}</div>
+              </div>
+              <div class="taskContactAndPrio">
+                <div class="taskContact"></div>
+                <div class="taskPrio"></div>
+              </div>
+            </div>
+          `).join('')}
       </div>
 
       <div class="awaitFeedbackTaskList">
@@ -79,21 +115,23 @@ function boardHTML() {
             <img src="../img/board-add-task-icon.svg" />
           </div>
         </div>
-        <div class="taskCard">
-          <div class="taskCategory">User Story</div>
-          <div class="taskTitle">Kochwelt Page & Recipe Recommender</div>
-          <div class="taskDescription">
-            Build start page with recipe recommendation
-          </div>
-          <div class="taskProgressContainer">
-            <div class="taskProgressBar"></div>
-            <div class="taskProgressCount">1/2 Subtasks</div>
-          </div>
-          <div class="taskContactAndPrio">
-            <div class="taskContact"></div>
-            <div class="taskPrio"></div>
-          </div>
-        </div>
+        ${tasks
+          .filter(task => task.category === "Await feedback")
+          .map(task => `
+            <div class="taskCard">
+              <div class="taskCategory">${task.taskCategory}</div>
+              <div class="taskTitle">${task.taskTitle}</div>
+              <div class="taskDescription">${task.taskDescription}</div>
+              <div class="taskProgressContainer">
+                <div class="taskProgressBar"></div>
+                <div class="taskProgressCount">${task.progressCount}</div>
+              </div>
+              <div class="taskContactAndPrio">
+                <div class="taskContact"></div>
+                <div class="taskPrio"></div>
+              </div>
+            </div>
+          `).join('')}
       </div>
 
       <div class="doneTaskList">
@@ -103,21 +141,23 @@ function boardHTML() {
             <img src="../img/board-add-task-icon.svg" />
           </div>
         </div>
-        <div class="taskCard">
-          <div class="taskCategory">HTML</div>
-          <div class="taskTitle">Kochwelt Page & Recipe Recommender</div>
-          <div class="taskDescription">
-            Build start page with recipe recommendation
-          </div>
-          <div class="taskProgressContainer">
-            <div class="taskProgressBar"></div>
-            <div class="taskProgressCount">1/2 Subtasks</div>
-          </div>
-          <div class="taskContactAndPrio">
-            <div class="taskContact"></div>
-            <div class="taskPrio"></div>
-          </div>
-        </div>
+        ${tasks
+          .filter(task => task.category === "Done")
+          .map(task => `
+            <div class="taskCard">
+              <div class="taskCategory">${task.taskCategory}</div>
+              <div class="taskTitle">${task.taskTitle}</div>
+              <div class="taskDescription">${task.taskDescription}</div>
+              <div class="taskProgressContainer">
+                <div class="taskProgressBar"></div>
+                <div class="taskProgressCount">${task.progressCount}</div>
+              </div>
+              <div class="taskContactAndPrio">
+                <div class="taskContact"></div>
+                <div class="taskPrio"></div>
+              </div>
+            </div>
+          `).join('')}
       </div>
     </div>
   `;
@@ -128,7 +168,6 @@ function generateEmptyTask() {
   taskCards.forEach((taskCard, index) => {
     let categoryName = document.querySelectorAll(".boardCategory span")[index]
       .textContent;
-
     taskCard.innerHTML = emptyTaskHTML(categoryName);
   });
 }

@@ -1,23 +1,36 @@
+async function initContacts() {
+  await loadContacts();
+  generateContacts();
+  generateNavbar();
+  generateHeader();
+  checkValuesForContactCreation();
+}
+
 let isContactOverlayOpen = false;
+let isEditContactOverlayOpen = false;
+let isDetailViewOpen = false;
 
 function generateContacts() {
-  let contacts = document.querySelector(".contacts");
-  if (contacts) {
-    contacts.innerHTML = contactsHTML();
-    contacts.innerHTML += contactsDetailHTML();
+  let contactsList = document.querySelector(".contacts");
+  if (contactsList) {
+    contactsList.innerHTML = contactsHTML();
   } else {
-    console.error("contacts not found");
+    console.error("contactsList not found");
   }
 }
 
+function deleteAllContacts() {
+  contacts = [];
+  saveContact();
+  generateContacts();
+}
+
 function openContactOverlay() {
+  let overlay = document.querySelector(".contactOverlay");
   if (isContactOverlayOpen) {
     closeContactOverlay();
+    cancelInput();
   } else {
-    let overlay = document.createElement("div");
-    overlay.classList.add("contactOverlay");
-    overlay.innerHTML = addContactHTML();
-    document.body.appendChild(overlay);
     setTimeout(() => {
       overlay.classList.add("show");
     }, 0);
@@ -29,11 +42,31 @@ function closeContactOverlay() {
   let overlay = document.querySelector(".contactOverlay");
   if (overlay) {
     overlay.classList.remove("show");
-    setTimeout(() => {
-      overlay.remove();
-    }, 300);
+    setTimeout(() => {}, 300);
   }
   isContactOverlayOpen = false;
+}
+
+function cancelInput() {
+  let nameInput = document.getElementById("fullname");
+  let emailInput = document.getElementById("email");
+  let phoneInput = document.getElementById("phone");
+
+  if (
+    nameInput.value.trim() !== "" ||
+    emailInput.value.trim() !== "" ||
+    phoneInput.value.trim() !== ""
+  ) {
+    nameInput.value = "";
+    emailInput.value = "";
+    phoneInput.value = "";
+    checkEmailValidity();
+    checkPhoneNumberValidity();
+    checkContactNameValidity();
+    checkValuesForContactCreation();
+  } else {
+    closeContactOverlay();
+  }
 }
 
 function addContactToCategory(category, contact) {
@@ -45,6 +78,8 @@ function addContactToCategory(category, contact) {
   } else {
     addContactToNewCategory(contactList, category, contact, existingCategories);
   }
+  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  generateContacts();
 }
 
 function addContactToExistingCategory(contactList, category, contact) {
@@ -134,7 +169,9 @@ function getExistingCategories(contactList) {
 }
 
 function getContactName(contactCard) {
-  return contactCard.querySelector(".contactNameDiv").textContent.toLowerCase();
+  return contactCard
+    .querySelector(".contactNameSpan")
+    .textContent.toLowerCase();
 }
 
 function getCategoryDiv(contactList, category) {
@@ -186,16 +223,21 @@ function createContact() {
 
   let formattedName = capitalizeName(name.value.trim());
   let category = formattedName.charAt(0).toUpperCase();
+  let randomColor = getRandomColor();
+
   let newContact = {
     name: formattedName,
     email: email.value.trim(),
     phone: phone.value.trim(),
+    color: `var(--bg-user-initials-color-${randomColor})`,
   };
+  contacts.push(newContact);
+  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  saveContact();
   addContactToCategory(category, newContact);
   closeContactOverlay();
+  cancelInput();
 }
-
-
 
 function getCategorySection(category) {
   let existingCategorySection = Array.from(
@@ -227,25 +269,25 @@ function createNewCategorySection(category) {
 }
 
 function createContactCard(contact) {
-  let randomColor = getComputedStyle(document.documentElement).getPropertyValue(
-    `--bg-user-initials-color-${getRandomColor()}`
-  );
-
   let contactCard = document.createElement("div");
   contactCard.classList.add("contactCard");
+
   let initialsDiv = document.createElement("div");
   initialsDiv.classList.add("userInitialsDiv");
   initialsDiv.textContent = getInitials(contact.name);
-  initialsDiv.style.background = randomColor;
+  initialsDiv.style.background = contact.color;
 
   let infoDiv = document.createElement("div");
   infoDiv.classList.add("contactInfoDiv");
+
   let nameSpan = document.createElement("span");
-  nameSpan.classList.add("contactNameDiv");
+  nameSpan.classList.add("contactNameSpan");
   nameSpan.textContent = contact.name;
+
   let emailSpan = document.createElement("span");
-  emailSpan.classList.add("contactMailDiv");
+  emailSpan.classList.add("contactMailSpan");
   emailSpan.textContent = contact.email;
+
   infoDiv.appendChild(nameSpan);
   infoDiv.appendChild(emailSpan);
 
@@ -291,3 +333,140 @@ function capitalizeName(name) {
   );
   return capitalizedNames.join(" ");
 }
+
+function checkValuesForContactCreation() {
+  let button = document.querySelector(".createContactButton");
+  const isButtonEnabled = isCreateContactButtonEnabled();
+
+  if (isButtonEnabled) {
+    button.removeAttribute("disabled");
+  } else {
+    button.setAttribute("disabled", "disabled");
+  }
+}
+
+function isCreateContactButtonEnabled() {
+  let nameInput = document.querySelector(".contactNameInput");
+  let emailInput = document.querySelector(".contactEmailInput");
+  let phoneInput = document.querySelector(".contactPhoneInput");
+
+  const isButtonEnabled =
+    nameInput.value.trim() !== "" &&
+    emailInput.value.trim() !== "" &&
+    phoneInput.value.trim() !== "" &&
+    document.querySelectorAll(
+      ".contactNameInvalidDiv.invisible, .contactEmailInvalidDiv.invisible, .contactPhoneInvalidDiv.invisible"
+    ).length === 3 &&
+    !document.querySelector(".warning");
+
+  return isButtonEnabled;
+}
+
+function checkEmailValidity() {
+  let emailInput = document.getElementById("email");
+  let emailInvalidDiv = document.querySelector(".contactEmailInvalidDiv");
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(emailInput.value) || emailInput.value.trim() === "") {
+    if (emailInput.value !== "") {
+      emailInvalidDiv.classList.remove("invisible");
+      emailInput.classList.add("warning");
+    } else {
+      emailInvalidDiv.classList.add("invisible");
+      emailInput.classList.remove("warning");
+    }
+    return false;
+  } else {
+    emailInvalidDiv.classList.add("invisible");
+    emailInput.classList.remove("warning");
+    return true;
+  }
+}
+
+function checkPhoneNumberValidity() {
+  let phoneInput = document.getElementById("phone");
+  let phoneValueWithoutSpaces = phoneInput.value.replace(/\s/g, '');
+  let phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
+
+  if (phoneValueWithoutSpaces.length < 8 && phoneValueWithoutSpaces.length !== 0) {
+    phoneInvalidDiv.classList.remove("invisible");
+    phoneInput.classList.add("warning");
+    return false;
+  } else {
+    phoneInvalidDiv.classList.add("invisible");
+    phoneInput.classList.remove("warning");
+    return true;
+  }
+}
+
+
+function checkContactNameValidity() {
+  let nameInput = document.querySelector(".contactNameInput");
+  let nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
+
+  if (!nameInput.checkValidity() || nameInput.value.trim() === "") {
+    nameInvalidDiv.classList.remove("invisible");
+    nameInput.classList.add("warning");
+  } else {
+    nameInvalidDiv.classList.add("invisible");
+    nameInput.classList.remove("warning");
+  }
+
+  if (nameInput.value === "") {
+    nameInvalidDiv.classList.add("invisible");
+    nameInput.classList.remove("warning");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let contactForm = document.querySelector(".contactForm");
+  contactForm.addEventListener("input", checkValuesForContactCreation);
+});
+
+
+function highlightSelectedContact(index) {
+  let contactCards = document.querySelectorAll(".contactCard");
+  contactCards.forEach((card, i) => {
+    if (i === index) {
+      if (card.classList.contains("selectedContact")) {
+        card.classList.remove("selectedContact");
+        card.onclick = function() {
+          highlightSelectedContact(i);
+          showContactDetails(i);
+        };
+      } else {
+        card.classList.add("selectedContact");
+        card.onclick = null;
+      }
+    } else {
+      card.classList.remove("selectedContact");
+      card.onclick = function() {
+        highlightSelectedContact(i);
+        showContactDetails(i);
+      };
+    }
+  });
+}
+
+
+
+
+
+function showContactDetails(index) {
+  let contact = contacts[index];
+  let detailedView = document.querySelector(".detailedView");
+  if (isDetailViewOpen) {
+    detailedView.classList.add("slideOut");
+    setTimeout(() => {
+      detailedView.innerHTML = contactsDetailHTML(contact);
+      detailedView.classList.remove("slideOut");
+      detailedView.classList.add("slideIn");
+    }, 300);
+  } else {
+    detailedView.innerHTML = contactsDetailHTML(contact);
+    detailedView.classList.add("slideIn");
+  }
+  isDetailViewOpen = true;
+}
+
+

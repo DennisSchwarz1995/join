@@ -8,13 +8,17 @@ async function registerUser() {
     confirmPassword: confirmPasswordInput.value,
   });
 
-  await setItem("users", JSON.stringify(users));
+  saveUser();
   resetForm();
 
   showRegistrationOverlay();
   setTimeout(() => {
     window.location.href = "login.html";
   }, 3000);
+}
+
+async function saveUser() {
+  await setItem("users", JSON.stringify(users));
 }
 
 async function loadUsers() {

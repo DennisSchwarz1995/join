@@ -40,26 +40,12 @@
   background: var(--text-color-white);
 }
 
-.editContact {
-  width: 1212px;
-  height: 592px;
-  border: 1px solid var(--main-color-darkblue);
-  border-radius: 30px;
-  background: var(--text-color-white);
-}
-
 .addContactForm {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 60%;
-}
-
-.editContact {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
 }
 
 .formAndButtonDiv {
@@ -77,6 +63,11 @@
 .createContactButton {
   color: var(--text-color-white);
   background: var(--main-color-darkblue);
+}
+
+.createContactButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
 }
 
 .cancelButton {
@@ -119,22 +110,6 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.thirdButtonGroup {
-  display: flex;
-}
-
-.thirdButton {
-  border: none;
-  background: var(--text-color-white);
-  display: flex;
-  align-items: center;
-  margin: 10px 5px 5px 0px;
-}
-
-.thirdButton img {
-  margin-right: 5px;
-}
-
 .userIconDiv {
   display: flex;
   justify-content: center;
@@ -151,9 +126,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 32px;
   align-items: center;
-  min-width: 422px;
-  margin-top: 130px;
+  margin-top: 140px;
 }
 
 .closeButtonDiv {
@@ -173,24 +148,56 @@
   background-color: var(--hover-color-blue);
 }
 
-.addContactField {
-  color: var(--border-color-gray);
-  width: 100%;
+.contactNameDiv,
+.contactEmailDiv,
+.contactPhoneDiv {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-  margin-bottom: 32px;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
 }
 
-.formFields {
-  border: 1px solid var(--border-color-gray);
-  word-wrap: break-word;
-  width: 100%;
-  font-size: 20px;
-  padding: 13px 23px;
+.nameIconDiv,
+.emailIconDiv,
+.phoneIconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.contactNameInput,
+.contactEmailInput,
+.contactPhoneInput {
+  min-width: 360px;
   border-radius: 10px;
+  border: 1px solid var(--border-color-gray);
+  padding: 12px 45px 12px 21px;
+  background-repeat: no-repeat;
+  background-position: right 5% center;
   outline: none;
+  font-size: 20px;
+  direction: ltr;
+  text-align: left;
+}
+
+.contactNameInvalidDiv,
+.contactEmailInvalidDiv,
+.contactPhoneInvalidDiv {
+  position: absolute;
+  color: var(--warning-color-red);
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  top: 52px;
 }
 
 .fullanameWarningDiv,
@@ -201,52 +208,8 @@
   color: var(--warning-color-red);
 }
 
-.warning:focus,
-.warning  {
-  border: 1px solid #ff8190 !important;
-}
-
-.formFields:focus {
+.contactNameInput:focus,
+.contactEmailInput:focus,
+.contactPhoneInput:focus {
   border: 1px solid var(--main-color-lightblue);
-}
-
-.addContactFormIcon {
-  position: absolute;
-  right: 86px;
-}
-
-.afterEditName {
-  width: 400px;
-}
-
-.fullname {
-  color: var(--main-color-black);
-  font-size: 47px;
-  font-family: "Inter";
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.contactInformationSection {
-  margin-top: 150px;
-  margin-left: 190px;
-}
-
-.contactInformation {
-  color: var(--main-color-black);
-  font-size: 20px;
-  word-wrap: break-word;
-}
-
-.contactLabel {
-  font-size: 16px;
-  word-wrap: break-word;
-}
-
-.flexContactEdit {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 600px;
-  top: 130px;
 }

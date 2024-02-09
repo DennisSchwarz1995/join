@@ -189,4 +189,5 @@
   font-size: 64px;
   color: var(--main-color-lightblue);
   font-weight: 700;
+  text-transform: capitalize;
 }
