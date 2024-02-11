@@ -8,7 +8,13 @@ function generateBoard() {
   let board = document.querySelector(".board");
   board.innerHTML = boardHTML();
 }
-const tasks = [
+function generateBoard() {
+  let board = document.querySelector(".board");
+  board.innerHTML = boardHTML();
+  addDragAndDropListeners(); 
+}
+
+let tasks = [
   {
     category: "To do",
     taskCategory: "Technical Task",
@@ -40,7 +46,6 @@ const tasks = [
 ];
 
 
-
 function boardHTML() {
   return `
     <div class="boardHeadline">
@@ -56,7 +61,7 @@ function boardHTML() {
     </div>
 
     <div class="taskBoard">
-      <div class="toDoTaskList">
+      <div class="toDoTaskList slot">
         <div class="boardCategory">
           <span>To do</span>
           <div class="taskBoardAddTaskDiv">
@@ -64,9 +69,9 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter(task => task.category === "To do")
-          .map(task => `
-            <div class="taskCard">
+      .filter(task => task.category === "To do")
+      .map(task => `
+            <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">            
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -82,7 +87,7 @@ function boardHTML() {
           `).join('')}
       </div>
 
-      <div class="inProgressTaskList">
+      <div class="inProgressTaskList slot">
         <div class="boardCategory">
           <span>In progress</span>
           <div class="taskBoardAddTaskDiv">
@@ -90,9 +95,9 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter(task => task.category === "In progress")
-          .map(task => `
-            <div class="taskCard">
+      .filter(task => task.category === "In progress")
+      .map(task => `
+            <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -108,7 +113,7 @@ function boardHTML() {
           `).join('')}
       </div>
 
-      <div class="awaitFeedbackTaskList">
+      <div class="awaitFeedbackTaskList slot">
         <div class="boardCategory">
           <span>Await feedback</span>
           <div class="taskBoardAddTaskDiv">
@@ -116,9 +121,9 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter(task => task.category === "Await feedback")
-          .map(task => `
-            <div class="taskCard">
+      .filter(task => task.category === "Await feedback")
+      .map(task => `
+            <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -134,7 +139,7 @@ function boardHTML() {
           `).join('')}
       </div>
 
-      <div class="doneTaskList">
+      <div class="doneTaskList slot">
         <div class="boardCategory">
           <span>Done</span>
           <div class="taskBoardAddTaskDiv">
@@ -142,9 +147,9 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter(task => task.category === "Done")
-          .map(task => `
-            <div class="taskCard">
+      .filter(task => task.category === "Done")
+      .map(task => `
+            <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -161,6 +166,53 @@ function boardHTML() {
       </div>
     </div>
   `;
+}
+
+function updateTaskCategory(taskId, newCategory) {
+  const draggedTaskIndex = parseInt(taskId.replace("draggableContainer", ""));
+  const draggedTask = tasks[draggedTaskIndex];
+
+  // tasks-Array aktualisieren
+  tasks = tasks.filter(task => task !== draggedTask);
+  draggedTask.category = newCategory;
+  tasks.push(draggedTask);
+
+  // Tafel neu generieren
+  generateBoard();
+}
+
+
+
+function addDragAndDropListeners() {
+  const taskCards = document.querySelectorAll(".taskCard");
+
+  taskCards.forEach((taskCard) => {
+    taskCard.addEventListener("dragstart", function (event) {
+      event.dataTransfer.setData("text/plain", event.target.id);
+    });
+  });
+
+  const slots = document.getElementsByClassName('slot');
+
+  for (const slot of slots) {
+    slot.addEventListener("dragover", function (event) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+    });
+
+    slot.addEventListener("drop", function (event) {
+      event.preventDefault();
+      const readedID = event.dataTransfer.getData("text/plain");
+      const draggedElement = document.getElementById(readedID);
+      const targetSlot = event.target.closest('.slot');
+
+      if (targetSlot) {
+        targetSlot.appendChild(draggedElement);
+        const newCategory = targetSlot.querySelector('.boardCategory span').textContent;
+        updateTaskCategory(readedID, newCategory);
+      }
+    });
+  }
 }
 
 function generateEmptyTask() {
@@ -198,3 +250,4 @@ function taskHTML() {
    
    `;
 }
+
