@@ -43,6 +43,7 @@
   width: 440px;
   flex-direction: column;
   gap: 24px;
+  margin-right: 20px;
 }
 
 .titleDiv,
@@ -67,18 +68,6 @@
 
 .contactsSelect {
   padding: 12px 16px;
-  /**
-  justify-content: space-between;
-  appearance: none;
-  
-  
-  
-  position: relative;
-  background-image: url(../img/arrow-drop-down.svg);
-  background-repeat: no-repeat;
-  background-position: calc(100% - 16px) center;
-  background-size: 12px;
-  */
 }
 
 .dateInput {
@@ -95,11 +84,6 @@
   justify-content: space-between;
   appearance: none;
   padding: 12px 16px;
-  /**position: relative;
-  background-image: url(../img/arrow-drop-down.svg);
-  background-repeat: no-repeat;
-  background-position: calc(100% - 16px) center;
-  background-size: 12px;*/
 }
 
 select option[value="option1"] {
@@ -136,6 +120,7 @@ select option[value="option1"] {
 .divider {
   border: 1px solid var(--border-color-gray);
   max-height: 433px;
+  margin: 0 20px;
 }
 
 .warningDiv {
@@ -218,6 +203,7 @@ label {
 .clearAndCreateButtonDiv {
   display: flex;
   gap: 16px;
+  margin-right: 20px;
 }
 
 .clearButton,
@@ -269,4 +255,116 @@ input:focus,
 select:focus,
 textarea:focus {
   border: 1px solid var(--main-color-lightblue);
+}
+
+@media (max-width: 1275px) {
+  .addTask {
+    inset: 106px 0px 0px 160px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .addTask {
+    position: fixed;
+    left: 0;
+    top: 82px;
+    bottom: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color-gray);
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .taskHeadline {
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  .taskSelector,
+  .confirmDiv {
+    margin: 0 20px -30px 20px;
+  }
+
+  .taskSelectorRight {
+    margin: 0;
+  }
+}
+
+@media (max-width: 730px) {
+  .taskHeadline {
+    font-size: 47px;
+  }
+
+  .taskSelector {
+    display: block;
+    margin: 0 auto; 
+    max-width: 500px; 
+    overflow-y: auto; 
+  }
+
+  .taskSelector::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .confirmDiv {
+    margin: 10px;
+  }
+
+  .taskSelectorRight {
+    margin: 30px 0;
+  }
+
+  .clearButton {
+    display: none;
+  }
+
+}
+
+@media (max-width: 484px) {
+  .taskSelector {
+    display: block;
+    margin: 0 10px; 
+    max-width: 500px; 
+    overflow-y: auto; 
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .taskSelectorLeft,
+  .taskSelectorRight {
+    width: auto;
+  }
+
+  .titleDiv label,
+  .descriptionDiv label,
+  .assignedDiv label,
+  .dueDateDiv label,
+  .prioDiv label,
+  .categoryDiv label,
+  .subtaskDiv label,
+  .titleDiv input,
+  .descriptionDiv textarea,
+  .assignedDiv input,
+  .dueDateDiv input,
+  .prioDiv input,
+  .categoryDiv input,
+  .subtaskDiv input,
+  .prioButtonsDiv button,
+  .categorySelect {
+    font-size: 16px;
+  }
+
+  .clearAndCreateButtonDiv {
+    margin-right: 0;
+  }
+  
 }

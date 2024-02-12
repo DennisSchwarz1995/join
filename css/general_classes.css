@@ -180,3 +180,17 @@ a {
   border-radius: 30px;
   height: 60px;
 }
+
+
+@media (max-width: 1200px) {
+ /* .contactHeadlineDivider {
+    display: flex;
+    border: 2px solid var(--main-color-lightblue);
+    width: 60%;
+    height: 0px;
+  }*/
+
+  .backArrowDiv {
+    right: 15px;
+  }
+}

@@ -12,7 +12,8 @@ function logout() {
 
 function headerHTML() {
   return `
-    <h4>Kanban Project Management Tool</h4>
+    <img class="logoMobile" src="../img/join-logo-mobile.svg" alt="join-logo">
+    <h4 class="title">Kanban Project Management Tool</h4>
     <div class="headerMenu">
       <a href="help.html">
         <img class="helpIcon" src="../img/help-icon.svg" alt="help-icon" />

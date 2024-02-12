@@ -61,9 +61,13 @@
 
 .signupAreaFullscreenVision {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  margin: 20px;
+  align-content: center; 
+  position: relative;
+  top: 30px;
 }
 
 .signUpForm {
@@ -250,12 +254,6 @@
   opacity: 80%;
 }
 
-.signUpButton:hover:not(:disabled) {
-  border: 1px solid var(--main-color-lightblue);
-  background: var(--main-color-lightblue);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
 .signUpOverlay {
   position: fixed;
   display: flex;
@@ -272,7 +270,6 @@
   transition: right 0.5s;
 }
 
-
 .signUpOverlay.visible {
   animation: slideInOverlay 0.5s forwards;
 }
@@ -283,5 +280,102 @@
   }
   to {
     right: calc(50% - 129px);
+  }
+}
+
+.signUpButton:hover:not(:disabled) {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+@media(max-width: 700px) {
+
+  .signUp {
+    height: 100%;
+    width: 100%;
+  }
+
+  .joinLogo {
+    width: 70px;
+    height: 90px;
+    margin-top: 38px;
+    margin-left: 38px;
+  }
+
+  .signupAreaFullscreenVision {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    align-content: center; 
+    position: relative;
+    top: 30px;
+  }
+
+  .signupArea {
+    padding: 30px 30px;
+    gap: 25px;
+    margin-top: -50px;
+  }
+
+  .signupData {
+    gap: 25px;
+  }
+
+  .signupText{
+    font-size: 47px;
+  }
+
+  .nameInput {
+    min-width: 270px;
+    padding: 10px 21px;
+  }
+
+  .emailInput {
+    min-width: 270px;
+    padding: 10px 21px;
+  }
+
+  .passwordInput {
+    min-width: 270px;
+    padding: 10px 21px;
+  }
+
+  .confirmPasswordInput {
+    min-width: 270px;
+    padding: 10px 21px;
+  }
+
+  .footer {
+    margin-bottom: 20px;
+  }
+}
+
+@media(max-width: 400px) {
+  .nameInput {
+    min-width: 250px;
+    padding: 7px 10px;
+    border-radius: 5px;
+  }
+
+  .emailInput {
+    min-width: 250px;
+    padding: 7px 10px;
+    border-radius: 5px;
+  }
+
+  .passwordInput {
+    min-width: 250px;
+    padding: 7px 10px;
+    border-radius: 5px;
+  }
+
+  .confirmPasswordInput {
+    min-width: 250px;
+    padding: 7px 10px;
+    border-radius: 5px;
   }
 }

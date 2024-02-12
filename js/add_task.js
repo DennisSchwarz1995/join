@@ -13,7 +13,7 @@ function generateAddTask() {
 function addTaskHTML() {
   return `
     <div>
-      <h1>Add Task</h1>
+      <h1 class="taskHeadline">Add Task</h1>
     </div>
     <div class="taskSelector">
       <div class="taskSelectorLeft">
@@ -50,9 +50,6 @@ function addTaskHTML() {
                     <div class="dropDownContactIcon"></div>
                     <div class="dropDownContactName"></div>
                   </div>
-                    <div>
-                      <img class="checkBox" src="../img/check-box-icon.svg" alt="check-box-icon">
-                    </div>
                 </div>
               
               </section>

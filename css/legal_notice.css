@@ -52,3 +52,18 @@ ul li::before {
   width: 16px;
   margin-left: -16px;
 }
+
+@media (max-width: 1000px) {
+  .legalNotice {
+    inset: 0;
+    padding: 100px 20px;
+  }
+
+  .legalNoticeHeadline {
+    align-items: baseline;
+  }
+
+  .backArrowDiv {
+    right: 15px;
+  }
+}

@@ -40,11 +40,13 @@ function generateSummary() {
 
 function summaryHTML() {
   return `
-    <div class="summaryHeadline">
-      <h1>Join 360</h1>
-      <div class="summaryHeadlinedivider"></div>
-      <span>Key Metrics at a Glance</span>
-    </div>
+    
+      <div class="summaryHeadline">
+        <h1>Join 360</h1>
+        <div class="summaryHeadlinedivider"></div>
+        <span>Key Metrics at a Glance</span>
+        <div class="summaryHeadlinedividerMobile"></div>
+      </div>
 
     <div class="summaryBoardAndGreetingDiv">
       <div class="summaryBoard">
@@ -82,7 +84,7 @@ function summaryHTML() {
           <div class="urgentDivider"></div>
           <div class="urgentDivRight">
             <p class="urgentDeadlineDate">Dezember 12, 2023</p>
-            <span>Upcoming Deadline</span>
+            <p>Upcoming Deadline</p>
           </div>
         </div>
         <div class="summaryBoardWrapper">
@@ -90,30 +92,21 @@ function summaryHTML() {
             <div class="tasksInBoardAmountDiv">
               <p>1</p>
               <a href=""></a>
-              <span
-                >Tasks in <br />
-                Board</span
-              >
+              <span>Tasks in <br />Board</span>
             </div>
           </div>
           <div class="tasksInProgressDiv hoverDiv">
             <div class="tasksInProgressAmountDiv">
               <p>1</p>
               <a href=""></a>
-              <span
-                >Tasks in <br />
-                Progress</span
-              >
+              <span>Tasks in <br />Progress</span>
             </div>
           </div>
           <div class="awaitingFeedbackDiv hoverDiv">
             <div class="awaitingFeedbackAmountDiv">
               <p>1</p>
               <a href=""></a>
-              <span
-                >Awaiting <br />
-                Feedback</span
-              >
+              <span>Awaiting <br />Feedback</span>
             </div>
           </div>
         </div>
