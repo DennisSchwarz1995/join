@@ -1,3 +1,10 @@
+function initAddTask() {
+  generateAddTask();
+  generateNavbar();
+  generateHeader();
+}
+
+
 function generateAddTask() {
   let taskSection = document.querySelector(".addTask");
   taskSection.innerHTML = addTaskHTML();

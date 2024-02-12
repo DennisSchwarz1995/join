@@ -1,29 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/contacts_templates.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/contacts.js"></script>
+    <script src="../js/contacts_templates.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/navbar.js"></script>
-    <script src="../js/summary.js"></script>
-    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg">
-    <link rel="stylesheet" href="../css/contact_templates.css">
-    <link rel="stylesheet" href="../css/fonts.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/contacts.css">
-    <link rel="stylesheet" href="../css/general_classes.css">
+    <script src="../js/storage.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <link rel="stylesheet" href="../css/contacts.css" />
+    <link rel="stylesheet" href="../css/detailed_contact.css" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/general_classes.css" />
     <title>Contacts</title>
-</head>
-<body onload="init(), generateContacts()">
+  </head>
+  <body onload="initContacts()" >
     <header class="header"></header>
     <nav class="navBar"></nav>
     <section class="contacts"></section>
 
+    <div id="contactOverlay" class="contactOverlay">
+      <div class="addContact">
+        <div onclick="closeContactOverlay()" class="closeButtonDiv">
+          <img src="../img/x-icon.svg" />
+        </div>
+        <div class="contactHeaderDiv">
+          <div class="contactHeader">
+            <img src="../img/logo-action-contact.svg" />
+            <h1>Add contact</h1>
+            <h3>Tasks are better with a team!</h3>
+          </div>
+          <div class="addContactDivider"></div>
+        </div>
+        <div class="addContactForm">
+          <div class="userIconDiv">
+            <img src="../img/empty-user-icon.svg" alt="empty-user-icon" />
+          </div>
+          <form class="contactForm" onsubmit="createContact(); return false;">
+            <div class="contactNameDiv">
+              <input
+                type="text"
+                id="fullname"
+                class="contactNameInput"
+                placeholder="Name"
+                required
+                pattern="[A-Za-zÄÖÜäöü]+(\s[A-Za-zÄÖÜäöü]+)?"
+                oninput="checkContactNameValidity()"
+              />
+              <div class="nameIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-name.svg"
+                />
+              </div>
+              <div class="contactNameInvalidDiv invisible">
+                Please enter a valid Name.
+              </div>
+            </div>
+            <div class="contactEmailDiv">
+              <input
+                type="text"
+                id="email"
+                class="contactEmailInput"
+                placeholder="Email"
+                required
+                oninput="checkEmailValidity()"
+              />
+              <div class="emailIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-email.svg"
+                />
+              </div>
+              <div class="contactEmailInvalidDiv invisible">
+                Please enter a valid E-Mail.
+              </div>
+            </div>
+            <div class="contactPhoneDiv">
+              <input
+                type="tel"
+                id="phone"
+                class="contactPhoneInput"
+                placeholder="Phone"
+                required
+                oninput="checkPhoneNumberValidity()"
+                pattern="[0-9+\s]+"
+              />
+              <div class="phoneIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-phone.svg"
+                />
+              </div>
+              <div class="contactPhoneInvalidDiv invisible">
+                Please enter a valid Phonenumber with at least 8 digits.
+              </div>
+            </div>
+            <div class="addContactButtonDiv">
+              <button type="button" class="cancelButton" onclick="cancelInput()">
+                Cancel<img src="../img/x-icon.svg" />
+              </button>
+              <button type="submit" class="createContactButton">
+                Create contact<img src="../img/check.svg" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
-
-</body>
+    <div id="editContactOverlay" class="editContactOverlay">
+      <div class="editContact">
+        <div onclick="closeContactOverlay()" class="closeButtonDiv">
+          <img src="../img/x-icon.svg" />
+        </div>
+        <div class="contactHeaderDiv">
+          <div class="contactHeader">
+            <img src="../img/logo-action-contact.svg" />
+            <h1>Edit contact</h1>
+          </div>
+          <div class="editContactDivider"></div>
+        </div>
+        <div class="editContactForm">
+          <div class="userIconDiv">
+            <img src="../img/empty-user-icon.svg" alt="empty-user-icon" />
+          </div>
+          <form class="contactEditForm" onsubmit="editContact(); return false;">
+            <div class="contactNameDiv">
+              <input
+                type="text"
+                id="fullname"
+                class="contactNameInput"
+                placeholder="Name"
+                required
+                pattern="[A-Za-zÄÖÜäöü]+(\\s[A-Za-zÄÖÜäöü]+)?"
+                oninput="checkContactNameValidity()"
+              />
+              <div class="nameIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-name.svg"
+                />
+              </div>
+              <div class="contactNameInvalidDiv invisible">
+                Please enter a valid Name.
+              </div>
+            </div>
+            <div class="contactEmailDiv">
+              <input
+                type="text"
+                id="email"
+                class="contactEmailInput"
+                placeholder="Email"
+                required
+                oninput="checkEmailValidity()"
+              />
+              <div class="emailIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-email.svg"
+                />
+              </div>
+              <div class="contactEmailInvalidDiv invisible">
+                Please enter a valid E-Mail.
+              </div>
+            </div>
+            <div class="contactPhoneDiv">
+              <input
+                type="tel"
+                id="phone"
+                class="contactPhoneInput"
+                placeholder="Phone"
+                required
+                oninput="checkPhoneNumberValidity()"
+                pattern="[0-9+\s]+"
+              />
+              <div class="phoneIconDiv">
+                <img
+                  class="addContactFormIcon"
+                  src="../img/add-contact-phone.svg"
+                />
+              </div>
+              <div class="contactPhoneInvalidDiv invisible">
+                Please enter a valid Phonenumber with at least 8 digits.
+              </div>
+            </div>
+            <div class="editContactButtonDiv">
+              <button type="button" class="deleteButton" onclick="deleteContact()">
+                Delete
+              </button>
+              <button type="submit" class="saveContactButton">
+                Save<img src="../img/check.svg" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </body>
 </html>

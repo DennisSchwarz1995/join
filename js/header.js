@@ -2,6 +2,12 @@ function generateHeader() {
   let header = document.querySelector('.header');
   header.innerHTML = headerHTML();
   setActiveNavItem();
+  displayUserInitials();
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
 }
 
 function headerHTML() {
@@ -17,7 +23,7 @@ function headerHTML() {
       <div class="popupMenu">
         <a class="navBarActive" href="legal_notice.html">Legal Notice</a>
         <a class="navBarActive" href="privacy_policy.html">Privacy Policy</a>
-        <a href="">Log out</a>
+        <a onclick="logout()">Log out</a>
       </div>
     </div>
   `;
@@ -31,4 +37,26 @@ function togglePopupMenu() {
       : "none";
 }
 
+document.addEventListener("click", function (event) {
+  let menu = document.querySelector(".popupMenu");
+  let userInitialsContainer = document.querySelector(".userInitialsContainer");
 
+  if (
+    menu.style.display === "flex" &&
+    !userInitialsContainer.contains(event.target)
+  ) {
+    menu.style.display = "none";
+  }
+});
+
+function displayUserInitials() {
+  let userInitialsContainer = document.querySelector(".userInitials");
+  let storedInitials = localStorage.getItem("userInitials");
+
+  if (storedInitials) {
+    let parsedInitials = storedInitials.replace(/"/g, "");
+    userInitialsContainer.textContent = parsedInitials;
+  } else {
+    userInitialsContainer.textContent = "G";
+  }
+}
