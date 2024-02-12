@@ -70,7 +70,7 @@
   top: 30px;
 }
 
-.signupData {
+.signUpForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,6 +102,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
 .footer {
@@ -157,14 +159,67 @@
 .emailInput,
 .passwordInput,
 .confirmPasswordInput {
-  min-width: 380px;
-  font-size: 20px;
+  min-width: 360px;
   border-radius: 10px;
-  padding: 12px 21px;
-  background-repeat: no-repeat;
-  background-position: right 5% center;
   border: 1px solid var(--border-color-gray);
+  padding: 12px 45px 12px 21px;
   outline: none;
+  font-size: 20px;
+  direction: ltr;
+  text-align: left;
+}
+
+.nameDiv,
+.emailDiv,
+.passwordDiv,
+.confirmPasswordDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+}
+
+.nameInvalidDiv,
+.emailInvalidDiv,
+.passwordInvalidDiv,
+.confirmPasswordInvalidDiv {
+  position: absolute;
+  color: var(--warning-color-red);
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  top: 52px;
+}
+
+.nameIconDiv,
+.emailIconDiv,
+.passwordIconDiv,
+.confirmPasswordIconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.passwordIconDiv:hover,
+.confirmPasswordIconDiv:hover {
+  background-color: var(--hover-color-blue);
+}
+
+.nameIcon,
+.emailIcon,
+.passwordIcon,
+.confirmPasswordIcon {
+  height: 24px;
+  width: 24px;
 }
 
 .nameInput:focus,
@@ -182,22 +237,6 @@
   color: var(--border-color-gray);
 }
 
-.nameInput {
-  background-image: url("../img/name-icon.svg");
-}
-
-.emailInput {
-  background-image: url("../img/mail-icon.svg");
-}
-
-.passwordInput {
-  background-image: url("../img/lock-icon.svg");
-}
-
-.confirmPasswordInput {
-  background-image: url("../img/lock-icon.svg");
-}
-
 .signUpButton {
   background: var(--main-color-darkblue);
   color: var(--text-color-white);
@@ -210,11 +249,46 @@
   transition: ease-in-out 100ms;
 }
 
-.signUpButton:hover {
+.signUpButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
+}
+
+.signUpOverlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 25px 25px;
+  border-radius: 20px;
+  background: var(--main-color-darkblue);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  color: var(--text-color-white);
+  right: 0;
+  top: 45%;
+  transition: right 0.5s;
+}
+
+.signUpOverlay.visible {
+  animation: slideInOverlay 0.5s forwards;
+}
+
+@keyframes slideInOverlay {
+  from {
+    right: 0%; 
+  }
+  to {
+    right: calc(50% - 129px);
+  }
+}
+
+.signUpButton:hover:not(:disabled) {
   border: 1px solid var(--main-color-lightblue);
   background: var(--main-color-lightblue);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
 
 @media(max-width: 700px) {
 

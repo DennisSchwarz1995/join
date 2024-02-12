@@ -86,9 +86,9 @@
   padding: 12px 16px;
 }
 
-select option[value="option1"] { 
-  display: none; 
-} 
+select option[value="option1"] {
+  display: none;
+}
 
 .dropDownArrow {
   height: 8px;
@@ -100,18 +100,16 @@ select option[value="option1"] {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 10px; 
+  right: 10px;
   top: 12px;
   height: 24px;
   width: 24px;
   border-radius: 50%;
 }
 
-
 .dropDownArrowDiv:hover {
   background-color: var(--hover-color-blue);
 }
-
 
 .subtaskInput {
   padding: 12px 16px 12px 16px;

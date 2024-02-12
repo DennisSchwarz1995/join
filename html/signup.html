@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="../css/signup.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <script src="../js/storage.js"></script>
+    <script src="../js/user.js"></script>
     <script src="../js/sign_up.js"></script>
     <title>Sign up</title>
   </head>
-  <body>
+  <body onload="initSignUp()">
     <div class="signUp">
       <div class="logoContainer">
         <img src="../img/join-animation-logo.svg" class="joinLogo" />
@@ -19,47 +21,138 @@
         <div class="signupArea">
           <div class="blueStrokeContainer">
             <div class="headlineAndArrowDiv">
-              <div class="signUpBackArrowDiv">
-                <img onclick="history.back()"
-                 class="backArrow" src="../img/back-arrow-lightblue.svg" alt="back-arrow-lightblue" />
-              </div>
+              <a href="login.html" class="signUpBackArrowDiv">
+                <img
+                  class="backArrow"
+                  src="../img/back-arrow-lightblue.svg"
+                  alt="back-arrow-lightblue"
+                />
+              </a>
               <h1 class="signupText">Sign up</h1>
               <div class="alignDiv"></div>
             </div>
             <div class="signUpDivider"></div>
           </div>
-          <div class="signupData">
-            <input placeholder="Name" class="nameInput" />
-            <input placeholder="Email" class="emailInput" />
-            <input placeholder="Password" class="passwordInput" />
-            <input
-              placeholder="Confirm Password"
-              class="confirmPasswordInput"
-            />
+          <form class="signUpForm" onsubmit="registerUser(); return false;">
+            <div class="nameDiv">
+              <input
+                type="text"
+                placeholder="Name"
+                class="nameInput"
+                id="signUpNameInput"
+                pattern="[A-Za-z]+(\s[A-Za-z]+)?"
+                oninput="checkNameValidity()"
+              />
+              <div class="nameIconDiv">
+                <img
+                  class="nameIcon"
+                  src="../img/name-icon.svg"
+                  alt="name-icon"
+                />
+              </div>
+              <div class="nameInvalidDiv invisible">
+                Please enter a valid Name consisting of Letters.
+              </div>
+            </div>
+            <div class="emailDiv">
+              <input
+                type="text"
+                placeholder="Email"
+                class="emailInput"
+                id="signUpEmailInput"
+                oninput="checkEmailValidity()"
+              />
+              <div class="emailIconDiv">
+                <img
+                  class="mailIcon"
+                  src="../img/mail-icon.svg"
+                  alt="mail-icon"
+                />
+              </div>
+              <div class="emailInvalidDiv invisible">
+                Please enter a valid E-Mail.
+              </div>
+            </div>
+            <div class="passwordDiv">
+              <input
+                type="password"
+                placeholder="Password"
+                class="passwordInput"
+                id="signUpPasswordInput"
+                autocomplete="on"
+                minlength="8"
+                oninput="checkPasswordValidity();"
+                onfocus="changePasswordInputIcon()"
+              />
+              <div class="passwordIconDiv" onclick="togglePasswordInputType()">
+                <img
+                  class="passwordIcon"
+                  src="../img/lock-icon.svg"
+                  alt="lock-icon"
+                />
+              </div>
+              <div class="passwordInvalidDiv invisible">
+                Please enter a valid Password.
+              </div>
+            </div>
+            <div class="confirmPasswordDiv">
+              <input
+                placeholder="Confirm Password"
+                type="password"
+                class="confirmPasswordInput"
+                id="confirmPasswordInput"
+                autocomplete="on"
+                minlength="8"
+                oninput="checkPasswordValidity();"
+                onfocus="changeConfirmPasswordInputIcon()"
+              />
+              <div
+                class="confirmPasswordIconDiv"
+                onclick="toggleConfirmPasswordInputType()"
+              >
+                <img
+                  class="confirmPasswordIcon"
+                  src="../img/lock-icon.svg"
+                  alt="lock-icon"
+                />
+              </div>
+              <div class="confirmPasswordInvalidDiv invisible">
+                Please enter a valid Password.
+              </div>
+            </div>
             <div class="checkBox">
               <div class="labelContainer">
                 <div class="checkBoxIconDiv">
-                    <img
-                      onclick="toggleCheckBox()"
-                      class="checkBoxIcon"
-                      src="../img/checkbox-icon.svg"
-                    />
-                  </div>
-                <label for="rememberMe" class="privacyPolicy"
-                  >I accept the
-                  <a class="privacyPolicyLink" href="privacy_policy.html">Privacy Policy</a>
+                  <img
+                    onclick="toggleCheckBox()"
+                    class="checkBoxIcon"
+                    src="../img/checkbox-icon.svg"
+                  />
+                </div>
+                <p for="rememberMe" class="privacyPolicy">
+                  I accept the
+                  <a
+                    class="privacyPolicyLink"
+                    target="_blank"
+                    href="privacy_policy.html"
+                    >Privacy Policy</a
+                  >
+                </p>
               </div>
             </div>
             <div class="buttonArea">
-              <button type="button" class="signUpButton">Sign Up</button>
+              <button type="submit" class="signUpButton" id="signUpButton">
+                Sign Up
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div class="footer">
         <a href="privacy_policy.html" class="footerLink">Privacy Policy</a>
         <a href="legal_notice.html" class="footerLink">Legal notice</a>
       </div>
+      <div class="signUpOverlay invisible">You signed up successfully.</div>
     </div>
   </body>
 </html>
