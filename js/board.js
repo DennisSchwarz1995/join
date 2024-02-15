@@ -60,6 +60,18 @@ function boardHTML() {
       </div>
     </div>
 
+    <div class="boardHeadlineMobile">
+      <div class="headerButton">
+        <h1>Board</h1>
+        <button class="addTaskButtonMobile">
+            <img src="../img/add-icon.svg" alt="add-icon" />
+        </button>
+      </div>
+      <div class="searchTaskMobile">
+          <input class="searchTaskInputMobile" placeholder="Find Task" type="text" name="" id="" />
+      </div>
+    </div>
+
     <div class="taskBoard">
       <div class="toDoTaskList slot">
         <div class="boardCategory">
@@ -71,6 +83,7 @@ function boardHTML() {
         ${tasks
       .filter(task => task.category === "To do")
       .map(task => `
+          <div class="taskCards">  
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">            
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
@@ -84,6 +97,7 @@ function boardHTML() {
                 <div class="taskPrio"></div>
               </div>
             </div>
+          </div>  
           `).join('')}
       </div>
 
@@ -97,6 +111,7 @@ function boardHTML() {
         ${tasks
       .filter(task => task.category === "In progress")
       .map(task => `
+          <div class="taskCards">  
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
@@ -110,6 +125,7 @@ function boardHTML() {
                 <div class="taskPrio"></div>
               </div>
             </div>
+          </div>
           `).join('')}
       </div>
 
@@ -123,6 +139,7 @@ function boardHTML() {
         ${tasks
       .filter(task => task.category === "Await feedback")
       .map(task => `
+          <div class="taskCards"> 
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
@@ -136,6 +153,7 @@ function boardHTML() {
                 <div class="taskPrio"></div>
               </div>
             </div>
+          </div>
           `).join('')}
       </div>
 
@@ -149,6 +167,7 @@ function boardHTML() {
         ${tasks
       .filter(task => task.category === "Done")
       .map(task => `
+          <div class="taskCards">       
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(task)}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
@@ -162,6 +181,7 @@ function boardHTML() {
                 <div class="taskPrio"></div>
               </div>
             </div>
+          </div> 
           `).join('')}
       </div>
     </div>
