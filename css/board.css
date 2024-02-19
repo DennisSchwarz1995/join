@@ -72,6 +72,7 @@
   min-width: 95%;
   height: 55vh;
   overflow-y: scroll;
+  gap: 20px;
 }
 
 .taskBoard::-webkit-scrollbar {
