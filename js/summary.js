@@ -1,75 +1,85 @@
-function initSummary() {
+async function initSummary() {
   generateNavbar();
   generateHeader();
+  await loadTasks();
   generateSummary();
   displayUserGreeting();
   updateGreetingBasedOnTime();
 }
 
-
 function displayUserGreeting() {
   let greetingSpan = document.querySelector(".greetingSpan");
-  let userFullName = localStorage.getItem("userFullName");
-
-  if (userFullName) {
-    let parsedFullName = JSON.parse(userFullName);
-    greetingSpan.textContent = parsedFullName;
-  } else {
-    greetingSpan.textContent = "Guest"
+  if (greetingSpan) {
+    let userFullName = localStorage.getItem("userFullName");
+    if (userFullName) {
+      let parsedFullName = JSON.parse(userFullName);
+      greetingSpan.textContent = parsedFullName;
+    } else {
+      greetingSpan.textContent = "Guest";
+    }
   }
 }
 
 function updateGreetingBasedOnTime() {
   let greetingTime = document.querySelector(".greetingTime");
-  let currentDate = new Date();
-  let currentHour = currentDate.getHours();
-
-  if (currentHour >= 5 && currentHour < 12) {
-    greetingTime.textContent = "Good Morning,";
-  } else if (currentHour >= 12 && currentHour < 18) {
-    greetingTime.textContent = "Good Afternoon,";
-  } else {
-    greetingTime.textContent = "Good Evening,";
+  if (greetingTime) {
+    let currentDate = new Date();
+    let currentHour = currentDate.getHours();
+    if (currentHour >= 5 && currentHour < 12) {
+      greetingTime.textContent = "Good Morning,";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      greetingTime.textContent = "Good Afternoon,";
+    } else {
+      greetingTime.textContent = "Good Evening,";
+    }
   }
 }
 
 function generateSummary() {
+  let tasksLength = getTasksLength();
+  let todoTasksCount = countTasksByCategory("To do");
+  let inProgressTasksCount = countTasksByCategory("In progress");
+  let awaitFeedbackTaskCount = countTasksByCategory("Await feedback");
   let summary = document.querySelector(".summary");
-  summary.innerHTML = summaryHTML();
+  summary.innerHTML += summaryHTML(
+    tasksLength,
+    todoTasksCount,
+    inProgressTasksCount,
+    awaitFeedbackTaskCount
+  );
 }
 
-function summaryHTML() {
+function summaryHTML(
+  tasksLength,
+  todoTasksCount,
+  inProgressTasksCount,
+  awaitFeedbackTaskCount
+) {
   return `
-    <div class="summaryHeadline">
+    <header class="summaryHeadline">
       <h1>Join 360</h1>
       <div class="summaryHeadlinedivider"></div>
       <span>Key Metrics at a Glance</span>
-    </div>
-
-    <div class="summaryBoardAndGreetingDiv">
-      <div class="summaryBoard">
+    </header>
+    <main class="summaryBoardAndGreetingDiv">
+      <section class="summaryBoard">
         <div class="summaryBoardWrapper">
-          <div class="toDoDiv hoverDiv">
-            <a href=""></a>
+          <a href="board.html" class="toDoDiv hoverDiv">
             <div class="toDoImage"></div>
             <div class="toDoAmountDiv">
-              <p>1</p>
+              <p>${todoTasksCount}</p>
               <span>To-Do</span>
             </div>
-          </div>
-
-          <div class="doneDiv hoverDiv">
-            <a href=""></a>
+          </a>
+          <a href="board.html" class="doneDiv hoverDiv">
             <div class="doneDivImage"></div>
             <div class="doneAmountDiv">
               <p>1</p>
               <span>Done</span>
             </div>
-          </div>
+          </a>
         </div>
-
-        <div class="urgentDiv hoverDiv">
-          <a href=""></a>
+        <a href="board.html" class="urgentDiv hoverDiv">
           <div class="urgentDivLeft">
             <img src="../img/summary-urgent-icon.svg" alt="summary-urgent" />
             <div>
@@ -84,45 +94,43 @@ function summaryHTML() {
             <p class="urgentDeadlineDate">Dezember 12, 2023</p>
             <span>Upcoming Deadline</span>
           </div>
-        </div>
+        </a>
         <div class="summaryBoardWrapper">
-          <div class="tasksInBoardDiv hoverDiv">
+          <a href="board.html" class="tasksInBoardDiv hoverDiv">
             <div class="tasksInBoardAmountDiv">
-              <p>1</p>
-              <a href=""></a>
+              <p>${tasksLength}</p>
+              
               <span
                 >Tasks in <br />
                 Board</span
               >
             </div>
-          </div>
-          <div class="tasksInProgressDiv hoverDiv">
+          </a>
+          <a href="board.html" class="tasksInProgressDiv hoverDiv">
             <div class="tasksInProgressAmountDiv">
-              <p>1</p>
-              <a href=""></a>
+              <p>${inProgressTasksCount}</p>
               <span
                 >Tasks in <br />
                 Progress</span
               >
             </div>
-          </div>
-          <div class="awaitingFeedbackDiv hoverDiv">
+          </a>
+          <a href="board.html" class="awaitingFeedbackDiv hoverDiv">
             <div class="awaitingFeedbackAmountDiv">
-              <p>1</p>
-              <a href=""></a>
+              <p>${awaitFeedbackTaskCount}</p>
+              
               <span
                 >Awaiting <br />
                 Feedback</span
               >
             </div>
-          </div>
+          </a>
         </div>
-      </div>
-
-      <div class="greetingDiv">
+      </section>
+      <section class="greetingDiv">
         <h2 class="greetingTime"></h2>
         <span class="greetingSpan"></span>
-      </div>
-    </div>
+      </section>
+    </main>
   `;
 }

@@ -3,10 +3,11 @@ async function initContacts() {
   generateContacts();
   generateNavbar();
   generateHeader();
-  checkValuesForContactCreation();
+  checkValuesForSubmitButton();
 }
 
 let isContactOverlayOpen = false;
+let isEditingContact = false;
 let isEditContactOverlayOpen = false;
 let isDetailViewOpen = false;
 
@@ -15,17 +16,12 @@ function generateContacts() {
   if (contactsList) {
     contactsList.innerHTML = contactsHTML();
   } else {
-    console.error("contactsList not found");
+    console.error("Contacts-List not found");
   }
 }
 
-function deleteAllContacts() {
-  contacts = [];
-  saveContact();
-  generateContacts();
-}
-
 function openContactOverlay() {
+  isEditingContact = false;
   let overlay = document.querySelector(".contactOverlay");
   if (isContactOverlayOpen) {
     closeContactOverlay();
@@ -35,16 +31,32 @@ function openContactOverlay() {
       overlay.classList.add("show");
     }, 0);
     isContactOverlayOpen = true;
+    showBackground();
   }
 }
 
 function closeContactOverlay() {
-  let overlay = document.querySelector(".contactOverlay");
+  let overlay = document.querySelector(
+    ".contactOverlay.show, .editContactOverlay.show"
+  );
   if (overlay) {
     overlay.classList.remove("show");
     setTimeout(() => {}, 300);
+    cancelInput();
+    hideBackground();
   }
   isContactOverlayOpen = false;
+  isEditContactOverlayOpen = false;
+}
+
+function showBackground() {
+  let background = document.querySelector(".overlayBackground");
+  background.classList.remove("invisible");
+}
+
+function hideBackground() {
+  let background = document.querySelector(".overlayBackground");
+  background.classList.add("invisible");
 }
 
 function cancelInput() {
@@ -63,7 +75,7 @@ function cancelInput() {
     checkEmailValidity();
     checkPhoneNumberValidity();
     checkContactNameValidity();
-    checkValuesForContactCreation();
+    checkValuesForSubmitButton();
   } else {
     closeContactOverlay();
   }
@@ -78,7 +90,7 @@ function addContactToCategory(category, contact) {
   } else {
     addContactToNewCategory(contactList, category, contact, existingCategories);
   }
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  sortContacts();
   generateContacts();
 }
 
@@ -220,11 +232,9 @@ function createContact() {
   let name = document.getElementById("fullname");
   let email = document.getElementById("email");
   let phone = document.getElementById("phone");
-
   let formattedName = capitalizeName(name.value.trim());
   let category = formattedName.charAt(0).toUpperCase();
   let randomColor = getRandomColor();
-
   let newContact = {
     name: formattedName,
     email: email.value.trim(),
@@ -232,11 +242,28 @@ function createContact() {
     color: `var(--bg-user-initials-color-${randomColor})`,
   };
   contacts.push(newContact);
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  sortContacts();
   saveContact();
   addContactToCategory(category, newContact);
   closeContactOverlay();
   cancelInput();
+  showCreateOverlay();
+  showContactDetails(contacts.indexOf(newContact));
+  highlightSelectedContact(contacts.indexOf(newContact));
+}
+
+function sortContacts() {
+  contacts.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function showCreateOverlay() {
+  const createOverlay = document.getElementById("createContactOverlay");
+  createOverlay.classList.remove("slideOut");
+  createOverlay.classList.add("slideInContactOverlay");
+  setTimeout(() => {
+    createOverlay.classList.remove("slideInContactOverlay");
+    createOverlay.classList.add("slideOut");
+  }, 2000);
 }
 
 function getCategorySection(category) {
@@ -334,9 +361,9 @@ function capitalizeName(name) {
   return capitalizedNames.join(" ");
 }
 
-function checkValuesForContactCreation() {
-  let button = document.querySelector(".createContactButton");
-  const isButtonEnabled = isCreateContactButtonEnabled();
+function checkValuesForSubmitButton() {
+  let { button } = getFormElements(isEditingContact);
+  let isButtonEnabled = isSubmitButtonEnabled();
 
   if (isButtonEnabled) {
     button.removeAttribute("disabled");
@@ -345,26 +372,30 @@ function checkValuesForContactCreation() {
   }
 }
 
-function isCreateContactButtonEnabled() {
-  let nameInput = document.querySelector(".contactNameInput");
-  let emailInput = document.querySelector(".contactEmailInput");
-  let phoneInput = document.querySelector(".contactPhoneInput");
+function isSubmitButtonEnabled() {
+  let {
+    nameInput,
+    emailInput,
+    phoneInput,
+    nameInvalidDiv,
+    emailInvalidDiv,
+    phoneInvalidDiv,
+  } = getFormElements(isEditingContact);
 
-  const isButtonEnabled =
+  let isButtonEnabled =
     nameInput.value.trim() !== "" &&
     emailInput.value.trim() !== "" &&
     phoneInput.value.trim() !== "" &&
-    document.querySelectorAll(
-      ".contactNameInvalidDiv.invisible, .contactEmailInvalidDiv.invisible, .contactPhoneInvalidDiv.invisible"
-    ).length === 3 &&
+    nameInvalidDiv.classList.contains("invisible") &&
+    emailInvalidDiv.classList.contains("invisible") &&
+    phoneInvalidDiv.classList.contains("invisible") &&
     !document.querySelector(".warning");
 
   return isButtonEnabled;
 }
 
 function checkEmailValidity() {
-  let emailInput = document.getElementById("email");
-  let emailInvalidDiv = document.querySelector(".contactEmailInvalidDiv");
+  let { emailInput, emailInvalidDiv } = getFormElements(isEditingContact);
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(emailInput.value) || emailInput.value.trim() === "") {
@@ -384,11 +415,13 @@ function checkEmailValidity() {
 }
 
 function checkPhoneNumberValidity() {
-  let phoneInput = document.getElementById("phone");
-  let phoneValueWithoutSpaces = phoneInput.value.replace(/\s/g, '');
-  let phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
+  let { phoneInput, phoneInvalidDiv } = getFormElements(isEditingContact);
+  let phoneValueWithoutSpaces = phoneInput.value.replace(/\s/g, "");
 
-  if (phoneValueWithoutSpaces.length < 8 && phoneValueWithoutSpaces.length !== 0) {
+  if (
+    phoneValueWithoutSpaces.length < 8 &&
+    phoneValueWithoutSpaces.length !== 0
+  ) {
     phoneInvalidDiv.classList.remove("invisible");
     phoneInput.classList.add("warning");
     return false;
@@ -399,10 +432,8 @@ function checkPhoneNumberValidity() {
   }
 }
 
-
 function checkContactNameValidity() {
-  let nameInput = document.querySelector(".contactNameInput");
-  let nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
+  let { nameInput, nameInvalidDiv } = getFormElements(isEditingContact);
 
   if (!nameInput.checkValidity() || nameInput.value.trim() === "") {
     nameInvalidDiv.classList.remove("invisible");
@@ -420,9 +451,13 @@ function checkContactNameValidity() {
 
 document.addEventListener("DOMContentLoaded", function () {
   let contactForm = document.querySelector(".contactForm");
-  contactForm.addEventListener("input", checkValuesForContactCreation);
+  contactForm.addEventListener("input", checkValuesForSubmitButton);
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  let editContactForm = document.querySelector(".editContactForm");
+  editContactForm.addEventListener("input", checkValuesForSubmitButton);
+});
 
 function highlightSelectedContact(index) {
   let contactCards = document.querySelectorAll(".contactCard");
@@ -430,7 +465,7 @@ function highlightSelectedContact(index) {
     if (i === index) {
       if (card.classList.contains("selectedContact")) {
         card.classList.remove("selectedContact");
-        card.onclick = function() {
+        card.onclick = function () {
           highlightSelectedContact(i);
           showContactDetails(i);
         };
@@ -440,17 +475,13 @@ function highlightSelectedContact(index) {
       }
     } else {
       card.classList.remove("selectedContact");
-      card.onclick = function() {
+      card.onclick = function () {
         highlightSelectedContact(i);
         showContactDetails(i);
       };
     }
   });
 }
-
-
-
-
 
 function showContactDetails(index) {
   let contact = contacts[index];
@@ -469,4 +500,110 @@ function showContactDetails(index) {
   isDetailViewOpen = true;
 }
 
+function openEditContactOverlay() {
+  isEditingContact = true;
+  let overlay = document.querySelector(".editContactOverlay");
+  if (overlay) {
+    overlay.classList.add("show");
+    fillEditFormInputs();
+    showBackground();
+    isEditContactOverlayOpen = true;
+  }
+}
 
+function fillEditFormInputs() {
+  let selectedContactIndex = getSelectedContactIndex();
+  if (selectedContactIndex !== -1) {
+    let contact = contacts[selectedContactIndex];
+    let nameInput = document.querySelector("#editFullname");
+    let emailInput = document.querySelector("#editEmail");
+    let phoneInput = document.querySelector("#editPhone");
+    let userIconDiv = document.querySelector(".editContactForm .userIconDiv");
+
+    nameInput.value = contact.name;
+    emailInput.value = contact.email;
+    phoneInput.value = contact.phone;
+    userIconDiv.style.backgroundColor = contact.color;
+    userIconDiv.innerHTML = `<h2>${getInitials(contact.name)}</h2>`;
+  }
+}
+
+function getSelectedContactIndex() {
+  let contactCards = document.querySelectorAll(".contactCard");
+  for (let i = 0; i < contactCards.length; i++) {
+    if (contactCards[i].classList.contains("selectedContact")) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function saveEditedContact() {
+  let selectedContactIndex = getSelectedContactIndex();
+  if (selectedContactIndex !== -1) {
+    let nameInput = document.querySelector("#editFullname");
+    let emailInput = document.querySelector("#editEmail");
+    let phoneInput = document.querySelector("#editPhone");
+
+    let editedContact = {
+      name: capitalizeName(nameInput.value.trim()),
+      email: emailInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      color: contacts[selectedContactIndex].color,
+    };
+
+    contacts[selectedContactIndex] = editedContact;
+    sortContacts();
+    saveContact();
+    generateContacts();
+    closeContactOverlay();
+    showContactDetails(selectedContactIndex);
+    highlightSelectedContact(selectedContactIndex);
+  }
+}
+
+function getFormElements(isEditingContact) {
+  let nameInput, emailInput, phoneInput;
+  let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
+  let button;
+
+  if (isEditingContact) {
+    nameInput = document.getElementById("editFullname");
+    emailInput = document.getElementById("editEmail");
+    phoneInput = document.getElementById("editPhone");
+    nameInvalidDiv = document.querySelector(".editContactNameInvalidDiv");
+    emailInvalidDiv = document.querySelector(".editContactEmailInvalidDiv");
+    phoneInvalidDiv = document.querySelector(".editContactPhoneInvalidDiv");
+    button = document.getElementById("saveContactButton");
+  } else {
+    nameInput = document.getElementById("fullname");
+    emailInput = document.getElementById("email");
+    phoneInput = document.getElementById("phone");
+    nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
+    emailInvalidDiv = document.querySelector(".contactEmailInvalidDiv");
+    phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
+    button = document.getElementById("createContactButton");
+  }
+
+  return {
+    nameInput,
+    emailInput,
+    phoneInput,
+    nameInvalidDiv,
+    emailInvalidDiv,
+    phoneInvalidDiv,
+    button,
+  };
+}
+
+async function deleteContact() {
+  let selectedIndex = getSelectedContactIndex();
+  if (selectedIndex !== -1) {
+    contacts.splice(selectedIndex, 1);
+    closeContactOverlay();
+    saveContact();
+    await loadContacts();
+    generateContacts();
+    isDetailViewOpen = false;
+  }
+}

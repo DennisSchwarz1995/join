@@ -10,7 +10,6 @@ async function registerUser() {
 
   saveUser();
   resetForm();
-
   showRegistrationOverlay();
   setTimeout(() => {
     window.location.href = "login.html";

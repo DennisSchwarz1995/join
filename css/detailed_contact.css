@@ -15,13 +15,6 @@
   transition: right 0.3s ease-in-out;
 }
 
-.slideIn {
-  right: 0;
-}
-
-.slideOut {
-  right: -200%;
-}
 
 .contactHeadline {
   display: flex;
