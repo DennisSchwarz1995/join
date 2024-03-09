@@ -399,7 +399,6 @@ function checkPhoneNumberValidity() {
   }
 }
 
-
 function checkContactNameValidity() {
   let nameInput = document.querySelector(".contactNameInput");
   let nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
@@ -448,10 +447,6 @@ function highlightSelectedContact(index) {
   });
 }
 
-
-
-
-
 function showContactDetails(index) {
   let contact = contacts[index];
   let detailedView = document.querySelector(".detailedView");
@@ -468,5 +463,3 @@ function showContactDetails(index) {
   }
   isDetailViewOpen = true;
 }
-
-
