@@ -18,6 +18,10 @@
   height: calc(100vh - 106px);
 }
 
+.contactBoard::-webkit-scrollbar {
+  width: 0;
+}
+
 .contactButtonDiv {
   position: sticky;
   top: 0;
@@ -297,6 +301,7 @@
   height: 592px;
   border-radius: 30px;
   background: var(--text-color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .addContactForm,
@@ -404,19 +409,195 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
-@media (max-width: 1200px) {
+.contactDetailedInfo {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 23px;
+}
 
-  .contactDetailedInfo {
-    margin-top: 50px;
+.detailedView {
+  position: relative;
+  right: -200%;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background: var(--bg-color-gray);
+  transition: right 0.3s ease-in-out;
+}
+
+.slideIn {
+  right: 0;
+}
+
+.slideOut {
+  right: -200%;
+}
+
+
+.contactHeadline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.contactHeadline h1 {
+  font-size: 47px;
+}
+
+.contactHeadlineSpan {
+  font-size: 20px;
+}
+
+.contactHeadlineSpan {
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--main-color-darkblue);
+}
+
+.floatingContactDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  margin-top: 40px;
+}
+
+.floatingContactHeader {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.floatingContactUser {
+  height: 120px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  border: 3px solid var(--text-color-white);
+  background: var(--bg-user-initials-color-orange);
+  color: var(--text-color-white);
+}
+
+.floatingContactUser h2,
+.floatingContactName h2 {
+  font-weight: 500;
+}
+
+.floatingContactEditAndDelete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--main-color-darkblue);
+}
+
+.floatingContactEdit {
+  width: 62px;
+}
+
+.floatingContactEdit,
+.floatingContactDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floatingContactEditImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-edit-icon-darkblue.svg);
+}
+
+.floatingContactDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-darkblue.svg);
+}
+
+.floatingContactEdit:hover .floatingContactEditImage {
+  background: url(../img/contact-edit-icon-lightblue.svg);
+}
+
+.floatingContactDelete:hover .floatingContactDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-lightblue.svg);
+}
+
+.floatingContactEdit:hover,
+.floatingContactDelete:hover {
+  color: var(--main-color-lightblue);
+  font-weight: 700;
+}
+
+.floatingContactInformation {
+  padding: 25px 0;
+}
+
+.floatingContactInformation h4 {
+  font-weight: 400;
+}
+
+.floatingContactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.floatingContactDetails p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.floatingContactEmail,
+.floatingContactPhone {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floatingContactEmail a {
+  color: var(--main-color-lightblue);
+}
+
+
+@media (max-width: 1250px) { 
+  .contacts {
+    gap: 40px;
+  }
+
+  .addContact {
+    width: 1000px;
+  }
+
+  .contactHeader h1 {
+    font-size: 50px;
+  }
+
+  .contactHeader h3 {
+    font-size: 22px;
+  }
+
+  .userIconDiv {
+    margin: 20px 20px 0 0;
   }
 
   .contactHeadline {
     flex-direction: column;
     gap: 15px;
+    align-items: unset;
   }
 
   .contactHeadlineDivider {
     display: none;
+  }
+
+  .contactNameInput,
+  .contactEmailInput,
+  .contactPhoneInput {
+    min-width: 300px;
   }
 
   .floatingContactUser {
@@ -427,7 +608,12 @@
 
   .floatingContactHeader {
     gap: 25px;
+    flex-direction: column;
   }
+
+  .floatingContactInformation {
+    padding: 25px 0 5px 0;
+}
 
   .floatingContactName h2 {
     font-size: 38px;
@@ -440,12 +626,62 @@
     position: absolute;
     inset: 30px 0px 0px 0px;
   }
+
+  .contactDetailedInfo {
+    margin-top: 80px;
+  }
+
+  .contactBoard {
+    top: 57px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactButtonDiv {
+    width: 100%;
+    justify-content: center;
+    padding: 22.5px 52px 20px 52px;
+  }
+
+  .contactList {
+    width: 80%;
+    margin-bottom: 55px;
+  }
+
+  .contactDivider {
+    width: 100%;
+  }
+
+  .addContact {
+    width: 750px;
+    height: 750px;
+    flex-direction: column;
+  }
+
+  .contactHeaderDiv {
+    width: 100%;
+    border-radius: 30px 30px 0px 0px;
+    height: 60%;
+  }
+
+  .addContactForm {
+    width: 100%;
+  }
+
+  .contactForm {
+    margin-top: 30px;
+  }
+
+  .closeButtonDiv {
+    background-color: white;
+    top: 20px;
+    right: 20px;
+  }
 }
 
 @media (max-width: 800px) {
-  .contactDetailedInfo {
-    display: none;
-  }
 
   .contactBoard {
     width: 100%;
@@ -454,16 +690,12 @@
     z-index: 0;
   }
 
-  .categorySection {
-    width: 100%;
+  .contactDetailedInfo {
+    display: none;
   }
 
-  .contactButtonDiv {
-    background: unset;
-    top: 625px;
-    margin-right: 10px;
-    justify-content: flex-end;
-    padding: 0;
+  .categorySection {
+    width: 100%;
   }
 
   .contactList {
@@ -471,8 +703,55 @@
     padding: 0 20px 32px 20px;
   }
 
+  .contactMailSpan {
+    max-width: 200px;
+  }
+
   .contactDividerDiv {
     align-items: normal;
+  }
+
+  .addContact {
+    max-width: 500px;
+  }
+
+  .closeButtonDiv {
+    right: 29px;
+  }
+
+  .addContactForm {
+    flex-direction: column;
+  }
+
+  .userIconDiv {
+    margin: 0px;
+    z-index: 1;
+    margin-top: -85px;
+}
+
+}
+
+@media (max-width: 500px) {
+  .contacts {
+    position: absolute;
+    inset: 0px 0px 0px 0px;
+  }
+
+  .contactList {
+    padding: unset;
+    width: unset;
+  }
+
+  .contactMailSpan {
+    max-width: 200px;
+  }
+
+  .contactButtonDiv {
+    background: unset;
+    top: 82%;
+    margin-right: 30px;
+    justify-content: flex-end;
+    padding: 0;
   }
 
   .addNewContactButton {
@@ -483,5 +762,29 @@
 
   .addNewContactButton p {
     display: none;
+  }
+
+  .addContact {
+    max-width: 380px;
+  }
+
+  .contactHeader {
+    padding: 0 30px;
+  }
+
+  .contactHeader img {
+    display: none;
+  }
+
+  .addContactDivider {
+    margin-left: 33px;
+  }
+
+  .userIconDiv {
+    margin-top: -120px;
+  }
+
+  .closeButtonDiv:hover {
+    background-color: white;
   }
 }

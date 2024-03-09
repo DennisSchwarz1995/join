@@ -183,12 +183,12 @@ a {
 
 
 @media (max-width: 1200px) {
- /* .contactHeadlineDivider {
+ .contactHeadlineDivider {
     display: flex;
     border: 2px solid var(--main-color-lightblue);
     width: 60%;
     height: 0px;
-  }*/
+  }
 
   .backArrowDiv {
     right: 15px;
