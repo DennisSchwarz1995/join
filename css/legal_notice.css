@@ -37,33 +37,3 @@
   font-weight: 700;
 }
 
-ul {
-  list-style: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
-ul li::before {
-  position: absolute;
-  content: "\2022";
-  color: var(--main-color-lightblue);
-  font-weight: bold;
-  display: inline-block;
-  width: 16px;
-  margin-left: -16px;
-}
-
-@media (max-width: 1000px) {
-  .legalNotice {
-    inset: 0;
-    padding: 100px 20px;
-  }
-
-  .legalNoticeHeadline {
-    align-items: baseline;
-  }
-
-  .backArrowDiv {
-    right: 15px;
-  }
-}

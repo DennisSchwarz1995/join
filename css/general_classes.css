@@ -8,6 +8,30 @@ body {
   width: 100vw;
 }
 
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background-color: #0c2e621f;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #F6F7F8;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #29ABE2;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #2A3647;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #2A3647;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -25,6 +49,8 @@ input::-webkit-inner-spin-button {
   --hover-color-blue: #0c2e621f;
   --bg-color-gray: #f6f7f8;
   --bg-color-red: #ff3d00;
+  --bg-color-yellow: #ffa800;
+  --bg-color-green: #7ae229;
   --fill-color-gray: #edf2fa;
   --warning-color-red: #ff8190;
   --active-color-darkblue: #091931;
@@ -128,7 +154,7 @@ a {
 .urgentButton:hover,
 .mediumButton:hover,
 .lowButton:hover,
-.createButton:hover,
+.createTaskButton:hover:not(:disabled),
 .clearButton:hover,
 .taskBoardAddTaskDiv:hover,
 .addTaskButton:hover,
@@ -146,6 +172,10 @@ a {
 .floatingContactEdit:hover,
 .floatingContactDelete:hover,
 .dropDownArrowDiv:hover,
+.plusIconDiv:hover,
+.editSubtask:hover,
+.deleteSubtask:hover,
+.subtaskSaveIcon:hover,
 .cancelButton:hover,
 .closeButtonDiv:hover,
 .footerLink:hover,
@@ -153,9 +183,17 @@ a {
 .passwordIconDiv:hover,
 .confirmPasswordIconDiv:hover,
 .createContactButton:hover:not(:disabled),
-.deleteButton, 
-.saveContactButton {
+.deleteButton,
+.saveContactButton:hover:not(:disabled),
+.dropDownContactDiv,
+.dropDownCategoryDiv,
+.calendarDiv,
+.newCategoryIconWrapper {
   cursor: pointer;
+}
+
+.d-none {
+  display: none;
 }
 
 .warning {
@@ -174,6 +212,18 @@ a {
   visibility: hidden;
 }
 
+.rotate {
+  transform: rotate(180deg);
+}
+
+.slideIn {
+  right: 0;
+}
+
+.slideOut {
+  right: -200%;
+}
+
 .summaryHeadlinedivider,
 .contactHeadlineDivider {
   border: 2px solid var(--main-color-lightblue);
@@ -181,16 +231,124 @@ a {
   height: 60px;
 }
 
-
-@media (max-width: 1200px) {
- /* .contactHeadlineDivider {
-    display: flex;
-    border: 2px solid var(--main-color-lightblue);
-    width: 60%;
-    height: 0px;
-  }*/
-
-  .backArrowDiv {
-    right: 15px;
-  }
+.dropDownContactIcon,
+.userInitialsDiv {
+  display: flex;
+  height: 42px;
+  width: 42px;
+  border-radius: 45px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  border: 2px solid var(--text-color-white);
 }
+
+.checkBox {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.checkBoxIconDiv {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkBoxIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.contactOverlay,
+.editContactOverlay,
+.addTaskOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.contactOverlay.show,
+.editContactOverlay.show,
+.addTaskOverlay.show {
+  z-index: 99;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.addTaskOverlayBackground {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.overlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 98;
+}
+
+.addTaskOverlay {
+  border-radius: 30px;
+  background: var(--text-color-white);
+  padding: 40px;
+  width: 1000px;
+}
+
+.clearButton:hover img,
+.calendarDiv:hover img,
+.checkBoxIconDiv:hover > .checkBoxIcon.selectedContactCheckBox:hover,
+.editSubtask:hover,
+.deleteSubtask:hover,
+.subtaskSaveIcon:hover,
+.cancelButton:hover > img {
+  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
+    brightness(94%) contrast(89%);
+}
+
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+ul li::before {
+  position: absolute;
+  content: "\2022";
+  color: var(--main-color-lightblue);
+  font-weight: bold;
+  display: inline-block;
+  width: 16px;
+  margin-left: -16px;
+}
+
+.createContactButton:hover:not(:disabled),
+.saveContactButton:hover:not(:disabled),
+.createTaskButton:hover:not(:disabled) {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.createContactButton:disabled,
+.saveContactButton:disabled,
+.createTaskButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
+}
+
