@@ -1,16 +1,15 @@
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px 20px 348px;
   background: var(--text-color-white);
-  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1); 
-}
-
-.logoMobile {
-  display: none;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1);
 }
 
 .headerMenu {
@@ -32,7 +31,7 @@ h4 {
   padding: 10px;
   background: var(--main-color-darkblue);
   border-radius: 20px 0 20px 20px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .popupMenu a {
@@ -69,29 +68,4 @@ h4 {
 
 .helpIcon:hover {
   transform: scale(1.15);
-}
-
-@media(max-width: 1000px) {
-
-  .header {
-    padding: 10px;
-  }
-
-  .title {
-    display: none;
-  }
-
-  .helpIcon {
-    display: none;
-  }
-
-  .headerMenu {
-    display: contents;
-  }
-
-  .logoMobile {
-    display: flex;
-    position: absolute;
-    left: 50px;
-  }
 }

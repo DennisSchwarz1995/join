@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/contacts.js"></script>
     <script src="../js/contacts_templates.js"></script>
+    <script src="../js/general_functions.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/storage.js"></script>
+    <script src="../js/validation.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
     <link rel="stylesheet" href="../css/contacts.css" />
     <link rel="stylesheet" href="../css/fonts.css" />
@@ -16,11 +18,13 @@
     <link rel="stylesheet" href="../css/general_classes.css" />
     <title>Contacts</title>
   </head>
-  <body onload="initContacts(), generateNavbarMobile()" >
+  <body onload="initContacts()" >
     <header class="header"></header>
     <nav class="navBar"></nav>
     <section class="contacts"></section>
-
+    <div class="createContactOverlay" id="createContactOverlay">Contact succesfully created</div>
+    <div class="overlayBackground invisible" onclick="closeContactOverlay()"></div>
+    
     <div id="contactOverlay" class="contactOverlay">
       <div class="addContact">
         <div onclick="closeContactOverlay()" class="closeButtonDiv">
@@ -45,7 +49,6 @@
                 id="fullname"
                 class="contactNameInput"
                 placeholder="Name"
-                required
                 pattern="[A-Za-zÄÖÜäöü]+(\s[A-Za-zÄÖÜäöü]+)?"
                 oninput="checkContactNameValidity()"
               />
@@ -65,7 +68,6 @@
                 id="email"
                 class="contactEmailInput"
                 placeholder="Email"
-                required
                 oninput="checkEmailValidity()"
               />
               <div class="emailIconDiv">
@@ -84,7 +86,6 @@
                 id="phone"
                 class="contactPhoneInput"
                 placeholder="Phone"
-                required
                 oninput="checkPhoneNumberValidity()"
                 pattern="[0-9+\s]+"
               />
@@ -102,7 +103,7 @@
               <button type="button" class="cancelButton" onclick="cancelInput()">
                 Cancel<img src="../img/x-icon.svg" />
               </button>
-              <button type="submit" class="createContactButton">
+              <button type="submit" id="createContactButton" class="createContactButton">
                 Create contact<img src="../img/check.svg" />
               </button>
             </div>
@@ -110,6 +111,7 @@
         </div>
       </div>
     </div>
+  
 
 
     <div id="editContactOverlay" class="editContactOverlay">
@@ -125,18 +127,17 @@
           <div class="editContactDivider"></div>
         </div>
         <div class="editContactForm">
-          <div class="userIconDiv">
+          <div class="userIconDiv" id="editUserIconDiv">
             <img src="../img/empty-user-icon.svg" alt="empty-user-icon" />
           </div>
-          <form class="contactEditForm" onsubmit="editContact(); return false;">
+          <form class="contactEditForm" onsubmit="saveEditedContact(); return false;">
             <div class="contactNameDiv">
               <input
                 type="text"
-                id="fullname"
+                id="editFullname"
                 class="contactNameInput"
                 placeholder="Name"
-                required
-                pattern="[A-Za-zÄÖÜäöü]+(\\s[A-Za-zÄÖÜäöü]+)?"
+                pattern="[A-Za-zÄÖÜäöü]+(\s[A-Za-zÄÖÜäöü]+)?"
                 oninput="checkContactNameValidity()"
               />
               <div class="nameIconDiv">
@@ -145,17 +146,16 @@
                   src="../img/add-contact-name.svg"
                 />
               </div>
-              <div class="contactNameInvalidDiv invisible">
+              <div class="editContactNameInvalidDiv invisible">
                 Please enter a valid Name.
               </div>
             </div>
             <div class="contactEmailDiv">
               <input
                 type="text"
-                id="email"
+                id="editEmail"
                 class="contactEmailInput"
                 placeholder="Email"
-                required
                 oninput="checkEmailValidity()"
               />
               <div class="emailIconDiv">
@@ -164,17 +164,16 @@
                   src="../img/add-contact-email.svg"
                 />
               </div>
-              <div class="contactEmailInvalidDiv invisible">
+              <div class="editContactEmailInvalidDiv invisible">
                 Please enter a valid E-Mail.
               </div>
             </div>
             <div class="contactPhoneDiv">
               <input
                 type="tel"
-                id="phone"
+                id="editPhone"
                 class="contactPhoneInput"
                 placeholder="Phone"
-                required
                 oninput="checkPhoneNumberValidity()"
                 pattern="[0-9+\s]+"
               />
@@ -184,7 +183,7 @@
                   src="../img/add-contact-phone.svg"
                 />
               </div>
-              <div class="contactPhoneInvalidDiv invisible">
+              <div class="editContactPhoneInvalidDiv invisible">
                 Please enter a valid Phonenumber with at least 8 digits.
               </div>
             </div>
@@ -192,7 +191,7 @@
               <button type="button" class="deleteButton" onclick="deleteContact()">
                 Delete
               </button>
-              <button type="submit" class="saveContactButton">
+              <button type="submit" id="saveContactButton" class="saveContactButton">
                 Save<img src="../img/check.svg" />
               </button>
             </div>
@@ -200,6 +199,5 @@
         </div>
       </div>
     </div>
-    <div class="navBarMobile"></div> 
   </body>
 </html>

@@ -98,20 +98,15 @@
 
 .signUpHeader {
   font-weight: 400;
-  font-size: 20px;
+  size: 20px;
 }
 
 .loginAreaFullScreenVision {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  margin: 20px;
-  align-content: center; 
-  position: relative;
-  top: 30px;
 }
-
 
 .loginArea {
   display: flex;
@@ -322,130 +317,4 @@
 .footerLink:hover {
   color: var(--main-color-lightblue);
   transform: scale(1.15);
-}
-
-@media (max-width: 700px) {
-
-  .login {
-    height: 100%;
-    width: 100%;
-  }
-
-  .signUpArea {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
-    gap: 35px;
-    white-space: nowrap;
-    margin-right: 40px;
-    bottom: 100px;
-    position: absolute;
-    width: 100%;
-  }
-
-  .joinLogo {
-    object-fit: contain;
-    object-position: center;
-    animation: logoAnimation 1.5s ease-out forwards;
-  }
-  
-  @keyframes logoAnimation {
-    0% {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30vw;
-      height: 30vh;
-      z-index: 100;
-    }
-    100% {
-      position: absolute;
-      top: 38px;
-      left: 38px;
-      transform: translate(0, 0);
-      width: 70px;
-      height: 90px;
-    }
-  }
-
-  .loginAreaFullScreenVision {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px;
-    align-content: center; 
-    position: relative;
-    top: 30px;
-  }
-  
-  .loginArea {
-    padding: 30px 30px;
-    gap: 25px;
-  }
-
-  .loginText {
-    font-size: 47px;
-  }
-
-  .loginData {
-    gap: 20px;
-  }
-
-  .emailInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .passwordInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .checkBox {
-    display: block;
-    width: calc(100% - 50px);
-  }
-
-  .buttonArea {
-    gap: 15px;
-    flex-direction: column;
-  }
-
-  .loginButton {
-    font-size: 16px;
-    height: 50px;
-  }
-
-  .guestLoginButton {
-    font-size: 16px;
-    height: 50px;
-  }
-
-  .signUpButton {
-    padding: 16px 20px;
-  }
-
-  .footer {
-    margin-bottom: 20px;
-  }
-
-}
-
-@media (max-width: 400px) {
-
-  .emailInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
-
-  .passwordInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
 }

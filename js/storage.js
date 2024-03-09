@@ -7,7 +7,7 @@ async function setItem(key, value) {
     method: "POST",
     body: JSON.stringify(payload),
   }).then((res) => res.json());
-}
+};
 
 async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
@@ -19,7 +19,7 @@ async function getItem(key) {
       }
       throw `Could not find data with key "${key}".`;
     });
-}
+};
 
 async function saveContact() {
   try {
@@ -28,7 +28,7 @@ async function saveContact() {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 async function loadContacts() {
   try {
@@ -36,14 +36,30 @@ async function loadContacts() {
     let loadedContacts = JSON.parse(contactsJSON);
     if (loadedContacts) {
       contacts = loadedContacts;
-
     } 
   } catch (error) {
     console.error(error);
   }
-}
+};
 
+async function saveTasks() {
+  try {
+    let tasksJSON = JSON.stringify(tasks);
+    await setItem("tasks", tasksJSON);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-
-
+async function loadTasks() {
+  try {
+    let tasksJSON = await getItem("tasks");
+    let loadedTasks = JSON.parse(tasksJSON);
+    if (loadedTasks) {
+      tasks = loadedTasks;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 

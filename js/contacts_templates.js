@@ -5,19 +5,15 @@ function contactsHTML() {
   <div class="contactBoard">
     <div class="contactButtonDiv">
       <button onclick="openContactOverlay()" class="addNewContactButton">
-        <p>Add new Contact</p> 
-        <img src="../img/add-contact-icon.svg" />
+        Add new Contact <img src="../img/add-contact-icon.svg" />
       </button>
     </div>
     <div class="contactList">`;
-
   let cardIndex = 0;
-
   let currentCategory = null;
   contacts.forEach((contact, index) => {
     let fixedColor = contact.color;
     let category = contact.name.charAt(0).toUpperCase();
-
     if (category !== currentCategory) {
       contactHTML += `
         <div class="categorySection">
@@ -30,9 +26,7 @@ function contactsHTML() {
         </div>`;
       currentCategory = category;
     }
-
     let cardId = `contactCard_${cardIndex}`;
-
     contactHTML += `
       <div class="contactCard" id="${cardId}" onclick="highlightSelectedContact(${index}), showContactDetails(${index})">
         <div style="background:${fixedColor};" class="userInitialsDiv">${getInitials(
@@ -43,10 +37,8 @@ function contactsHTML() {
           <span class="contactMailSpan">${contact.email}</span>
         </div>
       </div>`;
-
     cardIndex++;
   });
-
   contactHTML += `
     </div>
   </div>`;
@@ -71,11 +63,11 @@ function contactsDetailHTML(contact) {
           <div class="floatingContactName">
             <h2>${contact.name}</h2>
             <div class="floatingContactEditAndDelete">
-              <div class="floatingContactEdit">
+              <div class="floatingContactEdit" onclick="openEditContactOverlay()">
                 <div class="floatingContactEditImage"></div>
                 <span>Edit</span>
               </div>
-              <div class="floatingContactDelete">
+              <div class="floatingContactDelete" onclick="deleteContact()">
                 <div class="floatingContactDeleteImage"></div>  
                 <span>Delete</span>
               </div>
@@ -100,8 +92,3 @@ function contactsDetailHTML(contact) {
   `;
 }
 
-function showEditOverlay() {
-  return  `
-  
-    `;
-}
