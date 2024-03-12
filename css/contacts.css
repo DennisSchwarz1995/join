@@ -428,7 +428,7 @@
 .contactDetailedInfo {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 93vh;
   margin-top: 23px;
 }
 
@@ -578,6 +578,10 @@
   color: var(--main-color-lightblue);
 }
 
+#detailedContactMenuResponsive {
+  display: none;
+}
+
 
 @media (max-width: 1250px) { 
   .contacts {
@@ -724,8 +728,13 @@
     display: none;
   }*/
   
+  .floatingContactHeader {
+    gap: 20px;
+    flex-direction: row;
+  }
 
   .contactBoard {
+    display: flex; /*switch*/
     width: 100%;
     min-width: unset;
     height: 90%;
@@ -733,7 +742,20 @@
   }
 
   .contactDetailedInfo {
-    display: none;
+    display: none; /*switch*/
+    position: absolute;
+    left: 15%;
+  }
+
+  .responsivContactMenuButton {
+    border: none;
+    background: var(--bg-color-gray);
+  }
+
+  #detailedContactMenuResponsive {
+    position: relative;
+    bottom: 0;
+    left: 85%;
   }
 
   .categorySection {
@@ -783,6 +805,11 @@
   .contacts {
     position: absolute;
     inset: 0px 0px 0px 0px;
+  }
+
+  .contactDetailedInfo {
+    left: 10%;
+    margin-top: 100px;
   }
 
   .contactList {
@@ -838,5 +865,9 @@
 
   .closeButtonDiv:hover {
     background-color: white;
+  }
+
+  #detailedContactMenuResponsive {
+    left: 75%;
   }
 }
