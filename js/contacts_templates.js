@@ -5,7 +5,7 @@ function contactsHTML() {
   <div class="contactBoard">
     <div class="contactButtonDiv">
       <button onclick="openContactOverlay()" class="addNewContactButton">
-        Add new Contact <img src="../img/add-contact-icon.svg" />
+        <p>Add new Contact</p> <img src="../img/add-contact-icon.svg" />
       </button>
     </div>
     <div class="contactList">`;
@@ -91,4 +91,3 @@ function contactsDetailHTML(contact) {
     </div>
   `;
 }
-

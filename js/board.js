@@ -453,6 +453,19 @@ function boardHTML() {
         </button>
       </div>
     </div>
+    <div class="boardHeadlineMobile">
+      <div class="headerButton">
+        <h1>Board</h1>
+        <button class="addTaskButtonMobile">
+            <a href="add_task.html">
+              <img src="../img/add-icon.svg" alt="add-icon" />
+            </a>
+        </button>
+      </div>
+      <div class="searchTaskMobile">
+          <input class="searchTaskInputMobile" placeholder="Find Task" type="text" name="" id="" />
+      </div>
+    </div>
     <div class="taskBoard">
       <div class="toDoTaskList slot">
         <div class="boardCategory">
