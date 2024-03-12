@@ -210,6 +210,7 @@ a {
 
 .invisible {
   visibility: hidden;
+  height: 0;
 }
 
 .rotate {
@@ -352,15 +353,3 @@ ul li::before {
   opacity: 80%;
 }
 
-@media (max-width: 1200px) {
- .contactHeadlineDivider {
-    display: flex;
-    border: 2px solid var(--main-color-lightblue);
-    width: 60%;
-    height: 0px;
-  }
-
-  .backArrowDiv {
-    right: 15px;
-  }
-}

@@ -32,7 +32,8 @@
   margin-left: 45px;
 }
 
-.addContact {
+.addContact,
+.editContact {
   display: flex;
   width: 1212px;
   height: 592px;
@@ -40,7 +41,8 @@
   background: var(--text-color-white);
 }
 
-.addContactForm {
+.addContactForm,
+.editContactForm {
   display: flex;
   align-items: center;
   justify-content: center;

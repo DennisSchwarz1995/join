@@ -44,6 +44,7 @@
   width: 440px;
   flex-direction: column;
   gap: 24px;
+  margin-right: 20px;
 }
 
 .titleDiv,
@@ -151,7 +152,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .subtaskInput {
-  padding: 12px 16px;
+  padding: 12px 16px 12px 16px;
   display: flex;
   justify-content: space-between;
 }
@@ -350,7 +351,7 @@ textarea:focus {
 .contactInitials {
   display: flex;
   position: relative;
-  bottom: 160px;
+  bottom: -8px;
   height: 42px;
 }
 
@@ -424,3 +425,127 @@ textarea:focus {
 }
 
 
+@media (max-width: 1275px) {
+  .addTask {
+    inset: 106px 0px 0px 160px;
+  }
+
+  .taskSelectorRight {
+    margin: 0 20px 0 20px;
+  }
+
+  .taskSelectorLeft {
+    margin: 0 20px 0 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .addTask {
+    position: fixed;
+    left: 0;
+    top: 82px;
+    bottom: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color-gray);
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .taskHeadline {
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  .taskSelector,
+  .confirmDiv {
+    margin: 0 20px -85px 20px;
+  }
+  
+}
+
+@media (max-width: 730px) {
+  .taskHeadline {
+    font-size: 47px;
+  }
+
+  .taskSelector {
+    display: block;
+    margin: 0 auto; 
+    max-width: 500px; 
+    overflow-y: auto; 
+  }
+
+  .taskSelector::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .confirmDiv {
+    padding: 15px 20px;
+    position: sticky;
+    bottom: 80px;
+    background: var(--bg-color-gray);
+    margin: unset;
+  }
+
+  .taskSelectorRight {
+    margin: 30px 0;
+  }
+
+  .clearButton {
+    display: none;
+  }
+
+  .subtaskDiv {
+    margin-bottom: 100px;
+  }
+
+}
+
+@media (max-width: 484px) {
+  .taskSelector {
+    display: block;
+    margin: 0 10px; 
+    max-width: 500px; 
+    overflow-y: auto; 
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .taskSelectorLeft,
+  .taskSelectorRight {
+    width: auto;
+  }
+
+  .titleDiv label,
+  .descriptionDiv label,
+  .assignedDiv label,
+  .dueDateDiv label,
+  .prioDiv label,
+  .categoryDiv label,
+  .subtaskDiv label,
+  .titleDiv input,
+  .descriptionDiv textarea,
+  .assignedDiv input,
+  .dueDateDiv input,
+  .prioDiv input,
+  .categoryDiv input,
+  .subtaskDiv input,
+  .prioButtonsDiv button,
+  .categorySelect {
+    font-size: 16px;
+  }
+
+  .clearAndCreateButtonDiv {
+    margin-right: 0;
+  }
+  
+}
