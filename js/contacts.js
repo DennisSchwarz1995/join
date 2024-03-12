@@ -624,3 +624,12 @@ function closeOverlay() {
   detailedView.style.display = 'none';
   detailedView.classList.remove(".detailedView");
 }*/
+
+function detailedContactMenuResponsive(){
+  return /*html*/`
+    <div id="detailedContactMenuResponsive">
+      <div onclick="openEditContactOverlay()"><img src="../icons/editContact.svg">Edit</div>
+      <div onclick="deleteContact()"><img src="../icons/delete.svg">Delete</div>
+    </div>
+  `
+}

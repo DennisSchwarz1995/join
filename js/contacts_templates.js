@@ -58,8 +58,9 @@ function contactsDetailHTML(contact) {
       <div class="floatingContactDiv">
         <div class="floatingContactHeader">
           <div class="floatingContactUser" style="background-color: ${
-            contact.color
-          };"><h2>${getInitials(contact.name)}</h2></div>
+              contact.color
+            };"><h2>${getInitials(contact.name)}</h2>
+          </div>
           <div class="floatingContactName">
             <h2>${contact.name}</h2>
             <div class="floatingContactEditAndDelete">
@@ -88,6 +89,11 @@ function contactsDetailHTML(contact) {
           </div>
         </div>
       </div>
+      <div id="detailedContactMenuResponsive">
+      <button class="responsivContactMenuButton" onclick="detailedContactMenuResponsive()">
+        <img src="../img/three-points.svg" alt="">
+      </button>
+    </div>
     </div>
   `;
 }
