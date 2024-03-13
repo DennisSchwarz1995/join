@@ -5,23 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/header.js"></script>
     <script src="../js/navbar.js"></script>
-    <script src="../js/board.js"></script>
-    <script src="../js/add_task.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/validation.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/add_task.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg">
     <link rel="stylesheet" href="../css/fonts.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/board.css">
-    <link rel="stylesheet" href="../css/general_classes.css">
     <link rel="stylesheet" href="../css/add_task.css">
+    <link rel="stylesheet" href="../css/general_classes.css">
     <title>Board</title>
 </head>
 <body onload="initBoard()">
    
     <header class="header"></header>
     <nav class="navBar"></nav>
-    <section class="board"></section>
+    <section class="board">
+        <div class="boardHeadline">
+            <h1>Board</h1>
+            <div class="searchTaskAndAddTask">
+              <div class="searchTask">
+                <input
+                  class="searchTaskInput"
+                  placeholder="Find Task"
+                  type="text"
+                  name=""
+                  id=""
+                />
+              </div>
+              <button class="addTaskButton" onclick="openAddTaskOverlay()">
+                Add Task <img src="../img/add-icon.svg" alt="add-icon" />
+              </button>
+            </div>
+          </div>
+          <div class="taskBoard">
+            <section class="toDoTasks">
+              <div class="boardCategory">
+                <span>To do</span>
+                <div class="taskBoardAddTaskDiv" onclick="validateToDo(1)">
+                  <img src="../img/board-add-task-icon.svg" />
+                </div>
+              </div>
+              <div class="toDoTaskList"></div>
+            </section>
+            <section class="inProgressTasks">
+              <div class="boardCategory">
+                <span>In progress</span>
+                <div class="taskBoardAddTaskDiv" onclick="validateToDo(2)">
+                  <img src="../img/board-add-task-icon.svg" />
+                </div>
+              </div>
+              <div class="inProgressTaskList"></div>
+            </section>
+            <section class="awaitFeedbackTasks">
+              <div class="boardCategory">
+                <span>Await feedback</span>
+                <div class="taskBoardAddTaskDiv" onclick="validateToDo(3)">
+                  <img src="../img/board-add-task-icon.svg" />
+                </div>
+              </div>
+              <div class="awaitFeedbackTaskList"></div>
+            </section>
+            <section class="doneTasks">
+              <div class="boardCategory">
+                <span>Done</span>
+              </div>
+              <div class="doneTaskList"></div>
+            </section>
+          </div>
+
+    </section>
+    <div class="addTaskOverlayBackground invisible"  onclick="closeAddTaskOverlay()"></div>
+    <div class="createTaskOverlay">Task added to board.</div>
 </body>
 </html>

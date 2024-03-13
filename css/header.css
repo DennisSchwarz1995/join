@@ -19,7 +19,7 @@
 }
 
 h4 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .popupMenu {
@@ -63,7 +63,7 @@ h4 {
   width: 48px;
   color: var(--main-color-lightblue);
   box-sizing: border-box;
-  font-weight: 700;
+  font-weight: var(--font-weight-700)
 }
 
 .helpIcon:hover {

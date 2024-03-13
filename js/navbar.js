@@ -9,7 +9,7 @@ function navbarHTML() {
     <a href="summary.html">
       <img src="../img/nav-icon.svg" alt="join-sidebar-logo" />
     </a>
-    <div class="navBarBoard">
+    <div class="navBarBoard" id="navBarBoard">
       <a class="navBarCategories navBarActive" href="summary.html">
         <div class="navBarMenu">
           <img src="../img/summary-icon.svg" alt="summary-icon" />

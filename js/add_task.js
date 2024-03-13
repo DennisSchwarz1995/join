@@ -1,5 +1,6 @@
 async function initAddTask() {
   await loadContacts();
+  await loadTasks();
   generateNavbar();
   generateHeader();
   setMediumButtonSelected();
@@ -11,9 +12,9 @@ async function initAddTask() {
 
 let isCategoryDropdown = false;
 let isDropdownOpen = false;
+let isAddTaskOpenFromBoard = false;
 let categories = ["Technical Task", "User Story", "Javascript", "HTML", "CSS"];
 let subtaskIndex = 0;
-
 
 function generateAddTask(contacts) {
   contactDropDownList(contacts);
@@ -164,9 +165,10 @@ function getAddTaskFormValues() {
 
   formValues.title = titleInput.value.trim();
   formValues.description = descriptionTextArea.value.trim();
-  formValues.assignedContacts = Array.from(assignedContacts).map(contact => {
+  formValues.assignedContacts = Array.from(assignedContacts).map((contact) => {
     let name = contact.querySelector(".dropDownContactName").textContent.trim();
-    let color = contact.querySelector(".dropDownContactIcon").style.backgroundColor;
+    let color = contact.querySelector(".dropDownContactIcon").style
+      .backgroundColor;
     let initials = getInitials(name);
     return { name, color, initials };
   });
@@ -177,7 +179,9 @@ function getAddTaskFormValues() {
     }
   });
   formValues.category = categoryInput.value.trim();
-  formValues.subtasks = Array.from(subtaskList).map((subtask) => subtask.textContent.trim());
+  formValues.subtasks = Array.from(subtaskList).map((subtask) =>
+    subtask.textContent.trim()
+  );
 
   return formValues;
 }
@@ -372,7 +376,7 @@ function createSubtask() {
   let subtaskInvalidDiv = document.querySelector(".subtaskInvalidDiv");
 
   if (subtaskValue !== "") {
-    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
+    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="30" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
     subtaskList.innerHTML += subtaskListHTML;
     subtaskInput.value = "";
     hideSubtaskError();
@@ -523,4 +527,38 @@ function clearTaskSelectorSubtasks() {
   subtaskList.innerHTML = "";
 }
 
+function createTask(isAddTaskOpenFromBoard) {
+  let formValues = getAddTaskFormValues();
+  let taskData = {
+    title: formValues.title,
+    description: formValues.description,
+    assignedContacts: formValues.assignedContacts,
+    dueDate: formValues.dueDate,
+    priority: formValues.priority,
+    category: formValues.category,
+    subtasks: formValues.subtasks,
+    taskCategory: "to do",
+  };
+  tasks.push(taskData);
+  saveTasks();
+  clearTaskSelectorForm();
+  showTaskCreationOverlay();
+  if (isAddTaskOpenFromBoard) {
+    generateTasks();
+  }
+  if (!isAddTaskOpenFromBoard) {
+    setTimeout(() => {
+      window.location.href = "board.html";
+    }, 2000);
+  }
+}
 
+function showTaskCreationOverlay() {
+  let addTaskOverlay = document.querySelector(".createTaskOverlay");
+  addTaskOverlay.classList.remove("slideOut");
+  addTaskOverlay.classList.add("slideInCreateTaskOverlay");
+  setTimeout(() => {
+    addTaskOverlay.classList.remove("slideInCreateTaskOverlay");
+    addTaskOverlay.classList.add("slideOut");
+  }, 2000);
+}

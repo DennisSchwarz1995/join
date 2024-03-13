@@ -601,9 +601,10 @@ async function deleteContact() {
   if (selectedIndex !== -1) {
     contacts.splice(selectedIndex, 1);
     closeContactOverlay();
-    saveContact();
-    await loadContacts();
+    await saveContact();
+    loadContacts();
     generateContacts();
     isDetailViewOpen = false;
   }
 }
+

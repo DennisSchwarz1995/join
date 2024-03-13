@@ -19,11 +19,11 @@
 
 .contactHeader h1 {
   padding-top: 20px;
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .contactHeader h3 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .addContactDivider {
@@ -85,7 +85,7 @@
   padding: 16px;
   border-radius: 10px;
   border: 1px solid var(--main-color-darkblue);
-  font-size: 20px;
+  font-size: var(--font-size-20);
   transition: ease-in-out 100ms;
 }
 
@@ -177,7 +177,7 @@
   background-repeat: no-repeat;
   background-position: right 5% center;
   outline: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   direction: ltr;
   text-align: left;
 }
@@ -187,8 +187,8 @@
 .contactPhoneInvalidDiv {
   position: absolute;
   color: var(--warning-color-red);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -199,7 +199,7 @@
 .emailWarningDiv,
 .phoneWarningDiv {
   display: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   color: var(--warning-color-red);
 }
 

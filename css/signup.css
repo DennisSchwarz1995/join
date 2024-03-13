@@ -89,8 +89,8 @@
 }
 
 .footerLink {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-16);
   color: var(--text-color-gray);
   margin: 8px;
 }
@@ -139,7 +139,7 @@
   border: 1px solid var(--border-color-gray);
   padding: 12px 45px 12px 21px;
   outline: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   direction: ltr;
   text-align: left;
 }
@@ -161,8 +161,8 @@
 .confirmPasswordInvalidDiv {
   position: absolute;
   color: var(--warning-color-red);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -208,7 +208,7 @@
 .emailInput::placeholder,
 .passwordInput::placeholder,
 .confirmPasswordInput::placeholder {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
   color: var(--border-color-gray);
 }
 
@@ -219,8 +219,8 @@
   border-radius: 8px;
   padding: 15px 24px;
   text-align: center;
-  font-weight: 700;
-  font-size: 21px;
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-21);
   transition: ease-in-out 100ms;
 }
 

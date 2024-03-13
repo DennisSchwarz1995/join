@@ -7,9 +7,10 @@
   <title>Add Task</title>
   <script src="../js/header.js"></script>
   <script src="../js/navbar.js"></script>
-  <script src="../js/add_task.js"></script>
   <script src="../js/storage.js"></script>
   <script src="../js/validation.js"></script>
+  <script src="../js/board.js"></script>
+  <script src="../js/add_task.js"></script>
   <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg">
   <link rel="stylesheet" href="../css/fonts.css">
   <link rel="stylesheet" href="../css/navbar.css">
@@ -23,11 +24,11 @@
   <nav class="navBar"></nav>
   <section class="addTask">
     <h1>Add Task</h1>
-    <form class="taskSelector" name="taskSelector" onsubmit="createTask(); return false;">
+    <form class="taskSelector" id="taskSelector" name="taskSelector" onsubmit="createTask(false); return false;">
       <div class="taskSelectorLeft">
         <div class="titleDiv">
           <label for="titleInput" class="required">Title</label>
-          <input type="text" maxlength="16" placeholder="Enter a title" class="titleInput" id="titleInput" oninput="checkValuesForCreateTaskButton()" />
+          <input type="text" maxlength="30" placeholder="Enter a title" class="titleInput" id="titleInput" oninput="checkValuesForCreateTaskButton()" />
           <div class="titleInvalidDiv invisible">
             This field is required.
           </div>
@@ -86,7 +87,7 @@
             <div class="dropDownArrowDiv" onclick="toggleDropdown(true)">
               <img class="dropDownArrow" src="../img/drop-down-arrow.svg" alt="" />
             </div>
-            <input type="text" maxlength="16" placeholder="Enter new category" class="newCategoryInput invisible" id="newCategoryInput" oninput="hideCategoryError();" />
+            <input type="text" maxlength="30" placeholder="Enter new category" class="newCategoryInput invisible" id="newCategoryInput" oninput="hideCategoryError();" />
             <div class="newCategoryIconDiv  d-none">
               <div class="newCategoryIconWrapper" onclick="addNewCategory()">
                 <img class="check-icon" src="../img/check-icon-darkblue.svg" alt="" />
@@ -105,7 +106,7 @@
         <div class="subtaskDiv">
           <label for="subtaskInput">Subtask</label>
           <div class="subtaskInputDiv">
-            <input type="text" maxlength="16" placeholder="Add new subtask" class="subtaskInput" id="subtaskInput" oninput="hideSubtaskError();"/>
+            <input type="text" maxlength="30" placeholder="Add new subtask" class="subtaskInput" id="subtaskInput" oninput="hideSubtaskError();"/>
             <div class="plusIconDiv" onclick="createSubtask()">
               <img src="../img/plus-icon.svg" alt="plus-icon">
             </div>
@@ -129,5 +130,7 @@
         </button>
       </div>
   </section>
+
+  <div class="createTaskOverlay">Task added to board.</div>
 </body>
 </html>

@@ -32,7 +32,7 @@
 }
 
 .summaryHeadline span {
-  font-size: 27px;
+  font-size: var(--font-size-27);
   color: var(--main-color-darkblue);
 }
 
@@ -57,9 +57,9 @@
 }
 
 .urgentDeadlineDate {
-  font-size: 21px;
+  font-size: var(--font-size-21);
   color: var(--main-color-darkblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .toDoDiv,
@@ -135,14 +135,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 64px;
-  font-weight: 600;
+  font-size: var(--font-size-64);
+  font-weight: var(--font-weight-600);
   color: var(--main-color-black);
 }
 
 .summaryBoard span {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
   color:  var(--main-color-darkblue);
   text-align: center;
 }
@@ -181,12 +181,12 @@
 
 .greetingDiv h2 {
   color: var(--main-color-darkblue);
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .greetingSpan {
-  font-size: 64px;
+  font-size: var(--font-size-64);
   color: var(--main-color-lightblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
   text-transform: capitalize;
 }

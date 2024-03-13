@@ -38,8 +38,8 @@
   border: 1px solid var(--main-color-darkblue);
   background: var(--main-color-darkblue);
   color: var(--text-color-white);
-  font-size: 21px;
-  font-weight: 700;
+  font-size: var(--font-size-21);
+  font-weight: var(--font-weight-700);
 }
 
 .addNewContactButton:hover {
@@ -73,8 +73,8 @@
 }
 
 .letterCategory {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
 }
 
 .contactDividerDiv {
@@ -108,13 +108,13 @@
 }
 
 .contactNameSpan {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
 }
 
 .contactMailSpan {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
   color: var(--main-color-lightblue);
   white-space: nowrap;
   overflow: hidden;
@@ -133,7 +133,7 @@
   border: 2px solid var(--text-color-white);
   margin: 50px 50px 0 0;
   color: var(--text-color-white);
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .contactForm,
@@ -156,10 +156,6 @@
   padding: 2px;
   justify-content: center;
   align-items: center;
-}
-
-.closeButtonDiv:hover {
-  background-color: var(--hover-color-blue);
 }
 
 .contactNameDiv,
@@ -196,7 +192,7 @@
   background-repeat: no-repeat;
   background-position: right 5% center;
   outline: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   direction: ltr;
   text-align: left;
 }
@@ -209,8 +205,8 @@
 .editContactPhoneInvalidDiv {
   position: absolute;
   color: var(--warning-color-red);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -221,7 +217,7 @@
 .emailWarningDiv,
 .phoneWarningDiv {
   display: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   color: var(--warning-color-red);
 }
 
@@ -252,11 +248,11 @@
 
 .contactHeader h1 {
   padding-top: 20px;
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .contactHeader h3 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .addContactDivider,
@@ -321,7 +317,7 @@
   padding: 16px;
   border-radius: 10px;
   border: 1px solid var(--main-color-darkblue);
-  font-size: 20px;
+  font-size: var(--font-size-20);
   transition: ease-in-out 100ms;
 }
 
@@ -350,21 +346,4 @@
   background: var(--text-color-white);
 }
 
-.createContactOverlay {
-  position: fixed;
-  top: 50%;
-  right: -100%;
-  transform: translateY(-50%);
-  width: fit-content;
-  padding: 25px;
-  border-radius: 20px;
-  background: var(--main-color-darkblue);
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
-  color: var(--text-color-white);
-  z-index: 99;
-  transition: right 0.3s ease-in-out;
-}
 
-.slideInContactOverlay {
-  right: 40%;
-}

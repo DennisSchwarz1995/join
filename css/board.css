@@ -3,10 +3,10 @@
   inset: 106px 0px 0px 232px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: flex-start;
   padding: 0 110px;
   background: var(--bg-color-gray);
+  gap: 40px;
 }
 
 .boardHeadline {
@@ -14,6 +14,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-top: 100px;
 }
 
 .addTaskButton,
@@ -34,9 +35,9 @@
   gap: 4px;
   background: var(--main-color-darkblue);
   border: 1px solid var(--main-color-darkblue);
-  font-size: 21px;
+  font-size: var(--font-size-21);
   border-radius: 10px;
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
   color: var(--text-color-white);
   transition: ease-in-out 100ms;
 }
@@ -58,14 +59,13 @@
   stroke-width: 1px;
   stroke: var(--bg-color-gray);
   min-width: 312px;
-  font-size: 20px;
+  font-size: var(--font-size-20);
 }
 
 .taskBoard {
   display: flex;
   justify-content: space-between;
   min-width: 100%;
-  height: 55vh;
 }
 
 .boardCategory {
@@ -73,11 +73,14 @@
   justify-content: space-between;
   align-items: center;
   min-width: 244px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .boardCategory span {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-700);
   color: var(--board-text-color-blue);
 }
 
@@ -119,9 +122,18 @@
   background: var(--board-bg-color-gray);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
   color: var(--text-color-gray);
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 20px;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+}
+
+.toDoTasks,
+.inProgressTasks,
+.awaitFeedbackTasks,
+.doneTasks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 65vh;
 }
 
 .toDoTaskList,
@@ -131,6 +143,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
+  height: 500px;
 }
 
 .taskCard {
@@ -156,19 +170,23 @@
   background: var(--main-color-darkblue);
   padding: 4px 16px;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+}
+
+.taskContacts {
+  display: flex;
 }
 
 .taskTitle {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-700);
   color: var(--main-color-darkblue);
 }
 
 .taskDescription {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
   color: var(--text-color-gray);
 }
 
@@ -190,8 +208,13 @@
 }
 
 .taskProgressCount {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-400);
 }
 
-
+.taskContactAndPrio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

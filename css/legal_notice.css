@@ -34,6 +34,6 @@
 
 .legalNoticeSection a:hover {
   color: var(--main-color-darkblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 

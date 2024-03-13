@@ -24,8 +24,8 @@
 }
 
 .contactHeadlineSpan {
-  font-size: 27px;
-  font-weight: 400;
+  font-size: var(--font-size-27);
+  font-weight: var(--font-weight-400);
   color: var(--main-color-darkblue);
 }
 
@@ -56,7 +56,7 @@
 
 .floatingContactUser h2,
 .floatingContactName h2 {
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .floatingContactEditAndDelete {
@@ -102,7 +102,7 @@
 .floatingContactEdit:hover,
 .floatingContactDelete:hover {
   color: var(--main-color-lightblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .floatingContactInformation {
@@ -110,7 +110,7 @@
 }
 
 .floatingContactInformation h4 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .floatingContactDetails {
@@ -120,8 +120,8 @@
 }
 
 .floatingContactDetails p {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
 }
 
 .floatingContactEmail,

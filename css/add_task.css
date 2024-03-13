@@ -12,8 +12,8 @@
 .required::after {
   content: "*";
   color: var(--warning-color-red);
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
 }
 
 .confirmDiv {
@@ -105,8 +105,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .categoryInvalidDiv,
 .subtaskInvalidDiv {
   color: var(--warning-color-red);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -175,7 +175,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 10px;
   outline: none;
   gap: 10px;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   background-color: var(--text-color-white);
 }
 
@@ -212,7 +212,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border: 1px solid var(--border-color-gray);
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 0.1);
   background: #fff;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   width: 33%;
 }
 
@@ -223,7 +223,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 label {
-  font-size: 20px;
+  font-size: var(--font-size-20);
   color: var(--main-color-darkblue);
   margin-bottom: 8px;
 }
@@ -246,7 +246,7 @@ label {
   padding: 16px;
   border-radius: 10px;
   border: 1px solid var(--main-color-darkblue);
-  font-size: 20px;
+  font-size: var(--font-size-20);
   transition: ease-in-out 100ms;
 }
 
@@ -417,7 +417,7 @@ textarea:focus {
   border-radius: 5px;
   outline: none;
   gap: 10px;
-  font-size: 14px;
+  font-size: var(--font-size-14);
   background-color: var(--text-color-white);
   padding: 6px 8px;
   position: relative;

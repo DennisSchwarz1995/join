@@ -13,6 +13,8 @@ function login() {
 
 function guestLogin() {
   redirectToSummary();
+  let guest = "guest"
+  localStorage.setItem("userFullName", JSON.stringify(guest));
 }
 
 function findUserNameByEmail(email) {
@@ -221,3 +223,5 @@ document.addEventListener("DOMContentLoaded", function () {
     overlay.remove();
   });
 });
+
+
