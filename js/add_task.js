@@ -13,6 +13,7 @@ async function initAddTask() {
 let isCategoryDropdown = false;
 let isDropdownOpen = false;
 let isAddTaskOpenFromBoard = false;
+let isShowCreationOverlayOpenFromBoard = false;
 let categories = ["Technical Task", "User Story", "Javascript", "HTML", "CSS"];
 let subtaskIndex = 0;
 
@@ -179,6 +180,7 @@ function getAddTaskFormValues() {
     }
   });
   formValues.category = categoryInput.value.trim();
+  formValues.categoryColor = getCategoryColor(formValues.category);
   formValues.subtasks = Array.from(subtaskList).map((subtask) =>
     subtask.textContent.trim()
   );
@@ -527,7 +529,7 @@ function clearTaskSelectorSubtasks() {
   subtaskList.innerHTML = "";
 }
 
-function createTask(isAddTaskOpenFromBoard) {
+function createTask(isAddTaskOpenFromBoard, taskCategory) {
   let formValues = getAddTaskFormValues();
   let taskData = {
     title: formValues.title,
@@ -536,29 +538,73 @@ function createTask(isAddTaskOpenFromBoard) {
     dueDate: formValues.dueDate,
     priority: formValues.priority,
     category: formValues.category,
+    categoryColor: formValues.categoryColor,
+    taskCategory: taskCategory || "to do",
     subtasks: formValues.subtasks,
-    taskCategory: "to do",
   };
-  tasks.push(taskData);
-  saveTasks();
-  clearTaskSelectorForm();
-  showTaskCreationOverlay();
+  processTask(taskData);
   if (isAddTaskOpenFromBoard) {
-    generateTasks();
+    updateBoard();
+    showTaskCreationOverlay(true);
+  } else {
+    redirectToBoard();
+    showTaskCreationOverlay(false);
   }
-  if (!isAddTaskOpenFromBoard) {
+}
+
+function showTaskCreationOverlay(isShowCreationOverlayOpenFromBoard) {
+  let addTaskOverlay = document.querySelector(".createTaskOverlay");
+
+  if (isShowCreationOverlayOpenFromBoard) {
+    addTaskOverlay.classList.remove("slideOut");
+    addTaskOverlay.classList.add("slideInCreateTaskOverlayBoard");
     setTimeout(() => {
-      window.location.href = "board.html";
+      addTaskOverlay.classList.remove("slideInCreateTaskOverlayBoard");
+      addTaskOverlay.classList.add("slideOut");
+    }, 2000);
+  } else {
+    addTaskOverlay.classList.remove("slideOut");
+    addTaskOverlay.classList.add("slideInCreateTaskOverlayAddTask");
+    setTimeout(() => {
+      addTaskOverlay.classList.remove("slideInCreateTaskOverlayAddTask");
+      addTaskOverlay.classList.add("slideOut");
     }, 2000);
   }
 }
 
-function showTaskCreationOverlay() {
-  let addTaskOverlay = document.querySelector(".createTaskOverlay");
-  addTaskOverlay.classList.remove("slideOut");
-  addTaskOverlay.classList.add("slideInCreateTaskOverlay");
+function getCategoryColor(category) {
+  let prefix = `var(--task-category-color-`;
+  switch (category) {
+    case "Technical Task":
+      return `${prefix + "technical-task)"}`;
+    case "User Story":
+      return `${prefix + "user-story)"}`;
+    case "Javascript":
+      return `${prefix + "javascript)"}`;
+    case "HTML":
+      return `${prefix + "html)"}`;
+    case "CSS":
+      return `${prefix + "css)"}`;
+    default:
+      return `${prefix + "default)"}`;
+  }
+}
+
+function redirectToBoard() {
   setTimeout(() => {
-    addTaskOverlay.classList.remove("slideInCreateTaskOverlay");
-    addTaskOverlay.classList.add("slideOut");
+    window.location.href = "board.html";
   }, 2000);
 }
+
+function processTask(taskData) {
+  tasks.push(taskData);
+  saveTasks();
+  clearTaskSelectorForm();
+}
+
+function updateBoard() {
+  closeAddTaskOverlay();
+  generateTasks();
+  checkAndGenerateEmptyTask();
+}
+

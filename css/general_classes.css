@@ -74,6 +74,12 @@ input::-webkit-inner-spin-button {
   --bg-user-initials-color-green: #c3ff2b;
   --bg-user-initials-color-red: #ff4646;
   --bg-user-initials-color-violet: #462f8a;
+  --task-category-color-technical-task: #3a2b8f;
+  --task-category-color-user-story: #839e0d;
+  --task-category-color-javascript: #f7e018;
+  --task-category-color-html: #e44d26;
+  --task-category-color-css: #264de4;
+  --task-category-color-default: #793520;
   --font-size-12: 12px;
   --font-size-13: 13px;
   --font-size-14: 14px;
@@ -388,7 +394,6 @@ ul li::before {
   opacity: 80%;
 }
 
-
 .createContactOverlay,
 .createTaskOverlay {
   position: fixed;
@@ -405,7 +410,14 @@ ul li::before {
   transition: right 0.3s ease-in-out;
 }
 
-.slideInContactOverlay,
-.slideInCreateTaskOverlay {
+.slideInContactOverlay {
   right: 40%;
+}
+
+.slideInCreateTaskOverlayAddTask {
+  right: 50%;
+}
+
+.slideInCreateTaskOverlayBoard {
+  right: 38%;
 }

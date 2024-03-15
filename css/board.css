@@ -14,7 +14,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .addTaskButton,
@@ -145,6 +145,8 @@
   gap: 20px;
   overflow-y: auto;
   height: 500px;
+  padding: 10px;
+  width: 100%;
 }
 
 .taskCard {
@@ -167,7 +169,6 @@
   align-items: center;
   gap: 10px;
   color: var(--text-color-white);
-  background: var(--main-color-darkblue);
   padding: 4px 16px;
   border-radius: 8px;
   font-size: var(--font-size-16);
@@ -176,6 +177,18 @@
 
 .taskContacts {
   display: flex;
+}
+
+.taskContact:nth-child(2) {
+  margin-left: -12px; 
+}
+
+.taskContact:nth-child(3) {
+  margin-left: -12px; 
+}
+
+.taskContact:nth-child(4) {
+  margin-left: -12px; 
 }
 
 .taskTitle {
@@ -218,3 +231,9 @@
   align-items: center;
   width: 100%;
 }
+
+
+
+
+
+
