@@ -8,10 +8,9 @@ body {
   width: 100vw;
 }
 
-/*
 *::-webkit-scrollbar {
   width: 6px;
-}*/
+}
 *::-webkit-scrollbar-track {
   background-color: #0c2e621f;
 }
@@ -354,3 +353,12 @@ ul li::before {
   opacity: 80%;
 }
 
+@media (max-width: 800px) {
+
+  .createContactButton:disabled,
+  .saveContactButton:disabled,
+  .createTaskButton:disabled {
+    font-size: 16px;
+  }
+
+}

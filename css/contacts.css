@@ -275,7 +275,8 @@
   width: 40%;
   border-radius: 30px 0 0 30px;
   gap: 12px;
-  margin-left: -4px;
+  margin-left: 0px;
+  margin-top: -1px; 
 }
 
 .contactHeader {
@@ -300,8 +301,7 @@
   margin-left: 45px;
 }
 
-.addContact,
-.editContact {
+.addContact {
   display: flex;
   width: 1212px;
   height: 592px;
@@ -413,7 +413,7 @@
 .createContactOverlay {
   position: fixed;
   top: 50%;
-  right: -110%;
+  right: -100%;
   transform: translateY(-50%);
   width: fit-content;
   padding: 25px;
@@ -428,7 +428,7 @@
 .contactDetailedInfo {
   display: flex;
   flex-direction: column;
-  height: 93vh;
+  height: 100vh;
   margin-top: 23px;
 }
 
@@ -578,18 +578,13 @@
   color: var(--main-color-lightblue);
 }
 
-#detailedContactMenuResponsive {
-  display: none;
-}
-
 
 @media (max-width: 1250px) { 
   .contacts {
     gap: 40px;
   }
 
-  .addContact,
-  .editContact {
+  .addContact {
     width: 1000px;
   }
 
@@ -675,8 +670,7 @@
     width: 100%;
   }
 
-  .addContact,
-  .editContact {
+  .addContact {
     width: 750px;
     height: 750px;
     flex-direction: column;
@@ -688,8 +682,7 @@
     height: 60%;
   }
 
-  .addContactForm,
-  .editContactForm {
+  .addContactForm {
     width: 100%;
   }
 
@@ -705,36 +698,8 @@
 }
 
 @media (max-width: 800px) {
-  /*
-  .contact-detail-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: none;
-  }
-
-  .details-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: none;
-  }*/
-  
-  .floatingContactHeader {
-    gap: 20px;
-    flex-direction: row;
-  }
 
   .contactBoard {
-    display: flex; /*switch*/
     width: 100%;
     min-width: unset;
     height: 90%;
@@ -742,20 +707,7 @@
   }
 
   .contactDetailedInfo {
-    display: none; /*switch*/
-    position: absolute;
-    left: 15%;
-  }
-
-  .responsivContactMenuButton {
-    border: none;
-    background: var(--bg-color-gray);
-  }
-
-  #detailedContactMenuResponsive {
-    position: relative;
-    bottom: 0;
-    left: 85%;
+    display: none;
   }
 
   .categorySection {
@@ -775,8 +727,7 @@
     align-items: normal;
   }
 
-  .addContact,
-  .editContact {
+  .addContact {
     max-width: 500px;
   }
 
@@ -784,13 +735,8 @@
     right: 29px;
   }
 
-  .addContactForm,
-  .editContactForm {
+  .addContactForm {
     flex-direction: column;
-  }
-
-  .contactEditForm {
-    margin-top: 75px;
   }
 
   .userIconDiv {
@@ -799,17 +745,13 @@
     margin-top: -85px;
 }
 
+
 }
 
 @media (max-width: 500px) {
   .contacts {
     position: absolute;
     inset: 0px 0px 0px 0px;
-  }
-
-  .contactDetailedInfo {
-    left: 10%;
-    margin-top: 100px;
   }
 
   .contactList {
@@ -839,12 +781,9 @@
     display: none;
   }
 
-  .addContact,
-  .editContact {
+  
+  .addContact {
     max-width: 380px;
-    position: relative;
-    top: -40px;
-    height: 700px;
   }
 
   .contactHeader {
@@ -865,9 +804,5 @@
 
   .closeButtonDiv:hover {
     background-color: white;
-  }
-
-  #detailedContactMenuResponsive {
-    left: 75%;
   }
 }

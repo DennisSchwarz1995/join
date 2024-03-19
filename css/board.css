@@ -265,6 +265,7 @@
       width: 0;
   }
 
+
 }
 
 @media (max-width: 768px) {
@@ -278,11 +279,15 @@
     min-width: 230px;
   }
 
+  .slot{ 
+    display: block;
+  }
 
 
   .taskCard {
     min-width: 200px;
     max-width: unset;
+    margin-top: 15px;
   }
 
   .taskBoard {
@@ -352,16 +357,9 @@
     align-items: center;
     margin-right: 40px;
   }
-
-  .addTaskButtonMobile a {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-  }
-
   .addTaskButtonMobile img{
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 
   .boardHeadline h1 {

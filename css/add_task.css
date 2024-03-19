@@ -429,14 +429,6 @@ textarea:focus {
   .addTask {
     inset: 106px 0px 0px 160px;
   }
-
-  .taskSelectorRight {
-    margin: 0 20px 0 20px;
-  }
-
-  .taskSelectorLeft {
-    margin: 0 20px 0 0;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -463,7 +455,14 @@ textarea:focus {
   .confirmDiv {
     margin: 0 20px -85px 20px;
   }
-  
+
+  .taskSelectorRight {
+    margin: 0 0 0 20px;
+  }
+
+  .taskSelectorLeft {
+    margin: 0 20px 0 0;
+  }
 }
 
 @media (max-width: 730px) {
