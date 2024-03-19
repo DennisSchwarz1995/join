@@ -11,6 +11,7 @@ function login() {
   }
 }
 
+
 function guestLogin() {
   redirectToSummary();
 }

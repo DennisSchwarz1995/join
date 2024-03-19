@@ -607,29 +607,3 @@ async function deleteContact() {
     isDetailViewOpen = false;
   }
 }
-
-/*
-function showContactDetails(index) {
-  let contact = contacts[index];
-  let detailedView = document.querySelector(".detailedView");
-  detailedView.innerHTML = contactsDetailHTML(contact);
-  if (window.innerWidth <= 800) {
-    detailedView.classList.add('details-overlay');
-    detailedView.style.display = 'block';
-  }
-}
-
-function closeOverlay() {
-  let detailedView = document.getElementById(".detailedView");
-  detailedView.style.display = 'none';
-  detailedView.classList.remove(".detailedView");
-}*/
-
-function detailedContactMenuResponsive(){
-  return /*html*/`
-    <div id="detailedContactMenuResponsive">
-      <div onclick="openEditContactOverlay()"><img src="../icons/editContact.svg">Edit</div>
-      <div onclick="deleteContact()"><img src="../icons/delete.svg">Delete</div>
-    </div>
-  `
-}

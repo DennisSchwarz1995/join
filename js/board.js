@@ -191,7 +191,11 @@ function generateEmptyTask() {
  * @param {number} x - validetes wich task category is getting used based on wich cross you click
  */
 function validateToDo(x) {
-  if (x == 1) {
+  if (window.innerWidth <= 768) {
+
+    window.location.href = "add_task.html";
+    return;
+  } else if (x == 1) {
     let y = "To do";
     openAddTaskOverlay(y);
   } else if (x == 2) {
@@ -457,8 +461,8 @@ function boardHTML() {
       <div class="headerButton">
         <h1>Board</h1>
         <button class="addTaskButtonMobile">
-            <a href="add_task.html">
-              <img src="../img/add-icon.svg" alt="add-icon" />
+        <a href="add_task.html">
+            <img src="../img/add-icon.svg" alt="add-icon" />
             </a>
         </button>
       </div>
@@ -475,12 +479,12 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter((task) => task.category === "To do")
-          .map(
-            (task) => `
+      .filter((task) => task.category === "To do")
+      .map(
+        (task) => `
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(
-              task
-            )}">            
+          task
+        )}">            
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -494,8 +498,8 @@ function boardHTML() {
               </div>
             </div>
           `
-          )
-          .join("")}
+      )
+      .join("")}
       </div>
 
       <div class="inProgressTaskList slot">
@@ -506,12 +510,12 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter((task) => task.category === "In progress")
-          .map(
-            (task) => `
+      .filter((task) => task.category === "In progress")
+      .map(
+        (task) => `
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(
-              task
-            )}">
+          task
+        )}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -525,8 +529,8 @@ function boardHTML() {
               </div>
             </div>
           `
-          )
-          .join("")}
+      )
+      .join("")}
       </div>
 
       <div class="awaitFeedbackTaskList slot">
@@ -537,12 +541,12 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter((task) => task.category === "Await feedback")
-          .map(
-            (task) => `
+      .filter((task) => task.category === "Await feedback")
+      .map(
+        (task) => `
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(
-              task
-            )}">
+          task
+        )}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -556,8 +560,8 @@ function boardHTML() {
               </div>
             </div>
           `
-          )
-          .join("")}
+      )
+      .join("")}
       </div>
 
       <div class="doneTaskList slot">
@@ -568,12 +572,12 @@ function boardHTML() {
           </div>
         </div>
         ${tasks
-          .filter((task) => task.category === "Done")
-          .map(
-            (task) => `
+      .filter((task) => task.category === "Done")
+      .map(
+        (task) => `
             <div class="taskCard" draggable="true" id="draggableContainer${tasks.indexOf(
-              task
-            )}">
+          task
+        )}">
               <div class="taskCategory">${task.taskCategory}</div>
               <div class="taskTitle">${task.taskTitle}</div>
               <div class="taskDescription">${task.taskDescription}</div>
@@ -587,8 +591,8 @@ function boardHTML() {
               </div>
             </div>
           `
-          )
-          .join("")}
+      )
+      .join("")}
       </div>
     </div>
   `;
