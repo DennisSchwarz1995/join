@@ -56,11 +56,12 @@ function summaryHTML(
   awaitFeedbackTaskCount
 ) {
   return `
-    <header class="summaryHeadline">
+    <div class="summaryHeadline">
       <h1>Join 360</h1>
       <div class="summaryHeadlinedivider"></div>
       <span>Key Metrics at a Glance</span>
-    </header>
+      <div class="summaryHeadlinedividerMobile"></div>
+    </div>
     <main class="summaryBoardAndGreetingDiv">
       <section class="summaryBoard">
         <div class="summaryBoardWrapper">

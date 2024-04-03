@@ -7,6 +7,11 @@
   align-items: flex-start;
   padding: 0 0 0 110px;
   background: var(--bg-color-gray);
+  overflow-y: auto; 
+}
+
+.summary::-webkit-scrollbar {
+  width: 0;
 }
 
 .summaryHeadline {
@@ -141,7 +146,7 @@
 }
 
 .summaryBoard span {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   color:  var(--main-color-darkblue);
   text-align: center;
@@ -180,6 +185,7 @@
 }
 
 .greetingDiv h2 {
+  font-size: 47px;
   color: var(--main-color-darkblue);
   font-weight: 500;
 }
@@ -189,4 +195,206 @@
   color: var(--main-color-lightblue);
   font-weight: 700;
   text-transform: capitalize;
+}
+
+@media (max-width: 1275px) {
+
+  .greetingDiv {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .navBar {
+    display: none;
+  }
+
+  .summary {
+    position: fixed;
+    left: 0;
+    top: 82px;
+    bottom: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color-gray);
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .summaryHeadline {
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-bottom: 25px;
+  }
+
+  .summaryBoard {
+    margin-bottom: 20px;
+  }
+  
+}
+
+@media (max-width: 730px) {
+  .greetingDiv {
+    display: none;
+  }
+
+  .summaryHeadline {
+    margin-top: 30px;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 40px
+  }
+
+  .summaryHeadline h1 {
+    font-size: 47px;
+  }
+
+  .summaryHeadline span {
+    font-size: 20px;
+  }
+
+  .toDoAmountDiv,
+  .doneAmountDiv,
+  .urgentAmountDiv,
+  .tasksInBoardAmountDiv,
+  .tasksInProgressAmountDiv,
+  .awaitingFeedbackAmountDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 47px;
+    font-weight: 600;
+    color: var(--main-color-black);
+  }
+
+  .toDoDiv:hover,
+  .doneDiv:hover,
+  .urgentDiv:hover,
+  .tasksInBoardDiv:hover,
+  .tasksInProgressDiv:hover,
+  .awaitingFeedbackDiv:hover {
+    background: var(--main-color-darkblue);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transform: scale(1.03);
+    }
+
+  .summaryBoard {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 571px) {
+  .summary {
+    position: fixed;
+    left: 0;
+    top: 82px;
+    bottom: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color-gray);
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .summaryBoard {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    align-items: normal;
+    min-width: 350px;
+  }
+
+  .summaryBoardWrapper {
+    display: flex;
+    gap: 11px;
+    min-width: 50%;
+  }
+  .toDoDiv, 
+  .doneDiv {
+    gap: 10px;
+    padding: 25px 15px;
+  }
+
+  .toDoAmountDiv,
+  .doneAmountDiv, 
+  .urgentAmountDiv, 
+  .tasksInBoardAmountDiv, 
+  .tasksInProgressAmountDiv, 
+  .awaitingFeedbackAmountDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 35px;
+    font-weight: 600;
+    color: var(--main-color-black);
+  }
+
+  .urgentDiv {
+    padding: 28px 10px;
+    width: 94%;
+  }
+
+  .summaryBoardWrapper {
+    display: flex;
+    gap: 11px;
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 484px) {
+
+  .summary {
+    align-items: flex-start;
+  }
+  .summaryHeadline {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .summaryHeadlinedivider {
+    display: none;
+  }
+
+  .summaryHeadlinedividerMobile {
+    display: flex;
+    border: 2px solid var(--main-color-lightblue);
+    width: 60%;
+  }
+  .summaryBoard {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    align-items: flex-start;
+    min-width: 350px;
+  }
+
+  .summaryBoardWrapper {
+    display: flex;
+    min-width: 100%;
+  }
+
+  .toDoDiv, .doneDiv {
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .urgentDiv {
+    padding: 20px 10px;
+    width: 95%;
+  }
+
+  .urgentDivider {
+    margin: 0 20px;
+  }
 }

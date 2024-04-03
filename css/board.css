@@ -13,7 +13,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 95%;
+}
+
+.boardHeadlineMobile {
+  display: none;
 }
 
 .addTaskButton,
@@ -39,6 +43,7 @@
   font-weight: 700;
   color: var(--text-color-white);
   transition: ease-in-out 100ms;
+  margin-right: 40px;
 }
 
 .addTaskButton:hover {
@@ -64,8 +69,14 @@
 .taskBoard {
   display: flex;
   justify-content: space-between;
-  min-width: 100%;
+  min-width: 95%;
   height: 55vh;
+  overflow-y: scroll;
+  gap: 20px;
+}
+
+.taskBoard::-webkit-scrollbar {
+  width: 0;
 }
 
 .boardCategory {
@@ -145,6 +156,7 @@
   background: var(--text-color-white);
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
   max-width: 252px;
+  margin-bottom: 20px;
 }
 
 .taskCategory {
@@ -194,6 +206,7 @@
   font-weight: 400;
 }
 
+
 @media (max-width: 1600px) {
   .board {
     inset: 106px 0px 0px 160px;
@@ -242,6 +255,8 @@
 
   .taskCards {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
     overflow-x: scroll;
   }
@@ -249,6 +264,7 @@
   .taskCards::-webkit-scrollbar {
       width: 0;
   }
+
 
 }
 
@@ -263,9 +279,15 @@
     min-width: 230px;
   }
 
+  .slot{ 
+    display: block;
+  }
+
+
   .taskCard {
     min-width: 200px;
     max-width: unset;
+    margin-top: 15px;
   }
 
   .taskBoard {
@@ -349,6 +371,7 @@
   .awaitFeedbackTaskList,
   .doneTaskList {
     width: 95%;
+    flex-direction: row;
   }
 
   .taskBoardAddTaskDiv {
@@ -361,4 +384,3 @@
     width: 90%;
   }
 }
-

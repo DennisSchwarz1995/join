@@ -12,7 +12,7 @@
   background: var(--text-color-white);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   z-index: 2;
-  width: 456px;
+  min-width: 410px;
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100vh - 106px);
@@ -27,7 +27,7 @@
   top: 0;
   z-index: 1;
   display: flex;
-  padding: 22.5px 52px;
+  padding: 22.5px 52px 0 52px;
   background: var(--text-color-white);
 }
 
@@ -57,7 +57,6 @@
   padding: 0 32px 32px 32px;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
 }
 
 .categorySection {
@@ -105,6 +104,19 @@
   background: var(--bg-gradient);
 }
 
+.userInitialsDiv {
+  display: flex;
+  min-height: 42px;
+  min-width: 42px;
+  border-radius: 45px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+  font-size: 12px;
+  font-weight: 400;
+  border: 2px solid var(--text-color-white);
+}
+
 .contactInfoDiv {
   display: flex;
   flex-direction: column;
@@ -124,6 +136,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 240px;
+}
+
+/*
+--Overlay--
+*/
+
+.contactOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.contactOverlay.show {
+  z-index: 99;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .userIconDiv {
@@ -245,7 +275,8 @@
   width: 40%;
   border-radius: 30px 0 0 30px;
   gap: 12px;
-  margin-left: -4px;
+  margin-left: 0px;
+  margin-top: -1px; 
 }
 
 .contactHeader {
@@ -307,6 +338,10 @@
   background: var(--main-color-darkblue);
 }
 
+.createContactButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
+}
 
 .cancelButton,
 .deleteButton {
@@ -317,8 +352,8 @@
 
 .cancelButton,
 .createContactButton,
-.deleteButton,
-.saveContactButton {
+.deleteButton, 
+.saveContactButton{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,10 +376,30 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.cancelButton:hover img {
+  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
+    brightness(94%) contrast(89%);
+}
+
+.createContactButton:hover:not(:disabled),
+.saveContactButton:hover {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 
 .selectedContact {
   background-color: var(--main-color-darkblue);
   color: var(--text-color-white);
+}
+
+.editContactOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
 }
 
 .editContact {
@@ -523,9 +578,6 @@
   color: var(--main-color-lightblue);
 }
 
-.slideInContactOverlay {
-  right: 40%;
-
 
 @media (max-width: 1250px) { 
   .contacts {
@@ -693,6 +745,7 @@
     margin-top: -85px;
 }
 
+
 }
 
 @media (max-width: 500px) {
@@ -728,6 +781,7 @@
     display: none;
   }
 
+  
   .addContact {
     max-width: 380px;
   }
