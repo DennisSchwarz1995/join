@@ -1,0 +1,75 @@
+.navBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 232px;
+  z-index: 4;
+  background: var(--main-color-darkblue);
+  padding: 64px 0;
+  font-weight: var(--font-weight-400);
+}
+
+.navBarCategories:hover,
+.popupMenu a:hover {
+  background: var(--hover-color-darkblue);
+}
+
+.privacy:hover,
+.legal:hover {
+  color: var(--main-color-lightblue);
+  font-weight: var(--font-weight-700);
+}
+
+.navBarCategories:active,
+.privacy:active,
+.legal:active {
+  background: var(--active-color-darkblue);
+}
+
+.navBarBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.navBarCategories {
+  padding: 8px 56px 8px 56px;
+}
+
+.navBarMenu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a {
+  color: var(--text-color-white);
+}
+
+.navBarCategories h5 {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+}
+
+
+.privacyAndLegal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 242px 0 0;
+  width: 100%;
+}
+
+.privacy,
+.legal {
+  color: var(--text-color-gray);
+  padding: 8px 60px 8px 60px;
+}
+
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/storage.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/general_functions.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/general_classes.css" />
+    <title>Log in</title>
+  </head>
+  <body onload="initLogin()">
+    <div class="overlay"></div>
+    <section class="login">
+      <div class="header">
+        <div class="logoContainer">
+          <img src="../img/join-animation-logo.svg" class="joinLogo" />
+        </div>
+        <div class="signUpArea">
+          <h4 class="signUpHeader">Not a Join User?</h4>
+          <a href="signup.html">
+            <button class="signUpButton">Sign up</button>
+          </a>
+        </div>
+      </div>
+      <div class="loginAreaFullScreenVision">
+        <div class="loginArea">
+          <div class="blueStrokeContainer">
+            <h1 class="loginText">Log in</h1>
+            <div class="loginDivider"></div>
+          </div>
+          <form onsubmit="login(); return false;" class="loginForm">
+            <div class="emailDiv">
+              <input
+                placeholder="Email"
+                class="emailInput"
+                type="text"
+                required
+                id="emailInput"
+                oninput="checkEmailValidity()"
+              />
+              <div class="emailIconDiv">
+                <img
+                  class="emailIcon"
+                  src="../img/mail-icon.svg"
+                  alt="mail-icon"
+                />
+              </div>
+              <div class="emailInvalidDiv invisible">
+                Please enter a valid E-Mail.
+              </div>
+            </div>
+            <div class="passwordDiv">
+              <input
+                placeholder="Password"
+                class="passwordInput"
+                type="password"
+                required
+                id="passwordInput"
+                autocomplete="on"
+                onfocus="changePasswordInputIcon()"
+                oninput="checkPasswordValidity();"
+              />
+              <div class="passwordIconDiv" onclick="togglePasswordInputType()">
+                <img
+                  class="passwordIcon"
+                  src="../img/lock-icon.svg"
+                  alt="lock-icon"
+                />
+              </div>
+              <div class="passwordInvalidDiv invisible">
+                Incorrect Email adress or password.
+              </div>
+            </div>
+            <div class="checkBox">
+              <div class="labelContainer">
+                <div class="checkBoxIconDiv">
+                  <img
+                    onclick="toggleCheckBox()"
+                    class="checkBoxIcon"
+                    id="checkBoxIcon"
+                    src="../img/checkbox-icon.svg"
+                  />
+                </div>
+                <p class="rememberMe">Remember me</p>
+              </div>
+            </div>
+            <div class="buttonArea">
+              <button type="submit" class="loginButton" id="loginButton">
+                Log in
+              </button>
+              <button type="button" class="guestLoginButton" onclick="guestLogin()">
+                Guest Log in
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer">
+        <a href="privacy_policy.html" class="footerLink" target="_blank">Privacy Policy</a>
+        <a href="legal_notice.html" class="footerLink" target="_blank">Legal notice</a>
+      </div>
+    </section>
+  </body>
+</html>

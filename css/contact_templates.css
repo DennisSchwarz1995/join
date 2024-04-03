@@ -1,0 +1,210 @@
+.contactHeaderDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--main-color-darkblue);
+  height: 100%;
+  border: 1px solid var(--main-color-darkblue);
+  width: 40%;
+  border-radius: 30px 0 0 30px;
+  gap: 12px;
+  margin-left: -4px;
+}
+
+.contactHeader {
+  color: var(--text-color-white);
+  padding: 0 48px;
+  word-wrap: break-word;
+}
+
+.contactHeader h1 {
+  padding-top: 20px;
+  font-weight: var(--font-weight-700);
+}
+
+.contactHeader h3 {
+  font-weight: var(--font-weight-400);
+}
+
+.addContactDivider {
+  border: 3px solid var(--main-color-lightblue);
+  width: 100px;
+  margin-left: 45px;
+}
+
+.addContact {
+  display: flex;
+  width: 1212px;
+  height: 592px;
+  border-radius: 30px;
+  background: var(--text-color-white);
+}
+
+.addContactForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+}
+
+.formAndButtonDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.addContactButtonDiv {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+}
+
+.createContactButton {
+  color: var(--text-color-white);
+  background: var(--main-color-darkblue);
+}
+
+.createContactButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
+}
+
+.cancelButton {
+  color: var(--main-color-darkblue);
+  background: var(--text-color-white);
+  width: 120px;
+}
+
+.cancelButton,
+.createContactButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--main-color-darkblue);
+  font-size: var(--font-size-20);
+  transition: ease-in-out 100ms;
+}
+
+.cancelButton img {
+  transition: ease-in-out 100ms;
+}
+
+.cancelButton:hover {
+  border: 2px solid var(--main-color-lightblue);
+  color: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.createContactButton:hover {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.userIconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: 120px;
+  background: var(--border-color-gray);
+  border-radius: 50%;
+  border: 2px solid var(--text-color-white);
+  margin: 50px 50px 0 0;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  align-items: center;
+  margin-top: 140px;
+}
+
+.closeButtonDiv {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+  display: flex;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButtonDiv:hover {
+  background-color: var(--hover-color-blue);
+}
+
+.contactNameDiv,
+.contactEmailDiv,
+.contactPhoneDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+}
+
+.nameIconDiv,
+.emailIconDiv,
+.phoneIconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.contactNameInput,
+.contactEmailInput,
+.contactPhoneInput {
+  min-width: 360px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color-gray);
+  padding: 12px 45px 12px 21px;
+  background-repeat: no-repeat;
+  background-position: right 5% center;
+  outline: none;
+  font-size: var(--font-size-20);
+  direction: ltr;
+  text-align: left;
+}
+
+.contactNameInvalidDiv,
+.contactEmailInvalidDiv,
+.contactPhoneInvalidDiv {
+  position: absolute;
+  color: var(--warning-color-red);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  top: 52px;
+}
+
+.fullanameWarningDiv,
+.emailWarningDiv,
+.phoneWarningDiv {
+  display: none;
+  font-size: var(--font-size-20);
+  color: var(--warning-color-red);
+}
+
+.contactNameInput:focus,
+.contactEmailInput:focus,
+.contactPhoneInput:focus {
+  border: 1px solid var(--main-color-lightblue);
+}

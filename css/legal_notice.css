@@ -1,0 +1,39 @@
+.legalNotice {
+  position: fixed;
+  inset: 106px 0px 0px 232px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 110px 0 110px;
+  background: var(--bg-color-gray);
+  overflow-y: auto;
+}
+
+.legalNoticeHeadline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.legalNoticeSection li,
+.legalNoticeSection h1,
+.legalNoticeSection h2,
+.legalNoticeSection h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--main-color-darkblue);
+}
+
+.legalNoticeSection {
+  margin-bottom: 40px;
+}
+
+.legalNoticeSection a {
+  color: var(--main-color-lightblue);
+}
+
+.legalNoticeSection a:hover {
+  color: var(--main-color-darkblue);
+  font-weight: var(--font-weight-700);
+}
+

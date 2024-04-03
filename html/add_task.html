@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task</title>
+    <script src="../js/header.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/add_task.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../css/general_classes.css" />
+  </head>
+
+  <body onload="initAddTask()">
+    <header class="header"></header>
+    <nav class="navBar"></nav>
+    <section class="addTask">
+      <h1>Add Task</h1>
+      <form
+        class="taskSelector"
+        id="taskSelector"
+        name="taskSelector"
+        onsubmit="createTask(false); return false;"
+      >
+        <section class="taskSelectorLeft">
+          <div class="titleDiv">
+            <label for="titleInput" class="required">Title</label>
+            <input
+              type="text"
+              maxlength="20"
+              placeholder="Enter a title"
+              class="titleInput"
+              id="titleInput"
+              oninput="checkValuesForCreateTaskButton()"
+            />
+            <div class="titleInvalidDiv invisible">This field is required.</div>
+          </div>
+          <div class="descriptionDiv">
+            <label for="descriptionTextArea">Description</label>
+            <textarea
+              maxlength="50"
+              class="descriptionTextArea"
+              id="descriptionTextArea"
+              placeholder="Enter a Description"
+            ></textarea>
+          </div>
+          <div class="assignedDiv">
+            <label for="contactsSelect">Assigned to</label>
+            <div class="contactsSelectDiv">
+              <input
+                type="text"
+                placeholder="Select contacts to assign"
+                class="contactsSelect"
+                id="contactsSelect"
+                onclick="toggleDropdown()"
+                readonly
+              />
+              <div class="dropDownArrowDiv" onclick="toggleDropdown()">
+                <img
+                  class="dropDownArrow"
+                  src="../img/drop-down-arrow.svg"
+                  alt="rop-down-arrow"
+                />
+              </div>
+            </div>
+            <section class="dropDownContacts invisible"></section>
+            <div class="contactInitials"></div>
+          </div>
+        </section>
+        <div class="divider"></div>
+        <div class="taskSelectorRight">
+          <div class="dueDateDiv">
+            <label for="dateInput" class="required">Due date</label>
+            <div class="dateSelectDiv">
+              <input
+                type="date"
+                placeholder="MM/DD/YYYY"
+                class="dateInput"
+                id="dateInput"
+                onclick="openCalendar()"
+                onchange="checkValuesForCreateTaskButton()"
+                oninput="checkValuesForCreateTaskButton()"
+              />
+              <div class="calendarDiv" onclick="openCalendar()">
+                <img
+                  class="calendar"
+                  src="../img/calendar-icon.svg"
+                  alt="calendar-icon"
+                  onclick="openCalendar()"
+                />
+              </div>
+            </div>
+            <div class="dueDateInvalidDiv invisible">
+              This Field is required.
+            </div>
+          </div>
+          <div class="prioDiv">
+            <label for="urgentButton" class="prioLabel">Prio</label>
+            <div class="prioButtonsDiv">
+              <button
+                type="button"
+                class="urgentButton"
+                id="urgentButton"
+                onclick="setButtonPrio(this)"
+              >
+                Urgent <img src="../img/urgent-icon.svg" alt="urgent-icon" />
+              </button>
+              <button
+                type="button"
+                class="mediumButton"
+                onclick="setButtonPrio(this)"
+              >
+                Medium <img src="../img/medium-icon.svg" alt="medium-icon" />
+              </button>
+              <button
+                type="button"
+                class="lowButton"
+                onclick="setButtonPrio(this)"
+              >
+                Low <img src="../img/low-icon.svg" alt="low-icon" />
+              </button>
+            </div>
+          </div>
+          <div class="categoryDiv">
+            <label for="categorySelect" class="required">Category</label>
+            <div class="categorySelectDiv">
+              <input
+                type="text"
+                placeholder="Select task category"
+                class="categorySelect"
+                id="categorySelect"
+                readonly
+                onclick="toggleDropdown(true)"
+                onchange="checkValuesForCreateTaskButton()"
+              />
+              <div class="dropDownArrowDiv" onclick="toggleDropdown(true)">
+                <img
+                  class="dropDownArrow"
+                  src="../img/drop-down-arrow.svg"
+                  alt="drop-down-arrow"
+                />
+              </div>
+              <input
+                type="text"
+                maxlength="12"
+                placeholder="Enter new category"
+                class="newCategoryInput invisible"
+                id="newCategoryInput"
+                oninput="hideCategoryError();"
+              />
+              <div class="newCategoryIconDiv d-none">
+                <div class="newCategoryIconWrapper" onclick="addNewCategory()">
+                  <img
+                    class="check-icon"
+                    src="../img/check-icon-darkblue.svg"
+                    alt="check-icon-darkblue"
+                  />
+                </div>
+                <div class="newCategoryIconDivider"></div>
+                <div
+                  class="newCategoryIconWrapper"
+                  onclick="changeInputToDefault()"
+                >
+                  <img class="x-icon" src="../img/x-icon.svg" alt="x-icon" />
+                </div>
+              </div>
+              <section class="dropDownCategory invisible"></section>
+            </div>
+            <div class="categoryInvalidDiv invisible">
+              This field is required.
+            </div>
+          </div>
+          <div class="subtaskDiv">
+            <label for="subtaskInput">Subtask</label>
+            <div class="subtaskInputDiv">
+              <input
+                type="text"
+                maxlength="30"
+                placeholder="Add new subtask"
+                class="subtaskInput"
+                id="subtaskInput"
+                oninput="hideSubtaskError()"
+              />
+              <div class="plusIconDiv" onclick="createSubtask()">
+                <img src="../img/plus-icon.svg" alt="plus-icon" />
+              </div>
+              <div class="subtaskInvalidDiv invisible">
+                Please enter a subtask consisting of maximum 16 letters.
+              </div>
+              <ul class="subtaskList"></ul>
+            </div>
+          </div>
+        </div>
+      </form>
+      <section class="confirmDiv">
+        <div>
+          <sup class="required"></sup>
+          This field is required.
+        </div>
+        <div class="clearAndCreateButtonDiv">
+          <button class="clearButton" onclick="clearTaskSelectorForm()">
+            Clear <img src="../img/x-icon.svg" alt="x-icon"/>
+          </button>
+          <button type="submit" form="taskSelector" class="createTaskButton">
+            Create Task <img src="../img/check-icon.svg" alt="check-icon" />
+          </button>
+        </div>
+      </section>
+    </section>
+    <div class="createTaskOverlay">Task added to board.</div>
+  </body>
+</html>
