@@ -236,6 +236,19 @@ a {
 
 .invisible {
   visibility: hidden;
+  height: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.slideIn {
+  right: 0;
+}
+
+.slideOut {
+  right: -200%;
 }
 
 .rotate {
@@ -428,3 +441,12 @@ ul li::before {
   right: 38%;
 }
 
+@media (max-width: 800px) {
+
+  .createContactButton:disabled,
+  .saveContactButton:disabled,
+  .createTaskButton:disabled {
+    font-size: 16px;
+  }
+
+}

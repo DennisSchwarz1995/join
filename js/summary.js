@@ -61,6 +61,7 @@ function summaryHTML(
       <div class="summaryHeadlinedivider"></div>
       <span>Key Metrics at a Glance</span>
     </header>
+     <div class="summaryHeadlinedividerMobile"></div> 
     <main class="summaryBoardAndGreetingDiv">
       <section class="summaryBoard">
         <div class="summaryBoardWrapper">

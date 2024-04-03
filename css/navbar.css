@@ -13,6 +13,10 @@
   font-weight: var(--font-weight-400);
 }
 
+.navBarMobile {
+  display: none;
+}
+
 .navBarCategories:hover,
 .popupMenu a:hover {
   background: var(--hover-color-darkblue);
@@ -73,3 +77,51 @@ a {
 }
 
 
+@media (max-width: 1000px) {
+
+  .navBar {
+    display: none;
+  }
+
+  .navBarMobile {
+    display: flex;
+    width: 100%;
+    background: #2a3647;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    justify-content: space-evenly;
+    max-width: 1000px;
+  }
+
+  .navBarBoardMobile {
+    display: flex;
+    height: 80px;
+    align-items: center;
+  }
+
+  .navBarMenuMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    width: 75px; 
+    height: 75px; 
+    justify-content: center;
+  }
+
+  .navBarMenuMobile h5 {
+    font-weight: normal;
+  }
+
+  .navBarActive {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 300px) {
+  .navBarMobile {
+    justify-content: space-around; 
+  }
+
+}

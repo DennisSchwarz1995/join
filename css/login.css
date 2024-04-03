@@ -317,3 +317,64 @@
   color: var(--main-color-lightblue);
   transform: scale(1.15);
 }
+
+.signUpAreaForFooter{ 
+  display: none;
+}
+@media(max-width: 1000px){
+  .loginArea{ 
+    max-width: 277px;
+  }
+
+  .emailInput{ 
+    min-width: 320px;
+   
+  }
+  .passwordInput{ 
+    min-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+.joinLogo{
+  max-height: 64px;
+  max-width: 78px;
+}
+.loginArea{
+  max-width: 130px;
+}
+.emailInput{ 
+  min-width: 0;
+  max-width: 222px;
+}
+.passwordInput{ 
+  min-width: 0;
+  max-width: 222px;
+}
+.buttonArea{ 
+  flex-direction: column;
+}
+.loginText{
+  font-size: 47px;
+}
+
+.loginAreaFullScreenVision{
+  margin-top: -25px;
+}
+.signUpArea{ 
+  display: none;
+}
+.signUpAreaForFooter{
+  display: flex;
+ align-items: center;
+justify-content: space-around;
+}
+.header{
+  padding-bottom: 90px;
+}
+
+.footer{
+  margin-bottom: 2px;
+}
+}
+
