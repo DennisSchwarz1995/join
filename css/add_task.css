@@ -69,6 +69,7 @@
 .descriptionTextArea {
   padding: 18px 16px 18px 16px;
   font-family: inherit;
+  resize:none
 }
 
 .contactsSelect {
@@ -351,7 +352,7 @@ textarea:focus {
   display: flex;
   position: relative;
   bottom: 160px;
-  height: 42px;
+  height: 46px;
 }
 
 .newCategoryInput {

@@ -34,7 +34,7 @@
             <label for="titleInput" class="required">Title</label>
             <input
               type="text"
-              maxlength="30"
+              maxlength="20"
               placeholder="Enter a title"
               class="titleInput"
               id="titleInput"
@@ -149,7 +149,7 @@
               </div>
               <input
                 type="text"
-                maxlength="30"
+                maxlength="12"
                 placeholder="Enter new category"
                 class="newCategoryInput invisible"
                 id="newCategoryInput"
@@ -186,7 +186,7 @@
                 placeholder="Add new subtask"
                 class="subtaskInput"
                 id="subtaskInput"
-                oninput="hideSubtaskError();"
+                oninput="hideSubtaskError()"
               />
               <div class="plusIconDiv" onclick="createSubtask()">
                 <img src="../img/plus-icon.svg" alt="plus-icon" />

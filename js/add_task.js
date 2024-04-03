@@ -15,7 +15,7 @@ let isDropdownOpen = false;
 let isAddTaskOpenFromBoard = false;
 let isShowCreationOverlayOpenFromBoard = false;
 let categories = ["Technical Task", "User Story", "Javascript", "HTML", "CSS"];
-let subtaskIndex = 0;
+let taskId = 1;
 
 function generateAddTask(contacts) {
   contactDropDownList(contacts);
@@ -176,7 +176,11 @@ function getAddTaskFormValues() {
   formValues.dueDate = dueDateInput.value;
   prioButtons.forEach((button) => {
     if (button.classList.contains("selected")) {
-      formValues.priority = button.textContent.trim();
+      let buttonImageSrc = button.querySelector("img").src;
+      let relativeImagePath = buttonImageSrc.substring(
+        buttonImageSrc.indexOf("/img")
+      );
+      formValues.priority = relativeImagePath;
     }
   });
   formValues.category = categoryInput.value.trim();
@@ -197,14 +201,17 @@ function setMinDate() {
 function toggleContactSelection(contactDiv, contactName) {
   let checkBoxIcon = contactDiv.querySelector(".checkBoxIcon");
   let checkBoxIconDiv = contactDiv.querySelector(".checkBoxIconDiv");
-  checkBoxIcon.classList.toggle("selectedContactCheckBox");
-  contactDiv.classList.toggle("selectedContact");
+  let isSelected = checkBoxIcon.classList.contains("selectedContactCheckBox");
 
-  if (checkBoxIcon.classList.contains("selectedContactCheckBox")) {
+  if (!isSelected) {
+    checkBoxIcon.classList.add("selectedContactCheckBox");
+    contactDiv.classList.add("selectedContact");
     checkBoxIcon.src = "../img/checkbox-icon-selected.svg";
     checkBoxIconDiv.style.height = "19px";
     createInitialsImage(contactName, contacts);
   } else {
+    checkBoxIcon.classList.remove("selectedContactCheckBox");
+    contactDiv.classList.remove("selectedContact");
     checkBoxIcon.src = "../img/checkbox-icon.svg";
     checkBoxIconDiv.style.height = "24px";
     removeInitialsImage(contactName);
@@ -227,7 +234,7 @@ function createInitialsImage(contactName, contacts) {
 
   if (contactIndex !== -1) {
     let contactIconHTML = `
-      <div class="dropDownContactIcon" style="background-color: ${contacts[contactIndex].color};">${initials}</div>
+      <div class="dropDownContactIcon" data-contact="${contactName}" style="background-color: ${contacts[contactIndex].color};">${initials}</div>
     `;
     initialsSection.innerHTML += contactIconHTML;
   }
@@ -238,7 +245,7 @@ function removeInitialsImage(contactName) {
   let initialsIcons = initialsSection.querySelectorAll(".dropDownContactIcon");
 
   initialsIcons.forEach((icon) => {
-    if (icon.textContent.trim() === getInitials(contactName)) {
+    if (icon.getAttribute("data-contact") === contactName) {
       icon.remove();
     }
   });
@@ -378,11 +385,11 @@ function createSubtask() {
   let subtaskInvalidDiv = document.querySelector(".subtaskInvalidDiv");
 
   if (subtaskValue !== "") {
+    let subtaskIndex = subtaskList.children.length;
     let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="30" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
     subtaskList.innerHTML += subtaskListHTML;
     subtaskInput.value = "";
     hideSubtaskError();
-    subtaskIndex++;
   } else {
     showSubtaskError(subtaskInvalidDiv, subtaskInput);
   }
@@ -532,6 +539,7 @@ function clearTaskSelectorSubtasks() {
 function createTask(isAddTaskOpenFromBoard, taskCategory) {
   let formValues = getAddTaskFormValues();
   let taskData = {
+    id: getTaskMaxID(),
     title: formValues.title,
     description: formValues.description,
     assignedContacts: formValues.assignedContacts,
@@ -540,16 +548,32 @@ function createTask(isAddTaskOpenFromBoard, taskCategory) {
     category: formValues.category,
     categoryColor: formValues.categoryColor,
     taskCategory: taskCategory || "to do",
-    subtasks: formValues.subtasks,
+    subtasks: formValues.subtasks.map((subtask, index) => ({
+      id: `subtask-${index}`,
+      description: subtask,
+      completed: false,
+    })),
+    subtasksAmount: formValues.subtasks.length,
   };
   processTask(taskData);
   if (isAddTaskOpenFromBoard) {
     updateBoard();
     showTaskCreationOverlay(true);
+    addDragAndDropEventListeners();
   } else {
     redirectToBoard();
     showTaskCreationOverlay(false);
   }
+}
+
+function getTaskMaxID() {
+  let maxID = 0;
+  tasks.forEach((task) => {
+    if (task.id > maxID) {
+      maxID = task.id;
+    }
+  });
+  return maxID + 1;
 }
 
 function showTaskCreationOverlay(isShowCreationOverlayOpenFromBoard) {
@@ -607,4 +631,3 @@ function updateBoard() {
   generateTasks();
   checkAndGenerateEmptyTask();
 }
-

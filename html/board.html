@@ -8,12 +8,15 @@
     <script src="../js/storage.js"></script>
     <script src="../js/validation.js"></script>
     <script src="../js/board.js"></script>
+    <script src="../js/board_templates.js"></script>
+    <script src="../js/overlay_templates.js"></script>
     <script src="../js/add_task.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/detailed_board.css" />
     <link rel="stylesheet" href="../css/add_task.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
     <title>Board</title>
@@ -31,62 +34,82 @@
               placeholder="Find Task"
               type="text"
               id="searchTaskInput"
+              onkeyup="generateTasks()"
             />
           </div>
-          <button class="addTaskButton" onclick="openAddTaskOverlay()">
+          <button class="addTaskButton" onclick="openAddTaskOverlay(false)">
             Add Task <img src="../img/add-icon.svg" alt="add-icon" />
           </button>
         </div>
       </div>
       <div class="taskBoard">
-        <section class="toDoTasks">
+        <section class="boardCategories">
           <div class="boardCategory">
             <span>To do</span>
             <div
               class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('to do')"
+              onclick="openAddTaskOverlay('to do', false)"
             >
-              <img src="../img/board-add-task-icon.svg" />
+              <img
+                src="../img/board-add-task-icon.svg"
+                alt="board-add-task-icon"
+              />
             </div>
           </div>
-          <div class="toDoTaskList"></div>
-        </section>
-        <section class="inProgressTasks">
-          <div class="boardCategory">
-            <span>In progress</span>
-            <div
-              class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('in progress')"
-            >
-              <img src="../img/board-add-task-icon.svg" />
-            </div>
-          </div>
-          <div class="inProgressTaskList"></div>
-        </section>
-        <section class="awaitFeedbackTasks">
           <div class="boardCategory">
             <span>Await feedback</span>
             <div
               class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('await feedback')"
+              onclick="openAddTaskOverlay('await feedback', false)"
             >
-              <img src="../img/board-add-task-icon.svg" />
+              <img
+                src="../img/board-add-task-icon.svg"
+                alt="board-add-task-icon"
+              />
             </div>
           </div>
-          <div class="awaitFeedbackTaskList"></div>
-        </section>
-        <section class="doneTasks">
+          <div class="boardCategory">
+            <span>In progress</span>
+            <div
+              class="taskBoardAddTaskDiv"
+              onclick="openAddTaskOverlay('in progress', false)"
+            >
+              <img
+                src="../img/board-add-task-icon.svg"
+                alt="board-add-task-icon"
+              />
+            </div>
+          </div>
           <div class="boardCategory">
             <span>Done</span>
           </div>
-          <div class="doneTaskList"></div>
         </section>
+        <main class="taskLists">
+          <section class="toDoTasks">
+            <div class="toDoTaskList"></div>
+          </section>
+          <section class="awaitFeedbackTasks">
+            <div class="awaitFeedbackTaskList"></div>
+          </section>
+          <section class="inProgressTasks">
+            <div class="inProgressTaskList"></div>
+          </section>
+          <section class="doneTasks">
+            <div class="doneTaskList"></div>
+          </section>
+        </main>
       </div>
     </section>
+    <div class="addTaskOverlay"></div>
     <div
-      class="addTaskOverlayBackground invisible"
-      onclick="closeAddTaskOverlay()"
+      class="taskOverlayBackground invisible"
+      onclick="closeAddTaskOverlay(false)"
+    ></div>
+    <div
+      class="taskCardOverlayBackground invisible"
+      onclick="closeAddTaskOverlay(true)"
     ></div>
     <div class="createTaskOverlay">Task added to board.</div>
+    <div class="taskCardDetailedView"></div>
   </body>
 </html>

@@ -5,11 +5,12 @@ async function initBoard() {
   generateHeader();
   generateTasks();
   checkAndGenerateEmptyTask();
-  addEventListeners();
+  addDragAndDropEventListeners();
 }
 
 let tasks = [];
 let currentTaskCategory = null;
+let isDetailedViewOpen = false;
 
 function generateTasks() {
   let toDoTaskList = document.querySelector(".toDoTaskList");
@@ -20,7 +21,7 @@ function generateTasks() {
   inProgressTaskList.innerHTML = "";
   awaitFeedbackTaskList.innerHTML = "";
   doneTaskList.innerHTML = "";
-  tasks.forEach((taskData) => {
+  getTasksByFilter().forEach((taskData) => {
     let taskHTMLContent = taskHTML(taskData);
     if (taskData.taskCategory === "to do") {
       toDoTaskList.innerHTML += taskHTMLContent;
@@ -32,6 +33,8 @@ function generateTasks() {
       doneTaskList.innerHTML += taskHTMLContent;
     }
   });
+  checkAndGenerateEmptyTask();
+  addDragAndDropEventListeners();
 }
 
 function checkAndGenerateEmptyTask() {
@@ -65,45 +68,50 @@ function formatCategoryName(categoryName) {
   return categoryName.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
 }
 
-function openAddTaskOverlay(taskCategory) {
-  generateAddTaskOverlay(contacts);
-  let overlay = document.querySelector(".addTaskOverlay");
-  let background = document.querySelector(".addTaskOverlayBackground");
-  currentTaskCategory = taskCategory;
-  setTimeout(() => {
+function openAddTaskOverlay(taskCategory, isDetailedViewOpen) {
+  let { overlay, background } = getOverlayValues(isDetailedViewOpen);
+  if (!isDetailedViewOpen) {
+    currentTaskCategory = taskCategory;
+    setTimeout(() => {
+      generateAddTaskOverlay(contacts);
+      overlay.classList.add("show");
+      setMediumButtonSelected();
+      checkValuesForCreateTaskButton();
+    }, 0);
+    background.classList.remove("invisible");
+  } else {
     overlay.classList.add("show");
-    setMediumButtonSelected();
-    checkValuesForCreateTaskButton();
-  }, 0);
-  background.classList.remove("invisible");
+    background.classList.remove("invisible");
+  }
 }
 
-function closeAddTaskOverlay() {
-  let overlay = document.querySelector(".addTaskOverlay");
-  let background = document.querySelector(".addTaskOverlayBackground");
-  overlay.classList.remove("show");
-  clearTaskSelectorForm();
-  background.classList.add("invisible");
-  setTimeout(() => {
-    overlay.remove();
-  }, 300);
+function closeAddTaskOverlay(isDetailedViewOpen) {
+  let { overlay, background } = getOverlayValues(isDetailedViewOpen);
+  if (!isDetailedViewOpen) {
+    overlay.classList.remove("show");
+    clearTaskSelectorForm();
+    setTimeout(() => {
+      overlay.classList.remove("show");
+      overlay.innerHTML = "";
+    }, 300);
+    background.classList.add("invisible");
+  } else {
+    overlay.classList.remove("show");
+    background.classList.add("invisible");
+  }
 }
 
-function addEventListeners() {
-  let taskCards = document.querySelectorAll(".taskCard");
-  taskCards.forEach((taskCard) => {
-    taskCard.addEventListener("dragstart", dragStart);
-    taskCard.addEventListener("dragend", dragEnd);
-  });
-}
-
-function dragStart(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
-  event.currentTarget.classList.add("dragging");
-}
-
-function dragEnd(event) {
-  event.currentTarget.classList.remove("dragging");
+function getOverlayValues(isDetailedViewOpen) {
+  let overlay;
+  let background;
+  if (isDetailedViewOpen) {
+    overlay = document.querySelector(".taskCardDetailedView");
+    background = document.querySelector(".taskCardOverlayBackground");
+  } else {
+    overlay = document.querySelector(".addTaskOverlay");
+    background = document.querySelector(".taskOverlayBackground");
+  }
+  return { overlay, background };
 }
 
 function getTasksLength() {
@@ -114,242 +122,369 @@ function countTasksByCategory(category) {
   return tasks.filter((task) => task.category === category).length;
 }
 
-function generateAddTaskOverlay(contacts) {
-  let addTaskOverlayHTML = `
-          <div class="addTaskOverlay">
-          <h1>Add Task</h1>
-          <div class="closeOverlayButtonDiv" onclick="closeAddTaskOverlay()"><img src="../img/x-icon.svg" alt="x-icon"></div>
-            <form class="taskSelector" id="taskSelector" onsubmit="createTask(true, currentTaskCategory); return false;">
-            <section class="taskSelectorLeft">
-              <div class="titleDiv">
-                <label for="titleInput" class="required">Title</label>
-                <input
-                  type="text"
-                  maxlength="30"
-                  placeholder="Enter a title"
-                  class="titleInput"
-                  id="titleInput"
-                  oninput="checkValuesForCreateTaskButton()"
-                />
-                <div class="titleInvalidDiv invisible">This field is required.</div>
-              </div>
-              <div class="descriptionDiv">
-                <label for="descriptionTextArea">Description</label>
-                <textarea
-                  maxlength="50"
-                  class="descriptionTextArea"
-                  id="descriptionTextArea"
-                  placeholder="Enter a Description"
-                ></textarea>
-              </div>
-              <div class="assignedDiv">
-                <label for="contactsSelect">Assigned to</label>
-                <div class="contactsSelectDiv">
-                  <input
-                    type="text"
-                    placeholder="Select contacts to assign"
-                    class="contactsSelect"
-                    id="contactsSelect"
-                    onclick="toggleDropdown()"
-                    readonly
-                  />
-                  <div class="dropDownArrowDiv" onclick="toggleDropdown()">
-                    <img
-                      class="dropDownArrow"
-                      src="../img/drop-down-arrow.svg"
-                      alt="rop-down-arrow"
-                    />
-                  </div>
-                </div>
-                <section class="dropDownContacts invisible"></section>
-                <div class="contactInitials"></div>
-              </div>
-            </section>
-            <div class="divider"></div>
-            <div class="taskSelectorRight">
-              <div class="dueDateDiv">
-                <label for="dateInput" class="required">Due date</label>
-                <div class="dateSelectDiv">
-                  <input
-                    type="date"
-                    placeholder="MM/DD/YYYY"
-                    class="dateInput"
-                    id="dateInput"
-                    onclick="openCalendar()"
-                    onchange="checkValuesForCreateTaskButton()"
-                    oninput="checkValuesForCreateTaskButton()"
-                  />
-                  <div class="calendarDiv" onclick="openCalendar()">
-                    <img
-                      class="calendar"
-                      src="../img/calendar-icon.svg"
-                      alt="calendar-icon"
-                      onclick="openCalendar()"
-                    />
-                  </div>
-                </div>
-                <div class="dueDateInvalidDiv invisible">
-                  This Field is required.
-                </div>
-              </div>
-              <div class="prioDiv">
-                <label for="urgentButton" class="prioLabel">Prio</label>
-                <div class="prioButtonsDiv">
-                  <button
-                    type="button"
-                    class="urgentButton"
-                    id="urgentButton"
-                    onclick="setButtonPrio(this)"
-                  >
-                    Urgent <img src="../img/urgent-icon.svg" alt="urgent-icon" />
-                  </button>
-                  <button
-                    type="button"
-                    class="mediumButton"
-                    onclick="setButtonPrio(this)"
-                  >
-                    Medium <img src="../img/medium-icon.svg" alt="medium-icon" />
-                  </button>
-                  <button
-                    type="button"
-                    class="lowButton"
-                    onclick="setButtonPrio(this)"
-                  >
-                    Low <img src="../img/low-icon.svg" alt="low-icon" />
-                  </button>
-                </div>
-              </div>
-              <div class="categoryDiv">
-                <label for="categorySelect" class="required">Category</label>
-                <div class="categorySelectDiv">
-                  <input
-                    type="text"
-                    placeholder="Select task category"
-                    class="categorySelect"
-                    id="categorySelect"
-                    readonly
-                    onclick="toggleDropdown(true)"
-                    onchange="checkValuesForCreateTaskButton()"
-                  />
-                  <div class="dropDownArrowDiv" onclick="toggleDropdown(true)">
-                    <img
-                      class="dropDownArrow"
-                      src="../img/drop-down-arrow.svg"
-                      alt="drop-down-arrow"
-                    />
-                  </div>
-                  <input
-                    type="text"
-                    maxlength="30"
-                    placeholder="Enter new category"
-                    class="newCategoryInput invisible"
-                    id="newCategoryInput"
-                    oninput="hideCategoryError();"
-                  />
-                  <div class="newCategoryIconDiv d-none">
-                    <div class="newCategoryIconWrapper" onclick="addNewCategory()">
-                      <img
-                        class="check-icon"
-                        src="../img/check-icon-darkblue.svg"
-                        alt="check-icon-darkblue"
-                      />
-                    </div>
-                    <div class="newCategoryIconDivider"></div>
-                    <div
-                      class="newCategoryIconWrapper"
-                      onclick="changeInputToDefault()"
-                    >
-                      <img class="x-icon" src="../img/x-icon.svg" alt="x-icon" />
-                    </div>
-                  </div>
-                  <section class="dropDownCategory invisible"></section>
-                </div>
-                <div class="categoryInvalidDiv invisible">
-                  This field is required.
-                </div>
-              </div>
-              <div class="subtaskDiv">
-                <label for="subtaskInput">Subtask</label>
-                <div class="subtaskInputDiv">
-                  <input
-                    type="text"
-                    maxlength="30"
-                    placeholder="Add new subtask"
-                    class="subtaskInput"
-                    id="subtaskInput"
-                    oninput="hideSubtaskError();"
-                  />
-                  <div class="plusIconDiv" onclick="createSubtask()">
-                    <img src="../img/plus-icon.svg" alt="plus-icon" />
-                  </div>
-                  <div class="subtaskInvalidDiv invisible">
-                    Please enter a subtask consisting of maximum 16 letters.
-                  </div>
-                  <ul class="subtaskList"></ul>
-                </div>
-              </div>
-            </div>
-          </form>
-          <section class="confirmDiv">
-            <div>
-              <sup class="required"></sup>
-              This field is required.
-            </div>
-            <div class="clearAndCreateButtonDiv">
-              <button class="clearButton" onclick="clearTaskSelectorForm()">
-                Clear <img src="../img/x-icon.svg" alt="x-icon"/>
-              </button>
-              <button type="submit" form="taskSelector" class="createTaskButton">
-                Create Task <img src="../img/check-icon.svg" alt="check-icon" />
-              </button>
-            </div>
-          </section>
-        </section>
-    `;
-  document.body.innerHTML += addTaskOverlayHTML;
-  contactDropDownList(contacts);
-  categoryDropDownList(categories);
-  setMinDate();
+function addDragAndDropEventListeners() {
+  let draggables = document.querySelectorAll(".taskCard");
+  let dropOffContainers = document.querySelectorAll(
+    ".toDoTaskList, .inProgressTaskList, .awaitFeedbackTaskList, .doneTaskList"
+  );
+
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", () => {
+      draggable.classList.add("dragging");
+    });
+
+    draggable.addEventListener("dragend", () => {
+      draggable.classList.remove("dragging");
+      updateTaskPosition(draggable);
+    });
+  });
+
+  dropOffContainers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      let afterElement = getDragAfterElement(container, e.clientY);
+      let draggedContainer = document.querySelector(".dragging");
+      if (afterElement == null) {
+        container.appendChild(draggedContainer);
+        checkAndGenerateEmptyTask();
+      } else {
+        container.insertBefore(draggedContainer, afterElement);
+        checkAndGenerateEmptyTask();
+      }
+    });
+  });
 }
 
-/**
- *
- * @param {string} categoryName
- * @returns HTML for a card if a category empty
- */
-function generateEmptyTask(categoryName) {
-  return `
-      <div class="noTasksDiv" id="emptyTask-${categoryName}">
-        <div class="taskContentContainer">
-          <span>No tasks ${categoryName}</span>
-        </div>
-      </div>
-  `;
+function updateTaskPosition(draggedTask) {
+  let taskId = parseInt(draggedTask.id.split("-")[1]);
+  let newCategory = getCategoryFromClassList(draggedTask.parentNode.classList);
+  let taskIndex = tasks.findIndex((task) => {
+    return task.id === taskId;
+  });
+  if (taskIndex !== -1) {
+    tasks[taskIndex].taskCategory = newCategory;
+    saveTasks();
+  }
 }
 
-function taskHTML(taskData) {
-  let assignedContactsHTML = "";
-  if (taskData.assignedContacts) {
-    assignedContactsHTML = taskData.assignedContacts
+function getDragAfterElement(container, y) {
+  let draggableElements = [
+    ...container.querySelectorAll(".taskCard:not(.dragging)"),
+  ];
+  return draggableElements.reduce(
+    (closest, child) => {
+      let box = child.getBoundingClientRect();
+      let offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
+function getCategoryFromClassList(classList) {
+  if (classList.contains("toDoTaskList")) {
+    return "to do";
+  } else if (classList.contains("inProgressTaskList")) {
+    return "in progress";
+  } else if (classList.contains("awaitFeedbackTaskList")) {
+    return "await feedback";
+  } else if (classList.contains("doneTaskList")) {
+    return "done";
+  }
+  return "to do";
+}
+
+function updateTaskProgress(task) {
+  let completedSubtasks = task.subtasks.filter(
+    (subtask) => subtask.completed
+  ).length;
+  let progress = (completedSubtasks / task.subtasks.length) * 100;
+  let progressBarFill = document.querySelector(
+    `#task-${task.id} .taskProgressBarFill`
+  );
+  if (progressBarFill) {
+    progressBarFill.style.width = `${progress}%`;
+  }
+  let taskProgressCount = document.querySelector(
+    `#task-${task.id} .taskProgressCount`
+  );
+  if (taskProgressCount) {
+    taskProgressCount.textContent = `${completedSubtasks} / ${task.subtasks.length}`;
+  }
+}
+
+function updateSubtaskCompletion(subtaskId, isChecked) {
+  let matches = subtaskId.match(/task-(\d+)-subtask-(\d+)/);
+  if (!matches) return;
+  let taskId = parseInt(matches[1], 10);
+  let subtaskIndex = parseInt(matches[2], 10);
+  let task = tasks.find((task) => task.id === taskId);
+  if (!task || !task.subtasks[subtaskIndex]) return;
+
+  let subtask = task.subtasks[subtaskIndex];
+  subtask.completed = isChecked;
+  updateTaskProgress(task);
+  saveTasks();
+}
+
+function toggleSubtaskCompletion(event) {
+  let checkBoxIcon = event.target;
+  let subtaskId = checkBoxIcon.id;
+  let isChecked = checkBoxIcon.src.includes("checkbox-icon-selected.svg");
+  updateSubtaskCompletion(subtaskId, !isChecked);
+  let taskId = parseInt(subtaskId.split("-")[1]);
+  let task = tasks.find((task) => task.id === taskId);
+  updateTaskProgress(task);
+  saveTasks();
+  if (isChecked) {
+    checkBoxIcon.src = "../img/checkbox-icon.svg";
+    checkBoxIcon.style.width = "24px";
+    checkBoxIcon.style.height = "24px";
+  } else {
+    checkBoxIcon.src = "../img/checkbox-icon-selected.svg";
+    checkBoxIcon.style.width = "19px";
+    checkBoxIcon.style.height = "19px";
+  }
+}
+
+function checkAssignedContactLength(taskData) {
+  let maxContactsToDisplay = 3;
+  let additionalContactsCount =
+    taskData.assignedContacts.length - maxContactsToDisplay;
+
+  if (taskData.assignedContacts.length === 0) {
+    return `<div class="taskContact invisible" style="background: var(--main-color-darkblue)">0</div>`;
+  }
+
+  if (additionalContactsCount > 0) {
+    let additionalsContactsHTML = `<div class="taskContact" style="background: var(--main-color-darkblue)">+${additionalContactsCount}</div>`;
+    return (
+      taskData.assignedContacts
+        .slice(0, maxContactsToDisplay)
+        .map(
+          (contact) =>
+            `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`
+        )
+        .join("") + additionalsContactsHTML
+    );
+  } else {
+    return taskData.assignedContacts
       .map(
-        (contact) => `
-      <div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>
-    `
+        (contact) =>
+          `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`
       )
       .join("");
   }
-  return `
-    <div class="taskCard" draggable="true">
-      <div class="taskCategory" style="background: ${taskData.categoryColor}">${taskData.category}</div>
-      <div class="taskTitle">${taskData.title}</div>
-      <div class="taskDescription">${taskData.description}</div>
-      <div class="taskProgressContainer">
-        <div class="taskProgressBar"></div>
-        <div class="taskProgressCount">0 / ${taskData.subtasks.length}</div>
-      </div>
-      <div class="taskContactAndPrio">
-        <div class="taskContacts">${assignedContactsHTML}</div>
-        <div class="taskPrio">${taskData.priority}</div>
-      </div>
-    </div>`;
+}
+
+function openTaskCardDetailedView(taskId) {
+  let task = tasks.find((task) => task.id === taskId);
+  let detailedViewHTML = taskCardDetailedViewTemplate(task);
+  let taskCardDetailedView = document.querySelector(".taskCardDetailedView");
+  taskCardDetailedView.innerHTML = detailedViewHTML;
+  taskCardDetailedView.classList.add("show");
+  openAddTaskOverlay("", true);
+}
+
+function formatDate(dateString) {
+  let parts = dateString.split("-");
+  let year = parseInt(parts[0]);
+  let month = parseInt(parts[1]);
+  let day = parseInt(parts[2]);
+  let formattedDate = `${month}/${day}/${year}`;
+
+  return formattedDate;
+}
+
+function getPriorityNameFromURL(priorityURL) {
+  let priority = priorityURL.split("/").pop().split("-")[0];
+  switch (priority) {
+    case "medium":
+      return "Medium";
+    case "urgent":
+      return "Urgent";
+    case "low":
+      return "Low";
+    default:
+      return "Unknown";
+  }
+}
+
+function openEditTaskOverlay(taskId) {
+  let task = tasks.find((task) => task.id === taskId);
+  if (!task) return;
+  generateEditTaskHTML(
+    task,
+    task.assignedContacts,
+    task.subtasks,
+    task.priority
+  );
+}
+
+function saveTaskEdits(taskId) {
+  let taskIndex = tasks.findIndex((task) => task.id === taskId);
+  if (taskIndex === -1) return;
+  let title = document.getElementById("title").value;
+  let description = document.getElementById("description").value;
+  tasks[taskIndex].title = title;
+  tasks[taskIndex].description = description;
+  saveTasks();
+  openTaskCardDetailedView(taskId);
+}
+
+function generateAssignedContacts(assignedContacts) {
+  let contactInitialsDiv = document.querySelector(".contactInitials");
+  let contactInitialsHTML = "";
+  assignedContacts.forEach((contact) => {
+    contactInitialsHTML += `
+      <div class="dropDownContactIcon" data-contact="${contact.name}" style="background-color: ${contact.color};">${contact.initials}</div>
+    `;
+  });
+  contactInitialsDiv.innerHTML = contactInitialsHTML;
+}
+
+function highlightAssignedContacts(assignedContacts) {
+  let dropDownContactDivs = document.querySelectorAll(".dropDownContactDiv");
+  dropDownContactDivs.forEach((div) => {
+    let contactName = div.querySelector(".dropDownContactName").textContent;
+    let isSelected = assignedContacts.some((ac) => ac.name === contactName);
+    let checkBoxIcon = div.querySelector(".checkBoxIcon");
+    let checkBoxIconDiv = div.querySelector(".checkBoxIconDiv");
+    if (isSelected) {
+      div.classList.add("selectedContact");
+      checkBoxIcon.classList.add("selectedContactCheckBox");
+      checkBoxIcon.src = "../img/checkbox-icon-selected.svg";
+      checkBoxIconDiv.style.height = "19px";
+    } else {
+      div.classList.remove("selectedContact");
+      checkBoxIcon.classList.remove("selectedContactCheckBox");
+      checkBoxIcon.src = "../img/checkbox-icon.svg";
+      checkBoxIconDiv.style.height = "24px";
+    }
+  });
+}
+
+function highlightSelectedTaskCategory() {
+  let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
+  let selectedCategory = document.querySelector(".categorySelect").value;
+
+  dropDownCategoryDivs.forEach((div) => {
+    let categoryName = div.textContent.trim();
+    if (selectedCategory === categoryName) {
+      div.classList.add("selectedCategory");
+    } else {
+      div.classList.remove("selectedCategory");
+    }
+  });
+}
+
+function getButtonPrio(priority) {
+  let button = null;
+  switch (priority) {
+    case "/img/urgent-icon.svg":
+      button = document.querySelector(".urgentButton");
+      break;
+    case "/img/medium-icon.svg":
+      button = document.querySelector(".mediumButton");
+      break;
+    case "/img/low-icon.svg":
+      button = document.querySelector(".lowButton");
+      break;
+    default:
+      break;
+  }
+  setButtonPrio(button);
+}
+
+function saveTaskEdits(taskId) {
+  let taskIndex = tasks.findIndex((task) => task.id === taskId);
+  if (taskIndex === -1) return;
+  let category = document.getElementById("categorySelect").value;
+  let categoryColor = getCategoryColor(category);
+  let subtasks = getUpdatedSubtasks(tasks[taskIndex].subtasks);
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    title: document.getElementById("editTitleInput").value,
+    description: document.getElementById("descriptionTextArea").value,
+    assignedContacts: getUpdatedAssignedContacts(),
+    dueDate: document.getElementById("dateInput").value,
+    priority: getUpdatedSelectedTaskPriority(),
+    category,
+    categoryColor,
+    subtasks,
+    subtasksAmount: subtasks.length,
+  };
+  saveTasks();
+  openTaskCardDetailedView(taskId);
+  generateTasks();
+  checkAndGenerateEmptyTask();
+  addDragAndDropEventListeners();
+}
+
+function getUpdatedSelectedTaskPriority() {
+  let prioButtons = document.querySelectorAll(
+    ".prioButtonsDiv button.selected"
+  );
+  if (prioButtons.length > 0) {
+    let buttonImageSrc = prioButtons[0].querySelector("img").src;
+    return buttonImageSrc.substring(buttonImageSrc.indexOf("/img"));
+  }
+}
+
+function getUpdatedAssignedContacts() {
+  return Array.from(document.querySelectorAll(".selectedContact")).map(
+    (contact) => {
+      let name = contact
+        .querySelector(".dropDownContactName")
+        .textContent.trim();
+      let color = contact.querySelector(".dropDownContactIcon").style
+        .backgroundColor;
+      let initials = getInitials(name);
+      return { name, color, initials };
+    }
+  );
+}
+
+function getUpdatedSubtasks(existingSubtasks) {
+  let subtaskElements = document.querySelectorAll(".subtaskLI");
+  return Array.from(subtaskElements).map((el, index) => {
+    let description = el.querySelector(".subtaskText").textContent.trim();
+    let existingSubtask = existingSubtasks.find(
+      (subtask) => subtask.id === `subtask-${index}`
+    );
+    let completed = existingSubtask ? existingSubtask.completed : false;
+    return {
+      id: `subtask-${index}`,
+      description,
+      completed,
+    };
+  });
+}
+
+function getTasksByFilter() {
+  let searchInputValue = document
+    .querySelector(".searchTaskInput")
+    .value.toLowerCase();
+  if (searchInputValue) {
+    return tasks.filter((task) => {
+      return (
+        task.title.toLowerCase().includes(searchInputValue) ||
+        task.description.toLowerCase().includes(searchInputValue)
+      );
+    });
+  } else {
+    return tasks;
+  }
+}
+
+function deleteTask(taskId) {
+  let taskIndex = tasks.findIndex((task) => task.id === taskId);
+  tasks.splice(taskIndex, 1);
+  saveTasks();
+  generateTasks();
+  closeAddTaskOverlay(true);
 }

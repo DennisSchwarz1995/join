@@ -45,7 +45,6 @@ async function loadContacts() {
 async function saveTasks() {
   try {
     let tasksJSON = JSON.stringify(tasks);
-    console.log("savetask", tasksJSON)
     await setItem("tasks", tasksJSON);
   } catch (error) {
     console.error(error);
