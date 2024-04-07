@@ -578,6 +578,14 @@
   color: var(--main-color-lightblue);
 }
 
+.contactsBackImage{ 
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  right: 25px;
+  top: 96px;
+  display: none;
+}
 
 @media (max-width: 1250px) { 
   .contacts {

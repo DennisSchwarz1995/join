@@ -1,6 +1,3 @@
-/**
- * Initialize the board, generates the main elements
- */
 async function initBoard() {
   await loadTasks();
   await loadContacts();
@@ -10,9 +7,6 @@ async function initBoard() {
   saveTasks();
 }
 
-/**
- * generates the main board and sets up the event listeners
- */
 function generateBoard() {
   let board = document.querySelector(".board");
   if (board) {
@@ -27,9 +21,7 @@ function generateBoard() {
     saveTasks();
   }
 }
-/**
- * JSON for the Tasks
- */
+
 let tasks = [
   {
     category: "To do",
@@ -62,28 +54,16 @@ let tasks = [
   },
 ];
 
-/**
- *
- * @returns the lenght of the json
- */
+
 function getTasksLength() {
   return tasks.length;
-}
+};
 
-/**
- *
- * @param {string} category
- * @returns the number of tasks with the input categorie
- */
 function countTasksByCategory(category) {
   return tasks.filter((task) => task.category === category).length;
 }
 
-/**
- * Updates the Task Category if i drag and drop a task to a other category
- * @param {string} taskId
- * @param {string} newCategory
- */
+
 function updateTaskCategory(taskId, newCategory) {
   const draggedTaskIndex = parseInt(taskId.replace("draggableContainer", ""));
   const draggedTask = tasks[draggedTaskIndex];
@@ -98,9 +78,7 @@ function updateTaskCategory(taskId, newCategory) {
   }
 }
 
-/**
- * Adds eventlisteners for the drag and drop function
- */
+
 function addDragAndDropListeners() {
   let taskCards = document.querySelectorAll(".taskCard");
   taskCards.forEach((taskCard) => {
@@ -113,26 +91,18 @@ function addDragAndDropListeners() {
     slot.addEventListener("drop", handleDrop);
   }
 }
-/**
- * start the datatransfer by dragging a element
- * @param {DragEvent} event
- */
+
+
 function handleDragStart(event) {
   event.dataTransfer.setData("text/plain", event.target.id);
 }
 
-/**
- * Handle the drag over event
- * @param {DragEvent} event
- */
+
 function handleDragOver(event) {
   event.preventDefault();
   event.dataTransfer.dropEffect = "move";
 }
-/**
- * Handle the drop event
- * @param {DragEvent} event
- */
+
 function handleDrop(event) {
   event.preventDefault();
   const taskId = event.dataTransfer.getData("text/plain");
@@ -148,20 +118,12 @@ function handleDrop(event) {
   }
 }
 
-/**
- * Find and return an HTML element
- * @param {HTMLElement} targetSlot
- * @returns {Element}
- */
+
 function getCategorySpan(targetSlot) {
   return targetSlot.querySelector(".boardCategory span");
 }
 
-/**
- * Updates the category of a task than triggers to check if a category is empty
- * @param {string} taskId - The ID of the task to update
- * @param {*} newCategory - The new category of the task
- */
+
 function updateTaskCategoryAndBoard(taskId, newCategory) {
   updateTaskCategory(taskId, newCategory);
   const checkFunctionMap = {
@@ -174,9 +136,7 @@ function updateTaskCategoryAndBoard(taskId, newCategory) {
   saveTasks();
 }
 
-/**
- * Generate a empty task field
- */
+
 function generateEmptyTask() {
   let taskCards = document.querySelectorAll(".taskCardDiv");
   taskCards.forEach((taskCard, index) => {
@@ -186,10 +146,7 @@ function generateEmptyTask() {
   });
 }
 
-/**
- *
- * @param {number} x - validetes wich task category is getting used based on wich cross you click
- */
+
 function validateToDo(x) {
   if (window.innerWidth <= 768) {
 
@@ -210,35 +167,23 @@ function validateToDo(x) {
   }
 }
 
-/**
- * Triggers the function to check if a task card is empty for To do
- */
+
 function checkIfToDoTaskcardEmpty() {
   checkIfTaskCardEmpty("To do", ".toDoTaskList");
 }
-/**
- * Triggers the function to check if a task card is empty for In Progress
- */
+
 function checkIfInProgressTaskcardEmpty() {
   checkIfTaskCardEmpty("In progress", ".inProgressTaskList");
 }
-/**
- * Triggers the function to check if a task card is empty for Await Feedback
- */
+
 function checkIfAwaitFeedbackTaskcardEmpty() {
   checkIfTaskCardEmpty("Await feedback", ".awaitFeedbackTaskList");
 }
-/**
- * Triggers the function to check if a task card is empty for Done
- */
+
 function checkIfDoneTaskcardEmpty() {
   checkIfTaskCardEmpty("Done", ".doneTaskList");
 }
-/**
- * checks if there is a task card based on the inputs, and triggers the function for generating a Empty Card if not
- * @param {string} category
- * @param {string} listSelector - Input to find the HTML elemt with the querySelector
- */
+
 function checkIfTaskCardEmpty(category, listSelector) {
   const taskList = document.querySelector(listSelector);
   const emptyTaskElement = document.getElementById(`emptyTask-${category}`);
@@ -255,10 +200,7 @@ function checkIfTaskCardEmpty(category, listSelector) {
   }
 }
 
-/**
- * Staring the overlay to add a Task
- * @param {Number} y - wich cross i clicked to select Category
- */
+
 function openAddTaskOverlay() {
   generateAddTaskOverlay(contacts);
   let overlay = document.querySelector(".addTaskOverlay");
@@ -266,9 +208,7 @@ function openAddTaskOverlay() {
     overlay.classList.add("show");
   }, 0);
 }
-/**
- * Starting the search function and giving inputs to the update board function
- */
+
 function handleSearch() {
   const searchInputValue = document
     .querySelector(".searchTaskInput")
@@ -281,10 +221,7 @@ function handleSearch() {
   updateBoard(filteredTasks);
 }
 
-/**
- * giving elements visability based on the search input
- * @param {string} filteredTasks -searchbar inputs
- */
+
 function updateBoard(filteredTasks) {
   tasks.forEach((task) => {
     const taskCard = document.getElementById(
@@ -424,11 +361,7 @@ function generateAddTaskOverlay(contacts) {
   categoryDropDownList(categories);
 
 }
-/**
- *
- * @param {string} categoryName
- * @returns HTML for a card if a category empty
- */
+
 function generateEmptyTask(categoryName) {
   return `
     <div class="slot">
@@ -440,10 +373,7 @@ function generateEmptyTask(categoryName) {
     </div>
   `;
 }
-/**
- *
- * @returns HTML for the Board and filtering the json
- */
+
 function boardHTML() {
   return `
     <div class="boardHeadline">
