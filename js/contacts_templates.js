@@ -2,7 +2,7 @@ let contacts = [];
 
 function contactsHTML() {
   let contactHTML = `
-  <div class="contactBoard">
+  <div class="contactBoard" id="contactBoard">
     <div class="contactButtonDiv">
       <button onclick="openContactOverlay()" class="addNewContactButton">
       <p>Add new Contact</p>  
@@ -44,13 +44,15 @@ function contactsHTML() {
     </div>
   </div>`;
 
-  contactHTML += `<div class="contactDetailedInfo">
+  contactHTML += `<div class="contactDetailedInfo" id="contactDetailedInfo">
       <div class="contactHeadline">
         <h1>Contact Details</h1>
         <div class="contactHeadlineDivider"></div>
         <span class="contactHeadlineSpan">Better with a Team</span>
       </div>
-      <div class="detailedView"></div>`;
+      <div class="detailedView"></div> 
+      <img class="contactsBackImage" id="contactsBackImage" src="../img//back-arrow-lightblue.svg" onclick="backToPageStart()">
+      `;
   return contactHTML;
 }
 

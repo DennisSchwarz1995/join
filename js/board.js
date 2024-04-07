@@ -116,7 +116,7 @@ function getOverlayValues(isDetailedViewOpen) {
 
 function getTasksLength() {
   return tasks.length;
-}
+};
 
 function countTasksByCategory(category) {
   return tasks.filter((task) => task.category === category).length;

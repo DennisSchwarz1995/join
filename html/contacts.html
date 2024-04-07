@@ -12,20 +12,25 @@
     <script src="../js/validation.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
     <link rel="stylesheet" href="../css/contacts.css" />
-    <link rel="stylesheet" href="../css/detailed_contact.css">
+    <link rel="stylesheet" href="../css/detailed_contact.css" />
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
     <title>Contacts</title>
   </head>
-  <body onload="initContacts(), generateNavbarMobile()" >
+  <body onload="initContacts(), generateNavbarMobile()">
     <header class="header"></header>
     <nav class="navBar"></nav>
-    <section class="contacts"></section>
-    <div class="createContactOverlay" id="createContactOverlay">Contact succesfully created</div>
-    <div class="overlayBackground invisible" onclick="closeContactOverlay()"></div>
-    
+    <section class="contacts" id="contacts"></section>
+    <div class="createContactOverlay" id="createContactOverlay">
+      Contact succesfully created
+    </div>
+    <div
+      class="overlayBackground invisible"
+      onclick="closeContactOverlay()"
+    ></div>
+
     <div id="contactOverlay" class="contactOverlay">
       <div class="addContact">
         <div onclick="closeContactOverlay()" class="closeButtonDiv">
@@ -101,10 +106,18 @@
               </div>
             </div>
             <div class="addContactButtonDiv">
-              <button type="button" class="cancelButton" onclick="cancelInput()">
+              <button
+                type="button"
+                class="cancelButton"
+                onclick="cancelInput()"
+              >
                 Cancel<img src="../img/x-icon.svg" />
               </button>
-              <button type="submit" id="createContactButton" class="createContactButton">
+              <button
+                type="submit"
+                id="createContactButton"
+                class="createContactButton"
+              >
                 Create contact<img src="../img/check.svg" />
               </button>
             </div>
@@ -112,8 +125,6 @@
         </div>
       </div>
     </div>
-  
-
 
     <div id="editContactOverlay" class="editContactOverlay">
       <div class="editContact">
@@ -131,7 +142,10 @@
           <div class="userIconDiv" id="editUserIconDiv">
             <img src="../img/empty-user-icon.svg" alt="empty-user-icon" />
           </div>
-          <form class="contactEditForm" onsubmit="saveEditedContact(); return false;">
+          <form
+            class="contactEditForm"
+            onsubmit="saveEditedContact(); return false;"
+          >
             <div class="contactNameDiv">
               <input
                 type="text"
@@ -189,10 +203,18 @@
               </div>
             </div>
             <div class="editContactButtonDiv">
-              <button type="button" class="deleteButton" onclick="deleteContact()">
+              <button
+                type="button"
+                class="deleteButton"
+                onclick="deleteContact()"
+              >
                 Delete
               </button>
-              <button type="submit" id="saveContactButton" class="saveContactButton">
+              <button
+                type="submit"
+                id="saveContactButton"
+                class="saveContactButton"
+              >
                 Save<img src="../img/check.svg" />
               </button>
             </div>
@@ -200,9 +222,8 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-=======
-    <div class="navBarMobile"></div> 
->>>>>>> origin/main
+    <<<<<<< HEAD =======
+    <div class="navBarMobile"></div>
+    >>>>>>> origin/main
   </body>
 </html>
