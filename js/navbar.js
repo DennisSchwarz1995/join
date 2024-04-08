@@ -9,8 +9,7 @@ function navbarHTML() {
     <a href="summary.html">
       <img src="../img/nav-icon.svg" alt="join-sidebar-logo" />
     </a>
-
-    <div class="navBarBoard">
+    <div class="navBarBoard" id="navBarBoard">
       <a class="navBarCategories navBarActive" href="summary.html">
         <div class="navBarMenu">
           <img src="../img/summary-icon.svg" alt="summary-icon" />
@@ -81,12 +80,11 @@ function navbarMobileHTML() {
 }
 
 function setActiveNavItem() {
-  const currentPath = window.location.pathname;
-  const navbarElements = document.querySelectorAll(".navBarActive");
+  let currentPath = window.location.pathname;
+  let navbarElements = document.querySelectorAll(".navBarActive");
 
   navbarElements.forEach((element) => {
-    const href = element.getAttribute("href");
-
+    let href = element.getAttribute("href");
     if (currentPath.includes(href)) {
       element.classList.add("active");
     } else {

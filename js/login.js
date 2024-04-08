@@ -11,8 +11,14 @@ function login() {
   }
 }
 
+function guestLogin() {
+  redirectToSummary();
+  let guest = "guest"
+  localStorage.setItem("userFullName", JSON.stringify(guest));
+}
+
 function findUserNameByEmail(email) {
-  const user = users.find((u) => u.email === email);
+  let user = users.find((u) => u.email === email);
   if (user) {
     localStorage.setItem("userFullName", JSON.stringify(user.name));
     return user.name;
@@ -21,8 +27,8 @@ function findUserNameByEmail(email) {
 }
 
 function redirectToSummary() {
-  const emailInput = document.getElementById("emailInput").value;
-  const userName = findUserNameByEmail(emailInput);
+  let emailInput = document.getElementById("emailInput").value;
+  let userName = findUserNameByEmail(emailInput);
   if (userName) {
     saveUserName(name);
   }
@@ -55,7 +61,7 @@ function checkIfUserExists() {
 }
 
 function resetForm() {
-  const userName = findUserNameByEmail(emailInput.value);
+  let userName = findUserNameByEmail(emailInput.value);
   if (userName) {
     saveUserName(userName);
   }
@@ -81,7 +87,7 @@ function toggleCheckBox() {
 
 function checkValuesForLogin() {
   let button = document.querySelector(".loginButton");
-  const isButtonEnabled = isLoginButtonEnabled();
+  let isButtonEnabled = isLoginButtonEnabled();
 
   if (isButtonEnabled) {
     button.removeAttribute("disabled");
@@ -99,7 +105,7 @@ function isLoginButtonEnabled() {
   let emailInput = document.querySelector(".emailInput");
   let passwordInput = document.querySelector(".passwordInput");
 
-  const isButtonEnabled =
+  let isButtonEnabled =
     emailInput.value.trim() !== "" &&
     passwordInput.value.trim() !== "" &&
     document.querySelectorAll(
@@ -211,9 +217,11 @@ function togglePasswordInputType() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var overlay = document.querySelector(".overlay");
+  let overlay = document.querySelector(".overlay");
 
   overlay.addEventListener("animationend", function () {
     overlay.remove();
   });
 });
+
+
