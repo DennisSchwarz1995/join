@@ -6,6 +6,8 @@
     <script src="../js/storage.js"></script>
     <script src="../js/user.js"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/general_functions.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/login.css" />
@@ -19,7 +21,7 @@
         <div class="logoContainer">
           <img src="../img/join-animation-logo.svg" class="joinLogo" />
         </div>
-        <div class="signUpArea">
+        <div class="signUpArea" id="signUpArea">
           <h4 class="signUpHeader">Not a Join User?</h4>
           <a href="signup.html">
             <button class="signUpButton">Sign up</button>
@@ -92,16 +94,22 @@
               <button type="submit" class="loginButton" id="loginButton">
                 Log in
               </button>
-              <button type="button" class="guestLoginButton">
+              <button type="button" class="guestLoginButton" onclick="guestLogin()">
                 Guest Log in
               </button>
             </div>
           </form>
         </div>
       </div>
+      <div class="signUpAreaForFooter" id="signUpArea">
+        <h4 class="signUpHeader">Not a Join User?</h4>
+        <a href="signup.html">
+          <button class="signUpButton">Sign up</button>
+        </a>
+      </div>
       <div class="footer">
-        <a href="privacy_policy.html" class="footerLink">Privacy Policy</a>
-        <a href="legal_notice.html" class="footerLink">Legal notice</a>
+        <a href="privacy_policy.html" class="footerLink" target="_blank">Privacy Policy</a>
+        <a href="legal_notice.html" class="footerLink" target="_blank">Legal notice</a>
       </div>
     </section>
   </body>

@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/storage.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/sign_up.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/general_functions.js"></script>
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/signup.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
     <link rel="icon" type="image/x-icon" href="../img/join-favicon.svg" />
-    <script src="../js/storage.js"></script>
-    <script src="../js/user.js"></script>
-    <script src="../js/sign_up.js"></script>
     <title>Sign up</title>
   </head>
   <body onload="initSignUp()">
@@ -28,7 +30,7 @@
                   alt="back-arrow-lightblue"
                 />
               </a>
-              <h1 class="signupText">Sign up</h1>
+              <h1>Sign up</h1>
               <div class="alignDiv"></div>
             </div>
             <div class="signUpDivider"></div>
@@ -129,12 +131,11 @@
                     src="../img/checkbox-icon.svg"
                   />
                 </div>
-                <p for="rememberMe" class="privacyPolicy">
+                <p class="privacyPolicy">
                   I accept the
                   <a
                     class="privacyPolicyLink"
-                    target="_blank"
-                    href="privacy_policy.html"
+                    href="privacy_policy.html" target="_blank"
                     >Privacy Policy</a
                   >
                 </p>
@@ -149,8 +150,8 @@
         </div>
       </div>
       <div class="footer">
-        <a href="privacy_policy.html" class="footerLink">Privacy Policy</a>
-        <a href="legal_notice.html" class="footerLink">Legal notice</a>
+        <a href="privacy_policy.html" target="_blank" class="footerLink">Privacy Policy</a>
+        <a href="legal_notice.html"  target="_blank" class="footerLink">Legal notice</a>
       </div>
       <div class="signUpOverlay invisible">You signed up successfully.</div>
     </div>
