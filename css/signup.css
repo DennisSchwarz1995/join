@@ -61,13 +61,9 @@
 
 .signupAreaFullscreenVision {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  margin: 20px;
-  align-content: center; 
-  position: relative;
-  top: 30px;
 }
 
 .signUpForm {
@@ -84,27 +80,6 @@
   gap: 8px;
 }
 
-.checkBox {
-  display: flex;
-  align-items: center;
-  height: 24px;
-}
-
-.checkBoxIconDiv {
-  width: 24px;
-  height: 24px;
-  position: relative;
-  overflow: hidden;
-}
-
-.checkBoxIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-}
 
 .footer {
   display: flex;
@@ -114,8 +89,8 @@
 }
 
 .footerLink {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-16);
   color: var(--text-color-gray);
   margin: 8px;
 }
@@ -164,7 +139,7 @@
   border: 1px solid var(--border-color-gray);
   padding: 12px 45px 12px 21px;
   outline: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   direction: ltr;
   text-align: left;
 }
@@ -186,8 +161,8 @@
 .confirmPasswordInvalidDiv {
   position: absolute;
   color: var(--warning-color-red);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -233,7 +208,7 @@
 .emailInput::placeholder,
 .passwordInput::placeholder,
 .confirmPasswordInput::placeholder {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
   color: var(--border-color-gray);
 }
 
@@ -244,14 +219,20 @@
   border-radius: 8px;
   padding: 15px 24px;
   text-align: center;
-  font-weight: 700;
-  font-size: 21px;
+  font-weight: var(--font-weight-700);
+  font-size: var(--font-size-21);
   transition: ease-in-out 100ms;
 }
 
 .signUpButton:disabled {
   background: var(--main-color-darkblue);
   opacity: 80%;
+}
+
+.signUpButton:hover:not(:disabled) {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .signUpOverlay {
@@ -270,6 +251,7 @@
   transition: right 0.5s;
 }
 
+
 .signUpOverlay.visible {
   animation: slideInOverlay 0.5s forwards;
 }
@@ -280,102 +262,5 @@
   }
   to {
     right: calc(50% - 129px);
-  }
-}
-
-.signUpButton:hover:not(:disabled) {
-  border: 1px solid var(--main-color-lightblue);
-  background: var(--main-color-lightblue);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-
-@media(max-width: 700px) {
-
-  .signUp {
-    height: 100%;
-    width: 100%;
-  }
-
-  .joinLogo {
-    width: 70px;
-    height: 90px;
-    margin-top: 38px;
-    margin-left: 38px;
-  }
-
-  .signupAreaFullscreenVision {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px;
-    align-content: center; 
-    position: relative;
-    top: 30px;
-  }
-
-  .signupArea {
-    padding: 30px 30px;
-    gap: 25px;
-    margin-top: -50px;
-  }
-
-  .signupData {
-    gap: 25px;
-  }
-
-  .signupText{
-    font-size: 47px;
-  }
-
-  .nameInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .emailInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .passwordInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .confirmPasswordInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .footer {
-    margin-bottom: 20px;
-  }
-}
-
-@media(max-width: 400px) {
-  .nameInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
-
-  .emailInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
-
-  .passwordInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
-
-  .confirmPasswordInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
   }
 }

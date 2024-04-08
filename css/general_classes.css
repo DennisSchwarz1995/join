@@ -8,6 +8,30 @@ body {
   width: 100vw;
 }
 
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background-color: #0c2e621f;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #f6f7f8;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #29abe2;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #2a3647;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #2a3647;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -25,11 +49,14 @@ input::-webkit-inner-spin-button {
   --hover-color-blue: #0c2e621f;
   --bg-color-gray: #f6f7f8;
   --bg-color-red: #ff3d00;
+  --bg-color-yellow: #ffa800;
+  --bg-color-green: #7ae229;
   --fill-color-gray: #edf2fa;
   --warning-color-red: #ff8190;
   --active-color-darkblue: #091931;
   --board-text-color-blue: #42526e;
   --board-bg-color-gray: #e7e7e7;
+  --board-progressbar-color-gray: #f4f4f4;
   --board-progressbar-color-blue: #4589ff;
   --bg-gradient: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
   --bg-user-initials-color-lightorange: #ffa35e;
@@ -48,6 +75,24 @@ input::-webkit-inner-spin-button {
   --bg-user-initials-color-green: #c3ff2b;
   --bg-user-initials-color-red: #ff4646;
   --bg-user-initials-color-violet: #462f8a;
+  --task-category-color-technical-task: #3a2b8f;
+  --task-category-color-user-story: #839e0d;
+  --task-category-color-javascript: #f7e018;
+  --task-category-color-html: #e44d26;
+  --task-category-color-css: #264de4;
+  --task-category-color-default: #793520;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-20: 20px;
+  --font-size-21: 21px;
+  --font-size-27: 27px;
+  --font-size-64: 64px;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
 }
 
 h1 {
@@ -71,6 +116,7 @@ h5 {
 }
 
 p,
+ul,
 h1,
 h2,
 h3,
@@ -101,7 +147,9 @@ a {
   height: 100%;
 }
 
-.backArrowDiv:hover {
+.backArrowDiv:hover,
+.closeButtonDiv:hover,
+.closeOverlayButtonDiv:hover {
   background-color: var(--hover-color-blue);
 }
 
@@ -128,7 +176,7 @@ a {
 .urgentButton:hover,
 .mediumButton:hover,
 .lowButton:hover,
-.createButton:hover,
+.createTaskButton:hover:not(:disabled),
 .clearButton:hover,
 .taskBoardAddTaskDiv:hover,
 .addTaskButton:hover,
@@ -146,16 +194,32 @@ a {
 .floatingContactEdit:hover,
 .floatingContactDelete:hover,
 .dropDownArrowDiv:hover,
+.plusIconDiv:hover,
+.editSubtask:hover,
+.deleteSubtask:hover,
+.subtaskSaveIcon:hover,
 .cancelButton:hover,
 .closeButtonDiv:hover,
+.closeOverlayButtonDiv:hover,
 .footerLink:hover,
 .privacyPolicyLink:hover,
 .passwordIconDiv:hover,
 .confirmPasswordIconDiv:hover,
 .createContactButton:hover:not(:disabled),
-.deleteButton, 
-.saveContactButton {
+.deleteButton,
+.saveContactButton:hover:not(:disabled),
+.dropDownContactDiv:hover,
+.dropDownCategoryDiv:hover,
+.calendarDiv:hover,
+.newCategoryIconWrapper:hover,
+.taskCard:hover,
+.taskCardDetailedEdit:hover,
+.taskCardDetailedDelete:hover {
   cursor: pointer;
+}
+
+.d-none {
+  display: none;
 }
 
 .warning {
@@ -172,6 +236,31 @@ a {
 
 .invisible {
   visibility: hidden;
+  height: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.slideIn {
+  right: 0;
+}
+
+.slideOut {
+  right: -200%;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.slideIn {
+  right: 0;
+}
+
+.slideOut {
+  right: -200%;
 }
 
 .summaryHeadlinedivider,
@@ -181,16 +270,191 @@ a {
   height: 60px;
 }
 
+.dropDownContactIcon,
+.userInitialsDiv,
+.taskContact,
+.taskCardDetailedUser {
+  display: flex;
+  height: 42px;
+  width: 42px;
+  border-radius: 45px;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-white);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-400);
+  border: 2px solid var(--text-color-white);
+}
 
-@media (max-width: 1200px) {
- /* .contactHeadlineDivider {
-    display: flex;
-    border: 2px solid var(--main-color-lightblue);
-    width: 60%;
-    height: 0px;
-  }*/
+.checkBox {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
 
-  .backArrowDiv {
-    right: 15px;
+.checkBoxIconDiv {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkBoxIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.contactOverlay,
+.editContactOverlay,
+.addTaskOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.contactOverlay.show,
+.editContactOverlay.show,
+.addTaskOverlay.show {
+  z-index: 99;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.taskOverlayBackground,
+.taskCardOverlayBackground {
+  position: fixed;
+  z-index: 98;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.overlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 98;
+}
+
+.addTaskOverlay {
+  border-radius: 30px;
+  background: var(--text-color-white);
+  padding: 40px;
+  width: 1000px;
+}
+
+.addTaskOverlay > h1 {
+  padding-bottom: 20px;
+}
+
+.addTaskOverlay > .confirmDiv {
+  padding-top: 20px;
+}
+
+.closeOverlayButtonDiv {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  display: flex;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.clearButton:hover img,
+.calendarDiv:hover img,
+.checkBoxIconDiv:hover > .checkBoxIcon.selectedContactCheckBox:hover,
+.editSubtask:hover,
+.deleteSubtask:hover,
+.subtaskSaveIcon:hover,
+.cancelButton:hover > img {
+  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
+    brightness(94%) contrast(89%);
+}
+
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+ul li::before {
+  position: absolute;
+  content: "\2022";
+  color: var(--main-color-lightblue);
+  font-weight: bold;
+  display: inline-block;
+  width: 16px;
+  margin-left: -16px;
+}
+
+.createContactButton:hover:not(:disabled),
+.saveContactButton:hover:not(:disabled),
+.createTaskButton:hover:not(:disabled) {
+  border: 1px solid var(--main-color-lightblue);
+  background: var(--main-color-lightblue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.createContactButton:disabled,
+.saveContactButton:disabled,
+.createTaskButton:disabled {
+  background: var(--main-color-darkblue);
+  opacity: 80%;
+}
+
+.createContactOverlay,
+.createTaskOverlay {
+  position: fixed;
+  top: 50%;
+  right: -100%;
+  transform: translateY(-50%);
+  width: fit-content;
+  padding: 25px;
+  border-radius: 20px;
+  background: var(--main-color-darkblue);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  color: var(--text-color-white);
+  z-index: 99;
+  transition: right 0.3s ease-in-out;
+}
+
+.slideInContactOverlay {
+  right: 40%;
+}
+
+.slideInCreateTaskOverlayAddTask {
+  right: 50%;
+}
+
+.slideInCreateTaskOverlayBoard {
+  right: 38%;
+}
+
+@media (max-width: 800px) {
+
+  .createContactButton:disabled,
+  .saveContactButton:disabled,
+  .createTaskButton:disabled {
+    font-size: 16px;
   }
+
+  .contactOverlay,
+  .editContactOverlay,
+  .addTaskOverlay {
+    top: 45%;
+  }
+
 }

@@ -1,0 +1,195 @@
+.taskCardDetailedView {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  right: -100%;
+  transform: translateY(-50%);
+  transition: right 0.3s ease-in-out;
+  z-index: 99;
+  background-color: var(--text-color-white);
+  border-radius: 30px;
+  padding: 48px 40px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  width: 500px;
+  max-height: 80%;
+}
+
+.taskCardDetailedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: auto;
+}
+
+.taskCardDetailedHeader {
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskCardDetailedView.show {
+  right: 36%;
+}
+
+.taskCardDetailedCategory {
+  border-radius: 8px;
+  padding: 4px 24px;
+  color: var(--text-color-white);
+  width: fit-content;
+}
+
+.taskCardDetailedDescription {
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-20);
+}
+
+.taskCardDetailedDueDate > span,
+.taskCardDetailedPriority > span {
+  color: var(--main-color-darkblue);
+  font-weight: var(--font-weight-400);
+  font-size: var(--font-size-20);
+}
+
+.taskCardDetailedTitle {
+  word-break: break-word;
+}
+
+.taskCardDetailedDueDate,
+.taskCardDetailedPriority {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.taskCardDetailedAssignedContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taskCardDetailedPriorityWrapper,
+.taskCardDetailedUserWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskCardDetailedSubtasks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.taskCardDetailedSubtasksList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskCardDetailedSubtasksList .checkBoxIconDiv:hover > img {
+  filter: none;
+}
+
+.taskCardDetailedDeleteAndEdit {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.taskCardDetailedEdit,
+.taskCardDetailedDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskCardDetailedEdit {
+  width: 62px;
+}
+
+.taskCardDetailedDelete {
+  width: 82px;
+}
+
+.taskCardDetailedEdit > span,
+.taskCardDetailedDelete > span {
+  color: var(--main-color-darkblue);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+}
+
+.taskCardDetailedEditImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-edit-icon-darkblue.svg);
+}
+.taskCardDetailedDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-darkblue.svg);
+}
+
+.taskCardDetailedEdit:hover > span,
+.taskCardDetailedDelete:hover > span {
+  color: var(--main-color-lightblue);
+  font-weight: var(--font-weight-700);
+}
+
+.taskCardDetailedEdit:hover .taskCardDetailedEditImage {
+  background: url(../img/contact-edit-icon-lightblue.svg);
+}
+
+.taskCardDetailedDelete:hover .taskCardDetailedDeleteImage {
+  height: 24px;
+  width: 24px;
+  background: url(../img/contact-delete-icon-lightblue.svg);
+}
+
+.taskCardDetailedDivider {
+  border: 1px solid var(--border-color-gray);
+  height: 22px;
+  width: 1px;
+  border-radius: 30px;
+  background: var(--border-color-gray);
+}
+
+.editTaskForm {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding-right: 12px;
+}
+
+.editTaskConfirmDiv {
+  justify-content: flex-end !important;
+  padding: 20px 18px 0 0;
+}
+
+.dropDownContactsWrapper {
+  position: relative;
+}
+
+.editTaskDropDownContacts {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.editTaskContactInitials {
+  position: inherit !important;
+  padding: 10px 0 10px 0;
+}
+
+.editTaskSubtaskList {
+  max-height: none !important;
+}
+
+.subtaskText {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+  color: var(--main-color-black);
+}

@@ -9,11 +9,15 @@
   background: var(--bg-color-gray);
 }
 
+.addTask h1 {
+  font-size: 46px;
+}
+
 .required::after {
   content: "*";
   color: var(--warning-color-red);
-  font-size: 20px;
-  font-weight: 400;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
 }
 
 .confirmDiv {
@@ -29,6 +33,7 @@
   justify-content: space-between;
   align-self: stretch;
   max-width: 1000px;
+  min-height: 550px;
 }
 
 .taskSelectorLeft {
@@ -57,6 +62,11 @@
   flex-direction: column;
 }
 
+.descriptionDiv,
+.prioDiv {
+  margin-bottom: 16px;
+}
+
 .titleInput {
   padding: 12px 21px;
 }
@@ -64,6 +74,7 @@
 .descriptionTextArea {
   padding: 18px 16px 18px 16px;
   font-family: inherit;
+  resize:none
 }
 
 .contactsSelect {
@@ -72,22 +83,40 @@
 
 .dateInput {
   padding: 12px 16px;
-  display: flex;
   justify-content: space-between;
-  background: url(../img/calendar-icon.svg);
-  background-repeat: no-repeat;
-  background-position: calc(100% - 12px) center;
-  background-size: 32px;
 }
 
-.categorySelect {
+input[type="date"] {
+  position: relative;
+  font-family: inherit;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: #fff;
+  color: inherit;
+  font-size: inherit;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.categorySelect,
+.newCategoryInput {
   justify-content: space-between;
   appearance: none;
   padding: 12px 16px;
 }
 
-select option[value="option1"] {
-  display: none;
+.titleInvalidDiv,
+.dueDateInvalidDiv,
+.categoryInvalidDiv,
+.subtaskInvalidDiv {
+  color: var(--warning-color-red);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-400);
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .dropDownArrow {
@@ -95,45 +124,47 @@ select option[value="option1"] {
   width: 8px;
 }
 
-.dropDownArrowDiv {
+.dropDownArrowDiv,
+.calendarDiv,
+.newCategoryIconDiv,
+.plusIconDiv {
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
+  border-radius: 50%;
+}
+
+.dropDownArrowDiv,
+.calendarDiv,
+.plusIconDiv {
   right: 10px;
   top: 12px;
   height: 24px;
   width: 24px;
-  border-radius: 50%;
 }
 
-.dropDownArrowDiv:hover {
+.newCategoryIconDiv {
+  gap: 4px;
+  right: 10px;
+  top: 12px;
+}
+
+.dropDownArrowDiv:hover,
+.newCategoryIconWrapper:hover,
+.plusIconDiv:hover {
   background-color: var(--hover-color-blue);
 }
 
 .subtaskInput {
-  padding: 12px 16px 12px 16px;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
 }
 
 .divider {
   border: 1px solid var(--border-color-gray);
-  max-height: 433px;
-  margin: 0 20px;
-}
-
-.warningDiv {
-  color: var(--warning-color-red);
-  font-size: 12px;
-}
-
-.warningBorder {
-  border: 1px solid var(--warning-color-red);
-}
-
-.invisible {
-  color: var(--bg-color-gray);
+  max-height: 500px;
 }
 
 .titleInput,
@@ -141,7 +172,8 @@ select option[value="option1"] {
 .contactsSelect,
 .dateInput,
 .categorySelect,
-.subtaskInput {
+.subtaskInput,
+.newCategoryInput {
   display: flex;
   align-items: center;
   align-self: stretch;
@@ -149,17 +181,23 @@ select option[value="option1"] {
   border-radius: 10px;
   outline: none;
   gap: 10px;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   background-color: var(--text-color-white);
 }
 
-.contactsSelectDiv {
+.contactsSelectDiv,
+.categorySelectDiv,
+.dateSelectDiv,
+.subtaskInputDiv {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-self: stretch;
-  width: 100%;
+}
+
+.contactsSelect::placeholder,
+.categorySelect::placeholder {
+  color: var(--main-color-black);
 }
 
 .prioButtonsDiv {
@@ -180,7 +218,7 @@ select option[value="option1"] {
   border: 1px solid var(--border-color-gray);
   box-shadow: 0 0 4px 0 rgb(0 0 0 / 0.1);
   background: #fff;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   width: 33%;
 }
 
@@ -191,7 +229,7 @@ select option[value="option1"] {
 }
 
 label {
-  font-size: 20px;
+  font-size: var(--font-size-20);
   color: var(--main-color-darkblue);
   margin-bottom: 8px;
 }
@@ -203,11 +241,10 @@ label {
 .clearAndCreateButtonDiv {
   display: flex;
   gap: 16px;
-  margin-right: 20px;
 }
 
 .clearButton,
-.createButton {
+.createTaskButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,7 +252,7 @@ label {
   padding: 16px;
   border-radius: 10px;
   border: 1px solid var(--main-color-darkblue);
-  font-size: 20px;
+  font-size: var(--font-size-20);
   transition: ease-in-out 100ms;
 }
 
@@ -228,7 +265,7 @@ label {
   transition: ease-in-out 100ms;
 }
 
-.createButton {
+.createTaskButton {
   background: var(--main-color-darkblue);
   color: var(--text-color-white);
 }
@@ -240,22 +277,158 @@ label {
   margin: -1px;
 }
 
-.clearButton:hover img {
-  filter: invert(63%) sepia(34%) saturate(3140%) hue-rotate(165deg)
-    brightness(94%) contrast(89%);
-}
-
-.createButton:hover {
-  border: 1px solid var(--main-color-lightblue);
-  background: var(--main-color-lightblue);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
 input:focus,
 select:focus,
 textarea:focus {
   border: 1px solid var(--main-color-lightblue);
 }
+
+.dropDownContacts,
+.dropDownCategory {
+  display: flex;
+  flex-direction: column;
+  background: var(--text-color-white);
+  max-height: 170px;
+  overflow-y: auto;
+  gap: 4px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.dropDownContactWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropDownContactDiv,
+.dropDownCategoryDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 10px;
+}
+
+.dropDownContactDiv {
+  padding: 4px 10px;
+}
+
+.dropDownCategoryDiv {
+  padding: 10px;
+}
+
+.contactWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropDownCategory {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+.selectedContact,
+.selectedCategory {
+  background: var(--main-color-darkblue);
+  color: var(--text-color-white);
+}
+
+.dropDownContactDiv:not(.selectedContact):hover,
+.dropDownCategoryDiv:not(.selectedCategory):hover {
+  background: var(--main-color-lightblue);
+  color: var(--text-color-white);
+}
+
+.dropDownContactDiv.selectedContact:hover,
+.dropDownCategoryDiv.selectedCategory:hover {
+  background: var(--hover-color-darkblue);
+}
+
+.checkBoxIconDiv:hover > img,
+.selectedContactCheckBox {
+  filter: brightness(0) invert(1);
+}
+
+.contactInitials {
+  display: flex;
+  position: relative;
+  bottom: -8px;
+  height: 42px;
+}
+
+.newCategoryInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.newCategoryIconDivider {
+  border: 1px solid var(--main-color-darkblue);
+  height: 12px;
+}
+
+.newCategoryIconWrapper {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.subtaskList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 90%;
+  gap: 4px;
+  max-height: 70px;
+  overflow-y: auto;
+}
+
+.subtaskLI,
+.subtaskIconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.subtaskLI {
+  position: relative;
+}
+
+.editSubtask,
+.deleteSubtask {
+  height: 20px;
+  width: 20px;
+}
+
+.subtaskEditDiv {
+  display: flex;
+  position: absolute;
+  height: 100%;
+}
+
+.subtaskEditInput {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  border: 1px solid var(--border-color-gray);
+  border-radius: 5px;
+  outline: none;
+  gap: 10px;
+  font-size: var(--font-size-14);
+  background-color: var(--text-color-white);
+  padding: 6px 8px;
+  position: relative;
+}
+
 
 @media (max-width: 1275px) {
   .addTask {
@@ -285,11 +458,15 @@ textarea:focus {
 
   .taskSelector,
   .confirmDiv {
-    margin: 0 20px -30px 20px;
+    margin: 0 20px -85px 20px;
   }
 
   .taskSelectorRight {
-    margin: 0;
+    margin: 0 0 0 20px;
+  }
+
+  .taskSelectorLeft {
+    margin: 0 20px 0 0;
   }
 }
 
@@ -314,7 +491,11 @@ textarea:focus {
   }
 
   .confirmDiv {
-    margin: 10px;
+    padding: 15px 20px;
+    position: sticky;
+    bottom: 80px;
+    background: var(--bg-color-gray);
+    margin: unset;
   }
 
   .taskSelectorRight {
@@ -323,6 +504,10 @@ textarea:focus {
 
   .clearButton {
     display: none;
+  }
+
+  .subtaskDiv {
+    margin-bottom: 100px;
   }
 
 }

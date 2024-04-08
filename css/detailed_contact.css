@@ -12,16 +12,9 @@
   height: 100%;
   z-index: 99;
   background: var(--bg-color-gray);
-  transition: right 0.3s ease-in-out;
+  transition: right 30ms ease-in-out;
 }
 
-.slideIn {
-  right: 0;
-}
-
-.slideOut {
-  right: -200%;
-}
 
 .contactHeadline {
   display: flex;
@@ -31,8 +24,8 @@
 }
 
 .contactHeadlineSpan {
-  font-size: 27px;
-  font-weight: 400;
+  font-size: var(--font-size-27);
+  font-weight: var(--font-weight-400);
   color: var(--main-color-darkblue);
 }
 
@@ -63,7 +56,7 @@
 
 .floatingContactUser h2,
 .floatingContactName h2 {
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
 }
 
 .floatingContactEditAndDelete {
@@ -109,7 +102,7 @@
 .floatingContactEdit:hover,
 .floatingContactDelete:hover {
   color: var(--main-color-lightblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .floatingContactInformation {
@@ -117,7 +110,7 @@
 }
 
 .floatingContactInformation h4 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .floatingContactDetails {
@@ -127,8 +120,8 @@
 }
 
 .floatingContactDetails p {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
 }
 
 .floatingContactEmail,
@@ -140,4 +133,58 @@
 
 .floatingContactEmail a {
   color: var(--main-color-lightblue);
+}
+
+
+@media (max-width: 800px) {
+
+  .contactBoard {
+    width: 100%;
+    min-width: unset;
+    height: 90%;
+    z-index: 0;
+  }
+
+  /*.contactDetailedInfo {
+    display: none;
+  }*/
+
+  .categorySection {
+    width: 100%;
+  }
+
+  .contactList {
+    display: block;
+    padding: 0 20px 32px 20px;
+  }
+
+  .contactMailSpan {
+    max-width: 200px;
+  }
+
+  .contactDividerDiv {
+    align-items: normal;
+  }
+
+  .addContact,
+  .editContact {
+    max-width: 380px;
+    height: 700px;
+  }
+
+  .closeButtonDiv {
+    right: 29px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+
+  .userIconDiv {
+    margin: 0px;
+    z-index: 1;
+    margin-top: -85px;
+  }
 }

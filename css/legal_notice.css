@@ -34,7 +34,7 @@
 
 .legalNoticeSection a:hover {
   color: var(--main-color-darkblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 ul {
@@ -62,6 +62,11 @@ ul li::before {
   .legalNoticeHeadline {
     align-items: baseline;
   }
+
+  .legalNoticeHeadline h1{
+    font-size: 46px;
+  }
+
 
   .backArrowDiv {
     right: 15px;

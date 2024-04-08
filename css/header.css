@@ -1,12 +1,15 @@
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px 20px 348px;
   background: var(--text-color-white);
-  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1); 
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1);
 }
 
 .logoMobile {
@@ -20,7 +23,7 @@
 }
 
 h4 {
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .popupMenu {
@@ -32,7 +35,7 @@ h4 {
   padding: 10px;
   background: var(--main-color-darkblue);
   border-radius: 20px 0 20px 20px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .popupMenu a {
@@ -64,7 +67,7 @@ h4 {
   width: 48px;
   color: var(--main-color-lightblue);
   box-sizing: border-box;
-  font-weight: 700;
+  font-weight: var(--font-weight-700)
 }
 
 .helpIcon:hover {

@@ -86,7 +86,7 @@
   padding: 15px 16px;
   text-align: center;
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--font-size-16);
   transition: ease-in-out 100ms;
 }
 
@@ -98,20 +98,15 @@
 
 .signUpHeader {
   font-weight: 400;
-  font-size: 20px;
+  size: 20px;
 }
 
 .loginAreaFullScreenVision {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  margin: 20px;
-  align-content: center; 
-  position: relative;
-  top: 30px;
 }
-
 
 .loginArea {
   display: flex;
@@ -134,7 +129,6 @@
 
 .loginText {
   font-weight: 700;
-  font-size: 61px;
   text-align: center;
 }
 
@@ -193,7 +187,7 @@
   background-repeat: no-repeat;
   background-position: right 5% center;
   outline: none;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   direction: ltr;
   text-align: left;
 }
@@ -213,7 +207,7 @@
 .passwordInvalidDiv {
   position: absolute;
   color: var(--warning-color-red);
-  font-size: 13px;
+  font-size: var(--font-size-13);
   font-weight: 400;
   display: flex;
   justify-content: flex-start;
@@ -252,7 +246,7 @@
 
 .rememberMe {
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--font-size-16);
 }
 
 .loginButton {
@@ -270,7 +264,7 @@
   border-radius: 8px;
   padding: 15px 24px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: var(--font-size-20);
   transition: ease-in-out 100ms;
 }
 
@@ -314,7 +308,7 @@
 
 .footerLink {
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--font-size-16);
   color: var(--text-color-gray);
   margin: 8px;
 }
@@ -324,128 +318,63 @@
   transform: scale(1.15);
 }
 
-@media (max-width: 700px) {
-
-  .login {
-    height: 100%;
-    width: 100%;
+.signUpAreaForFooter{ 
+  display: none;
+}
+@media(max-width: 1000px){
+  .loginArea{ 
+    max-width: 277px;
   }
 
-  .signUpArea {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
-    gap: 35px;
-    white-space: nowrap;
-    margin-right: 40px;
-    bottom: 100px;
-    position: absolute;
-    width: 100%;
+  .emailInput{ 
+    min-width: 320px;
+   
   }
-
-  .joinLogo {
-    object-fit: contain;
-    object-position: center;
-    animation: logoAnimation 1.5s ease-out forwards;
+  .passwordInput{ 
+    min-width: 320px;
   }
-  
-  @keyframes logoAnimation {
-    0% {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30vw;
-      height: 30vh;
-      z-index: 100;
-    }
-    100% {
-      position: absolute;
-      top: 38px;
-      left: 38px;
-      transform: translate(0, 0);
-      width: 70px;
-      height: 90px;
-    }
-  }
-
-  .loginAreaFullScreenVision {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px;
-    align-content: center; 
-    position: relative;
-    top: 30px;
-  }
-  
-  .loginArea {
-    padding: 30px 30px;
-    gap: 25px;
-  }
-
-  .loginText {
-    font-size: 47px;
-  }
-
-  .loginData {
-    gap: 20px;
-  }
-
-  .emailInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .passwordInput {
-    min-width: 270px;
-    padding: 10px 21px;
-  }
-
-  .checkBox {
-    display: block;
-    width: calc(100% - 50px);
-  }
-
-  .buttonArea {
-    gap: 15px;
-    flex-direction: column;
-  }
-
-  .loginButton {
-    font-size: 16px;
-    height: 50px;
-  }
-
-  .guestLoginButton {
-    font-size: 16px;
-    height: 50px;
-  }
-
-  .signUpButton {
-    padding: 16px 20px;
-  }
-
-  .footer {
-    margin-bottom: 20px;
-  }
-
 }
 
-@media (max-width: 400px) {
-
-  .emailInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
-
-  .passwordInput {
-    min-width: 250px;
-    padding: 7px 10px;
-    border-radius: 5px;
-  }
+@media (max-width: 768px) {
+.joinLogo{
+  max-height: 64px;
+  max-width: 78px;
 }
+.loginArea{
+  max-width: 130px;
+}
+.emailInput{ 
+  min-width: 0;
+  max-width: 222px;
+}
+.passwordInput{ 
+  min-width: 0;
+  max-width: 222px;
+}
+.buttonArea{ 
+  flex-direction: column;
+}
+.loginText{
+  font-size: 47px;
+}
+
+.loginAreaFullScreenVision{
+  margin-top: -25px;
+}
+.signUpArea{ 
+  display: none;
+}
+.signUpAreaForFooter{
+  display: flex;
+ align-items: center;
+justify-content: space-around;
+}
+.header{
+  padding-bottom: 90px;
+}
+
+.footer{
+  margin-bottom: 2px;
+}
+}
+

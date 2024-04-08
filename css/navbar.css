@@ -10,7 +10,7 @@
   z-index: 4;
   background: var(--main-color-darkblue);
   padding: 64px 0;
-  font-weight: 400;
+  font-weight: var(--font-weight-400);
 }
 
 .navBarMobile {
@@ -25,7 +25,7 @@
 .privacy:hover,
 .legal:hover {
   color: var(--main-color-lightblue);
-  font-weight: 700;
+  font-weight: var(--font-weight-700);
 }
 
 .navBarCategories:active,
@@ -57,8 +57,8 @@ a {
 }
 
 .navBarCategories h5 {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
 }
 
 
@@ -125,5 +125,3 @@ a {
   }
 
 }
-
-
