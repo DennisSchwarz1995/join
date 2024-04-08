@@ -36,65 +36,69 @@
               id="searchTaskInput"
               onkeyup="generateTasks()"
             />
+            <div class="searchTaskImageDiv">
+              <img src="../img/task-search-divider.svg" alt="task-search-divider">
+              <div class="searchTaskLensIconDiv">
+                <img src="../img/lens-icon.svg" alt="lens-icon">
+              </div>
+            </div>
           </div>
           <button class="addTaskButton" onclick="openAddTaskOverlay(false)">
-            Add Task <img src="../img/add-icon.svg" alt="add-icon" />
+           <span>Add Task</span>  <img src="../img/add-icon.svg" alt="add-icon" />
           </button>
         </div>
       </div>
       <div class="taskBoard">
-        <section class="boardCategories">
-          <div class="boardCategory">
-            <span>To do</span>
-            <div
-              class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('to do', false)"
-            >
-              <img
-                src="../img/board-add-task-icon.svg"
-                alt="board-add-task-icon"
-              />
-            </div>
-          </div>
-          <div class="boardCategory">
-            <span>Await feedback</span>
-            <div
-              class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('await feedback', false)"
-            >
-              <img
-                src="../img/board-add-task-icon.svg"
-                alt="board-add-task-icon"
-              />
-            </div>
-          </div>
-          <div class="boardCategory">
-            <span>In progress</span>
-            <div
-              class="taskBoardAddTaskDiv"
-              onclick="openAddTaskOverlay('in progress', false)"
-            >
-              <img
-                src="../img/board-add-task-icon.svg"
-                alt="board-add-task-icon"
-              />
-            </div>
-          </div>
-          <div class="boardCategory">
-            <span>Done</span>
-          </div>
-        </section>
         <main class="taskLists">
           <section class="toDoTasks">
+            <div class="boardCategory">
+              <span>To do</span>
+              <div
+                class="taskBoardAddTaskDiv"
+                onclick="openAddTaskOverlay('to do', false)"
+              >
+                <img
+                  src="../img/board-add-task-icon.svg"
+                  alt="board-add-task-icon"
+                />
+              </div>
+            </div>
             <div class="toDoTaskList"></div>
           </section>
           <section class="awaitFeedbackTasks">
+            <div class="boardCategory">
+              <span>Await feedback</span>
+              <div
+                class="taskBoardAddTaskDiv"
+                onclick="openAddTaskOverlay('await feedback', false)"
+              >
+                <img
+                  src="../img/board-add-task-icon.svg"
+                  alt="board-add-task-icon"
+                />
+              </div>
+            </div>
             <div class="awaitFeedbackTaskList"></div>
           </section>
           <section class="inProgressTasks">
+            <div class="boardCategory">
+              <span>In progress</span>
+              <div
+                class="taskBoardAddTaskDiv"
+                onclick="openAddTaskOverlay('in progress', false)"
+              >
+                <img
+                  src="../img/board-add-task-icon.svg"
+                  alt="board-add-task-icon"
+                />
+              </div>
+            </div>
             <div class="inProgressTaskList"></div>
           </section>
           <section class="doneTasks">
+            <div class="boardCategory">
+              <span>Done</span>
+            </div>
             <div class="doneTaskList"></div>
           </section>
         </main>

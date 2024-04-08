@@ -483,7 +483,6 @@ function highlightSelectedContact(index) {
 }
 
 function showContactDetails(index) {
-  checkIfMobileDevice(); 
   let contact = contacts[index];
   let detailedView = document.querySelector(".detailedView");
   if (isDetailViewOpen) {
@@ -527,35 +526,7 @@ function fillEditFormInputs() {
     userIconDiv.innerHTML = `<h2>${getInitials(contact.name)}</h2>`;
   }
 }
-function checkIfMobileDevice(){
-    if( window.screen.width < 1024){ 
-      let elementToShow = document.getElementById("contactDetailedInfo"); 
-      let elementToHide = document.getElementById("contactBoard"); 
-      let justifyElement = document.getElementById("contacts"); 
-      let backImage = document.getElementById("contactsBackImage"); 
-      justifyElement.style.justifyContent = "center"; 
-      elementToHide.style.display = "none";
-      elementToShow.style.display = "flex"; 
-      backImage.style.display ="flex"
-      justifyElement.style.overflow = "hidden"
-    }else{
-      let elementToShow = document.getElementById("contactDetailedInfo");
-      let elementToHide = document.getElementById("contactBoard");
-      let justifyElement = document.getElementById("contacts");
-      let backImage = document.getElementById("contactsBackImage"); 
-      justifyElement.style.justifyContent = ""; 
-      elementToHide.style.display = ""; 
-      elementToShow.style.display = ""; 
-      backImage.style.display =""; 
-      justifyElement.style.overflow = "";   
-    }
-}; 
 
-function backToPageStart(){
-window.location.href ="contacts.html"
-}
-
-window.addEventListener("resize", checkIfMobileDevice);
 
 function getSelectedContactIndex() {
   let contactCards = document.querySelectorAll(".contactCard");
@@ -733,3 +704,34 @@ async function deleteContact() {
     isDetailViewOpen = false;
   }
 }
+
+/*
+function checkIfMobileDevice(){
+  if( window.screen.width < 1024){ 
+    let elementToShow = document.getElementById("contactDetailedInfo"); 
+    let elementToHide = document.getElementById("contactBoard"); 
+    let justifyElement = document.getElementById("contacts"); 
+    let backImage = document.getElementById("contactsBackImage"); 
+    justifyElement.style.justifyContent = "center"; 
+    elementToHide.style.display = "none";
+    elementToShow.style.display = "flex"; 
+    backImage.style.display ="flex"
+    justifyElement.style.overflow = "hidden"
+  }else{
+    let elementToShow = document.getElementById("contactDetailedInfo");
+    let elementToHide = document.getElementById("contactBoard");
+    let justifyElement = document.getElementById("contacts");
+    let backImage = document.getElementById("contactsBackImage"); 
+    justifyElement.style.justifyContent = ""; 
+    elementToHide.style.display = ""; 
+    elementToShow.style.display = ""; 
+    backImage.style.display =""; 
+    justifyElement.style.overflow = "";   
+  }
+}; 
+
+function backToPageStart(){
+window.location.href ="contacts.html"
+}
+
+window.addEventListener("resize", checkIfMobileDevice); */

@@ -4,10 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 110px;
+  padding: 0 0 0 100px;
   background: var(--bg-color-gray);
-  gap: 40px;
-  width: 100%;
+  overflow: auto;
 }
 
 .boardHeadline {
@@ -15,19 +14,29 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  padding-top: 40px;
+  padding: 40px 0 20px 0;
   align-self: stretch;
-  width: 95%;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: var(--bg-color-gray);
+  z-index: 99;
 }
 
 .boardHeadlineMobile {
   display: none;
 }
 
-.addTaskButton,
-.searchTaskInput {
+.addTaskButton {
   display: flex;
   padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchTaskInput {
+  display: flex;
+  padding: 8px 60px 8px 16px;
   justify-content: center;
   align-items: center;
 }
@@ -36,6 +45,10 @@
 .searchTask {
   display: flex;
   gap: 32px;
+}
+
+.searchTask {
+  position: relative;
 }
 
 .addTaskButton {
@@ -47,7 +60,6 @@
   font-weight: var(--font-weight-700);
   color: var(--text-color-white);
   transition: all 100ms ease-in-out 0s;
-  margin-right: 10px;
 }
 
 .addTaskButton:hover {
@@ -60,14 +72,32 @@
   outline: none;
   border: 1px solid var(--text-color-gray);
   border-radius: 10px;
-  background-image: url(../img/task-search-divider.svg),
-    url(../img/lens-icon.svg);
-  background-repeat: no-repeat, no-repeat;
-  background-position: center right 50px, center right 10px;
-  stroke-width: 1px;
-  stroke: var(--bg-color-gray);
-  min-width: 312px;
   font-size: var(--font-size-20);
+  direction: ltr;
+  text-align: left;
+}
+
+.searchTaskImageDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  height: 24px;
+  width: 24px;
+  gap: 8px;
+}
+
+.searchTaskLensIconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.searchTaskLensIconDiv:hover {
+  background-color: var(--hover-color-blue);
 }
 
 .taskBoard {
@@ -82,18 +112,16 @@
   justify-content: space-between;
   max-width: 1200px;
   align-self: stretch;
-  overflow-y: auto;
-  height: calc(620px - 20px);
-  padding-right: 12px;
+  overflow: hidden;
 }
 
 .boardCategory {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
+  position: fixed;
   z-index: 1;
+  padding-bottom: 12px;
   background-color: var(--bg-color-gray);
   width: 252px;
 }
@@ -165,6 +193,7 @@
   flex-direction: column;
   gap: 20px;
   height: 100%;
+  margin-top: 40px;
 }
 
 .taskCard {
@@ -177,7 +206,7 @@
   border-radius: 24px;
   gap: 24px;
   background: var(--text-color-white);
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.04);
   max-width: 252px;
   margin-bottom: 20px;
 }
@@ -294,38 +323,62 @@
   background: var(--text-color-white);
 }
 
-.boardCategories {
-  display: flex;
-  width: calc(100% - 18px);
-  align-self: stretch;
-  justify-content: space-between;
-}
 
-
-
-@media (max-width: 1600px) {
-  .board {
-    inset: 106px 0px 0px 160px;
-  }
-
+@media (max-width: 1500px) {
   .taskBoard,
   .boardHeadline {
-    flex-wrap: wrap;
+    max-width: 800px;
   }
 
-  .taskBoard {
-    gap: 30px;
-    justify-content: flex-start;
-    padding: 40px 0;
+
+  .taskLists {
+    flex-direction: column;
   }
 
+  .taskCard {
+    box-sizing: border-box;
+    min-width: 252px;
+  }
+
+  .toDoTaskList,
+  .inProgressTaskList,
+  .awaitFeedbackTaskList,
+  .doneTaskList {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .boardCategory {
+    position: inherit;
+  }
+
+  .noTasksDiv {
+    min-width: 252px;
+    margin-bottom: 20px;
+  }
+
+  .toDoTasks,
+  .inProgressTasks,
+  .awaitFeedbackTasks,
+  .doneTasks {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .taskBoard,
+  .boardHeadline {
+    max-width: 700px;
+  }
   .boardHeadline h1 {
-    padding-bottom: 15px;
+    font-size: var(--font-size-41);
+  }
+  .addTaskButton span {
+    display: none;
   }
 }
 
 @media (max-width: 1000px) {
-
   .board {
     position: fixed;
     left: 0;
@@ -334,149 +387,75 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     background: var(--bg-color-gray);
     padding: 20px 15px;
     justify-content: flex-start;
-}
-
-  .taskBoard {
-    height: unset;
   }
 
   .boardHeadline {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .taskCards {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    overflow-x: scroll;
-  }
-
-  .taskCards::-webkit-scrollbar {
-      width: 0;
-  }
-
-
-}
-
-@media (max-width: 768px) {
-  .searchTaskAndAddTask,
-  .searchTask {
-    gap: 15px;
-    margin-right: 40px;
-  }
-
-  .searchTaskInput {
-    min-width: 230px;
-  }
-
-  .slot{ 
-    display: block;
-  }
-
-
-  .taskCard {
-    min-width: 200px;
-    max-width: unset;
-    margin-top: 15px;
-  }
-
-  .taskBoard {
-    padding-top: 50px;
-    width: 95%;
-  }
-
-  .addTaskButton {
-    display: none;
-  }
-
-  .boardHeadline {
-    display: none;
-  }
-
-  .boardHeadlineMobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .headerButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .headerButton h1 {
-    font-size: 46px;
-  }
-
-  .searchTaskMobile {
-    width: 95%;
-    display: flex;
-    gap: 32px;
-    margin: 20px 40px 10px 0;
-  }
-
-  .searchTaskInputMobile {
-    width: 95%;
-    display: flex;
-    padding: 8px 16px;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: 1px solid var(--text-color-gray);
-    border-radius: 10px;
-    background-image: url(../img/task-search-divider.svg),
-      url(../img/lens-icon.svg);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center right 50px, center right 10px;
-    stroke-width: 1px;
-    stroke: var(--bg-color-gray);
-    font-size: 20px;
-  }
-
-  .addTaskButtonMobile {
-    display: flex;
-    width: 45px;
-    height: 45px;
-    background: var(--main-color-darkblue);
-    border: 1px solid var(--main-color-darkblue);
-    border-radius: 10px;
-    color: var(--text-color-white);
-    transition: ease-in-out 100ms;
-    justify-content: center;
-    align-items: center;
-    margin-right: 40px;
-  }
-  .addTaskButtonMobile img{
-    width: 40px;
-    height: 40px;
-  }
-
-  .boardHeadline h1 {
     padding: 0;
   }
 
-  .toDoTaskList,
-  .inProgressTaskList,
-  .awaitFeedbackTaskList,
-  .doneTaskList {
-    width: 95%;
-    flex-direction: row;
+.toDoTaskList,
+.inProgressTaskList,
+.awaitFeedbackTaskList,
+.doneTaskList {
+  margin-top: 0;
+}
+}
+
+
+
+@media (max-width: 768px) {
+  .taskBoard,
+  .boardHeadline {
+    max-width: 80vw;
+  }
+  .searchTaskInput {
+    min-width: 80px;
+  }
+  .searchTaskAndAddTask {
+    gap: 16px;
   }
 
-  .taskBoardAddTaskDiv {
-    margin-right: 10px;
+  .boardHeadline {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .boardHeadline h1 {
+    display: none;
   }
 }
 
-@media (max-width: 450px) {
-  .searchTaskMobile {
-    width: 90%;
+@media (max-width: 576px) {
+  .searchTaskAndAddTask {
+    overflow: hidden;
+  }
+  .searchTaskInput {
+    width: 150px;
+  }
+
+  .noTasksDiv {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .searchTaskImageDiv {
+    display: none;
+  }
+
+  .searchTaskInput {
+    width: 100px;
+  }
+
+  .searchTaskInput {
+    padding: 8px 16px;
+  }
+  .addTaskButton {
+    margin: 0;
+    width: fit-content;
   }
 }

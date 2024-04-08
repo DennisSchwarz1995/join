@@ -29,7 +29,7 @@ h4 {
 .popupMenu {
   position: fixed;
   display: none;
-  top: 108px;
+  top: 102px;
   right: 40px;
   flex-direction: column;
   padding: 10px;
@@ -96,5 +96,9 @@ h4 {
     display: flex;
     position: absolute;
     left: 50px;
+  }
+
+  .popupMenu {
+    top: 82px;
   }
 }

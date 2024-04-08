@@ -46,7 +46,7 @@
         <div class="taskCardDetailedPriority">
           <span>Priority:</span>
           <div class="taskCardDetailedPriorityWrapper">
-            ${priorityName}<img src="${task.priority}" />
+            ${priorityName}<img src="..${task.priority}" />
           </div>
         </div>
         <div class="taskCardDetailedAssignedContacts">
