@@ -4,6 +4,7 @@ async function initContacts() {
   generateNavbar();
   generateHeader();
   checkValuesForSubmitButton();
+  checkWindowSize(); 
 }
 
 let isContactOverlayOpen = false;
@@ -18,6 +19,17 @@ function generateContacts() {
   } else {
     console.error("Contacts-List not found");
   }
+}
+
+
+function checkWindowSize(){
+  if(isMobileDevice()){ 
+   document.getElementById('contactDetailedInfo').style.display = 'none'
+  }
+}
+
+function isMobileDevice() {
+return window.innerWidth <= 768; 
 }
 
 function openContactOverlay() {
@@ -479,6 +491,7 @@ function highlightSelectedContact(index) {
         showContactDetails(i);
       };
     }
+    checkMobile(); 
   });
 }
 
@@ -497,6 +510,34 @@ function showContactDetails(index) {
     detailedView.classList.add("slideIn");
   }
   isDetailViewOpen = true;
+ 
+}
+
+function checkMobile(){ 
+  if(isMobileDevice()){ 
+    let contactDetailedInfo = document.querySelector('.contactDetailedInfo'); 
+    let contactList = document.querySelector('.contactList'); 
+    let contactButtonDiv = document.querySelector('.contactButtonDiv');
+    let board = document.querySelector('.contactBoard'); 
+    let justiyedContactBoard = document.querySelector('.contacts')
+    if (contactDetailedInfo) {
+      contactDetailedInfo.style.display = 'flex'; 
+    }
+    if (contactList) {
+      contactList.style.display = 'none'; 
+    }
+    if (contactButtonDiv) {
+      contactButtonDiv.style.display = 'none'; 
+    }
+    if(board) {
+      board.style.display = 'none'; 
+
+    }
+    if(justiyedContactBoard){ 
+      justiyedContactBoard.style.justifyContent = 'center'; 
+    }
+  document.getElementsByClassName('contactDetailedInfo').innerHTML += '<img src="../img/x-icon.svg"> '
+  }
 }
 
 function openEditContactOverlay() {
