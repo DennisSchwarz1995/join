@@ -384,17 +384,14 @@
     left: 0;
     top: 83px;
     bottom: 80px;
-    width: 100%;
     display: flex;
     flex-direction: column;
     background: var(--bg-color-gray);
-    padding: 20px 15px;
+    padding-left: 40px;
     justify-content: flex-start;
   }
 
-  .boardHeadline {
-    padding: 0;
-  }
+ 
 
 .toDoTaskList,
 .inProgressTaskList,
