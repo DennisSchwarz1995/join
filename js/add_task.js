@@ -1,4 +1,9 @@
+/**
+ * Loads contacts and tasks, generates navbar and header, 
+ * generates UI components 
+ */
 async function initAddTask() {
+  
   await loadContacts();
   await loadTasks();
   generateNavbar();
@@ -17,11 +22,19 @@ let isShowCreationOverlayOpenFromBoard = false;
 let categories = ["Technical Task", "User Story", "Javascript", "HTML", "CSS"];
 let taskId = 1;
 
+/**
+ * Generates the add task form 
+ * @param {Array} contacts  - List of contacts 
+ */
 function generateAddTask(contacts) {
   contactDropDownList(contacts);
   categoryDropDownList(categories);
 }
 
+/**
+ * Generates contacts dropdown list.
+ * @param {Array} contacts  - List of contacts .
+ */
 function contactDropDownList(contacts) {
   let contactDropDown = "";
   contacts.forEach((contact) => {
@@ -45,6 +58,10 @@ function contactDropDownList(contacts) {
   dropDownContacts.innerHTML = contactDropDown;
 }
 
+/**
+ * Generates category dropdown list.
+ * @param {Array} categories  - List of categories .
+ */
 function categoryDropDownList(categories) {
   let categoryDropdownHTML = "";
   categories.forEach((category) => {
@@ -63,12 +80,21 @@ function categoryDropDownList(categories) {
   });
 }
 
+/**
+ * Generates initials from the names of the contacts 
+ * @param {Array} name 
+ * @returns 
+ */
 function getInitials(name) {
   let names = name.split(" ");
   let initials = names.map((n) => n.charAt(0)).join("");
   return initials.toUpperCase();
 }
 
+/**
+ * Toggles visability of the dropdown menu 
+ * @param {boolean} isCategoryDropdown -Indicates if it's a category Dropdown 
+ */
 function toggleDropdown(isCategoryDropdown) {
   let { selectArrow, selectDropdown } = getDropDownElements(isCategoryDropdown);
   if (isDropdownOpen) {
@@ -85,6 +111,11 @@ function toggleDropdown(isCategoryDropdown) {
   isDropdownOpen = !isDropdownOpen;
 }
 
+/**
+ * Gets Elements related to dropdown
+ * @param {boolean} isCategoryDropdown -Indicates if it's a category Dropdown
+ * @returns {Object} Dropdown Elements 
+ */
 function getDropDownElements(isCategoryDropdown) {
   let selectInput, selectArrow, selectDropdown;
 
@@ -105,6 +136,10 @@ function getDropDownElements(isCategoryDropdown) {
   };
 }
 
+/**
+ * Sets priority of the button 
+ * @param {HTMLElement} clickedButton 
+ */
 function setButtonPrio(clickedButton) {
   let buttons = document.querySelectorAll(
     ".urgentButton, .mediumButton, .lowButton"
@@ -143,17 +178,28 @@ function setButtonPrio(clickedButton) {
   });
 }
 
+/**
+ * Sets medium priority selected
+ */
 function setMediumButtonSelected() {
   let mediumButton = document.querySelector(".mediumButton");
   setButtonPrio(mediumButton);
 }
 
+/**
+ * Opens the Calender 
+ */
 function openCalendar() {
   let dateInput = document.querySelector(".dateInput");
   dateInput.focus();
   dateInput.showPicker();
 }
 
+
+/**
+ * Gets form values for creating a task 
+ * @returns {Object} Form values.  
+ */
 function getAddTaskFormValues() {
   let formValues = {};
   let titleInput = document.querySelector(".titleInput");
@@ -192,12 +238,20 @@ function getAddTaskFormValues() {
   return formValues;
 }
 
+/**
+ * Sets minimum date for date input 
+ */
 function setMinDate() {
   let today = new Date().toISOString().split("T")[0];
   let dateInput = document.querySelector(".dateInput");
   dateInput.setAttribute("min", today);
 }
 
+/**
+ * Toggles contact selection
+ * @param {HTMLElement} contactDiv - Div Element 
+ * @param {string} contactName - Name of the contact 
+ */
 function toggleContactSelection(contactDiv, contactName) {
   let checkBoxIcon = contactDiv.querySelector(".checkBoxIcon");
   let checkBoxIconDiv = contactDiv.querySelector(".checkBoxIconDiv");
@@ -218,6 +272,12 @@ function toggleContactSelection(contactDiv, contactName) {
   }
 }
 
+/**
+ * Finds the index of a contact in the contacts array based on the name 
+ * @param {*} contactName -Name of the contacts
+ * @param {*} contacts - List of contact objects 
+ * @returns Index of the contact
+ */
 function findContactIndexByName(contactName, contacts) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i].name === contactName) {
@@ -227,6 +287,11 @@ function findContactIndexByName(contactName, contacts) {
   return -1;
 }
 
+/**
+ * Creates image of the initals of the contact with html and css elements 
+ * @param {string} contactName - Name of the Contact
+ * @param {Array} contacts - List of contacts 
+ */
 function createInitialsImage(contactName, contacts) {
   let initialsSection = document.querySelector(".contactInitials");
   let initials = getInitials(contactName);
@@ -240,6 +305,10 @@ function createInitialsImage(contactName, contacts) {
   }
 }
 
+/**
+ * Removes initals image for a contact 
+ * @param {string} contactName - Name of the contact 
+ */
 function removeInitialsImage(contactName) {
   let initialsSection = document.querySelector(".contactInitials");
   let initialsIcons = initialsSection.querySelectorAll(".dropDownContactIcon");
@@ -251,6 +320,10 @@ function removeInitialsImage(contactName) {
   });
 }
 
+/**
+ * Selects task category
+ * @param {HTMLElement} selectedCategoryDiv 
+ */
 function selectTaskCategory(selectedCategoryDiv) {
   let categoryInput = document.querySelector(".categorySelect");
   let newCategoryInput = document.querySelector(".newCategoryInput");
@@ -272,6 +345,12 @@ function selectTaskCategory(selectedCategoryDiv) {
   });
 }
 
+/**
+ * Changes input field to create a new category 
+ * @param {HTMLElement} categoryInput 
+ * @param {HTMLElement} newCategoryInput 
+ * @param {HTMLElement} newCategoryIconDiv 
+ */
 function changeInputField(categoryInput, newCategoryInput, newCategoryIconDiv) {
   categoryInput.classList.add("invisible");
   newCategoryInput.classList.remove("invisible");
@@ -282,6 +361,13 @@ function changeInputField(categoryInput, newCategoryInput, newCategoryIconDiv) {
   toggleDropdown(true);
 }
 
+/**
+ * Highlights selected task category
+ * @param {HTMLElement} categoryInput - Category input.
+ * @param {HTMLElement} categoryDiv - Selected category div.
+ * @param {NodeList} dropDownCategoryDivs - Category dropdown divs.
+ * @param {HTMLElement} newCategoryInput - New category input.
+ */
 function highlightSelectedTask(
   categoryInput,
   categoryDiv,
@@ -298,6 +384,9 @@ function highlightSelectedTask(
   categoryInput.classList.remove("invisible");
 }
 
+/**
+ * Changes input to default 
+ */
 function changeInputToDefault() {
   let newCategoryInput = document.querySelector(".newCategoryInput");
   let categoryInput = document.querySelector(".categorySelect");
@@ -316,6 +405,9 @@ function changeInputToDefault() {
   newCategoryInput.classList.remove("warning");
 }
 
+/**
+ * Adds a new category to the list of categorys 
+ */
 function addNewCategory() {
   let categoryInput = document.querySelector(".categorySelect");
   let categoryInvalidDiv = document.querySelector(".categoryInvalidDiv");
@@ -336,6 +428,11 @@ function addNewCategory() {
   }
 }
 
+/**
+ * Shows category error message 
+ * @param {HTMLElement} categoryInvalidDiv 
+ * @param {HTMLElement} newCategoryInput 
+ */
 function showCategoryError(categoryInvalidDiv, newCategoryInput) {
   categoryInvalidDiv.textContent =
     "Please enter a category consisting of maximum 16 letters.";
@@ -343,6 +440,9 @@ function showCategoryError(categoryInvalidDiv, newCategoryInput) {
   newCategoryInput.classList.add("warning");
 }
 
+/**
+ * Hides the category error 
+ */
 function hideCategoryError() {
   let categoryInvalidDiv = document.querySelector(".categoryInvalidDiv");
   let newCategoryInput = document.querySelector(".newCategoryInput");
@@ -350,6 +450,13 @@ function hideCategoryError() {
   newCategoryInput.classList.remove("warning");
 }
 
+/**
+ * Adds a new category and highlights it 
+ * @param {string} newCategory -new category to add 
+ * @param {HTMLElement} categoryInput - category input 
+ * @param {HTMLElement} newCategoryInput -new category input 
+ * @param {HTMLElement} newCategoryIconDiv -new category icon html element 
+ */
 function addCategoryAndHighlight(
   newCategory,
   categoryInput,
@@ -378,6 +485,9 @@ function addCategoryAndHighlight(
   });
 }
 
+/**
+ * Creates a subtask 
+ */
 function createSubtask() {
   let subtaskInput = document.querySelector(".subtaskInput");
   let subtaskValue = subtaskInput.value.trim();
@@ -395,11 +505,19 @@ function createSubtask() {
   }
 }
 
+/**
+ * Shows subtask error 
+ * @param {HTMLElement} subtaskInvalidDiv -Error div
+ * @param {HTMLElement} subtaskInput -Subtask input 
+ */
 function showSubtaskError(subtaskInvalidDiv, subtaskInput) {
   subtaskInvalidDiv.classList.remove("invisible");
   subtaskInput.classList.add("warning");
 }
 
+/**
+ * Hides subtask error.
+ */
 function hideSubtaskError() {
   let subtaskInvalidDiv = document.querySelector(".subtaskInvalidDiv");
   let subtaskInput = document.querySelector(".subtaskInput");
@@ -407,6 +525,10 @@ function hideSubtaskError() {
   subtaskInput.classList.remove("warning");
 }
 
+/**
+ * Edits a subtask
+ * @param {number} subtaskIndex 
+ */
 function editSubtask(subtaskIndex) {
   let subtaskLI = document.querySelectorAll(".subtaskLI")[subtaskIndex];
   let subtaskText = subtaskLI.textContent.trim();
@@ -421,6 +543,10 @@ function editSubtask(subtaskIndex) {
   subtaskInput.select();
 }
 
+/**
+ * Saves edited subtask.
+ * @param {number} subtaskIndex - Index of the subtask.
+ */
 function saveEditedSubtask(subtaskIndex) {
   let subtaskLI = document.querySelectorAll(".subtaskLI")[subtaskIndex];
   let subtaskInput = subtaskLI.querySelector(".subtaskEditInput");
@@ -434,6 +560,10 @@ function saveEditedSubtask(subtaskIndex) {
   subtaskIconDiv.classList.remove("invisible");
 }
 
+/**
+ * Deletes a subtask.
+ * @param {number} subtaskIndex - Index of the subtask.
+ */
 function deleteSubtask(subtaskIndex) {
   let subtaskItem = document.querySelector(
     `.subtaskLI[data-index="${subtaskIndex}"]`
@@ -443,6 +573,9 @@ function deleteSubtask(subtaskIndex) {
   }
 }
 
+/**
+ * Checks values to disable or enable the create task button 
+ */
 function checkValuesForCreateTaskButton() {
   let createTaskButton = document.querySelector(".createTaskButton");
   let titleInput = document.querySelector(".titleInput");
@@ -460,6 +593,9 @@ function checkValuesForCreateTaskButton() {
   }
 }
 
+/**
+ * Clears all input fiels and resets selectors to their default state in the fom
+ */
 function clearTaskSelectorForm() {
   clearTaskSelectorInputs();
   clearTaskSelectorButtons();
@@ -470,6 +606,9 @@ function clearTaskSelectorForm() {
   checkValuesForCreateTaskButton();
 }
 
+/**
+ * Clears all input fields in the task selector 
+ */
 function clearTaskSelectorInputs() {
   let inputs = document.querySelectorAll("input");
   let textarea = document.querySelector(".descriptionTextArea");
@@ -479,6 +618,9 @@ function clearTaskSelectorInputs() {
   textarea.value = "";
 }
 
+/**
+ * Deselects all buttons in the task selector form 
+ */
 function clearTaskSelectorButtons() {
   let buttons = document.querySelectorAll("button");
   buttons.forEach((button) => {
@@ -487,6 +629,9 @@ function clearTaskSelectorButtons() {
   setMediumButtonSelected();
 }
 
+/**
+ * Clears all highlighted categorys in the task selector form
+ */
 function clearTaskSelectorHighlights() {
   let categoryInput = document.querySelector(".categorySelect");
   let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
@@ -506,7 +651,9 @@ function clearTaskSelectorHighlights() {
     }
   });
 }
-
+/**
+ * Closes all dropdowns in the task selector form 
+ */
 function clearTaskSelectorDropDowns() {
   let categoryDropdown = document.querySelector(".dropDownCategory");
   let contactDropdown = document.querySelector(".dropDownContacts");
@@ -526,16 +673,27 @@ function clearTaskSelectorDropDowns() {
   }
 }
 
+/**
+ * Clears the list of selected contact images in the task selector form 
+ */
 function clearTaskSelectorUserImages() {
   let contactIcons = document.querySelector(".contactInitials");
   contactIcons.innerHTML = "";
 }
 
+/**
+ * Clears the list of subtasks in the task selector form 
+ */
 function clearTaskSelectorSubtasks() {
   let subtaskList = document.querySelector(".subtaskList");
   subtaskList.innerHTML = "";
 }
 
+/**
+ * Creates a new task based on the form values selected 
+ * @param {boolean} isAddTaskOpenFromBoard 
+ * @param {string} taskCategory 
+ */
 function createTask(isAddTaskOpenFromBoard, taskCategory) {
   let formValues = getAddTaskFormValues();
   let taskData = {
@@ -566,6 +724,10 @@ function createTask(isAddTaskOpenFromBoard, taskCategory) {
   }
 }
 
+/**
+ * Finds the maximum ID of existing tasks and
+ * @returns {number} The next available ID for a new task
+ */
 function getTaskMaxID() {
   let maxID = 0;
   tasks.forEach((task) => {
@@ -576,6 +738,10 @@ function getTaskMaxID() {
   return maxID + 1;
 }
 
+/**
+ * Shows an overlay that shows the task creation status 
+ * @param {boolean} isShowCreationOverlayOpenFromBoard 
+ */
 function showTaskCreationOverlay(isShowCreationOverlayOpenFromBoard) {
   let addTaskOverlay = document.querySelector(".createTaskOverlay");
 
@@ -596,6 +762,11 @@ function showTaskCreationOverlay(isShowCreationOverlayOpenFromBoard) {
   }
 }
 
+/**
+ * Gets the color of a specific task category 
+ * @param {string} category 
+ * @returns the color of the task category 
+ */
 function getCategoryColor(category) {
   let prefix = `var(--task-category-color-`;
   switch (category) {
@@ -614,18 +785,27 @@ function getCategoryColor(category) {
   }
 }
 
+/**
+ * Brings User to the board with a delay 
+ */
 function redirectToBoard() {
   setTimeout(() => {
     window.location.href = "board.html";
   }, 2000);
 }
-
+/**
+ * Processes and saves the new taskdata 
+ * @param {object} taskData 
+ */
 function processTask(taskData) {
   tasks.push(taskData);
   saveTasks();
   clearTaskSelectorForm();
 }
 
+/** 
+ * Updates the board 
+ * */ 
 function updateBoard() {
   closeAddTaskOverlay();
   generateTasks();

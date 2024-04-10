@@ -1,10 +1,13 @@
+/**
+ * Initializes contacts, generating HTML, and seting up UI elements
+ */
 async function initContacts() {
   await loadContacts();
   generateContacts();
   generateNavbar();
   generateHeader();
   checkValuesForSubmitButton();
-  checkWindowSize(); 
+  checkWindowSize();
 }
 
 let isContactOverlayOpen = false;
@@ -12,6 +15,9 @@ let isEditingContact = false;
 let isEditContactOverlayOpen = false;
 let isDetailViewOpen = false;
 
+/**
+ * Generates HTML for the contact list and updates the DOM
+ */
 function generateContacts() {
   let contactsList = document.querySelector(".contacts");
   if (contactsList) {
@@ -21,17 +27,26 @@ function generateContacts() {
   }
 }
 
-
-function checkWindowSize(){
-  if(isMobileDevice()){ 
-   document.getElementById('contactDetailedInfo').style.display = 'none'
+/**
+ * Function to check window size for the mobile version 
+ */
+function checkWindowSize() {
+  if (isMobileDevice()) {
+    document.getElementById('contactDetailedInfo').style.display = 'none'
   }
 }
 
+/**
+ * 
+ * @returns {boolean} - the window size 
+ */
 function isMobileDevice() {
-return window.innerWidth <= 768; 
+  return window.innerWidth <= 768;
 }
 
+/**
+ * Opens the contact overlay for adding a new contact
+ */
 function openContactOverlay() {
   isEditingContact = false;
   let overlay = document.querySelector(".contactOverlay");
@@ -47,13 +62,16 @@ function openContactOverlay() {
   }
 }
 
+/**
+ * Closes the contact overlay 
+ */
 function closeContactOverlay() {
   let overlay = document.querySelector(
     ".contactOverlay.show, .editContactOverlay.show"
   );
   if (overlay) {
     overlay.classList.remove("show");
-    setTimeout(() => {}, 300);
+    setTimeout(() => { }, 300);
     cancelInput();
     hideBackground();
   }
@@ -61,16 +79,25 @@ function closeContactOverlay() {
   isEditContactOverlayOpen = false;
 }
 
+/**
+ * Shows the background for the contact overlay 
+ */
 function showBackground() {
   let background = document.querySelector(".overlayBackground");
   background.classList.remove("invisible");
 }
 
+/**
+ * Hides the background for the overlay 
+ */
 function hideBackground() {
   let background = document.querySelector(".overlayBackground");
   background.classList.add("invisible");
 }
 
+/**
+ * Cancels input for the contact overlay 
+ */
 function cancelInput() {
   let nameInput = document.getElementById("fullname");
   let emailInput = document.getElementById("email");
@@ -92,6 +119,11 @@ function cancelInput() {
   }
 }
 
+/**
+ * Adds a contact to the specified category 
+ * @param {string} category - The category to which the contact will be added
+ * @param {Object} contact - The contact object to be added
+ */
 function addContactToCategory(category, contact) {
   let contactList = document.querySelector(".contactList");
   let existingCategories = getExistingCategories(contactList);
@@ -105,6 +137,12 @@ function addContactToCategory(category, contact) {
   generateContacts();
 }
 
+/**
+ * Adds a contact to an exisisting category 
+ * @param {HTMLElement} contactList 
+ * @param {string} category - the category to which the contact belongs 
+ * @param {Object} contact - the contact to be added 
+ */
 function addContactToExistingCategory(contactList, category, contact) {
   let contactCard = createContactCard(contact);
   let categoryDiv = getCategoryDiv(contactList, category);
@@ -123,6 +161,13 @@ function addContactToExistingCategory(contactList, category, contact) {
   }
 }
 
+/**
+ * Adds a contact to a new category in the contact list
+ * @param {HTMLElement} contactList - The contact list container
+ * @param {string} category - The category to which the contact belongs
+ * @param {Object} contact - The contact object to be added
+ * @param {string[]} existingCategories - Array of existing categories
+ */
 function addContactToNewCategory(
   contactList,
   category,
@@ -148,6 +193,12 @@ function addContactToNewCategory(
   }
 }
 
+/**
+ * 
+ * @param {HTMLElement} contactList 
+ * @param {HTMLElement} categoryDiv 
+ * @returns 
+ */
 function getExistingContactCards(contactList, categoryDiv) {
   return Array.from(
     categoryDiv.parentElement.getElementsByClassName("contactCard")
@@ -275,7 +326,7 @@ function showCreateOverlay() {
     createOverlay.classList.remove("slideInContactOverlay");
     createOverlay.classList.add("slideOut");
   }, 2000);
-}; 
+};
 
 function getCategorySection(category) {
   let existingCategorySection = Array.from(
@@ -491,7 +542,7 @@ function highlightSelectedContact(index) {
         showContactDetails(i);
       };
     }
-    checkMobile(); 
+    checkMobile();
   });
 }
 
@@ -510,33 +561,33 @@ function showContactDetails(index) {
     detailedView.classList.add("slideIn");
   }
   isDetailViewOpen = true;
- 
+
 }
 
-function checkMobile(){ 
-  if(isMobileDevice()){ 
-    let contactDetailedInfo = document.querySelector('.contactDetailedInfo'); 
-    let contactList = document.querySelector('.contactList'); 
+function checkMobile() {
+  if (isMobileDevice()) {
+    let contactDetailedInfo = document.querySelector('.contactDetailedInfo');
+    let contactList = document.querySelector('.contactList');
     let contactButtonDiv = document.querySelector('.contactButtonDiv');
-    let board = document.querySelector('.contactBoard'); 
+    let board = document.querySelector('.contactBoard');
     let justiyedContactBoard = document.querySelector('.contacts')
     if (contactDetailedInfo) {
-      contactDetailedInfo.style.display = 'flex'; 
+      contactDetailedInfo.style.display = 'flex';
     }
     if (contactList) {
-      contactList.style.display = 'none'; 
+      contactList.style.display = 'none';
     }
     if (contactButtonDiv) {
-      contactButtonDiv.style.display = 'none'; 
+      contactButtonDiv.style.display = 'none';
     }
-    if(board) {
-      board.style.display = 'none'; 
+    if (board) {
+      board.style.display = 'none';
 
     }
-    if(justiyedContactBoard){ 
-      justiyedContactBoard.style.justifyContent = 'center'; 
+    if (justiyedContactBoard) {
+      justiyedContactBoard.style.justifyContent = 'center';
     }
-  document.getElementsByClassName('contactDetailedInfo').innerHTML += '<img src="../img/x-icon.svg"> '
+    document.getElementsByClassName('contactDetailedInfo').innerHTML += '<img src="../img/x-icon.svg"> '
   }
 }
 
