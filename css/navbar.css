@@ -86,7 +86,7 @@ a {
   .navBarMobile {
     display: flex;
     width: 100%;
-    background: #2a3647;
+    background: var(--main-color-darkblue);
     position: fixed;
     z-index: 1000;
     bottom: 0;

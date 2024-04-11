@@ -95,7 +95,7 @@ h4 {
   .logoMobile {
     display: flex;
     position: absolute;
-    left: 50px;
+    left: 10px;
   }
 
   .popupMenu {

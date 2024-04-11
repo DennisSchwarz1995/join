@@ -386,7 +386,7 @@ function createSubtask() {
 
   if (subtaskValue !== "") {
     let subtaskIndex = subtaskList.children.length;
-    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="30" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
+    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="16" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
     subtaskList.innerHTML += subtaskListHTML;
     subtaskInput.value = "";
     hideSubtaskError();
@@ -428,11 +428,17 @@ function saveEditedSubtask(subtaskIndex) {
   let subtaskSaveIcon = subtaskLI.querySelector(".subtaskSaveIcon");
   let subtaskTextSpan = subtaskLI.querySelector(".subtaskText");
   let subtaskIconDiv = subtaskLI.querySelector(".subtaskIconDiv");
+  if (editedSubtaskValue === "") {
+    subtaskInput.classList.add("warning");
+    subtaskInput.focus();
+    return;
+  }
   subtaskTextSpan.textContent = editedSubtaskValue;
   subtaskSaveIcon.classList.add("invisible");
   subtaskInput.classList.add("invisible");
   subtaskIconDiv.classList.remove("invisible");
 }
+
 
 function deleteSubtask(subtaskIndex) {
   let subtaskItem = document.querySelector(

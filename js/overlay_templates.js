@@ -23,7 +23,7 @@ function generateAddTaskOverlay(contacts) {
                     maxlength="50"
                     class="descriptionTextArea"
                     id="descriptionTextArea"
-                    placeholder="Enter a Description"
+                    placeholder="Enter a description"
                   ></textarea>
                 </div>
                 <div class="assignedDiv">
@@ -44,8 +44,8 @@ function generateAddTaskOverlay(contacts) {
                       alt="rop-down-arrow"
                     />
                   </div>
+                  <section class="dropDownContacts invisible"></section>
                 </div>
-                <section class="dropDownContacts invisible"></section>
                 <div class="contactInitials"></div>
               </div>
               </section>
@@ -77,7 +77,7 @@ function generateAddTaskOverlay(contacts) {
                   </div>
                 </div>
                 <div class="prioDiv">
-                  <label for="urgentButton" class="prioLabel">Prio</label>
+                  <label class="prioLabel">Prio</label>
                   <div class="prioButtonsDiv">
                     <button
                       type="button"
@@ -85,21 +85,21 @@ function generateAddTaskOverlay(contacts) {
                       id="urgentButton"
                       onclick="setButtonPrio(this)"
                     >
-                      Urgent <img src="../img/urgent-icon.svg" alt="urgent-icon" />
+                      <span>Urgent</span> <img src="../img/urgent-icon.svg" alt="urgent-icon" />
                     </button>
                     <button
                       type="button"
                       class="mediumButton"
                       onclick="setButtonPrio(this)"
                     >
-                      Medium <img src="../img/medium-icon.svg" alt="medium-icon" />
+                    <span>Medium</span> <img src="../img/medium-icon.svg" alt="medium-icon" />
                     </button>
                     <button
                       type="button"
                       class="lowButton"
                       onclick="setButtonPrio(this)"
                     >
-                      Low <img src="../img/low-icon.svg" alt="low-icon" />
+                    <span>Low</span> <img src="../img/low-icon.svg" alt="low-icon" />
                     </button>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ function generateAddTaskOverlay(contacts) {
                   <div class="subtaskInputDiv">
                     <input
                       type="text"
-                      maxlength="30"
+                      maxlength="16"
                       placeholder="Add new subtask"
                       class="subtaskInput"
                       id="subtaskInput"
@@ -175,16 +175,16 @@ function generateAddTaskOverlay(contacts) {
               </div>
             </form>
             <section class="confirmDiv">
-              <div>
+              <div class="requiredInfoDiv">
                 <sup class="required"></sup>
-                This field is required.
+                <span>This field is required.</span>
               </div>
               <div class="clearAndCreateButtonDiv">
                 <button class="clearButton" onclick="clearTaskSelectorForm()">
-                  Clear <img src="../img/x-icon.svg" alt="x-icon"/>
+                 <span>Clear</span> <img src="../img/x-icon.svg" alt="x-icon"/>
                 </button>
                 <button type="submit" form="taskSelector" class="createTaskButton">
-                  Create Task <img src="../img/check-icon.svg" alt="check-icon" />
+                 <span>Create Task</span> <img src="../img/check-icon.svg" alt="check-icon" />
                 </button>
               </div>
             </section>
@@ -229,7 +229,7 @@ function generateAddTaskOverlay(contacts) {
                 maxlength="50"
                 class="descriptionTextArea"
                 id="descriptionTextArea"
-                placeholder="Enter a Description"
+                placeholder="Enter a description"
               >${task.description}</textarea>
             </div>
         <div class="assignedDiv">
@@ -281,7 +281,7 @@ function generateAddTaskOverlay(contacts) {
           <div class="dueDateInvalidDiv invisible">This Field is required.</div>
         </div>
         <div class="prioDiv">
-          <label for="urgentButton" class="prioLabel">Prio</label>
+          <label class="prioLabel">Prio</label>
           <div class="prioButtonsDiv">
             <button
               type="button"
@@ -289,17 +289,17 @@ function generateAddTaskOverlay(contacts) {
               id="urgentButton"
               onclick="setButtonPrio(this)"
             >
-              Urgent <img src="../img/urgent-icon.svg" alt="urgent-icon" />
+              <span>Urgent</span> <img src="../img/urgent-icon.svg" alt="urgent-icon" />
             </button>
             <button
               type="button"
               class="mediumButton"
               onclick="setButtonPrio(this)"
             >
-              Medium <img src="../img/medium-icon.svg" alt="medium-icon" />
+            <span>Medium</span> <img src="../img/medium-icon.svg" alt="medium-icon" />
             </button>
             <button type="button" class="lowButton" onclick="setButtonPrio(this)">
-              Low <img src="../img/low-icon.svg" alt="low-icon" />
+            <span>Low</span> <img src="../img/low-icon.svg" alt="low-icon" />
             </button>
           </div>
         </div>
@@ -356,7 +356,7 @@ function generateAddTaskOverlay(contacts) {
           <div class="subtaskInputDiv">
             <input
               type="text"
-              maxlength="30"
+              maxlength="16"
               placeholder="Add new subtask"
               class="subtaskInput"
               id="subtaskInput"
@@ -373,12 +373,16 @@ function generateAddTaskOverlay(contacts) {
         </div>
       </form>
       <section class="confirmDiv editTaskConfirmDiv">
+      <div class="requiredInfoDiv">
+                <sup class="required"></sup>
+                <span>This field is required.</span>
+              </div>
           <div class="clearAndCreateButtonDiv">
             <button type="button" class="clearButton" onclick="clearTaskSelectorForm()">
-              Clear <img src="../img/x-icon.svg" alt="Clear icon" />
+            <span>Clear</span> <img src="../img/x-icon.svg" alt="Clear icon" />
             </button>
             <button type="submit" form="editTaskForm" class="createTaskButton">
-              Save Changes <img src="../img/check-icon.svg" alt="Save icon" />
+              <span>Save Changes</span> <img src="../img/check-icon.svg" alt="Save icon" />
             </button>
           </div>
         </section>

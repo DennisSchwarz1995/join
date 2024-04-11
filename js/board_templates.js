@@ -4,10 +4,10 @@
     let subtaskListHTML = "";
     subtasks.forEach((subtask, index) => {
       subtaskListHTML += `
-        <li class="subtaskLI" data-index="${index}"> <!-- Verwendung des Index hier -->
+        <li class="subtaskLI" data-index="${index}">
           <span class="subtaskText">${subtask.description}</span>
           <div class="subtaskEditDiv">
-            <input maxlength="30" class="subtaskEditInput invisible"/>
+            <input maxlength="16" class="subtaskEditInput invisible"/>
             <img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${index})">
           </div> 
           <div class="subtaskIconDiv">
@@ -126,9 +126,15 @@
       <div class="taskCard" id="task-${
         taskData.id
       }" draggable="true" onclick="openTaskCardDetailedView(${taskData.id})">
-        <div class="taskCategory" style="background: ${taskData.categoryColor}">${
-      taskData.category
-    }</div>
+      <header class="taskCardHeader">
+        <div class="taskCategory" style="background: ${taskData.categoryColor}">${taskData.category}</div>
+       <div class="taskCardMoveButtonAndPopup">
+          <button class="taskCardMoveButton" id="moveButton-${taskData.id}" onclick="event.stopPropagation(); toggleMobileTaskCardMovePopup(${taskData.id})">
+            <span>Move</span>
+          </button>
+        <div class="taskCardMovePopup invisible" id="taskCardMovePopup-${taskData.id}"></div>
+      </div>
+      </header>
         <div class="taskTitle">${taskData.title}</div>
         <div class="taskDescription">${taskData.description}</div>
         <div class="taskProgressContainer ${progressBarClass}">
@@ -157,3 +163,22 @@
         </div>
     `;
   }
+
+  function toggleMobileTaskCardMovePopup(taskId) {
+    let taskCardMovePopup = document.getElementById(`taskCardMovePopup-${taskId}`);
+    
+    if (taskCardMovePopup.classList.contains("invisible")) {
+      taskCardMovePopup.innerHTML = `
+        <div class="taskCardMovePopupContent">
+          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'to do')">To do</div>
+          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'await feedback')">Await feedback</div>
+          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'in progress')">In progress</div>
+          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'done')">Done</div>
+        </div>
+      `;
+      taskCardMovePopup.classList.remove("invisible");
+    } else {
+      taskCardMovePopup.classList.add("invisible");
+    }
+  }
+  

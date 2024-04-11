@@ -1,12 +1,12 @@
 .taskCardDetailedView {
-  position: fixed;
   display: flex;
   flex-direction: column;
+  position: fixed;
   top: 50%;
-  right: -200%;
-  transform: translateY(-50%);
-  transition: right 0.3s ease-in-out;
-  z-index: 99;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
   background-color: var(--text-color-white);
   border-radius: 30px;
   padding: 48px 40px;
@@ -30,7 +30,8 @@
 }
 
 .taskCardDetailedView.show {
-  right: 36%;
+  z-index: 99;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .taskCardDetailedCategory {
@@ -157,15 +158,20 @@
   background: var(--border-color-gray);
 }
 
+.taskCardDetailedView .clearButton > span,
+.taskCardDetailedView .createTaskButton > span {
+  font-size: 16px;
+}
+
 .editTaskForm {
   display: flex;
   flex-direction: column;
   overflow: auto;
   padding-right: 12px;
+  gap: 12px;
 }
 
 .editTaskConfirmDiv {
-  justify-content: flex-end !important;
   padding: 20px 18px 0 0;
 }
 

@@ -48,7 +48,7 @@
               maxlength="50"
               class="descriptionTextArea"
               id="descriptionTextArea"
-              placeholder="Enter a Description"
+              placeholder="Enter a description"
             ></textarea>
           </div>
           <div class="assignedDiv">
@@ -69,8 +69,8 @@
                   alt="rop-down-arrow"
                 />
               </div>
+              <section class="dropDownContacts invisible"></section>
             </div>
-            <section class="dropDownContacts invisible"></section>
             <div class="contactInitials"></div>
           </div>
         </section>
@@ -102,7 +102,7 @@
             </div>
           </div>
           <div class="prioDiv">
-            <label for="urgentButton" class="prioLabel">Prio</label>
+            <label class="prioLabel">Prio</label>
             <div class="prioButtonsDiv">
               <button
                 type="button"
@@ -200,16 +200,16 @@
         </div>
       </form>
       <section class="confirmDiv">
-        <div>
+        <div class="requiredInfoDiv">
           <sup class="required"></sup>
-          This field is required.
+          <span>This field is required.</span>
         </div>
         <div class="clearAndCreateButtonDiv">
           <button class="clearButton" onclick="clearTaskSelectorForm()">
-            Clear <img src="../img/x-icon.svg" alt="x-icon"/>
+           <span>Clear</span>  <img src="../img/x-icon.svg" alt="x-icon"/>
           </button>
           <button type="submit" form="taskSelector" class="createTaskButton">
-            Create Task <img src="../img/check-icon.svg" alt="check-icon" />
+            <span>Create Task</span> <img src="../img/check-icon.svg" alt="check-icon" />
           </button>
         </div>
       </section>

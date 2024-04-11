@@ -218,6 +218,8 @@
     background: var(--bg-color-gray);
     padding: 0;
     justify-content: flex-start;
+    max-height: calc(100vh - 162px);
+    overflow: auto;
   }
 
   .summaryHeadline {
@@ -229,27 +231,28 @@
   .summaryBoard {
     gap: 14px;
   }
+
+  .toDoDiv, 
+  .doneDiv,
+  .tasksInBoardDiv,
+  .tasksInProgressDiv,
+  .awaitingFeedbackDiv {
+    padding: 20px 10px;
+  }
+
+  .urgentDiv {
+    padding: 22px 0;
+  }
 }
 
-@media (max-width: 730px) {
-  .greetingDiv {
-    display: none;
-  }
-
-  .summaryHeadline {
-    margin-top: 30px;
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
-    margin-bottom: 40px;
-  }
+@media (max-width: 768px) {
 
   .summaryHeadline h1 {
-    font-size: 47px;
+    font-size: var(--font-size-47);
   }
 
   .summaryHeadline span {
-    font-size: 20px;
+    font-size: var(--font-size-20);
   }
 
   .toDoAmountDiv,
@@ -261,8 +264,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 47px;
-    font-weight: 600;
+    font-size: var(--font-size-47);
+    font-weight: var(--font-weight-600);
     color: var(--main-color-black);
   }
 
@@ -283,26 +286,16 @@
 }
 
 @media (max-width: 600px) {
-  .summary {
-    position: fixed;
-    left: 0;
-    top: 82px;
-    bottom: 80px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--bg-color-gray);
-    padding: 0;
-    justify-content: flex-start;
-  }
-
   .summaryBoard {
     flex-direction: column;
     justify-content: center;
     padding: 15px;
     align-items: normal;
     min-width: 350px;
+  }
+
+  .summaryHeadline {
+    gap: 10px
   }
 
   .summaryBoardWrapper {
@@ -325,8 +318,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 35px;
-    font-weight: 600;
+    font-size: var(--font-size-27);
+    font-weight: var(--font-weight-600);
     color: var(--main-color-black);
   }
 
@@ -347,6 +340,11 @@
     height: 55px;
     width: 55px;
     border-radius: 50%;
+  }
+
+  .urgentDivRight p,
+  .urgentDivRight span {
+    font-size: var(--font-size-16);
   }
 }
 
@@ -394,16 +392,18 @@
   }
 
   .urgentDivider {
-    margin: 0 20px;
+    margin: 0 10px;
   }
 
   .summaryBoard span {
     font-size: var(--font-size-16);
   }
 
-  .urgentDeadlineDate {
-    font-size: var(--font-size-16);
+  .urgentDivRight p,
+  .urgentDivRight span {
+    font-size: var(--font-size-12);
   }
+
 }
 
 @media (max-width: 400px) {
