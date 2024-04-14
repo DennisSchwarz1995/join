@@ -1,3 +1,6 @@
+/**
+ * Loads the tasks and contacts and generates UI components
+ */
 async function initBoard() {
   await loadTasks();
   await loadContacts();
@@ -13,6 +16,9 @@ let tasks = [];
 let currentTaskCategory = null;
 let isDetailedViewOpen = false;
 
+/**
+ * Shows tasks on the right place based on their category
+ */
 function generateTasks() {
   let toDoTaskList = document.querySelector(".toDoTaskList");
   let inProgressTaskList = document.querySelector(".inProgressTaskList");
@@ -38,6 +44,9 @@ function generateTasks() {
   addDragAndDropEventListeners();
 }
 
+/**
+ * Checks for empty task lists and generates empty task placeholders
+ */
 function checkAndGenerateEmptyTask() {
   let taskListClasses = [
     "toDoTaskList",
@@ -65,10 +74,20 @@ function checkAndGenerateEmptyTask() {
   });
 }
 
+/**
+ * Formats the category name to have spaces between words
+ * @param {string} categoryName - The name of the category
+ * @returns {string} - The formatted category name
+ */
 function formatCategoryName(categoryName) {
   return categoryName.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
 }
 
+/**
+ * Opens the overlay to add a task 
+ * @param {string} taskCategory -The task category to create a with 
+ * @param {boolean} isDetailedViewOpen  
+ */
 function openAddTaskOverlay(taskCategory, isDetailedViewOpen) {
   let { overlay, background } = getOverlayValues(isDetailedViewOpen);
   if (!isDetailedViewOpen) {
@@ -86,6 +105,10 @@ function openAddTaskOverlay(taskCategory, isDetailedViewOpen) {
   }
 }
 
+/**
+ * closes the overlay to add a task 
+ * @param {boolean} isDetailedViewOpen 
+ */
 function closeAddTaskOverlay(isDetailedViewOpen) {
   let { overlay, background } = getOverlayValues(isDetailedViewOpen);
   if (!isDetailedViewOpen) {
@@ -102,6 +125,11 @@ function closeAddTaskOverlay(isDetailedViewOpen) {
   }
 }
 
+/**
+ * Retrieves the overlay and background elements based on whether detailed view is open
+ * @param {boolean} isDetailedViewOpen - Indicates if the detailed view is open
+ * @returns {object} - Object containing overlay and background elements
+ */
 function getOverlayValues(isDetailedViewOpen) {
   let overlay;
   let background;
@@ -115,14 +143,23 @@ function getOverlayValues(isDetailedViewOpen) {
   return { overlay, background };
 }
 
+/**
+ * @returns the lenght of the tasks array
+ */
 function getTasksLength() {
   return tasks.length;
 };
-
+/**
+ * @param {numer} category 
+ * @returns number of tasks of a category
+ */
 function countTasksByCategory(category) {
   return tasks.filter((task) => task.category === category).length;
 }
 
+/**
+ * Activates eventlisteners for the events of the drag and drop function 
+ *  */ 
 function addDragAndDropEventListeners() {
   let draggables = document.querySelectorAll(".taskCard");
   let dropOffContainers = document.querySelectorAll(
@@ -156,6 +193,10 @@ function addDragAndDropEventListeners() {
   });
 }
 
+/**
+ * Updates the board after using the drag and drop function 
+ * @param {Object} draggedTask 
+ */
 function updateTaskPosition(draggedTask) {
   let taskId = parseInt(draggedTask.id.split("-")[1]);
   let newCategory = getCategoryFromClassList(draggedTask.parentNode.classList);
@@ -168,6 +209,12 @@ function updateTaskPosition(draggedTask) {
   }
 }
 
+/**
+ * Determines the closest draggable element after a given position within a container
+ * @param {HTMLElement} container - The container element containing draggable elements
+ * @param {number} y - The vertical position to find the closest element after
+ * @returns {HTMLElement} - The closest draggable element after the specified position
+ */
 function getDragAfterElement(container, y) {
   let draggableElements = [
     ...container.querySelectorAll(".taskCard:not(.dragging)"),
@@ -186,6 +233,11 @@ function getDragAfterElement(container, y) {
   ).element;
 }
 
+/**
+ * Selects the task category based on the class list of an element
+ * @param {DOMTokenList} classList 
+ * @returns  - The corresponding task category
+ */
 function getCategoryFromClassList(classList) {
   if (classList.contains("toDoTaskList")) {
     return "to do";
@@ -199,6 +251,10 @@ function getCategoryFromClassList(classList) {
   return "to do";
 }
 
+/**
+ * Updates the process of a tasked based on the subtasks that are done 
+ * @param {object} task - The task object containing subtasks
+ */
 function updateTaskProgress(task) {
   let completedSubtasks = task.subtasks.filter(
     (subtask) => subtask.completed
@@ -218,6 +274,11 @@ function updateTaskProgress(task) {
   }
 }
 
+/**
+ * Updates the completion status of a subtask and updates the task progress
+ * @param {string} subtaskId - The ID of the subtask
+ * @param {boolean} isChecked - The new completion status of the subtask
+ */
 function updateSubtaskCompletion(subtaskId, isChecked) {
   let matches = subtaskId.match(/task-(\d+)-subtask-(\d+)/);
   if (!matches) return;
@@ -232,6 +293,10 @@ function updateSubtaskCompletion(subtaskId, isChecked) {
   saveTasks();
 }
 
+/**
+ * Toggles the status of a subtask and updates the progress 
+ * @param {Event} event -The event object 
+ */
 function toggleSubtaskCompletion(event) {
   let checkBoxIcon = event.target;
   let subtaskId = checkBoxIcon.id;
@@ -252,6 +317,11 @@ function toggleSubtaskCompletion(event) {
   }
 }
 
+/**
+ * Checks the lenghts of assinged contacts and generates HTML 
+ * @param {object} taskData - The task data containing assinged contacts
+ * @returns HTML of assinged contacts 
+ */
 function checkAssignedContactLength(taskData) {
   let maxContactsToDisplay = 3;
   let additionalContactsCount =
@@ -282,6 +352,10 @@ function checkAssignedContactLength(taskData) {
   }
 }
 
+/**
+ * Opens a detailed view of a task card
+ * @param {number} taskId - The ID of the task
+ */
 function openTaskCardDetailedView(taskId) {
   let task = tasks.find((task) => task.id === taskId);
   let detailedViewHTML = taskCardDetailedViewTemplate(task);
@@ -291,6 +365,11 @@ function openTaskCardDetailedView(taskId) {
   openAddTaskOverlay("", true);
 }
 
+/**
+ * Formats a date string from "YYYY-MM-DD" format to "MM/DD/YYYY" format
+ * @param {string} dateString - The date string in "YYYY-MM-DD" format
+ * @returns {string} The formatted date string in "MM/DD/YYYY" format
+ */
 function formatDate(dateString) {
   let parts = dateString.split("-");
   let year = parseInt(parts[0]);
@@ -301,6 +380,11 @@ function formatDate(dateString) {
   return formattedDate;
 }
 
+/**
+ * Extracts the prority name from a priority URL 
+ * @param {string} priorityURL the URL of the prority icon image 
+ * @returns The priority name extracted from the URL
+ */
 function getPriorityNameFromURL(priorityURL) {
   let priority = priorityURL.split("/").pop().split("-")[0];
   switch (priority) {
@@ -315,6 +399,10 @@ function getPriorityNameFromURL(priorityURL) {
   }
 }
 
+/**
+ * Opens the overlay for editing a task
+ * @param {number} taskId - The ID of the task to be edited
+ */
 function openEditTaskOverlay(taskId) {
   let task = tasks.find((task) => task.id === taskId);
   if (!task) return;
@@ -326,6 +414,10 @@ function openEditTaskOverlay(taskId) {
   );
 }
 
+/**
+ * Saves the edits made to a task 
+ * @param {number} taskId 
+ */
 function saveTaskEdits(taskId) {
   let taskIndex = tasks.findIndex((task) => task.id === taskId);
   if (taskIndex === -1) return;
@@ -337,6 +429,10 @@ function saveTaskEdits(taskId) {
   openTaskCardDetailedView(taskId);
 }
 
+/**
+ * Generates HTML elements representing assigned contacts and inserts them into the DOM
+ * @param {Array} assignedContacts - An array of objects representing assigned contacts
+ */
 function generateAssignedContacts(assignedContacts) {
   let contactInitialsDiv = document.querySelector(".contactInitials");
   let contactInitialsHTML = "";
@@ -348,6 +444,10 @@ function generateAssignedContacts(assignedContacts) {
   contactInitialsDiv.innerHTML = contactInitialsHTML;
 }
 
+/**
+ * Highlights assigned contacts based on their selection status
+ * @param {Array} assignedContacts - An array of objects representing assigned contacts
+ */
 function highlightAssignedContacts(assignedContacts) {
   let dropDownContactDivs = document.querySelectorAll(".dropDownContactDiv");
   dropDownContactDivs.forEach((div) => {
@@ -368,7 +468,9 @@ function highlightAssignedContacts(assignedContacts) {
     }
   });
 }
-
+/**
+ * Highlight the selected task category in the dropdown 
+ */
 function highlightSelectedTaskCategory() {
   let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
   let selectedCategory = document.querySelector(".categorySelect").value;
@@ -383,6 +485,10 @@ function highlightSelectedTaskCategory() {
   });
 }
 
+/**
+ * Gets the button representing the task priority 
+ * @param {string} priority 
+ */
 function getButtonPrio(priority) {
   let button = null;
   switch (priority) {
@@ -401,6 +507,10 @@ function getButtonPrio(priority) {
   setButtonPrio(button);
 }
 
+/**
+ * Saves edits made to a task
+ * @param {number} taskId - The ID of the task to edit
+ */
 function saveTaskEdits(taskId) {
   let taskIndex = tasks.findIndex((task) => task.id === taskId);
   if (taskIndex === -1) return;
@@ -426,6 +536,10 @@ function saveTaskEdits(taskId) {
   addDragAndDropEventListeners();
 }
 
+/**
+ * Gets the URL of the selected task priority icon
+ * @returns {string} img src  
+ */
 function getUpdatedSelectedTaskPriority() {
   let prioButtons = document.querySelectorAll(
     ".prioButtonsDiv button.selected"
@@ -436,6 +550,10 @@ function getUpdatedSelectedTaskPriority() {
   }
 }
 
+/**
+ * Retrieves updated assigned contacts from the DOM
+ * @returns {Array} An array of objects representing updated assigned contacts
+ */
 function getUpdatedAssignedContacts() {
   return Array.from(document.querySelectorAll(".selectedContact")).map(
     (contact) => {
@@ -450,6 +568,11 @@ function getUpdatedAssignedContacts() {
   );
 }
 
+/**
+ * Retrieves updated subtasks from the DOM.
+ * @param {Array} existingSubtasks - The array of existing subtasks.
+ * @returns {Array} An array of objects representing updated subtasks.
+ */
 function getUpdatedSubtasks(existingSubtasks) {
   let subtaskElements = document.querySelectorAll(".subtaskLI");
   return Array.from(subtaskElements).map((el, index) => {
@@ -466,6 +589,10 @@ function getUpdatedSubtasks(existingSubtasks) {
   });
 }
 
+/**
+ * Filters tasks based on the input value 
+ * @returns matches in the array of tasks and the input value 
+ */
 function getTasksByFilter() {
   let searchInputValue = document
     .querySelector(".searchTaskInput")
@@ -482,6 +609,10 @@ function getTasksByFilter() {
   }
 }
 
+/**
+ * Deletes a task 
+ * @param {number} taskId  - the ID of the tasks to delete 
+ */
 function deleteTask(taskId) {
   let taskIndex = tasks.findIndex((task) => task.id === taskId);
   tasks.splice(taskIndex, 1);

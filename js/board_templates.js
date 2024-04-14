@@ -1,4 +1,7 @@
-
+/**
+ * Generates HTML markup for subtasks in the edit task view
+ * @param {Array} subtasks 
+ */
   function generateSubtasks(subtasks) {
     let subtaskList = document.querySelector(".editTaskSubtaskList");
     let subtaskListHTML = "";
@@ -19,7 +22,11 @@
     });
     subtaskList.innerHTML = subtaskListHTML;
   }
-
+/**
+ * Generates HTML markup for displaying a detailed view of a task 
+ * @param {object} task -The Taks Object
+ * @returns -HTML markup
+ */
   function taskCardDetailedViewTemplate(task) {
     let formattedDueDate = formatDate(task.dueDate);
     let priorityName = getPriorityNameFromURL(task.priority);
@@ -70,6 +77,11 @@
     `;
   }
 
+  /**
+   * Generates HTML markup for displaying subtasks of a task in the detailed view
+   * @param {object} task - The task object
+   * @returns {string} - HTML markup
+   */
   function generateAssignedContactsHTML(task) {
     if (task.assignedContacts && task.assignedContacts.length > 0) {
       return task.assignedContacts
@@ -88,7 +100,12 @@
       return "<div>No contacts assigned</div>";
     }
   }
-
+  
+  /**
+   * Generates HTML markup for displaying subtask of a task
+   * @param {obect} task - The task object  
+   * @returns 
+   */
   function generateDetailedViewSubtasks(task) {
     if (task.subtasks && task.subtasks.length > 0) {
       let subtaskHTML = "";
@@ -113,6 +130,11 @@
     }
   }
 
+  /**
+   * Generates HTML markup for displaying a task card
+   * @param {object} taskData - The taskdata object
+   * @returns 
+   */
   function taskHTML(taskData) {
     let assignedContactsHTML = "";
     if (taskData.assignedContacts) {
@@ -154,6 +176,11 @@
       </div>`;
   }
 
+  /**
+   * Generates HTML markup for a empty placeholder
+   * @param {string} categoryName - The name of the category
+   * @returns - HTML markup
+   */
   function generateEmptyTask(categoryName) {
     return `
         <div class="noTasksDiv" id="emptyTask-${categoryName}">

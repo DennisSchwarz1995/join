@@ -1,5 +1,9 @@
 let contacts = [];
 
+/**
+ * The function generates the HTML for the contact list
+ * @returns {string}
+ */
 function contactsHTML() {
   let contactHTML = `
   <div class="contactBoard" id="contactBoard">
@@ -12,6 +16,8 @@ function contactsHTML() {
     <div class="contactList">`;
   let cardIndex = 0;
   let currentCategory = null;
+  
+  // Iterating over each contact to generate HTML for each contact
   contacts.forEach((contact, index) => {
     let fixedColor = contact.color;
     let category = contact.name.charAt(0).toUpperCase();
@@ -56,6 +62,11 @@ function contactsHTML() {
   return contactHTML;
 }
 
+/**
+ * This function generates the HTML for the detailed view of a contact 
+ * @param {Object} contact - the contact object for wich detailed view HTML is generated
+ * @returns 
+ */
 function contactsDetailHTML(contact) {
   return `
       <div class="floatingContactDiv">
