@@ -1,3 +1,6 @@
+/**
+ * Initializes the summary page 
+ */
 async function initSummary() {
   generateNavbar();
   generateHeader();
@@ -7,6 +10,9 @@ async function initSummary() {
   updateGreetingBasedOnTime();
 }
 
+/**
+ * Displays the user greeting based on stored user full name
+ */
 function displayUserGreeting() {
   let greetingSpan = document.querySelector(".greetingSpan");
   if (greetingSpan) {
@@ -20,6 +26,9 @@ function displayUserGreeting() {
   }
 }
 
+/**
+ * Updates the greeting based on the current time of day
+ */
 function updateGreetingBasedOnTime() {
   let greetingTime = document.querySelector(".greetingTime");
   if (greetingTime) {
@@ -35,6 +44,9 @@ function updateGreetingBasedOnTime() {
   }
 }
 
+/**
+ * Generates the summary section based on task metrics.
+ */
 function generateSummary() {
   let tasksLength = getTasksLength();
   let todoTasksCount = countTasksByCategory("To do");
@@ -49,6 +61,14 @@ function generateSummary() {
   );
 }
 
+/**
+ * Generates HTML for the summary section
+ * @param {*} tasksLength -Total number of tasks 
+ * @param {*} todoTasksCount -Number of tasks in todo category
+ * @param {*} inProgressTasksCount -Number of tasks in in progress category
+ * @param {*} awaitFeedbackTaskCount- Number of tasks in await feedback category
+ * @returns {string} - HTML string for the summary section 
+ */
 function summaryHTML(
   tasksLength,
   todoTasksCount,

@@ -1,15 +1,24 @@
+/**
+ * Generates the HTML header and sets it in the header element
+ * Activates navigation items 
+ */
 function generateHeader() {
   let header = document.querySelector('.header');
   header.innerHTML = headerHTML();
   setActiveNavItem();
   displayUserInitials();
 }
-
+/**
+ * Lougs out the user by cleaning the loacal storage and navigate him to the start site 
+ */
 function logout() {
   localStorage.clear();
   window.location.href = "login.html";
 }
 
+/**
+ * @returns the HTML content for the header
+ */
 function headerHTML() {
   return `
   <img class="logoMobile" src="../img/join-logo-mobile.svg" alt="join-logo">
@@ -30,6 +39,9 @@ function headerHTML() {
 `;
 }
 
+/**
+ * Toggles the display of the popup menu 
+ */
 function togglePopupMenu() {
   let menu = document.querySelector(".popupMenu");
   menu.style.display =
@@ -38,6 +50,9 @@ function togglePopupMenu() {
       : "none";
 }
 
+/**
+ * closes the popup menu when a click event happens outside of the menu 
+ */
 document.addEventListener("click", function (event) {
   let menu = document.querySelector(".popupMenu");
   let userInitialsContainer = document.querySelector(".userInitialsContainer");
@@ -50,6 +65,9 @@ document.addEventListener("click", function (event) {
   }
 });
 
+/**
+ * Displays users initals in the header 
+ */
 function displayUserInitials() {
   let userInitialsContainer = document.querySelector(".userInitials");
   let storedInitials = localStorage.getItem("userInitials");

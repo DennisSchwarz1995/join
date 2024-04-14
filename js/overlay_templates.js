@@ -1,3 +1,7 @@
+/**
+ * Generates the overlay for adding a new task 
+ * @param {Array} contacts - List of contact objects 
+ */
 function generateAddTaskOverlay(contacts) {
     let addTaskOverlay = document.querySelector(".addTaskOverlay");
     let addTaskOverlayHTML = `
@@ -195,7 +199,10 @@ function generateAddTaskOverlay(contacts) {
     categoryDropDownList(categories);
     setMinDate();
   }
-
+/**
+ * Generates the HTML for editing a task 
+ * @param {Object} task -Task object to be edited 
+ */
   function generateEditTaskHTML(task) {
    console.log(task);
     let editTaskOverlay = document.querySelector(".taskCardDetailedView");

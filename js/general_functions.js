@@ -1,3 +1,6 @@
+/**
+ * Initializes the header and navigation template based on users status 
+ */
 function initHeaderAndNavTemplates() {
   let user = localStorage.getItem("userFullName");
   if (
@@ -14,6 +17,9 @@ function initHeaderAndNavTemplates() {
   }
 }
 
+/**
+ * Hides elements in the header and navigation bar to show a limited view 
+ */
 function showLimitedHeaderAndNavbar() {
   let navBarBoard = document.querySelector(".navBarBoard");
   navBarBoard.classList.add("invisible");
@@ -21,6 +27,9 @@ function showLimitedHeaderAndNavbar() {
   headerMenu.classList.add("invisible");
 }
 
+/**
+ * Toggles the checkbox icon between selected and unselected 
+ */
 function toggleCheckBox() {
   let checkBoxIcon = document.querySelector(".checkBoxIcon");
 

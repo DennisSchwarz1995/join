@@ -1,8 +1,14 @@
+/**
+ * Initializes the login process by loading users and checking login values 
+ */
 async function initLogin() {
   await loadUsers();
   checkValuesForLogin();
 }
 
+/**
+ * Logs in the user by checking if he exist and redirceting him to summary or it displays him a user-password mismatch message 
+ */
 function login() {
   if (checkIfUserExists()) {
     redirectToSummary();
@@ -11,12 +17,20 @@ function login() {
   }
 }
 
+/**
+ * Logs user in as a guest 
+ */
 function guestLogin() {
   redirectToSummary();
   let guest = "guest"
   localStorage.setItem("userFullName", JSON.stringify(guest));
 }
 
+/**
+ * Finds the users name by email and stores it in storage 
+ * @param {string} email - email of the user 
+ * @returns {string|null} - name of the user if found, otherwise null 
+ */
 function findUserNameByEmail(email) {
   let user = users.find((u) => u.email === email);
   if (user) {
@@ -26,6 +40,9 @@ function findUserNameByEmail(email) {
   return null;
 }
 
+/**
+ * Redirects the user to the summars page after setting users name in storage 
+ */
 function redirectToSummary() {
   let emailInput = document.getElementById("emailInput").value;
   let userName = findUserNameByEmail(emailInput);
@@ -36,6 +53,10 @@ function redirectToSummary() {
   window.location.href = "summary.html";
 }
 
+/**
+ * Saves the users name to the storage 
+ * @param {string} name 
+ */
 function saveUserName(name) {
   let initials = name
     .split(" ")
@@ -46,6 +67,10 @@ function saveUserName(name) {
   localStorage.setItem("userFullName", JSON.stringify(name));
 }
 
+/**
+ * Checks if user exists by comparing the entered mail and password with the stored data 
+ * @returns {boolean} - true if user exists, otherwise false 
+ */
 function checkIfUserExists() {
   let email = document.getElementById("emailInput");
   let password = document.getElementById("passwordInput");
@@ -60,6 +85,9 @@ function checkIfUserExists() {
   }
 }
 
+/**
+ * Resets the login form by clearing input field and disabling the login button 
+ */
 function resetForm() {
   let userName = findUserNameByEmail(emailInput.value);
   if (userName) {
@@ -72,6 +100,9 @@ function resetForm() {
   checkBoxIcon.src = "../img/checkbox-icon.svg";
 }
 
+/**
+ * Toggles the checkbox icons 
+ */
 function toggleCheckBox() {
   let checkBoxIcon = document.querySelector(".checkBoxIcon");
   if (checkBoxIcon.src.includes("checkbox-icon.svg")) {
@@ -85,6 +116,9 @@ function toggleCheckBox() {
   }
 }
 
+/**
+ * Checks the values for login and enables/disables the login button 
+ */
 function checkValuesForLogin() {
   let button = document.querySelector(".loginButton");
   let isButtonEnabled = isLoginButtonEnabled();
@@ -96,11 +130,18 @@ function checkValuesForLogin() {
   }
 }
 
+/**
+ * Adds an event listener to the login form to the checkValueForLogin function 
+ */
 document.addEventListener("DOMContentLoaded", function () {
   let form = document.querySelector(".loginForm");
   form.addEventListener("keyup", checkValuesForLogin);
 });
 
+/**
+ * Checks if the login button should be enabled based on the validity of email and password
+ * @returns {boolean} - true if login button should be enabled, otherwise false 
+ */
 function isLoginButtonEnabled() {
   let emailInput = document.querySelector(".emailInput");
   let passwordInput = document.querySelector(".passwordInput");
@@ -116,6 +157,10 @@ function isLoginButtonEnabled() {
   return isButtonEnabled;
 }
 
+/**
+ * Checks the validity of the enterd email adress
+ * @returns {boolean} - true if mail is valid, otherwise false 
+ */
 function checkEmailValidity() {
   let emailInput = document.getElementById("emailInput");
   let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
@@ -138,6 +183,9 @@ function checkEmailValidity() {
   }
 }
 
+/**
+ * Checks the validity of the entered password length 
+ */
 function checkPasswordValidity() {
   let passwordInput = document.getElementById("passwordInput");
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
@@ -150,6 +198,9 @@ function checkPasswordValidity() {
   }
 }
 
+/**
+ * Displays a message if there is a mismatch between entered password and mail adress 
+ */
 function showUserPasswordMismatch() {
   let passwordInput = document.getElementById("passwordInput");
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
@@ -164,6 +215,9 @@ function showUserPasswordMismatch() {
   emailInput.classList.add("warning");
 }
 
+/**
+ * Displays a message indicationg that the password length is valid 
+ */
 function showPasswordLengthInvalid() {
   let passwordInput = document.getElementById("passwordInput");
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
@@ -173,6 +227,9 @@ function showPasswordLengthInvalid() {
   passwordInput.classList.add("warning");
 }
 
+/**
+ * Changes the icon of the password input field based on the user interaction 
+ */
 function changePasswordInputIcon() {
   let icon = document.querySelector(".passwordIcon");
   let passwordInput = document.getElementById("passwordInput");
@@ -203,6 +260,9 @@ function changePasswordInputIcon() {
   });
 }
 
+/**
+ * Toggles the visibility of the password in the password input field 
+ */
 function togglePasswordInputType() {
   let icon = document.querySelector(".passwordIcon");
   let passwordInput = document.getElementById("passwordInput");
@@ -216,6 +276,9 @@ function togglePasswordInputType() {
   }
 }
 
+/** 
+ * Removes the overlay once the animation has ended  
+ */
 document.addEventListener("DOMContentLoaded", function () {
   let overlay = document.querySelector(".overlay");
 
