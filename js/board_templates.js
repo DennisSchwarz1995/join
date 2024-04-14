@@ -129,7 +129,7 @@
       <header class="taskCardHeader">
         <div class="taskCategory" style="background: ${taskData.categoryColor}">${taskData.category}</div>
        <div class="taskCardMoveButtonAndPopup">
-          <button class="taskCardMoveButton" id="moveButton-${taskData.id}" onclick="event.stopPropagation(); toggleMobileTaskCardMovePopup(${taskData.id})">
+          <button class="taskCardMoveButton invisible" id="moveButton-${taskData.id}" onclick="event.stopPropagation(); toggleMobileTaskCardMovePopup(${taskData.id})">
             <span>Move</span>
           </button>
         <div class="taskCardMovePopup invisible" id="taskCardMovePopup-${taskData.id}"></div>
@@ -164,21 +164,26 @@
     `;
   }
 
+
+  
+
   function toggleMobileTaskCardMovePopup(taskId) {
+    document.querySelectorAll('.taskCardMovePopup').forEach(popup => {
+      if (popup.id !== `taskCardMovePopup-${taskId}`) {
+        popup.classList.add('invisible');
+      }
+    });
     let taskCardMovePopup = document.getElementById(`taskCardMovePopup-${taskId}`);
+    taskCardMovePopup.classList.toggle("invisible");
     
-    if (taskCardMovePopup.classList.contains("invisible")) {
+    if (!taskCardMovePopup.classList.contains("invisible")) {
       taskCardMovePopup.innerHTML = `
-        <div class="taskCardMovePopupContent">
+        <div class="taskCardMovePopupContent" onclick="event.stopPropagation()">
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'to do')">To do</div>
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'await feedback')">Await feedback</div>
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'in progress')">In progress</div>
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'done')">Done</div>
         </div>
       `;
-      taskCardMovePopup.classList.remove("invisible");
-    } else {
-      taskCardMovePopup.classList.add("invisible");
     }
   }
-  

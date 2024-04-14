@@ -7,9 +7,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px 20px 348px;
+  padding: 20px 40px 20px 280px;
   background: var(--text-color-white);
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 0.1);
+}
+
+.title {
+  width: 100%;
+}
+
+.headerWrapper {
+  display: flex;
+  max-width: 1920px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .logoMobile {
@@ -19,6 +31,9 @@
 .headerMenu {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
   gap: 16px;
 }
 
@@ -27,10 +42,10 @@ h4 {
 }
 
 .popupMenu {
-  position: fixed;
+  position: absolute;
   display: none;
-  top: 102px;
-  right: 40px;
+  top: 82px;
+  right: 0;
   flex-direction: column;
   padding: 10px;
   background: var(--main-color-darkblue);
@@ -67,38 +82,9 @@ h4 {
   width: 48px;
   color: var(--main-color-lightblue);
   box-sizing: border-box;
-  font-weight: var(--font-weight-700)
+  font-weight: var(--font-weight-700);
 }
 
 .helpIcon:hover {
   transform: scale(1.15);
-}
-
-@media(max-width: 1000px) {
-
-  .header {
-    padding: 10px;
-  }
-
-  .title {
-    display: none;
-  }
-
-  .helpIcon {
-    display: none;
-  }
-
-  .headerMenu {
-    display: contents;
-  }
-
-  .logoMobile {
-    display: flex;
-    position: absolute;
-    left: 10px;
-  }
-
-  .popupMenu {
-    top: 82px;
-  }
 }

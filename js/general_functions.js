@@ -1,5 +1,6 @@
 function initHeaderAndNavTemplates() {
   let user = localStorage.getItem("userFullName");
+  generateNavbarMobile();
   if (
     document.referrer.includes("signup.html") ||
     document.referrer.includes("login.html") ||
@@ -19,6 +20,10 @@ function showLimitedHeaderAndNavbar() {
   navBarBoard.classList.add("invisible");
   let headerMenu = document.querySelector(".headerMenu");
   headerMenu.classList.add("invisible");
+  let navBarLink = document.querySelector(".navBar a");
+  navBarLink.addEventListener("click", function (event) {
+    event.preventDefault();
+  });
 }
 
 function toggleCheckBox() {

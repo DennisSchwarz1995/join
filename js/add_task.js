@@ -3,6 +3,7 @@ async function initAddTask() {
   await loadTasks();
   generateNavbar();
   generateHeader();
+  generateNavbarMobile();
   setMediumButtonSelected();
   generateAddTask(contacts);
   setMinDate();

@@ -3,6 +3,7 @@ async function initBoard() {
   await loadContacts();
   generateNavbar();
   generateHeader();
+  generateNavbarMobile();
   generateTasks();
   checkAndGenerateEmptyTask();
   addDragAndDropEventListeners();
@@ -488,3 +489,24 @@ function deleteTask(taskId) {
   generateTasks();
   closeAddTaskOverlay(true);
 }
+
+
+function changeTaskCategory(taskId, newCategory) {
+  let taskIndex = tasks.findIndex(task => task.id === taskId);
+  tasks[taskIndex].taskCategory = newCategory;
+  saveTasks();
+  generateTasks();
+}
+
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.taskCardMovePopup') && 
+      !event.target.closest('.dropDownContacts') &&
+      !event.target.closest('.dropDownCategory') &&
+      !event.target.classList.contains('taskCardMoveButton') &&
+      !event.target.classList.contains('contactsSelect') &&
+      !event.target.classList.contains('categorySelect')) {
+    document.querySelectorAll('.taskCardMovePopup, .dropDownContacts, .dropDownCategory').forEach(popup => {
+      popup.classList.add('invisible');
+    });
+  }
+});

@@ -17,6 +17,7 @@
 
 .privacyPolicySection {
   margin-bottom: 40px;
+  max-width: 1920px;
 }
 
 .privacyPolicySection a {
@@ -38,18 +39,4 @@
   color: var(--main-color-darkblue);
 }
 
-@media (max-width: 1000px) {
-  .privacyPolicy {
-    inset: 0;
-    padding: 100px 20px;
-  }
 
-  .privacyPolicyHeadline {
-    align-items: baseline;
-  }
-
-  .privacyPolicyHeadline h1 {
-    font-size: 46px;
-  }
-
-}

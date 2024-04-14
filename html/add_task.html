@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../css/mobile.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
   </head>
 
-  <body onload="initAddTask(), generateNavbarMobile()">
+  <body onload="initAddTask()">
     <header class="header"></header>
     <nav class="navBar"></nav>
     <section class="addTask">
@@ -110,21 +111,21 @@
                 id="urgentButton"
                 onclick="setButtonPrio(this)"
               >
-                Urgent <img src="../img/urgent-icon.svg" alt="urgent-icon" />
+                <span>Urgent</span> <img src="../img/urgent-icon.svg" alt="urgent-icon" />
               </button>
               <button
                 type="button"
                 class="mediumButton"
                 onclick="setButtonPrio(this)"
               >
-                Medium <img src="../img/medium-icon.svg" alt="medium-icon" />
+              <span>Medium</span> <img src="../img/medium-icon.svg" alt="medium-icon" />
               </button>
               <button
                 type="button"
                 class="lowButton"
                 onclick="setButtonPrio(this)"
               >
-                Low <img src="../img/low-icon.svg" alt="low-icon" />
+              <span>Low</span> <img src="../img/low-icon.svg" alt="low-icon" />
               </button>
             </div>
           </div>
@@ -182,7 +183,7 @@
             <div class="subtaskInputDiv">
               <input
                 type="text"
-                maxlength="30"
+                maxlength="16"
                 placeholder="Add new subtask"
                 class="subtaskInput"
                 id="subtaskInput"

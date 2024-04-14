@@ -3,6 +3,7 @@ async function initContacts() {
   generateContacts();
   generateNavbar();
   generateHeader();
+  generateNavbarMobile();
   checkValuesForSubmitButton();
   checkWindowSize(); 
 }

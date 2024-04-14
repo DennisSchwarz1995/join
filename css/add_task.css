@@ -29,6 +29,7 @@
   justify-content: space-between;
   align-self: stretch;
   max-width: 1000px;
+  gap: 20px;
 }
 
 .taskSelectorLeft {
@@ -429,70 +430,4 @@ textarea:focus {
   background-color: var(--text-color-white);
   padding: 6px 8px;
   position: relative;
-}
-
-@media (max-width: 1275px) {
-  .addTask {
-    inset: 106px 0px 0px 160px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .addTask {
-    position: fixed;
-    left: 0;
-    top: 82px;
-    bottom: 80px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--bg-color-gray);
-    padding: 0;
-    justify-content: flex-start;
-  }
-
-  .taskHeadline {
-    margin-top: 20px;
-    margin-bottom: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .taskHeadline {
-    font-size: 47px;
-  }
-
-  /*.taskSelector {
-    display: block;
-    margin: 0 auto; 
-    max-width: 500px; 
-    overflow-y: auto; 
-  }*/
-
-  .divider {
-    display: none;
-  }
-}
-
-@media (max-width: 484px) {
-  /*.taskSelector {
-    display: block;
-    margin: 0 10px; 
-    max-width: 500px; 
-    overflow-y: auto; 
-  }*/
-
-  .divider {
-    display: none;
-  }
-
-  /*.taskSelectorLeft,
-  .taskSelectorRight {
-    width: auto;
-  }*/
-
-  .clearAndCreateButtonDiv {
-    margin-right: 0;
-  }
 }

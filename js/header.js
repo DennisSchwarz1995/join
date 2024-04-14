@@ -12,6 +12,7 @@ function logout() {
 
 function headerHTML() {
   return `
+  <div class="headerWrapper">
   <img class="logoMobile" src="../img/join-logo-mobile.svg" alt="join-logo">
   <h4 class="title">Kanban Project Management Tool</h4>
   <div class="headerMenu">
@@ -26,6 +27,7 @@ function headerHTML() {
       <a class="navBarActive" href="privacy_policy.html">Privacy Policy</a>
       <a onclick="logout()">Log out</a>
     </div>
+  </div>
   </div>
 `;
 }

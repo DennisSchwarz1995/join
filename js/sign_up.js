@@ -255,9 +255,9 @@ function showPasswordMismatch() {
   let confirmPasswordInput = document.getElementById("confirmPasswordInput");
 
   passwordInvalidDiv.textContent =
-    "Passwords do not match, please enter two identical passwords";
+    "Passwords do not match.";
   confirmPasswordInvalidDiv.textContent =
-    "Passwords do not match, please enter two identical passwords";
+    "Passwords do not match.";
   passwordInvalidDiv.classList.remove("invisible");
   confirmPasswordInvalidDiv.classList.remove("invisible");
 

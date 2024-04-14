@@ -26,6 +26,7 @@
 
 .legalNoticeSection {
   margin-bottom: 40px;
+  max-width: 1920px;
 }
 
 .legalNoticeSection a {
@@ -51,24 +52,4 @@ ul li::before {
   display: inline-block;
   width: 16px;
   margin-left: -16px;
-}
-
-@media (max-width: 1000px) {
-  .legalNotice {
-    inset: 0;
-    padding: 100px 20px;
-  }
-
-  .legalNoticeHeadline {
-    align-items: baseline;
-  }
-
-  .legalNoticeHeadline h1{
-    font-size: 46px;
-  }
-
-
-  .backArrowDiv {
-    right: 15px;
-  }
 }
