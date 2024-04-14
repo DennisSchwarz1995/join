@@ -1,5 +1,8 @@
 let users = [];
 
+/**
+ * Registers an new user 
+ */
 async function registerUser() {
   users.push({
     name: signUpNameInput.value,
@@ -16,10 +19,16 @@ async function registerUser() {
   }, 3000);
 }
 
+/**
+ * Saves  user data to the storage 
+ */
 async function saveUser() {
   await setItem("users", JSON.stringify(users));
 }
 
+/**
+ * Loads user data from the storage 
+ */
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users")) || [];

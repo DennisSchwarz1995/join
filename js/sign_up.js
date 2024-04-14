@@ -1,8 +1,14 @@
+/**
+ * Initializes the sing up process by loading users and checking values for sign up 
+ */
 async function initSignUp() {
   await loadUsers();
   checkValuesForSignUp();
 }
 
+/**
+ * Resets the sign-up form by clearing input fields and disabling sign up button 
+ */
 function resetForm() {
   signUpNameInput.value = "";
   signUpEmailInput.value = "";
@@ -13,12 +19,18 @@ function resetForm() {
   checkBoxIcon.src = "../img/checkbox-icon.svg";
 }
 
+/**
+ * Shows the registration overlay by adding the 'viable' clas
+ */
 function showRegistrationOverlay() {
   let overlay = document.querySelector(".signUpOverlay");
   overlay.classList.add("visible");
   overlay.classList.remove("invisible");
 }
 
+/**
+ * Checks if the sign-up button should be enabled based on input values 
+ */
 async function checkValuesForSignUp() {
   let button = document.querySelector(".signUpButton");
   const isButtonEnabled = isSignUpButtonEnabled();
@@ -30,6 +42,10 @@ async function checkValuesForSignUp() {
   }
 }
 
+/**
+ * Checks if the sign-up button should be enabled   
+ * @returns {boolean} - True if button should be enabled 
+ */
 function isSignUpButtonEnabled() {
   let checkBoxIcon = document.querySelector(".checkBoxIcon");
   let nameInput = document.querySelector(".nameInput");
@@ -51,6 +67,9 @@ function isSignUpButtonEnabled() {
   return isButtonEnabled;
 }
 
+/**
+ * Changes the password input icon based on user ineraction 
+ */
 function changePasswordInputIcon() {
   let icon = document.querySelector(".passwordIcon");
   let passwordInput = document.getElementById("signUpPasswordInput");
@@ -81,6 +100,9 @@ function changePasswordInputIcon() {
   });
 }
 
+/**
+ * Changes the confirm password input icon based on user interaction 
+ */
 function changeConfirmPasswordInputIcon() {
   let icon = document.querySelector(".confirmPasswordIcon");
   let confirmPasswordInput = document.getElementById("confirmPasswordInput");
@@ -111,6 +133,9 @@ function changeConfirmPasswordInputIcon() {
   });
 }
 
+/**
+ * Toggles the password input type between text and password 
+ */
 function togglePasswordInputType() {
   let icon = document.querySelector(".passwordIcon");
   let passwordInput = document.getElementById("signUpPasswordInput");
@@ -124,6 +149,9 @@ function togglePasswordInputType() {
   }
 }
 
+/**
+ * Toggles the confirm password input type between text and password 
+ */
 function toggleConfirmPasswordInputType() {
   let icon = document.querySelector(".confirmPasswordIcon");
   let confirmPasswordInput = document.getElementById("confirmPasswordInput");
@@ -137,6 +165,9 @@ function toggleConfirmPasswordInputType() {
   }
 }
 
+/**
+ * Displays a message indicating that the user already exists 
+ */
 function showUserExist() {
   let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
   let emailInput = document.getElementById("signUpEmailInput");
@@ -147,6 +178,9 @@ function showUserExist() {
   emailInput.classList.add("warning");
 }
 
+/**
+ * Checks the validity of the entered name 
+ */
 function checkNameValidity() {
   let nameInput = document.getElementById("signUpNameInput");
   let nameInvalidDiv = document.querySelector(".nameInvalidDiv");
@@ -166,6 +200,9 @@ function checkNameValidity() {
   }
 }
 
+/**
+ * Checks the validity of the entered email  
+ */
 function checkEmailValidity() {
   let emailInput = document.getElementById("signUpEmailInput");
   let emailInvalidDiv = document.querySelector(".emailInvalidDiv");
@@ -204,6 +241,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/**
+ * Checks the length validity of the password and confirm password
+ * Displays error messages if the passwords are less than 8 characters long
+ * @param {string} password -The password entered by the user
+ * @param {string} confirmPassword -The confirmed password entered by the user
+ */
 function checkPasswordLength(password, confirmPassword) {
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
   let confirmPasswordInvalidDiv = document.querySelector(
@@ -231,6 +274,9 @@ function checkPasswordLength(password, confirmPassword) {
   }
 }
 
+/**
+ * Checks the validity of the entered password, and displays error message if it doesent match
+ */
 function checkPasswordValidity() {
   let passwordInput = document.getElementById("signUpPasswordInput");
   let confirmPasswordInput = document.getElementById("confirmPasswordInput");
@@ -246,6 +292,9 @@ function checkPasswordValidity() {
   }
 }
 
+/**
+ * Diplays error message when the password do not match 
+ */
 function showPasswordMismatch() {
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
   let confirmPasswordInvalidDiv = document.querySelector(
@@ -265,6 +314,9 @@ function showPasswordMismatch() {
   confirmPasswordInput.classList.add("warning");
 }
 
+/**
+ * Hides password error message 
+ */
 function hidePasswordInvalidDiv() {
   let passwordInvalidDiv = document.querySelector(".passwordInvalidDiv");
   let confirmPasswordInvalidDiv = document.querySelector(

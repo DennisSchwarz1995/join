@@ -1,9 +1,16 @@
+/**
+ * Generates the navigation bar 
+ */
 function generateNavbar() {
   let navbar = document.querySelector(".navBar");
   navbar.innerHTML = navbarHTML();
   setActiveNavItem();
 }
 
+/**
+ * Generates the HTML code for the navigation bar 
+ * @returns {string} The HTML code for the navigation bar 
+ */
 function navbarHTML() {
   return `
     <a href="summary.html">
@@ -42,12 +49,18 @@ function navbarHTML() {
   `;
 }
 
+/**
+ * Generates the navigation bar for the mobile view 
+ */
 function generateNavbarMobile() {
   let navbarMobile = document.querySelector(".navBarMobile");
   navbarMobile.innerHTML = navbarMobileHTML();
   setActiveNavItem();
 }
 
+/**
+ * @returns The HTML code for the mobile view 
+ */
 function navbarMobileHTML() {
   return `
     <div class="navBarBoardMobile">
@@ -78,7 +91,9 @@ function navbarMobileHTML() {
     </div>
   `;
 }
-
+/**
+ * Sets active state for the navigation bar item based on the current page URL 
+ */
 function setActiveNavItem() {
   let currentPath = window.location.pathname;
   let navbarElements = document.querySelectorAll(".navBarActive");

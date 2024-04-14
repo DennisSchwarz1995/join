@@ -195,10 +195,10 @@ function addContactToNewCategory(
 }
 
 /**
- * 
- * @param {HTMLElement} contactList 
- * @param {HTMLElement} categoryDiv 
- * @returns 
+ * Gets an array of existing contact cards within a specific category
+ * @param {HTMLElement} contactList - contact list container 
+ * @param {HTMLElement} categoryDiv -category div element
+ * @returns {HTMLElement[]} - Array of existing contact cards 
  */
 function getExistingContactCards(contactList, categoryDiv) {
   return Array.from(
@@ -206,6 +206,12 @@ function getExistingContactCards(contactList, categoryDiv) {
   );
 }
 
+/**
+ * Gets a contact card at a specified position within its parent element 
+ * @param {HTMLElement} contactCard 
+ * @param {HTMLElement} parentElement 
+ * @param {number} insertionIndex 
+ */
 function insertContactAtCurrentPosition(
   contactCard,
   parentElement,
@@ -217,6 +223,11 @@ function insertContactAtCurrentPosition(
   );
 }
 
+/**
+ * Appends a contact card to a category section in the contact list 
+ * @param {HTMLElement} categoryDiv -Category div element 
+ * @param {HTMLElement} contactCard -Contact card to be appended 
+ */
 function appendContactToCategory(categoryDiv, contactCard) {
   categoryDiv.parentElement.parentNode.insertBefore(
     contactCard,
@@ -224,6 +235,12 @@ function appendContactToCategory(categoryDiv, contactCard) {
   );
 }
 
+/**
+ * Sets the insertion index for a new contact card within an array of existin contact card 
+ * @param {Object} newContact -the new contact object 
+ * @param {HTMLElement[]} existingContactCards  - array of existing contact card elements 
+ * @returns 
+ */
 function getInsertionIndex(newContact, existingContactCards) {
   let newContactName = newContact.name.toLowerCase();
 
@@ -237,18 +254,34 @@ function getInsertionIndex(newContact, existingContactCards) {
   return -1;
 }
 
+/**
+ * Gets an array of existing categories from the contact list 
+ * @param {HTMLElement} contactList - Contact list container 
+ * @returns {string[]} Array of existion categories 
+ */
 function getExistingCategories(contactList) {
   return Array.from(contactList.getElementsByClassName("letterCategory")).map(
     (element) => element.textContent
   );
 }
 
+/**
+ * Retrieves the name of a contact from its contact card element 
+ * @param {HTMLElement} contactCard - Contact card element 
+ * @returns {string} - The name of the Conact 
+ */
 function getContactName(contactCard) {
   return contactCard
     .querySelector(".contactNameSpan")
     .textContent.toLowerCase();
 }
 
+/**
+ * Retrieves the category div element from its specific category 
+ * @param {HTMLElement} contactList - Contact list container
+ * @param {string} category - Category name 
+ * @returns {HTMLElement} - Category div element 
+ */
 function getCategoryDiv(contactList, category) {
   let categoryDiv = Array.from(
     contactList.getElementsByClassName("letterCategory")
@@ -256,6 +289,11 @@ function getCategoryDiv(contactList, category) {
   return categoryDiv.parentElement;
 }
 
+/**
+ * Creates a new category div element with the specified category name
+ * @param {string} category - The category name
+ * @returns {HTMLElement} The newly created category div element
+ */
 function createCategoryDiv(category) {
   let newCategoryDiv = document.createElement("div");
   newCategoryDiv.classList.add("categorySection");
@@ -270,6 +308,13 @@ function createCategoryDiv(category) {
   return newCategoryDiv;
 }
 
+/**
+ * Inserts a category div and its corresponding contact card into the contact list at a specified index
+ * @param {HTMLElement} contactList - The contact list container
+ * @param {HTMLElement} newCategoryDiv - The category div element to be inserted
+ * @param {HTMLElement} contactCard - The contact card element to be inserted
+ * @param {number} insertionIndex - The index at which the category and contact card should be inserted
+ */
 function insertCategoryAndContact(
   contactList,
   newCategoryDiv,
@@ -286,11 +331,20 @@ function insertCategoryAndContact(
   );
 }
 
+/**
+ * Appends a category div and its contact card to the contact list 
+ * @param {HTMLElement} contactList - Contact list container
+ * @param {HTMLElement} newCategoryDiv - New category div element 
+ * @param {HTMLElement} contactCard - Contact card element to be appended 
+ */
 function appendCategoryAndContact(contactList, newCategoryDiv, contactCard) {
   contactList.appendChild(newCategoryDiv);
   contactList.appendChild(contactCard);
 }
 
+/**
+ * Creates contact and push it into array 
+ */
 function createContact() {
   let name = document.getElementById("fullname");
   let email = document.getElementById("email");
@@ -315,10 +369,16 @@ function createContact() {
   highlightSelectedContact(contacts.indexOf(newContact));
 }
 
+/**
+ * Sorts the contacts alphabetically 
+ */
 function sortContacts() {
   contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * Shows the overlay to create a contact
+ */
 function showCreateOverlay() {
   const createOverlay = document.getElementById("createContactOverlay");
   createOverlay.classList.remove("slideOut");
@@ -329,6 +389,12 @@ function showCreateOverlay() {
   }, 2000);
 };
 
+/**
+ * Gets the category section element for the specified category
+ * If the section does not exist, creates a new one 
+ * @param {string} category - Category name 
+ * @returns {HTMLElement} - The category section element 
+ */
 function getCategorySection(category) {
   let existingCategorySection = Array.from(
     document.querySelectorAll(".categorySection")
@@ -343,6 +409,11 @@ function getCategorySection(category) {
   }
 }
 
+/**
+ * Creates a new category section with the specified category name 
+ * @param {string} category - The category name  
+ * @returns {HTMLElement} - The newly created category section element
+ */
 function createNewCategorySection(category) {
   let newCategorySection = document.createElement("div");
   newCategorySection.classList.add("categorySection");
@@ -358,6 +429,11 @@ function createNewCategorySection(category) {
   return newCategorySection;
 }
 
+/**
+ * Creates a contact card element for the given contact information 
+ * @param {string} contact - Contact information object
+ * @returns {HTMLElement} - New created category section element 
+ */
 function createContactCard(contact) {
   let contactCard = document.createElement("div");
   contactCard.classList.add("contactCard");
@@ -387,6 +463,10 @@ function createContactCard(contact) {
   return contactCard;
 }
 
+/**
+ * Generates random color for styling purposes
+ * @returns - A random Color  
+ */
 function getRandomColor() {
   let colorSuffixes = [
     "lightorange",
@@ -410,12 +490,22 @@ function getRandomColor() {
   return colorSuffixes[Math.floor(Math.random() * colorSuffixes.length)];
 }
 
+/**
+ * Extracts the initals from a given name 
+ * @param {string} name - The name from which to extract initals 
+ * @returns {string} - The extracted initals 
+ */
 function getInitials(name) {
   let names = name.split(" ");
   let initials = names.map((n) => n.charAt(0)).join("");
   return initials.toUpperCase();
 }
 
+/**
+ * Capitalizes the first letter of each word in a sting 
+ * @param {string} name  - The name to capitalize 
+ * @returns {sting} - The capitalized string
+ */
 function capitalizeName(name) {
   let names = name.split(" ");
   let capitalizedNames = names.map(
@@ -424,6 +514,9 @@ function capitalizeName(name) {
   return capitalizedNames.join(" ");
 }
 
+/**
+ * Checks the form input values to enable or disable the submit button
+ */
 function checkValuesForSubmitButton() {
   let { button } = getFormElements(isEditingContact);
   let isButtonEnabled = isSubmitButtonEnabled();
@@ -435,6 +528,10 @@ function checkValuesForSubmitButton() {
   }
 }
 
+/**
+ * Checks if the submit button should be enabled based on form input validation
+ * @returns {boolean} - True if the submit button should be enabled, otherwise false
+ */
 function isSubmitButtonEnabled() {
   let {
     nameInput,
@@ -457,6 +554,10 @@ function isSubmitButtonEnabled() {
   return isButtonEnabled;
 }
 
+/**
+ * Checks the calidity of the email input 
+ * @returns {boolean} - True if the input is valid, otherwise false 
+ */
 function checkEmailValidity() {
   let { emailInput, emailInvalidDiv } = getFormElements(isEditingContact);
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -477,6 +578,10 @@ function checkEmailValidity() {
   }
 }
 
+/**
+ * Checks the validity of the phone number input 
+ * @returns {boolean} - True if the number is valid, otherwise false 
+ */
 function checkPhoneNumberValidity() {
   let { phoneInput, phoneInvalidDiv } = getFormElements(isEditingContact);
   let phoneValueWithoutSpaces = phoneInput.value.replace(/\s/g, "");
@@ -495,6 +600,9 @@ function checkPhoneNumberValidity() {
   }
 }
 
+/**
+ * Checks the validity of the contact name input 
+ */
 function checkContactNameValidity() {
   let { nameInput, nameInvalidDiv } = getFormElements(isEditingContact);
 
@@ -512,6 +620,9 @@ function checkContactNameValidity() {
   }
 }
 
+/**
+ * Event listener for form input changes to enable or disable the submit button.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   let contactForm = document.querySelector(".contactForm");
   contactForm.addEventListener("input", checkValuesForSubmitButton);
@@ -522,6 +633,10 @@ document.addEventListener("DOMContentLoaded", function () {
   editContactForm.addEventListener("input", checkValuesForSubmitButton);
 });
 
+/*
+ * Highlights the selected contact card and shows its details
+ * @param {number} index - The index of the selected contact card
+ */
 function highlightSelectedContact(index) {
   let contactCards = document.querySelectorAll(".contactCard");
   contactCards.forEach((card, i) => {
@@ -547,6 +662,10 @@ function highlightSelectedContact(index) {
   });
 }
 
+/**
+ * Shows the detailed view of a contact
+ * @param {number} index - The index of the contact to display details for
+ */
 function showContactDetails(index) {
   let contact = contacts[index];
   let detailedView = document.querySelector(".detailedView");
@@ -565,6 +684,9 @@ function showContactDetails(index) {
 
 }
 
+/**
+ * Checks if the device is a mobile device and adjusts the UI layout accordingly.
+ */
 function checkMobile() {
   if (isMobileDevice()) {
     let contactDetailedInfo = document.querySelector('.contactDetailedInfo');
@@ -592,6 +714,9 @@ function checkMobile() {
   }
 }
 
+/**
+ * Opens the edit contact overlay, fills the form with the selected contact's information, and shows the background overlay
+ */
 function openEditContactOverlay() {
   isEditingContact = true;
   let overlay = document.querySelector(".editContactOverlay");
@@ -603,6 +728,9 @@ function openEditContactOverlay() {
   }
 }
 
+/**
+ * Fills the edit contact form inputs with the information of the selected contact.
+ */
 function fillEditFormInputs() {
   let selectedContactIndex = getSelectedContactIndex();
   if (selectedContactIndex !== -1) {
@@ -620,7 +748,10 @@ function fillEditFormInputs() {
   }
 }
 
-
+/**
+ * Gets the index of the selected contact card
+ * @returns {number} The index of the selected contact card, or -1 if none is selected
+ */
 function getSelectedContactIndex() {
   let contactCards = document.querySelectorAll(".contactCard");
   for (let i = 0; i < contactCards.length; i++) {
@@ -631,6 +762,9 @@ function getSelectedContactIndex() {
   return -1;
 }
 
+/**
+ * Saves the edited contact informations 
+ */
 function saveEditedContact() {
   let selectedContactIndex = getSelectedContactIndex();
   if (selectedContactIndex !== -1) {
@@ -655,6 +789,11 @@ function saveEditedContact() {
   }
 }
 
+/**
+ * Gets the form elements based on whether the form is for editing a contact or creating a new one 
+ * @param {boolean} isEditingContact - Indicates whether the form is for editing a contact
+ * @returns An object containing references to the form elements
+ */
 function getFormElements(isEditingContact) {
   let nameInput, emailInput, phoneInput;
   let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
@@ -689,6 +828,9 @@ function getFormElements(isEditingContact) {
   };
 }
 
+/**
+ * Deletes the selected contact from the contacts list
+ */
 async function deleteContact() {
   let selectedIndex = getSelectedContactIndex();
   if (selectedIndex !== -1) {
@@ -701,6 +843,9 @@ async function deleteContact() {
   }
 }
 
+/**
+ * Fills the edit contact form inputs with the information of the selected contact
+ */
 function fillEditFormInputs() {
   let selectedContactIndex = getSelectedContactIndex();
   if (selectedContactIndex !== -1) {
@@ -718,6 +863,10 @@ function fillEditFormInputs() {
   }
 }
 
+/**
+ * Gets the index of the selected contact card
+ * @returns {number} The index of the selected contact card, or -1 if none is selected
+ */
 function getSelectedContactIndex() {
   let contactCards = document.querySelectorAll(".contactCard");
   for (let i = 0; i < contactCards.length; i++) {
@@ -728,6 +877,9 @@ function getSelectedContactIndex() {
   return -1;
 }
 
+/**
+ * Saves the edited contact information
+ */
 function saveEditedContact() {
   let selectedContactIndex = getSelectedContactIndex();
   if (selectedContactIndex !== -1) {
@@ -752,6 +904,11 @@ function saveEditedContact() {
   }
 }
 
+/**
+ * Gets form elements based on whether the form is for editing a contact or creating a new one
+ * @param {boolean} isEditingContact - Indicates whether the form is for editing a contact
+ * @returns {object} An object containing references to the form elements
+ */
 function getFormElements(isEditingContact) {
   let nameInput, emailInput, phoneInput;
   let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
@@ -785,7 +942,9 @@ function getFormElements(isEditingContact) {
     button,
   };
 }
-
+/**
+ * Deletes the selected contact from the contact list 
+ */
 async function deleteContact() {
   let selectedIndex = getSelectedContactIndex();
   if (selectedIndex !== -1) {
