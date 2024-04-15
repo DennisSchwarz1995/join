@@ -1,5 +1,5 @@
 /**
- * Initializes the summary page 
+ * Initializes the summary page
  */
 async function initSummary() {
   generateNavbar();
@@ -49,31 +49,37 @@ function updateGreetingBasedOnTime() {
  */
 function generateSummary() {
   let tasksLength = getTasksLength();
-  let todoTasksCount = countTasksByCategory("To do");
-  let inProgressTasksCount = countTasksByCategory("In progress");
-  let awaitFeedbackTaskCount = countTasksByCategory("Await feedback");
+  let todoTasksCount = countTasksByCategory("to do");
+  let inProgressTasksCount = countTasksByCategory("in progress");
+  let awaitFeedbackTaskCount = countTasksByCategory("await feedback");
+  let urgentTasksInfo = getUrgentTasksInfo();
+
   let summary = document.querySelector(".summary");
   summary.innerHTML += summaryHTML(
     tasksLength,
     todoTasksCount,
     inProgressTasksCount,
-    awaitFeedbackTaskCount
+    awaitFeedbackTaskCount,
+    urgentTasksInfo.count,
+    urgentTasksInfo.nearestDueDate
   );
 }
 
 /**
  * Generates HTML for the summary section
- * @param {*} tasksLength -Total number of tasks 
+ * @param {*} tasksLength -Total number of tasks
  * @param {*} todoTasksCount -Number of tasks in todo category
  * @param {*} inProgressTasksCount -Number of tasks in in progress category
  * @param {*} awaitFeedbackTaskCount- Number of tasks in await feedback category
- * @returns {string} - HTML string for the summary section 
+ * @returns {string} - HTML string for the summary section
  */
 function summaryHTML(
   tasksLength,
   todoTasksCount,
   inProgressTasksCount,
-  awaitFeedbackTaskCount
+  awaitFeedbackTaskCount,
+  urgentTaskCount,
+  urgentTaskNearestDueDate
 ) {
   return `
     <header class="summaryHeadline">
@@ -105,14 +111,14 @@ function summaryHTML(
             <img src="../img/summary-urgent-icon.svg" alt="summary-urgent" />
             <div>
               <div class="urgentAmountDiv">
-                <p>2</p>
+                <p>${urgentTaskCount}</p>
               </div>
               <span>Urgent</span>
             </div>
           </div>
           <div class="urgentDivider"></div>
           <div class="urgentDivRight">
-            <p class="urgentDeadlineDate">Dezember 12, 2023</p>
+            <p class="urgentDeadlineDate">${urgentTaskNearestDueDate}</p>
             <span>Upcoming Deadline</span>
           </div>
         </a>
@@ -120,7 +126,6 @@ function summaryHTML(
           <a href="board.html" class="tasksInBoardDiv hoverDiv">
             <div class="tasksInBoardAmountDiv">
               <p>${tasksLength}</p>
-              
               <span
                 >Tasks in <br />
                 Board</span
@@ -154,4 +159,43 @@ function summaryHTML(
       </section>
     </main>
   `;
+}
+
+/**
+ * @returns the length of the tasks array
+ */
+function getTasksLength() {
+  return tasks.length;
+}
+
+/**
+ * Counts the amount of tasks in a given tasklist
+ * @param {string} category -  The category to be filtered by
+ * @returns {number} - The amount of tasks with the taskcategory property
+ */
+function countTasksByCategory(category) {
+  return tasks.filter((task) => task.taskCategory === category).length;
+}
+
+/**
+ * Retrieves information about urgent tasks.
+ * @returns {Object} An object containing:
+ *  - count: The total number of urgent tasks.
+ *  - nearestDueDate: The nearest due date among the urgent tasks, formatted as YYYY-MM-DD. If no urgent tasks exist, this will be null.
+ */
+function getUrgentTasksInfo() {
+  let urgentTasks = tasks.filter(
+    (task) => task.priority === "/img/urgent-icon.svg"
+  );
+  let count = urgentTasks.length;
+  let nearestDueDate = null;
+  if (urgentTasks.length > 0) {
+    let dueDates = urgentTasks.map((task) => new Date(task.dueDate));
+    nearestDueDate = new Date(Math.min(...dueDates));
+    nearestDueDate = nearestDueDate.toISOString().slice(0, 10);
+  }
+  return {
+    count,
+    nearestDueDate,
+  };
 }

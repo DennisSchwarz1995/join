@@ -261,14 +261,6 @@ a,
   transform: rotate(180deg);
 }
 
-.slideIn {
-  right: 0;
-}
-
-.slideOut {
-  right: -200%;
-}
-
 .summaryHeadlinedivider,
 .contactHeadlineDivider {
   border: 2px solid var(--main-color-lightblue);
@@ -448,14 +440,4 @@ ul li::before {
 
 .slideInCreateTaskOverlayBoard {
   right: 38%;
-}
-
-@media (max-width: 800px) {
-
-  .createContactButton:disabled,
-  .saveContactButton:disabled,
-  .createTaskButton:disabled {
-    font-size: 16px;
-  }
-
 }

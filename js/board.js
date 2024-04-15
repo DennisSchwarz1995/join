@@ -84,9 +84,9 @@ function formatCategoryName(categoryName) {
 }
 
 /**
- * Opens the overlay to add a task 
- * @param {string} taskCategory -The task category to create a with 
- * @param {boolean} isDetailedViewOpen  
+ * Opens the overlay to add a task
+ * @param {string} taskCategory -The task category to create a with
+ * @param {boolean} isDetailedViewOpen
  */
 function openAddTaskOverlay(taskCategory, isDetailedViewOpen) {
   let { overlay, background } = getOverlayValues(isDetailedViewOpen);
@@ -106,8 +106,8 @@ function openAddTaskOverlay(taskCategory, isDetailedViewOpen) {
 }
 
 /**
- * closes the overlay to add a task 
- * @param {boolean} isDetailedViewOpen 
+ * closes the overlay to add a task
+ * @param {boolean} isDetailedViewOpen
  */
 function closeAddTaskOverlay(isDetailedViewOpen) {
   let { overlay, background } = getOverlayValues(isDetailedViewOpen);
@@ -144,22 +144,8 @@ function getOverlayValues(isDetailedViewOpen) {
 }
 
 /**
- * @returns the lenght of the tasks array
- */
-function getTasksLength() {
-  return tasks.length;
-};
-/**
- * @param {numer} category 
- * @returns number of tasks of a category
- */
-function countTasksByCategory(category) {
-  return tasks.filter((task) => task.category === category).length;
-}
-
-/**
- * Activates eventlisteners for the events of the drag and drop function 
- *  */ 
+ * Activates eventlisteners for the events of the drag and drop function
+ *  */
 function addDragAndDropEventListeners() {
   let draggables = document.querySelectorAll(".taskCard");
   let dropOffContainers = document.querySelectorAll(
@@ -194,8 +180,8 @@ function addDragAndDropEventListeners() {
 }
 
 /**
- * Updates the board after using the drag and drop function 
- * @param {Object} draggedTask 
+ * Updates the board after using the drag and drop function
+ * @param {Object} draggedTask
  */
 function updateTaskPosition(draggedTask) {
   let taskId = parseInt(draggedTask.id.split("-")[1]);
@@ -235,7 +221,7 @@ function getDragAfterElement(container, y) {
 
 /**
  * Selects the task category based on the class list of an element
- * @param {DOMTokenList} classList 
+ * @param {DOMTokenList} classList
  * @returns  - The corresponding task category
  */
 function getCategoryFromClassList(classList) {
@@ -252,7 +238,7 @@ function getCategoryFromClassList(classList) {
 }
 
 /**
- * Updates the process of a tasked based on the subtasks that are done 
+ * Updates the process of a tasked based on the subtasks that are done
  * @param {object} task - The task object containing subtasks
  */
 function updateTaskProgress(task) {
@@ -271,84 +257,6 @@ function updateTaskProgress(task) {
   );
   if (taskProgressCount) {
     taskProgressCount.textContent = `${completedSubtasks} / ${task.subtasks.length}`;
-  }
-}
-
-/**
- * Updates the completion status of a subtask and updates the task progress
- * @param {string} subtaskId - The ID of the subtask
- * @param {boolean} isChecked - The new completion status of the subtask
- */
-function updateSubtaskCompletion(subtaskId, isChecked) {
-  let matches = subtaskId.match(/task-(\d+)-subtask-(\d+)/);
-  if (!matches) return;
-  let taskId = parseInt(matches[1], 10);
-  let subtaskIndex = parseInt(matches[2], 10);
-  let task = tasks.find((task) => task.id === taskId);
-  if (!task || !task.subtasks[subtaskIndex]) return;
-
-  let subtask = task.subtasks[subtaskIndex];
-  subtask.completed = isChecked;
-  updateTaskProgress(task);
-  saveTasks();
-}
-
-/**
- * Toggles the status of a subtask and updates the progress 
- * @param {Event} event -The event object 
- */
-function toggleSubtaskCompletion(event) {
-  let checkBoxIcon = event.target;
-  let subtaskId = checkBoxIcon.id;
-  let isChecked = checkBoxIcon.src.includes("checkbox-icon-selected.svg");
-  updateSubtaskCompletion(subtaskId, !isChecked);
-  let taskId = parseInt(subtaskId.split("-")[1]);
-  let task = tasks.find((task) => task.id === taskId);
-  updateTaskProgress(task);
-  saveTasks();
-  if (isChecked) {
-    checkBoxIcon.src = "../img/checkbox-icon.svg";
-    checkBoxIcon.style.width = "24px";
-    checkBoxIcon.style.height = "24px";
-  } else {
-    checkBoxIcon.src = "../img/checkbox-icon-selected.svg";
-    checkBoxIcon.style.width = "19px";
-    checkBoxIcon.style.height = "19px";
-  }
-}
-
-/**
- * Checks the lenghts of assinged contacts and generates HTML 
- * @param {object} taskData - The task data containing assinged contacts
- * @returns HTML of assinged contacts 
- */
-function checkAssignedContactLength(taskData) {
-  let maxContactsToDisplay = 3;
-  let additionalContactsCount =
-    taskData.assignedContacts.length - maxContactsToDisplay;
-
-  if (taskData.assignedContacts.length === 0) {
-    return `<div class="taskContact invisible" style="background: var(--main-color-darkblue)">0</div>`;
-  }
-
-  if (additionalContactsCount > 0) {
-    let additionalsContactsHTML = `<div class="taskContact" style="background: var(--main-color-darkblue)">+${additionalContactsCount}</div>`;
-    return (
-      taskData.assignedContacts
-        .slice(0, maxContactsToDisplay)
-        .map(
-          (contact) =>
-            `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`
-        )
-        .join("") + additionalsContactsHTML
-    );
-  } else {
-    return taskData.assignedContacts
-      .map(
-        (contact) =>
-          `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`
-      )
-      .join("");
   }
 }
 
@@ -381,8 +289,8 @@ function formatDate(dateString) {
 }
 
 /**
- * Extracts the prority name from a priority URL 
- * @param {string} priorityURL the URL of the prority icon image 
+ * Extracts the prority name from a priority URL
+ * @param {string} priorityURL the URL of the prority icon image
  * @returns The priority name extracted from the URL
  */
 function getPriorityNameFromURL(priorityURL) {
@@ -412,21 +320,6 @@ function openEditTaskOverlay(taskId) {
     task.subtasks,
     task.priority
   );
-}
-
-/**
- * Saves the edits made to a task 
- * @param {number} taskId 
- */
-function saveTaskEdits(taskId) {
-  let taskIndex = tasks.findIndex((task) => task.id === taskId);
-  if (taskIndex === -1) return;
-  let title = document.getElementById("title").value;
-  let description = document.getElementById("description").value;
-  tasks[taskIndex].title = title;
-  tasks[taskIndex].description = description;
-  saveTasks();
-  openTaskCardDetailedView(taskId);
 }
 
 /**
@@ -469,7 +362,7 @@ function highlightAssignedContacts(assignedContacts) {
   });
 }
 /**
- * Highlight the selected task category in the dropdown 
+ * Highlight the selected task category in the dropdown
  */
 function highlightSelectedTaskCategory() {
   let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
@@ -486,8 +379,8 @@ function highlightSelectedTaskCategory() {
 }
 
 /**
- * Gets the button representing the task priority 
- * @param {string} priority 
+ * Gets the button representing the task priority
+ * @param {string} priority
  */
 function getButtonPrio(priority) {
   let button = null;
@@ -506,138 +399,3 @@ function getButtonPrio(priority) {
   }
   setButtonPrio(button);
 }
-
-/**
- * Saves edits made to a task
- * @param {number} taskId - The ID of the task to edit
- */
-function saveTaskEdits(taskId) {
-  let taskIndex = tasks.findIndex((task) => task.id === taskId);
-  if (taskIndex === -1) return;
-  let category = document.getElementById("categorySelect").value;
-  let categoryColor = getCategoryColor(category);
-  let subtasks = getUpdatedSubtasks(tasks[taskIndex].subtasks);
-  tasks[taskIndex] = {
-    ...tasks[taskIndex],
-    title: document.getElementById("editTitleInput").value,
-    description: document.getElementById("descriptionTextArea").value,
-    assignedContacts: getUpdatedAssignedContacts(),
-    dueDate: document.getElementById("dateInput").value,
-    priority: getUpdatedSelectedTaskPriority(),
-    category,
-    categoryColor,
-    subtasks,
-    subtasksAmount: subtasks.length,
-  };
-  saveTasks();
-  openTaskCardDetailedView(taskId);
-  generateTasks();
-  checkAndGenerateEmptyTask();
-  addDragAndDropEventListeners();
-}
-
-/**
- * Gets the URL of the selected task priority icon
- * @returns {string} img src  
- */
-function getUpdatedSelectedTaskPriority() {
-  let prioButtons = document.querySelectorAll(
-    ".prioButtonsDiv button.selected"
-  );
-  if (prioButtons.length > 0) {
-    let buttonImageSrc = prioButtons[0].querySelector("img").src;
-    return buttonImageSrc.substring(buttonImageSrc.indexOf("/img"));
-  }
-}
-
-/**
- * Retrieves updated assigned contacts from the DOM
- * @returns {Array} An array of objects representing updated assigned contacts
- */
-function getUpdatedAssignedContacts() {
-  return Array.from(document.querySelectorAll(".selectedContact")).map(
-    (contact) => {
-      let name = contact
-        .querySelector(".dropDownContactName")
-        .textContent.trim();
-      let color = contact.querySelector(".dropDownContactIcon").style
-        .backgroundColor;
-      let initials = getInitials(name);
-      return { name, color, initials };
-    }
-  );
-}
-
-/**
- * Retrieves updated subtasks from the DOM.
- * @param {Array} existingSubtasks - The array of existing subtasks.
- * @returns {Array} An array of objects representing updated subtasks.
- */
-function getUpdatedSubtasks(existingSubtasks) {
-  let subtaskElements = document.querySelectorAll(".subtaskLI");
-  return Array.from(subtaskElements).map((el, index) => {
-    let description = el.querySelector(".subtaskText").textContent.trim();
-    let existingSubtask = existingSubtasks.find(
-      (subtask) => subtask.id === `subtask-${index}`
-    );
-    let completed = existingSubtask ? existingSubtask.completed : false;
-    return {
-      id: `subtask-${index}`,
-      description,
-      completed,
-    };
-  });
-}
-
-/**
- * Filters tasks based on the input value 
- * @returns matches in the array of tasks and the input value 
- */
-function getTasksByFilter() {
-  let searchInputValue = document
-    .querySelector(".searchTaskInput")
-    .value.toLowerCase();
-  if (searchInputValue) {
-    return tasks.filter((task) => {
-      return (
-        task.title.toLowerCase().includes(searchInputValue) ||
-        task.description.toLowerCase().includes(searchInputValue)
-      );
-    });
-  } else {
-    return tasks;
-  }
-}
-
-/**
- * Deletes a task 
- * @param {number} taskId  - the ID of the tasks to delete 
- */
-function deleteTask(taskId) {
-  let taskIndex = tasks.findIndex((task) => task.id === taskId);
-  tasks.splice(taskIndex, 1);
-  saveTasks();
-  generateTasks();
-  closeAddTaskOverlay(true);
-}
-
-
-function changeTaskCategory(taskId, newCategory) {
-  let taskIndex = tasks.findIndex(task => task.id === taskId);
-  tasks[taskIndex].taskCategory = newCategory;
-  saveTasks();
-  generateTasks();
-}
-
-document.addEventListener('click', function(event) {
-  if (!event.target.closest('.taskCardMovePopup') && 
-      !event.target.closest('.dropDownContacts') &&
-      !event.target.closest('.dropDownCategory') &&
-      !event.target.classList.contains('taskCardMoveButton') &&
-      !event.target.classList.contains('contactsSelect') &&
-      !event.target.classList.contains('categorySelect')) {
-    document.querySelectorAll('.taskCardMovePopup, .dropDownContacts, .dropDownCategory').forEach(popup => {
-      popup.classList.add('invisible');
-    });
-  }
-});

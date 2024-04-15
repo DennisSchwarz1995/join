@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/contacts.js"></script>
+    <script src="../js/edit_contacts.js"></script>
     <script src="../js/contacts_templates.js"></script>
     <script src="../js/general_functions.js"></script>
     <script src="../js/header.js"></script>
@@ -16,7 +17,11 @@
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/mobile.css" />
+    <link rel="stylesheet" href="../css/mobile_1540px.css" />
+    <link rel="stylesheet" href="../css/mobile_1000px.css" />
+    <link rel="stylesheet" href="../css/mobile_768px.css" />
+    <link rel="stylesheet" href="../css/mobile_576px.css" />
+    <link rel="stylesheet" href="../css/mobile_400px.css" />
     <link rel="stylesheet" href="../css/general_classes.css" />
     <title>Contacts</title>
   </head>
@@ -58,6 +63,7 @@
                 placeholder="Name"
                 pattern="[A-Za-zÄÖÜäöü]+(\s[A-Za-zÄÖÜäöü]+)?"
                 oninput="checkContactNameValidity()"
+                maxlength="20"
               />
               <div class="nameIconDiv">
                 <img
@@ -76,6 +82,7 @@
                 class="contactEmailInput"
                 placeholder="Email"
                 oninput="checkEmailValidity()"
+                maxlength="40"
               />
               <div class="emailIconDiv">
                 <img
@@ -95,6 +102,7 @@
                 placeholder="Phone"
                 oninput="checkPhoneNumberValidity()"
                 pattern="[0-9+\s]+"
+                maxlength="20"
               />
               <div class="phoneIconDiv">
                 <img
@@ -155,6 +163,7 @@
                 placeholder="Name"
                 pattern="[A-Za-zÄÖÜäöü]+(\s[A-Za-zÄÖÜäöü]+)?"
                 oninput="checkContactNameValidity()"
+                maxlength="20"
               />
               <div class="nameIconDiv">
                 <img
@@ -173,6 +182,7 @@
                 class="contactEmailInput"
                 placeholder="Email"
                 oninput="checkEmailValidity()"
+                maxlength="40"
               />
               <div class="emailIconDiv">
                 <img
@@ -192,6 +202,7 @@
                 placeholder="Phone"
                 oninput="checkPhoneNumberValidity()"
                 pattern="[0-9+\s]+"
+                maxlength="20"
               />
               <div class="phoneIconDiv">
                 <img

@@ -1,0 +1,179 @@
+@media (max-width: 400px) {
+  .navBarMenuMobile {
+    margin: 0 !important;
+  }
+
+  .contacts .contactNameSpan,
+  .contacts .contactMailSpan {
+    font-size: var(--font-size-14) !important;
+  }
+
+  .navBarMenuMobile h5 {
+    font-size: var(--font-size-12) !important;
+  }
+
+  .searchTaskAndAddTask {
+    flex-direction: column-reverse !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .taskCard {
+    min-width: 80% !important;
+  }
+
+  .boardCategory {
+    width: 80%;
+  }
+
+  .searchTaskImageDiv {
+    display: none !important;
+  }
+
+  .addTaskButton {
+    margin: 0 !important;
+    width: fit-content !important;
+  }
+
+  .boardCategory > span {
+    font-size: var(--font-size-16) !important;
+  }
+
+  .board {
+    padding-left: 20px !important;
+  }
+  .taskBoard {
+    max-width: 260px !important;
+  }
+
+  .addTask .prioButtonsDiv button > span,
+  .addTask .requiredInfoDiv span,
+  .addTask .requiredInfoDiv sup,
+  .addTaskOverlay .prioButtonsDiv button > span,
+  .addTaskOverlay .requiredInfoDiv span,
+  .addTaskOverlay .requiredInfoDiv sup,
+  .taskCardDetailedView .prioButtonsDiv button > span,
+  .taskCardDetailedView .requiredInfoDiv span,
+  .taskCardDetailedView .requiredInfoDiv sup {
+    display: none !important;
+  }
+
+  .taskCardDetailedAssignedContacts {
+    gap: 8px !important;
+  }
+
+  .login .joinLogo,
+  .signUp .joinLogo {
+    transition: none !important;
+    animation: none !important;
+    visibility: hidden !important;
+  }
+
+  .login .loginAreaFullScreenVision,
+  .signUp .signUpAreaFullScreenVision {
+    margin: 0 !important;
+  }
+
+  .login .buttonArea {
+    min-height: 120px !important;
+  }
+
+  .login .loginButton,
+  .login .guestLoginButton {
+    min-height: 0 !important;
+  }
+
+  .login .emailInput,
+  .login .passwordInput,
+  .signUp .nameInput,
+  .signUp .emailInput,
+  .signUp .passwordInput,
+  .signUp .confirmPasswordInput {
+    min-width: 150px !important;
+    max-width: 150px !important;
+  }
+
+  .signUp .headlineAndArrowDiv {
+    justify-content: inherit !important;
+    gap: 8px !important;
+  }
+
+  .signUp .signUpBackArrowDiv {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .signUp .checkBox {
+    margin-top: 4px !important;
+  }
+  .addTask .taskSelectorLeft,
+  .addTask .taskSelectorRight {
+    width: 230px !important;
+  }
+
+  .contacts .contactList {
+    padding: 0 10px 10px 10px !important;
+    max-width: 80% !important;
+  }
+
+  .contacts .contactCard {
+    padding: 4px 0 4px 8px !important;
+    gap: 12px !important;
+  }
+
+  .contacts .contactDivider {
+    max-width: 260px !important;
+  }
+
+  .contacts .contactMailSpan {
+    max-width: 140px !important;
+  }
+
+  .contacts .userInitialsDiv {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  .contacts .contactCategoryDiv {
+    padding: 5px 20px !important;
+  }
+
+  .contacts .letterCategory {
+    font-size: var(--font-size-14);
+  }
+
+  .contacts .addNewContactButton {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .addContact .contactHeader,
+  .editContact .contactHeader {
+    padding: 0 24px !important;
+  }
+
+  .addContact .contactHeader h1,
+  .editContact .contactHeader h1 {
+    font-size: var(--font-size-27) !important;
+  }
+
+  .addContact .contactHeader h3,
+  .editContact .contactHeader h3 {
+    font-size: var(--font-size-16) !important;
+  }
+
+  .addContact .contactForm .contactNameInput,
+  .addContact .contactForm .contactEmailInput,
+  .addContact .contactForm .contactPhoneInput,
+  .editContact .contactEditForm .contactNameInput,
+  .editContact .contactEditForm .contactEmailInput,
+  .editContact .contactEditForm .contactPhoneInput {
+    min-width: 220px !important;
+  }
+
+  .addContact .closeButtonDiv,
+  .editContact .closeButtonDiv {
+    top: 32px !important;
+  }
+}

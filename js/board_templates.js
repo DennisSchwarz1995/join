@@ -1,12 +1,12 @@
 /**
  * Generates HTML markup for subtasks in the edit task view
- * @param {Array} subtasks 
+ * @param {Array} subtasks
  */
-  function generateSubtasks(subtasks) {
-    let subtaskList = document.querySelector(".editTaskSubtaskList");
-    let subtaskListHTML = "";
-    subtasks.forEach((subtask, index) => {
-      subtaskListHTML += `
+function generateSubtasks(subtasks) {
+  let subtaskList = document.querySelector(".editTaskSubtaskList");
+  let subtaskListHTML = "";
+  subtasks.forEach((subtask, index) => {
+    subtaskListHTML += `
         <li class="subtaskLI" data-index="${index}">
           <span class="subtaskText">${subtask.description}</span>
           <div class="subtaskEditDiv">
@@ -19,20 +19,20 @@
           </div>
         </li>
       `;
-    });
-    subtaskList.innerHTML = subtaskListHTML;
-  }
+  });
+  subtaskList.innerHTML = subtaskListHTML;
+}
 /**
- * Generates HTML markup for displaying a detailed view of a task 
+ * Generates HTML markup for displaying a detailed view of a task
  * @param {object} task -The Taks Object
  * @returns -HTML markup
  */
-  function taskCardDetailedViewTemplate(task) {
-    let formattedDueDate = formatDate(task.dueDate);
-    let priorityName = getPriorityNameFromURL(task.priority);
-    let assignedContactsHTML = generateAssignedContactsHTML(task);
-    let subtasksHTML = generateDetailedViewSubtasks(task);
-    return `
+function taskCardDetailedViewTemplate(task) {
+  let formattedDueDate = formatDate(task.dueDate);
+  let priorityName = getPriorityNameFromURL(task.priority);
+  let assignedContactsHTML = generateAssignedContactsHTML(task);
+  let subtasksHTML = generateDetailedViewSubtasks(task);
+  return `
       <div class="taskCardDetailedHeader">
         <div
           class="taskCardDetailedCategory"
@@ -75,18 +75,18 @@
             <span>Delete</span>
       </div>
     `;
-  }
+}
 
-  /**
-   * Generates HTML markup for displaying subtasks of a task in the detailed view
-   * @param {object} task - The task object
-   * @returns {string} - HTML markup
-   */
-  function generateAssignedContactsHTML(task) {
-    if (task.assignedContacts && task.assignedContacts.length > 0) {
-      return task.assignedContacts
-        .map(
-          (contact) => `
+/**
+ * Generates HTML markup for displaying subtasks of a task in the detailed view
+ * @param {object} task - The task object
+ * @returns {string} - HTML markup
+ */
+function generateAssignedContactsHTML(task) {
+  if (task.assignedContacts && task.assignedContacts.length > 0) {
+    return task.assignedContacts
+      .map(
+        (contact) => `
         <div class="taskCardDetailedUserWrapper">
           <div class="taskCardDetailedUser" style="background-color:${
             contact.color
@@ -94,67 +94,75 @@
           <div>${contact.name}</div> 
         </div>
       `
-        )
-        .join("");
-    } else {
-      return "<div>No contacts assigned</div>";
-    }
+      )
+      .join("");
+  } else {
+    return "<div>No contacts assigned</div>";
   }
-  
-  /**
-   * Generates HTML markup for displaying subtask of a task
-   * @param {obect} task - The task object  
-   * @returns 
-   */
-  function generateDetailedViewSubtasks(task) {
-    if (task.subtasks && task.subtasks.length > 0) {
-      let subtaskHTML = "";
-      task.subtasks.forEach((subtask, index) => {
-        let subtaskId = `task-${task.id}-subtask-${index}`;
-        let isChecked = subtask.completed
-          ? "../img/checkbox-icon-selected.svg"
-          : "../img/checkbox-icon.svg";
-        let width = subtask.completed ? "19px" : "24px";
-        let height = subtask.completed ? "19px" : "24px";
-        subtaskHTML += `
+}
+
+/**
+ * Generates HTML markup for displaying subtask of a task
+ * @param {object} task - The task object
+ * @returns
+ */
+function generateDetailedViewSubtasks(task) {
+  if (task.subtasks && task.subtasks.length > 0) {
+    let subtaskHTML = "";
+    task.subtasks.forEach((subtask, index) => {
+      let subtaskId = `task-${task.id}-subtask-${index}`;
+      let isChecked = subtask.completed
+        ? "../img/checkbox-icon-selected.svg"
+        : "../img/checkbox-icon.svg";
+      let width = subtask.completed ? "19px" : "24px";
+      let height = subtask.completed ? "19px" : "24px";
+      subtaskHTML += `
           <div class="taskCardDetailedSubtasksList"> 
             <div class="checkBoxIconDiv">
               <img class="checkBoxIcon" id="${subtaskId}" src="${isChecked}" alt="checkbox-icon" style="width: ${width}; height: ${height};" onclick="toggleSubtaskCompletion(event)"/>
             </div> 
             ${subtask.description}
           </div>`;
-      });
-      return subtaskHTML;
-    } else {
-      return "<div>No subtasks</div>";
-    }
+    });
+    return subtaskHTML;
+  } else {
+    return "<div>No subtasks</div>";
   }
+}
 
-  /**
-   * Generates HTML markup for displaying a task card
-   * @param {object} taskData - The taskdata object
-   * @returns 
-   */
-  function taskHTML(taskData) {
-    let assignedContactsHTML = "";
-    if (taskData.assignedContacts) {
-      assignedContactsHTML = checkAssignedContactLength(taskData);
-    }
-    let progressBarClass = taskData.subtasks.length === 0 ? "invisible" : "";
-    let completedSubtasks = taskData.subtasks.filter(
-      (subtask) => subtask.completed
-    ).length;
-    return `
+/**
+ * Generates HTML markup for displaying a task card
+ * @param {object} taskData - The taskdata object
+ * @returns
+ */
+function taskHTML(taskData) {
+  let assignedContactsHTML = "";
+  if (taskData.assignedContacts) {
+    assignedContactsHTML = checkAssignedContactLength(taskData);
+  }
+  let progressBarClass = taskData.subtasks.length === 0 ? "invisible" : "";
+  let completedSubtasks = taskData.subtasks.filter(
+    (subtask) => subtask.completed
+  ).length;
+  return `
       <div class="taskCard" id="task-${
         taskData.id
       }" draggable="true" onclick="openTaskCardDetailedView(${taskData.id})">
       <header class="taskCardHeader">
-        <div class="taskCategory" style="background: ${taskData.categoryColor}">${taskData.category}</div>
+        <div class="taskCategory" style="background: ${
+          taskData.categoryColor
+        }">${taskData.category}</div>
        <div class="taskCardMoveButtonAndPopup">
-          <button class="taskCardMoveButton invisible" id="moveButton-${taskData.id}" onclick="event.stopPropagation(); toggleMobileTaskCardMovePopup(${taskData.id})">
+          <button class="taskCardMoveButton invisible" id="moveButton-${
+            taskData.id
+          }" onclick="event.stopPropagation(); toggleMobileTaskCardMovePopup(${
+    taskData.id
+  })">
             <span>Move</span>
           </button>
-        <div class="taskCardMovePopup invisible" id="taskCardMovePopup-${taskData.id}"></div>
+        <div class="taskCardMovePopup invisible" id="taskCardMovePopup-${
+          taskData.id
+        }"></div>
       </div>
       </header>
         <div class="taskTitle">${taskData.title}</div>
@@ -166,45 +174,49 @@
             }%"></div>
           </div>
           <div class="taskProgressCount">${completedSubtasks} / ${
-      taskData.subtasks.length
-    }</div>
+    taskData.subtasks.length
+  }</div>
         </div>
         <div class="taskContactAndPrio">
           <div class="taskContacts">${assignedContactsHTML}</div>
           <img class="taskPrio" src="..${taskData.priority}" />
         </div>
       </div>`;
-  }
+}
 
-  /**
-   * Generates HTML markup for a empty placeholder
-   * @param {string} categoryName - The name of the category
-   * @returns - HTML markup
-   */
-  function generateEmptyTask(categoryName) {
-    return `
+/**
+ * Generates HTML markup for a empty placeholder
+ * @param {string} categoryName - The name of the category
+ * @returns - HTML markup
+ */
+function generateEmptyTask(categoryName) {
+  return `
         <div class="noTasksDiv" id="emptyTask-${categoryName}">
           <div class="taskContentContainer">
             <span>No tasks ${categoryName}</span>
           </div>
         </div>
     `;
-  }
+}
 
+/**
+ * Toggles a popup inside the taskcard to move tasks into other tasklists on mobile devices when drag & drop is not available
+ * @param {string} taskId - The ID of the task
+ * @returns - HTML markup
+ */
+function toggleMobileTaskCardMovePopup(taskId) {
+  document.querySelectorAll(".taskCardMovePopup").forEach((popup) => {
+    if (popup.id !== `taskCardMovePopup-${taskId}`) {
+      popup.classList.add("invisible");
+    }
+  });
+  let taskCardMovePopup = document.getElementById(
+    `taskCardMovePopup-${taskId}`
+  );
+  taskCardMovePopup.classList.toggle("invisible");
 
-  
-
-  function toggleMobileTaskCardMovePopup(taskId) {
-    document.querySelectorAll('.taskCardMovePopup').forEach(popup => {
-      if (popup.id !== `taskCardMovePopup-${taskId}`) {
-        popup.classList.add('invisible');
-      }
-    });
-    let taskCardMovePopup = document.getElementById(`taskCardMovePopup-${taskId}`);
-    taskCardMovePopup.classList.toggle("invisible");
-    
-    if (!taskCardMovePopup.classList.contains("invisible")) {
-      taskCardMovePopup.innerHTML = `
+  if (!taskCardMovePopup.classList.contains("invisible")) {
+    taskCardMovePopup.innerHTML = `
         <div class="taskCardMovePopupContent" onclick="event.stopPropagation()">
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'to do')">To do</div>
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'await feedback')">Await feedback</div>
@@ -212,5 +224,28 @@
           <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'done')">Done</div>
         </div>
       `;
-    }
   }
+}
+
+/**
+ * Checks the lenghts of assinged contacts and generates HTML
+ * @param {object} taskData - The task data containing assinged contacts
+ * @returns HTML of assinged contacts
+ */
+function checkAssignedContactLength(taskData) {
+  let maxContactsToDisplay = 3;
+  let additionalContactsCount =
+    taskData.assignedContacts.length - maxContactsToDisplay;
+
+  if (taskData.assignedContacts.length === 0) {
+    return `<div class="taskContact invisible" style="background: var(--main-color-darkblue)">0</div>`;
+  }
+
+  if (additionalContactsCount > 0) {
+    let additionalsContactsHTML = `<div class="taskContact" style="background: var(--main-color-darkblue)">+${additionalContactsCount}</div>`;
+    return (taskData.assignedContacts.slice(0, maxContactsToDisplay).map((contact) => `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`).join("") + additionalsContactsHTML);
+  } else {   
+    return taskData.assignedContacts
+      .map((contact) => `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`).join("");
+  }
+}

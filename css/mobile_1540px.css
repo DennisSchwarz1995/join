@@ -1,0 +1,110 @@
+@media (max-width: 1540px) {
+  .taskBoard,
+  .boardHeadline {
+    max-width: 750px !important;
+  }
+
+  .taskLists {
+    flex-direction: column !important;
+  }
+
+  .taskCard {
+    box-sizing: border-box !important;
+    min-width: 252px !important;
+  }
+
+  .toDoTaskList,
+  .inProgressTaskList,
+  .awaitFeedbackTaskList,
+  .doneTaskList {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    margin-top: 0 !important;
+  }
+
+  .boardCategory {
+    position: inherit !important;
+  }
+
+  .noTasksDiv {
+    min-width: 252px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .toDoTasks,
+  .inProgressTasks,
+  .awaitFeedbackTasks,
+  .doneTasks {
+    margin-bottom: 20px !important;
+  }
+
+  .addTaskOverlay {
+    max-height: 90% !important;
+    max-width: 80% !important;
+  }
+
+  .addTaskOverlay h1,
+  .contacts .contactHeadline h1,
+  .contacts .floatingContactName h2,
+  .contacts .floatingContactUser h2,
+  .addContact h1,
+  .editContact h1 {
+    font-size: var(--font-size-41) !important;
+  }
+
+  .addTaskOverlay .taskSelectorLeft,
+  .addTaskOverlay .taskSelectorRight {
+    width: 400px !important;
+  }
+
+  .addTask .subtaskList,
+  .addTaskOverlay .subtaskList,
+  .taskCardDetailedView .subtaskList {
+    max-height: 70px !important;
+  }
+
+  .addTask {
+    padding: 0 40px 0 40px !important;
+  }
+
+  .contacts,
+  .contacts .floatingContactHeader {
+    gap: 16px !important;
+  }
+
+  .contacts .contactHeadline {
+    gap: 10px !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  .contacts .contactHeadlineDivider {
+    height: inherit !important;
+    width: 60% !important;
+  }
+
+  .contacts .contactDetailedInfo {
+    width: 460px !important;
+  }
+
+  .contacts .floatingContactUser {
+    height: 100px !important;
+    width: 100px !important;
+    min-width: 100px !important;
+  }
+
+  .addContact,
+  .editContact {
+    width: 1090px !important;
+  }
+
+  .addContact .closeButtonDiv,
+  .editContact .closeButtonDiv {
+    right: 20px !important;
+  }
+
+  .addContact h3,
+  .editContact h3 {
+    font-size: var(--font-size-21) !important;
+  }
+}

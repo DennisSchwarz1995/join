@@ -1,0 +1,240 @@
+@media (max-width: 576px) {
+  .searchTaskAndAddTask {
+    overflow: hidden !important;
+  }
+  .searchTaskInput {
+    width: 150px !important;
+  }
+
+  .noTasksDiv {
+    min-width: 200px !important;
+  }
+
+  .taskBoard {
+    max-width: 300px !important;
+  }
+
+  .addTaskOverlay .taskSelectorRight {
+    margin-top: 8px !important;
+  }
+
+  .addTaskOverlay .clearButton,
+  .taskCardDetailedView .clearButton {
+    min-width: 50px !important;
+  }
+
+  .addTaskOverlay .createTaskButton,
+  .taskCardDetailedView .createTaskButton {
+    min-width: 80px !important;
+  }
+
+  .addTaskOverlay,
+  .taskCardDetailedView {
+    min-width: 100% !important;
+    min-height: 100% !important;
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+    top: 50% !important;
+    width: auto !important;
+    border-radius: 0 !important;
+  }
+
+  .taskCardDetailedTitle {
+    font-size: var(--font-size-21) !important;
+  }
+
+  .taskCardDetailedDescription,
+  .taskCardDetailedDueDate > span,
+  .taskCardDetailedPriority > span,
+  .addTask .required::after,
+  .addTaskOverlay .required::after,
+  .taskCardDetailedView .required::after,
+  .login .emailInput::placeholder,
+  .login .passwordInput::placeholder,
+  .login .emailInput,
+  .login .passwordInput,
+  .login .loginButton,
+  .login .guestLoginButton,
+  .signUp .nameInput::placeholder,
+  .signUp .emailInput::placeholder,
+  .signUp .passwordInput::placeholder,
+  .signUp .confirmPasswordInput::placeholder,
+  .signUp .nameInput,
+  .signUp .emailInput,
+  .signUp .passwordInput,
+  .signUp .confirmPasswordInput,
+  .signUp .signUpButton {
+    font-size: var(--font-size-16) !important;
+  }
+
+  .taskCardDetailedUserWrapper,
+  .addTask .subtaskText,
+  .addTaskOverlay .subtaskText,
+  .taskCardDetailedView .subtaskText,
+  .addTask .dropDownContactName,
+  .addTaskOverlay .dropDownContactName,
+  .taskCardDetailedView .dropDownContactName,
+  .login .rememberMe,
+  .signUp .privacyPolicyParagraph {
+    font-size: var(--font-size-14) !important;
+  }
+
+  .addTask .clearButton > span,
+  .addTask .createTaskButton > span,
+  .addTaskOverlay .clearButton > span,
+  .addTaskOverlay .createTaskButton > span,
+  .taskCardDetailedView .clearButton > span,
+  .taskCardDetailedView .createTaskButton > span,
+  .taskCategory {
+    font-size: var(--font-size-12) !important;
+  }
+
+  .addTask .titleInvalidDiv,
+  .addTask .dueDateInvalidDiv,
+  .addTask .categoryInvalidDiv,
+  .addTask .subtaskInvalidDiv,
+  .addTaskOverlay .titleInvalidDiv,
+  .addTaskOverlay .dueDateInvalidDiv,
+  .addTaskOverlay .categoryInvalidDiv,
+  .addTaskOverlay .subtaskInvalidDiv,
+  .taskCardDetailedView .titleInvalidDiv,
+  .taskCardDetailedView .dueDateInvalidDiv,
+  .taskCardDetailedView .categoryInvalidDiv,
+  .taskCardDetailedView .subtaskInvalidDiv,
+  .login .emailInvalidDiv,
+  .login .passwordInvalidDiv,
+  .signUp .nameInvalidDiv,
+  .signUp .emailInvalidDiv,
+  .signUp .passwordInvalidDiv,
+  .signUp .confirmPasswordInvalidDiv {
+    font-size: var(--font-size-10) !important;
+  }
+
+  .taskCardDetailedDueDate,
+  .taskCardDetailedPriority {
+    width: 80% !important;
+  }
+
+  .clearAndCreateButtonDiv {
+    gap: 8px !important;
+  }
+
+  .addTask .editSubtask,
+  .addTask .deleteSubtask,
+  .addTaskOverlay .editSubtask,
+  .addTaskOverlay .deleteSubtask,
+  .taskCardDetailedView .editSubtask,
+  .taskCardDetailedView .deleteSubtask {
+    height: 16px !important;
+    width: 16px !important;
+  }
+
+  .addTask .subtaskList,
+  .addTaskOverlay .subtaskList,
+  .taskCardDetailedView .subtaskList {
+    margin-top: 4px !important;
+  }
+
+  .addTask .subtaskEditDiv,
+  .addTaskOverlay .subtaskEditDiv,
+  .taskCardDetailedView .subtaskEditDiv {
+    display: flex !important;
+    position: absolute !important;
+    height: 100% !important;
+    max-width: 50% !important;
+  }
+
+  .addTask .subtaskEditDiv .subtaskEditInput,
+  .addTaskOverlay .subtaskEditDiv .subtaskEditInput,
+  .taskCardDetailedView .subtaskEditDiv .subtaskEditInput {
+    max-width: 80% !important;
+    font-size: var(--font-size-12) !important;
+  }
+
+  .login .loginArea,
+  .signUp .signUpArea {
+    padding: 20px 30px !important;
+    gap: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .login .loginButton {
+    min-height: 60px !important;
+  }
+
+  .login .buttonArea {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .login .loginForm,
+  .signUp .signUpForm {
+    gap: 20px !important;
+  }
+
+  .login .emailInvalidDiv,
+  .login .passwordInvalidDiv,
+  .signUp .nameInvalidDiv,
+  .signUp .emailInvalidDiv,
+  .signUp .passwordInvalidDiv,
+  .signUp .confirmPasswordInvalidDiv {
+    top: 48px !important;
+  }
+  .login .passwordIcon,
+  .login .emailIcon,
+  .signUp .nameIcon,
+  .signUp .mailIcon,
+  .signUp .passwordIcon,
+  .signUp .confirmPasswordIcon {
+    height: 20px !important;
+    width: 20px !important;
+  }
+
+  .addTask .taskSelectorLeft,
+  .addTask .taskSelectorRight {
+    width: 300px !important;
+  }
+
+  .taskCardDetailedUser,
+  .addTask .dropDownContactIcon,
+  .addTaskOverlay .dropDownContactIcon,
+  .taskCardDetailedView .dropDownContactIcon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: var(--font-size-10) !important;
+  }
+
+  .contacts .detailedView .contactDetailedInfo {
+    padding: 12px 0 0 12px !important;
+  }
+
+  .contacts .detailedView .backArrowDiv {
+    top: 11px !important;
+  }
+
+  .contacts .detailedView .contactHeadline h1 {
+    font-size: var(--font-size-27) !important;
+  }
+
+  .contacts .detailedView .contactHeadline .contactHeadlineSpan,
+  .contacts .detailedView .floatingContactName h2 {
+    font-size: var(--font-size-21) !important;
+  }
+
+  .contactOverlay,
+  .editContactOverlay {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    z-index: 99999 !important;
+    top: 50% !important;
+  }
+
+  .addContact,
+  .editContact,
+  .contactOverlay .contactHeaderDiv,
+  .editContactOverlay .contactHeaderDiv {
+    border-radius: 0 !important;
+  }
+}

@@ -1,0 +1,154 @@
+@media (max-width: 768px) {
+  .privacyPolicy,
+  .legalNotice,
+  .help {
+    padding: 16px 40px 0 40px !important;
+  }
+
+  .privacyPolicy .privacyPolicyHeadline h1,
+  .legalNotice .legalNoticeHeadline h1 {
+    font-size: 31px !important;
+  }
+
+  .privacyPolicy .backArrowDiv,
+  .legalNotice .backArrowDiv,
+  .help .backArrowDiv {
+    right: 20px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .privacyPolicy ul,
+  .legalNotice ul {
+    padding: 0 !important;
+  }
+
+  .legalNotice .legalNoticeSection,
+  .help .helpSection {
+    margin-bottom: 12px !important;
+  }
+
+  .help .explanationDiv {
+    gap: 12px !important;
+  }
+
+  .searchTaskInput {
+    min-width: 80px !important;
+  }
+  .searchTaskAndAddTask {
+    gap: 16px !important;
+  }
+
+  .boardHeadline {
+    justify-content: flex-start !important;
+  }
+
+  .boardHeadline h1 {
+    display: none !important;
+  }
+
+  .taskBoard {
+    max-width: 500px !important;
+  }
+
+  .login .joinLogo,
+  .signUp .joinLogo {
+    width: 90px !important;
+    height: 80px !important;
+  }
+
+  .login .loginText,
+  .signUp .signUpText {
+    font-size: var(--font-size-41) !important;
+  }
+
+  .login .footer,
+  .signUp .footer {
+    margin-bottom: 20px !important;
+  }
+
+  .addTask {
+    padding: 0 20px 0 20px !important;
+  }
+
+  .contacts .contactBoard {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    width: 100% !important;
+    min-width: inherit !important;
+    max-width: inherit !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .contacts .contactButtonDiv {
+    position: fixed !important;
+    bottom: 82px !important;
+    right: 8px !important;
+    top: inherit !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+
+  .contacts .contactButtonDiv button p {
+    display: none !important;
+  }
+
+  .contacts .addNewContactButton {
+    width: 56px !important;
+    height: 56px !important;
+    padding: 12px !important;
+    border-radius: 46px !important;
+  }
+
+  .contacts .contactDetailedInfo {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 40px 0 0 40px !important;
+    gap: 12px !important;
+  }
+
+  .contacts .floatingContactDiv {
+    align-items: center !important;
+  }
+
+  .contacts .detailedView .backArrowDiv {
+    position: absolute !important;
+    right: 20px !important;
+    top: 50px !important;
+    visibility: visible !important;
+  }
+
+  .contacts .detailedView .contactDetailedInfo .mobileEditAndDeleteMenu {
+    visibility: visible !important;
+  }
+
+  .contacts .detailedView .contactDetailedInfo .floatingContactEditAndDelete {
+    visibility: hidden !important;
+  }
+
+  .addContact .contactForm .contactNameDiv,
+  .addContact .contactForm .contactEmailDiv,
+  .addContact .contactForm .contactPhoneDiv,
+  .editContact .contactForm .contactNameDiv,
+  .editContact .contactForm .contactEmailDiv,
+  .editContact .contactForm .contactPhoneDiv {
+    width: fit-content !important;
+  }
+
+  .addContact .contactForm .contactNameInput,
+  .addContact .contactForm .contactEmailInput,
+  .addContact .contactForm .contactPhoneInput,
+  .editContact .contactEditForm .contactNameInput,
+  .editContact .contactEditForm .contactEmailInput,
+  .editContact .contactEditForm .contactPhoneInput {
+    min-width: 300px !important;
+  }
+
+  .addContact .contactForm,
+  .editContact .contactEditForm {
+    align-items: center !important;
+  }
+}

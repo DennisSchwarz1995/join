@@ -8,7 +8,6 @@ async function initContacts() {
   generateHeader();
   generateNavbarMobile();
   checkValuesForSubmitButton();
-  checkWindowSize();
 }
 
 let isContactOverlayOpen = false;
@@ -26,23 +25,6 @@ function generateContacts() {
   } else {
     console.error("Contacts-List not found");
   }
-}
-
-/**
- * Function to check window size for the mobile version 
- */
-function checkWindowSize() {
-  if (isMobileDevice()) {
-    document.getElementById('contactDetailedInfo').style.display = 'none'
-  }
-}
-
-/**
- * 
- * @returns {boolean} - the window size 
- */
-function isMobileDevice() {
-  return window.innerWidth <= 768;
 }
 
 /**
@@ -64,7 +46,7 @@ function openContactOverlay() {
 }
 
 /**
- * Closes the contact overlay 
+ * Closes the contact overlay
  */
 function closeContactOverlay() {
   let overlay = document.querySelector(
@@ -72,7 +54,7 @@ function closeContactOverlay() {
   );
   if (overlay) {
     overlay.classList.remove("show");
-    setTimeout(() => { }, 300);
+    setTimeout(() => {}, 300);
     cancelInput();
     hideBackground();
   }
@@ -81,7 +63,7 @@ function closeContactOverlay() {
 }
 
 /**
- * Shows the background for the contact overlay 
+ * Shows the background for the contact overlay
  */
 function showBackground() {
   let background = document.querySelector(".overlayBackground");
@@ -89,7 +71,7 @@ function showBackground() {
 }
 
 /**
- * Hides the background for the overlay 
+ * Hides the background for the overlay
  */
 function hideBackground() {
   let background = document.querySelector(".overlayBackground");
@@ -97,31 +79,7 @@ function hideBackground() {
 }
 
 /**
- * Cancels input for the contact overlay 
- */
-function cancelInput() {
-  let nameInput = document.getElementById("fullname");
-  let emailInput = document.getElementById("email");
-  let phoneInput = document.getElementById("phone");
-  if (
-    nameInput.value.trim() !== "" ||
-    emailInput.value.trim() !== "" ||
-    phoneInput.value.trim() !== ""
-  ) {
-    nameInput.value = "";
-    emailInput.value = "";
-    phoneInput.value = "";
-    checkEmailValidity();
-    checkPhoneNumberValidity();
-    checkContactNameValidity();
-    checkValuesForSubmitButton();
-  } else {
-    closeContactOverlay();
-  }
-}
-
-/**
- * Adds a contact to the specified category 
+ * Adds a contact to the specified category
  * @param {string} category - The category to which the contact will be added
  * @param {Object} contact - The contact object to be added
  */
@@ -139,10 +97,10 @@ function addContactToCategory(category, contact) {
 }
 
 /**
- * Adds a contact to an exisisting category 
- * @param {HTMLElement} contactList 
- * @param {string} category - the category to which the contact belongs 
- * @param {Object} contact - the contact to be added 
+ * Adds a contact to an exisisting category
+ * @param {HTMLElement} contactList
+ * @param {string} category - the category to which the contact belongs
+ * @param {Object} contact - the contact to be added
  */
 function addContactToExistingCategory(contactList, category, contact) {
   let contactCard = createContactCard(contact);
@@ -196,9 +154,9 @@ function addContactToNewCategory(
 
 /**
  * Gets an array of existing contact cards within a specific category
- * @param {HTMLElement} contactList - contact list container 
+ * @param {HTMLElement} contactList - contact list container
  * @param {HTMLElement} categoryDiv -category div element
- * @returns {HTMLElement[]} - Array of existing contact cards 
+ * @returns {HTMLElement[]} - Array of existing contact cards
  */
 function getExistingContactCards(contactList, categoryDiv) {
   return Array.from(
@@ -207,10 +165,10 @@ function getExistingContactCards(contactList, categoryDiv) {
 }
 
 /**
- * Gets a contact card at a specified position within its parent element 
- * @param {HTMLElement} contactCard 
- * @param {HTMLElement} parentElement 
- * @param {number} insertionIndex 
+ * Gets a contact card at a specified position within its parent element
+ * @param {HTMLElement} contactCard
+ * @param {HTMLElement} parentElement
+ * @param {number} insertionIndex
  */
 function insertContactAtCurrentPosition(
   contactCard,
@@ -224,9 +182,9 @@ function insertContactAtCurrentPosition(
 }
 
 /**
- * Appends a contact card to a category section in the contact list 
- * @param {HTMLElement} categoryDiv -Category div element 
- * @param {HTMLElement} contactCard -Contact card to be appended 
+ * Appends a contact card to a category section in the contact list
+ * @param {HTMLElement} categoryDiv -Category div element
+ * @param {HTMLElement} contactCard -Contact card to be appended
  */
 function appendContactToCategory(categoryDiv, contactCard) {
   categoryDiv.parentElement.parentNode.insertBefore(
@@ -236,10 +194,10 @@ function appendContactToCategory(categoryDiv, contactCard) {
 }
 
 /**
- * Sets the insertion index for a new contact card within an array of existin contact card 
- * @param {Object} newContact -the new contact object 
- * @param {HTMLElement[]} existingContactCards  - array of existing contact card elements 
- * @returns 
+ * Sets the insertion index for a new contact card within an array of existin contact card
+ * @param {Object} newContact -the new contact object
+ * @param {HTMLElement[]} existingContactCards  - array of existing contact card elements
+ * @returns
  */
 function getInsertionIndex(newContact, existingContactCards) {
   let newContactName = newContact.name.toLowerCase();
@@ -255,9 +213,9 @@ function getInsertionIndex(newContact, existingContactCards) {
 }
 
 /**
- * Gets an array of existing categories from the contact list 
- * @param {HTMLElement} contactList - Contact list container 
- * @returns {string[]} Array of existion categories 
+ * Gets an array of existing categories from the contact list
+ * @param {HTMLElement} contactList - Contact list container
+ * @returns {string[]} Array of existion categories
  */
 function getExistingCategories(contactList) {
   return Array.from(contactList.getElementsByClassName("letterCategory")).map(
@@ -266,9 +224,9 @@ function getExistingCategories(contactList) {
 }
 
 /**
- * Retrieves the name of a contact from its contact card element 
- * @param {HTMLElement} contactCard - Contact card element 
- * @returns {string} - The name of the Conact 
+ * Retrieves the name of a contact from its contact card element
+ * @param {HTMLElement} contactCard - Contact card element
+ * @returns {string} - The name of the Conact
  */
 function getContactName(contactCard) {
   return contactCard
@@ -277,35 +235,16 @@ function getContactName(contactCard) {
 }
 
 /**
- * Retrieves the category div element from its specific category 
+ * Retrieves the category div element from its specific category
  * @param {HTMLElement} contactList - Contact list container
- * @param {string} category - Category name 
- * @returns {HTMLElement} - Category div element 
+ * @param {string} category - Category name
+ * @returns {HTMLElement} - Category div element
  */
 function getCategoryDiv(contactList, category) {
   let categoryDiv = Array.from(
     contactList.getElementsByClassName("letterCategory")
   ).find((element) => element.textContent === category);
   return categoryDiv.parentElement;
-}
-
-/**
- * Creates a new category div element with the specified category name
- * @param {string} category - The category name
- * @returns {HTMLElement} The newly created category div element
- */
-function createCategoryDiv(category) {
-  let newCategoryDiv = document.createElement("div");
-  newCategoryDiv.classList.add("categorySection");
-  newCategoryDiv.innerHTML = `
-    <div class="contactCategoryDiv">
-      <span class="letterCategory">${category}</span>
-    </div>
-    <div class="contactDividerDiv">
-      <img class="contactDivider" src="../img/contact-divider.svg" />
-    </div>
-  `;
-  return newCategoryDiv;
 }
 
 /**
@@ -332,10 +271,10 @@ function insertCategoryAndContact(
 }
 
 /**
- * Appends a category div and its contact card to the contact list 
+ * Appends a category div and its contact card to the contact list
  * @param {HTMLElement} contactList - Contact list container
- * @param {HTMLElement} newCategoryDiv - New category div element 
- * @param {HTMLElement} contactCard - Contact card element to be appended 
+ * @param {HTMLElement} newCategoryDiv - New category div element
+ * @param {HTMLElement} contactCard - Contact card element to be appended
  */
 function appendCategoryAndContact(contactList, newCategoryDiv, contactCard) {
   contactList.appendChild(newCategoryDiv);
@@ -343,7 +282,7 @@ function appendCategoryAndContact(contactList, newCategoryDiv, contactCard) {
 }
 
 /**
- * Creates contact and push it into array 
+ * Creates contact and push it into array
  */
 function createContact() {
   let name = document.getElementById("fullname");
@@ -370,7 +309,7 @@ function createContact() {
 }
 
 /**
- * Sorts the contacts alphabetically 
+ * Sorts the contacts alphabetically
  */
 function sortContacts() {
   contacts.sort((a, b) => a.name.localeCompare(b.name));
@@ -387,13 +326,13 @@ function showCreateOverlay() {
     createOverlay.classList.remove("slideInContactOverlay");
     createOverlay.classList.add("slideOut");
   }, 2000);
-};
+}
 
 /**
  * Gets the category section element for the specified category
- * If the section does not exist, creates a new one 
- * @param {string} category - Category name 
- * @returns {HTMLElement} - The category section element 
+ * If the section does not exist, creates a new one
+ * @param {string} category - Category name
+ * @returns {HTMLElement} - The category section element
  */
 function getCategorySection(category) {
   let existingCategorySection = Array.from(
@@ -410,8 +349,8 @@ function getCategorySection(category) {
 }
 
 /**
- * Creates a new category section with the specified category name 
- * @param {string} category - The category name  
+ * Creates a new category section with the specified category name
+ * @param {string} category - The category name
  * @returns {HTMLElement} - The newly created category section element
  */
 function createNewCategorySection(category) {
@@ -430,9 +369,9 @@ function createNewCategorySection(category) {
 }
 
 /**
- * Creates a contact card element for the given contact information 
+ * Creates a contact card element for the given contact information
  * @param {string} contact - Contact information object
- * @returns {HTMLElement} - New created category section element 
+ * @returns {HTMLElement} - New created category section element
  */
 function createContactCard(contact) {
   let contactCard = document.createElement("div");
@@ -463,496 +402,4 @@ function createContactCard(contact) {
   return contactCard;
 }
 
-/**
- * Generates random color for styling purposes
- * @returns - A random Color  
- */
-function getRandomColor() {
-  let colorSuffixes = [
-    "lightorange",
-    "mediumorange",
-    "darkorange",
-    "lightblue",
-    "darkblue",
-    "cyan",
-    "lightpink",
-    "mediumpink",
-    "darkpink",
-    "purple",
-    "lightyellow",
-    "mediumyellow",
-    "darkyellow",
-    "green",
-    "red",
-    "violet",
-  ];
 
-  return colorSuffixes[Math.floor(Math.random() * colorSuffixes.length)];
-}
-
-/**
- * Extracts the initals from a given name 
- * @param {string} name - The name from which to extract initals 
- * @returns {string} - The extracted initals 
- */
-function getInitials(name) {
-  let names = name.split(" ");
-  let initials = names.map((n) => n.charAt(0)).join("");
-  return initials.toUpperCase();
-}
-
-/**
- * Capitalizes the first letter of each word in a sting 
- * @param {string} name  - The name to capitalize 
- * @returns {sting} - The capitalized string
- */
-function capitalizeName(name) {
-  let names = name.split(" ");
-  let capitalizedNames = names.map(
-    (n) => n.charAt(0).toUpperCase() + n.slice(1)
-  );
-  return capitalizedNames.join(" ");
-}
-
-/**
- * Checks the form input values to enable or disable the submit button
- */
-function checkValuesForSubmitButton() {
-  let { button } = getFormElements(isEditingContact);
-  let isButtonEnabled = isSubmitButtonEnabled();
-
-  if (isButtonEnabled) {
-    button.removeAttribute("disabled");
-  } else {
-    button.setAttribute("disabled", "disabled");
-  }
-}
-
-/**
- * Checks if the submit button should be enabled based on form input validation
- * @returns {boolean} - True if the submit button should be enabled, otherwise false
- */
-function isSubmitButtonEnabled() {
-  let {
-    nameInput,
-    emailInput,
-    phoneInput,
-    nameInvalidDiv,
-    emailInvalidDiv,
-    phoneInvalidDiv,
-  } = getFormElements(isEditingContact);
-
-  let isButtonEnabled =
-    nameInput.value.trim() !== "" &&
-    emailInput.value.trim() !== "" &&
-    phoneInput.value.trim() !== "" &&
-    nameInvalidDiv.classList.contains("invisible") &&
-    emailInvalidDiv.classList.contains("invisible") &&
-    phoneInvalidDiv.classList.contains("invisible") &&
-    !document.querySelector(".warning");
-
-  return isButtonEnabled;
-}
-
-/**
- * Checks the calidity of the email input 
- * @returns {boolean} - True if the input is valid, otherwise false 
- */
-function checkEmailValidity() {
-  let { emailInput, emailInvalidDiv } = getFormElements(isEditingContact);
-  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(emailInput.value) || emailInput.value.trim() === "") {
-    if (emailInput.value !== "") {
-      emailInvalidDiv.classList.remove("invisible");
-      emailInput.classList.add("warning");
-    } else {
-      emailInvalidDiv.classList.add("invisible");
-      emailInput.classList.remove("warning");
-    }
-    return false;
-  } else {
-    emailInvalidDiv.classList.add("invisible");
-    emailInput.classList.remove("warning");
-    return true;
-  }
-}
-
-/**
- * Checks the validity of the phone number input 
- * @returns {boolean} - True if the number is valid, otherwise false 
- */
-function checkPhoneNumberValidity() {
-  let { phoneInput, phoneInvalidDiv } = getFormElements(isEditingContact);
-  let phoneValueWithoutSpaces = phoneInput.value.replace(/\s/g, "");
-
-  if (
-    phoneValueWithoutSpaces.length < 8 &&
-    phoneValueWithoutSpaces.length !== 0
-  ) {
-    phoneInvalidDiv.classList.remove("invisible");
-    phoneInput.classList.add("warning");
-    return false;
-  } else {
-    phoneInvalidDiv.classList.add("invisible");
-    phoneInput.classList.remove("warning");
-    return true;
-  }
-}
-
-/**
- * Checks the validity of the contact name input 
- */
-function checkContactNameValidity() {
-  let { nameInput, nameInvalidDiv } = getFormElements(isEditingContact);
-
-  if (!nameInput.checkValidity() || nameInput.value.trim() === "") {
-    nameInvalidDiv.classList.remove("invisible");
-    nameInput.classList.add("warning");
-  } else {
-    nameInvalidDiv.classList.add("invisible");
-    nameInput.classList.remove("warning");
-  }
-
-  if (nameInput.value === "") {
-    nameInvalidDiv.classList.add("invisible");
-    nameInput.classList.remove("warning");
-  }
-}
-
-/**
- * Event listener for form input changes to enable or disable the submit button.
- */
-document.addEventListener("DOMContentLoaded", function () {
-  let contactForm = document.querySelector(".contactForm");
-  contactForm.addEventListener("input", checkValuesForSubmitButton);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  let editContactForm = document.querySelector(".editContactForm");
-  editContactForm.addEventListener("input", checkValuesForSubmitButton);
-});
-
-/*
- * Highlights the selected contact card and shows its details
- * @param {number} index - The index of the selected contact card
- */
-function highlightSelectedContact(index) {
-  let contactCards = document.querySelectorAll(".contactCard");
-  contactCards.forEach((card, i) => {
-    if (i === index) {
-      if (card.classList.contains("selectedContact")) {
-        card.classList.remove("selectedContact");
-        card.onclick = function () {
-          highlightSelectedContact(i);
-          showContactDetails(i);
-        };
-      } else {
-        card.classList.add("selectedContact");
-        card.onclick = null;
-      }
-    } else {
-      card.classList.remove("selectedContact");
-      card.onclick = function () {
-        highlightSelectedContact(i);
-        showContactDetails(i);
-      };
-    }
-    checkMobile();
-  });
-}
-
-/**
- * Shows the detailed view of a contact
- * @param {number} index - The index of the contact to display details for
- */
-function showContactDetails(index) {
-  let contact = contacts[index];
-  let detailedView = document.querySelector(".detailedView");
-  if (isDetailViewOpen) {
-    detailedView.classList.add("slideOut");
-    setTimeout(() => {
-      detailedView.innerHTML = contactsDetailHTML(contact);
-      detailedView.classList.remove("slideOut");
-      detailedView.classList.add("slideIn");
-    }, 300);
-  } else {
-    detailedView.innerHTML = contactsDetailHTML(contact);
-    detailedView.classList.add("slideIn");
-  }
-  isDetailViewOpen = true;
-
-}
-
-/**
- * Checks if the device is a mobile device and adjusts the UI layout accordingly.
- */
-function checkMobile() {
-  if (isMobileDevice()) {
-    let contactDetailedInfo = document.querySelector('.contactDetailedInfo');
-    let contactList = document.querySelector('.contactList');
-    let contactButtonDiv = document.querySelector('.contactButtonDiv');
-    let board = document.querySelector('.contactBoard');
-    let justiyedContactBoard = document.querySelector('.contacts')
-    if (contactDetailedInfo) {
-      contactDetailedInfo.style.display = 'flex';
-    }
-    if (contactList) {
-      contactList.style.display = 'none';
-    }
-    if (contactButtonDiv) {
-      contactButtonDiv.style.display = 'none';
-    }
-    if (board) {
-      board.style.display = 'none';
-
-    }
-    if (justiyedContactBoard) {
-      justiyedContactBoard.style.justifyContent = 'center';
-    }
-    document.getElementsByClassName('contactDetailedInfo').innerHTML += '<img src="../img/x-icon.svg"> '
-  }
-}
-
-/**
- * Opens the edit contact overlay, fills the form with the selected contact's information, and shows the background overlay
- */
-function openEditContactOverlay() {
-  isEditingContact = true;
-  let overlay = document.querySelector(".editContactOverlay");
-  if (overlay) {
-    overlay.classList.add("show");
-    fillEditFormInputs();
-    showBackground();
-    isEditContactOverlayOpen = true;
-  }
-}
-
-/**
- * Fills the edit contact form inputs with the information of the selected contact.
- */
-function fillEditFormInputs() {
-  let selectedContactIndex = getSelectedContactIndex();
-  if (selectedContactIndex !== -1) {
-    let contact = contacts[selectedContactIndex];
-    let nameInput = document.querySelector("#editFullname");
-    let emailInput = document.querySelector("#editEmail");
-    let phoneInput = document.querySelector("#editPhone");
-    let userIconDiv = document.querySelector(".editContactForm .userIconDiv");
-
-    nameInput.value = contact.name;
-    emailInput.value = contact.email;
-    phoneInput.value = contact.phone;
-    userIconDiv.style.backgroundColor = contact.color;
-    userIconDiv.innerHTML = `<h2>${getInitials(contact.name)}</h2>`;
-  }
-}
-
-/**
- * Gets the index of the selected contact card
- * @returns {number} The index of the selected contact card, or -1 if none is selected
- */
-function getSelectedContactIndex() {
-  let contactCards = document.querySelectorAll(".contactCard");
-  for (let i = 0; i < contactCards.length; i++) {
-    if (contactCards[i].classList.contains("selectedContact")) {
-      return i;
-    }
-  }
-  return -1;
-}
-
-/**
- * Saves the edited contact informations 
- */
-function saveEditedContact() {
-  let selectedContactIndex = getSelectedContactIndex();
-  if (selectedContactIndex !== -1) {
-    let nameInput = document.querySelector("#editFullname");
-    let emailInput = document.querySelector("#editEmail");
-    let phoneInput = document.querySelector("#editPhone");
-
-    let editedContact = {
-      name: capitalizeName(nameInput.value.trim()),
-      email: emailInput.value.trim(),
-      phone: phoneInput.value.trim(),
-      color: contacts[selectedContactIndex].color,
-    };
-
-    contacts[selectedContactIndex] = editedContact;
-    sortContacts();
-    saveContact();
-    generateContacts();
-    closeContactOverlay();
-    showContactDetails(selectedContactIndex);
-    highlightSelectedContact(selectedContactIndex);
-  }
-}
-
-/**
- * Gets the form elements based on whether the form is for editing a contact or creating a new one 
- * @param {boolean} isEditingContact - Indicates whether the form is for editing a contact
- * @returns An object containing references to the form elements
- */
-function getFormElements(isEditingContact) {
-  let nameInput, emailInput, phoneInput;
-  let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
-  let button;
-
-  if (isEditingContact) {
-    nameInput = document.getElementById("editFullname");
-    emailInput = document.getElementById("editEmail");
-    phoneInput = document.getElementById("editPhone");
-    nameInvalidDiv = document.querySelector(".editContactNameInvalidDiv");
-    emailInvalidDiv = document.querySelector(".editContactEmailInvalidDiv");
-    phoneInvalidDiv = document.querySelector(".editContactPhoneInvalidDiv");
-    button = document.getElementById("saveContactButton");
-  } else {
-    nameInput = document.getElementById("fullname");
-    emailInput = document.getElementById("email");
-    phoneInput = document.getElementById("phone");
-    nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
-    emailInvalidDiv = document.querySelector(".contactEmailInvalidDiv");
-    phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
-    button = document.getElementById("createContactButton");
-  }
-
-  return {
-    nameInput,
-    emailInput,
-    phoneInput,
-    nameInvalidDiv,
-    emailInvalidDiv,
-    phoneInvalidDiv,
-    button,
-  };
-}
-
-/**
- * Deletes the selected contact from the contacts list
- */
-async function deleteContact() {
-  let selectedIndex = getSelectedContactIndex();
-  if (selectedIndex !== -1) {
-    contacts.splice(selectedIndex, 1);
-    closeContactOverlay();
-    await saveContact();
-    loadContacts();
-    generateContacts();
-    isDetailViewOpen = false;
-  }
-}
-
-/**
- * Fills the edit contact form inputs with the information of the selected contact
- */
-function fillEditFormInputs() {
-  let selectedContactIndex = getSelectedContactIndex();
-  if (selectedContactIndex !== -1) {
-    let contact = contacts[selectedContactIndex];
-    let nameInput = document.querySelector("#editFullname");
-    let emailInput = document.querySelector("#editEmail");
-    let phoneInput = document.querySelector("#editPhone");
-    let userIconDiv = document.querySelector(".editContactForm .userIconDiv");
-
-    nameInput.value = contact.name;
-    emailInput.value = contact.email;
-    phoneInput.value = contact.phone;
-    userIconDiv.style.backgroundColor = contact.color;
-    userIconDiv.innerHTML = `<h2>${getInitials(contact.name)}</h2>`;
-  }
-}
-
-/**
- * Gets the index of the selected contact card
- * @returns {number} The index of the selected contact card, or -1 if none is selected
- */
-function getSelectedContactIndex() {
-  let contactCards = document.querySelectorAll(".contactCard");
-  for (let i = 0; i < contactCards.length; i++) {
-    if (contactCards[i].classList.contains("selectedContact")) {
-      return i;
-    }
-  }
-  return -1;
-}
-
-/**
- * Saves the edited contact information
- */
-function saveEditedContact() {
-  let selectedContactIndex = getSelectedContactIndex();
-  if (selectedContactIndex !== -1) {
-    let nameInput = document.querySelector("#editFullname");
-    let emailInput = document.querySelector("#editEmail");
-    let phoneInput = document.querySelector("#editPhone");
-
-    let editedContact = {
-      name: capitalizeName(nameInput.value.trim()),
-      email: emailInput.value.trim(),
-      phone: phoneInput.value.trim(),
-      color: contacts[selectedContactIndex].color,
-    };
-
-    contacts[selectedContactIndex] = editedContact;
-    sortContacts();
-    saveContact();
-    generateContacts();
-    closeContactOverlay();
-    showContactDetails(selectedContactIndex);
-    highlightSelectedContact(selectedContactIndex);
-  }
-}
-
-/**
- * Gets form elements based on whether the form is for editing a contact or creating a new one
- * @param {boolean} isEditingContact - Indicates whether the form is for editing a contact
- * @returns {object} An object containing references to the form elements
- */
-function getFormElements(isEditingContact) {
-  let nameInput, emailInput, phoneInput;
-  let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
-  let button;
-
-  if (isEditingContact) {
-    nameInput = document.getElementById("editFullname");
-    emailInput = document.getElementById("editEmail");
-    phoneInput = document.getElementById("editPhone");
-    nameInvalidDiv = document.querySelector(".editContactNameInvalidDiv");
-    emailInvalidDiv = document.querySelector(".editContactEmailInvalidDiv");
-    phoneInvalidDiv = document.querySelector(".editContactPhoneInvalidDiv");
-    button = document.getElementById("saveContactButton");
-  } else {
-    nameInput = document.getElementById("fullname");
-    emailInput = document.getElementById("email");
-    phoneInput = document.getElementById("phone");
-    nameInvalidDiv = document.querySelector(".contactNameInvalidDiv");
-    emailInvalidDiv = document.querySelector(".contactEmailInvalidDiv");
-    phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
-    button = document.getElementById("createContactButton");
-  }
-
-  return {
-    nameInput,
-    emailInput,
-    phoneInput,
-    nameInvalidDiv,
-    emailInvalidDiv,
-    phoneInvalidDiv,
-    button,
-  };
-}
-/**
- * Deletes the selected contact from the contact list 
- */
-async function deleteContact() {
-  let selectedIndex = getSelectedContactIndex();
-  if (selectedIndex !== -1) {
-    contacts.splice(selectedIndex, 1);
-    closeContactOverlay();
-    saveContact();
-    await loadContacts();
-    generateContacts();
-    isDetailViewOpen = false;
-  }
-}
