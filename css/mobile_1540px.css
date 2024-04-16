@@ -1,31 +1,4 @@
 @media (max-width: 1540px) {
-  .taskBoard,
-  .boardHeadline {
-    max-width: 750px !important;
-  }
-
-  .taskLists {
-    flex-direction: column !important;
-  }
-
-  .taskCard {
-    box-sizing: border-box !important;
-    min-width: 252px !important;
-  }
-
-  .toDoTaskList,
-  .inProgressTaskList,
-  .awaitFeedbackTaskList,
-  .doneTaskList {
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    margin-top: 0 !important;
-  }
-
-  .boardCategory {
-    position: inherit !important;
-  }
-
   .noTasksDiv {
     min-width: 252px !important;
     margin-bottom: 20px !important;

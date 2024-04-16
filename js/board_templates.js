@@ -86,16 +86,10 @@ function generateAssignedContactsHTML(task) {
   if (task.assignedContacts && task.assignedContacts.length > 0) {
     return task.assignedContacts
       .map(
-        (contact) => `
-        <div class="taskCardDetailedUserWrapper">
-          <div class="taskCardDetailedUser" style="background-color:${
-            contact.color
-          }">${getInitials(contact.name)}</div>
+        (contact) => ` <div class="taskCardDetailedUserWrapper">
+          <div class="taskCardDetailedUser" style="background-color:${contact.color}">${getInitials(contact.name)}</div>
           <div>${contact.name}</div> 
-        </div>
-      `
-      )
-      .join("");
+        </div>`).join("");
   } else {
     return "<div>No contacts assigned</div>";
   }
@@ -116,13 +110,10 @@ function generateDetailedViewSubtasks(task) {
         : "../img/checkbox-icon.svg";
       let width = subtask.completed ? "19px" : "24px";
       let height = subtask.completed ? "19px" : "24px";
-      subtaskHTML += `
-          <div class="taskCardDetailedSubtasksList"> 
+      subtaskHTML += ` <div class="taskCardDetailedSubtasksList"> 
             <div class="checkBoxIconDiv">
               <img class="checkBoxIcon" id="${subtaskId}" src="${isChecked}" alt="checkbox-icon" style="width: ${width}; height: ${height};" onclick="toggleSubtaskCompletion(event)"/>
-            </div> 
-            ${subtask.description}
-          </div>`;
+          </div> ${subtask.description}</div>`;
     });
     return subtaskHTML;
   } else {
@@ -202,7 +193,6 @@ function generateEmptyTask(categoryName) {
 /**
  * Toggles a popup inside the taskcard to move tasks into other tasklists on mobile devices when drag & drop is not available
  * @param {string} taskId - The ID of the task
- * @returns - HTML markup
  */
 function toggleMobileTaskCardMovePopup(taskId) {
   document.querySelectorAll(".taskCardMovePopup").forEach((popup) => {
@@ -210,21 +200,27 @@ function toggleMobileTaskCardMovePopup(taskId) {
       popup.classList.add("invisible");
     }
   });
-  let taskCardMovePopup = document.getElementById(
-    `taskCardMovePopup-${taskId}`
-  );
+  let taskCardMovePopup = document.getElementById(`taskCardMovePopup-${taskId}`);
   taskCardMovePopup.classList.toggle("invisible");
-
   if (!taskCardMovePopup.classList.contains("invisible")) {
-    taskCardMovePopup.innerHTML = `
-        <div class="taskCardMovePopupContent" onclick="event.stopPropagation()">
-          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'to do')">To do</div>
-          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'await feedback')">Await feedback</div>
-          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'in progress')">In progress</div>
-          <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'done')">Done</div>
-        </div>
-      `;
+    taskCardMovePopup.innerHTML = getTaskCardMovePopupContent(taskId);
   }
+}
+
+/**
+ * Returns the HTML for the taskcard movepopup
+ * @param {string} taskId - The ID of the task
+ * @returns - HTML markup
+ */
+function getTaskCardMovePopupContent(taskId) {
+  return `
+    <div class="taskCardMovePopupContent" onclick="event.stopPropagation()">
+      <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'to do')">To do</div>
+      <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'await feedback')">Await feedback</div>
+      <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'in progress')">In progress</div>
+      <div class="taskCardMovePopupCategory" onclick="changeTaskCategory(${taskId}, 'done')">Done</div>
+    </div>
+  `;
 }
 
 /**
@@ -236,11 +232,9 @@ function checkAssignedContactLength(taskData) {
   let maxContactsToDisplay = 3;
   let additionalContactsCount =
     taskData.assignedContacts.length - maxContactsToDisplay;
-
   if (taskData.assignedContacts.length === 0) {
     return `<div class="taskContact invisible" style="background: var(--main-color-darkblue)">0</div>`;
   }
-
   if (additionalContactsCount > 0) {
     let additionalsContactsHTML = `<div class="taskContact" style="background: var(--main-color-darkblue)">+${additionalContactsCount}</div>`;
     return (taskData.assignedContacts.slice(0, maxContactsToDisplay).map((contact) => `<div class="taskContact" style="background: ${contact.color}">${contact.initials}</div>`).join("") + additionalsContactsHTML);

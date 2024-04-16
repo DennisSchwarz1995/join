@@ -124,28 +124,6 @@ function changeTaskCategory(taskId, newCategory) {
   generateTasks();
 }
 
-/**
- * If the clicked element is not part of or a trigger for any popup it closes any open popups by adding the 'invisible' class to them
- * @param {Event} event - The click event on the document
- */
-document.addEventListener("click", function (event) {
-  if (
-    !event.target.closest(".taskCardMovePopup") &&
-    !event.target.closest(".dropDownContacts") &&
-    !event.target.closest(".dropDownCategory") &&
-    !event.target.classList.contains("taskCardMoveButton") &&
-    !event.target.classList.contains("contactsSelect") &&
-    !event.target.classList.contains("categorySelect")
-  ) {
-    document
-      .querySelectorAll(
-        ".taskCardMovePopup, .dropDownContacts, .dropDownCategory"
-      )
-      .forEach((popup) => {
-        popup.classList.add("invisible");
-      });
-  }
-});
 
 /**
  * Updates the completion status of a subtask and updates the task progress

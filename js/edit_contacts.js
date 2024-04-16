@@ -1,4 +1,4 @@
-/*
+/**
  * Highlights the selected contact card and shows its details
  * @param {number} index - The index of the selected contact card
  */
@@ -23,6 +23,22 @@ function highlightSelectedContact(index) {
         showContactDetails(i);
       };
     }
+  });
+}
+
+/**
+ * Removes the highlight from the selected contact card
+ */
+function removeHighlightFromContacts() {
+  let contactCards = document.querySelectorAll(".contactCard");
+  contactCards.forEach((card) => {
+    card.classList.remove("selectedContact");
+    // Stelle sicher, dass der ursprüngliche onClick-Handler wiederhergestellt wird
+    let index = Array.from(contactCards).indexOf(card); // Index des aktuellen Karten-Elements im NodeList
+    card.onclick = function () {
+      highlightSelectedContact(index);
+      showContactDetails(index);
+    };
   });
 }
 
@@ -213,7 +229,6 @@ async function deleteContact() {
   }
 }
 
-
 /**
  * Closes the detailed view on mobile devices
  */
@@ -222,8 +237,8 @@ function closeDetailedView() {
   detailedViews.forEach(function (view) {
     view.classList.add("slideOut");
   });
+  removeHighlightFromContacts();
 }
-
 
 /**
  * Shows an overlay for the edit and delete function on mobile devices
@@ -275,7 +290,7 @@ function getInitials(name) {
 /**
  * Capitalizes the first letter of each word in a sting
  * @param {string} name  - The name to capitalize
- * @returns {sting} - The capitalized string
+ * @returns {string} - The capitalized string
  */
 function capitalizeName(name) {
   let names = name.split(" ");
@@ -307,7 +322,6 @@ function getFormElements(isEditingContact) {
   let nameInput, emailInput, phoneInput;
   let nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv;
   let button;
-
   if (isEditingContact) {
     nameInput = document.getElementById("editFullname");
     emailInput = document.getElementById("editEmail");
@@ -325,16 +339,7 @@ function getFormElements(isEditingContact) {
     phoneInvalidDiv = document.querySelector(".contactPhoneInvalidDiv");
     button = document.getElementById("createContactButton");
   }
-
-  return {
-    nameInput,
-    emailInput,
-    phoneInput,
-    nameInvalidDiv,
-    emailInvalidDiv,
-    phoneInvalidDiv,
-    button,
-  };
+  return {nameInput, emailInput, phoneInput, nameInvalidDiv, emailInvalidDiv, phoneInvalidDiv, button,};
 }
 
 /**
@@ -360,3 +365,4 @@ function cancelInput() {
     closeContactOverlay();
   }
 }
+

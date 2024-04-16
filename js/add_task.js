@@ -1,6 +1,5 @@
 /**
- * Loads contacts and tasks, generates navbar and header,
- * generates UI components
+ * Loads contacts and tasks, generates navbar and header, generates UI components
  */
 async function initAddTask() {
   await loadContacts();
@@ -39,16 +38,12 @@ function contactDropDownList(contacts) {
   let contactDropDown = "";
   contacts.forEach((contact) => {
     contactDropDown += `
-      <div class="dropDownContactDiv" onclick="toggleContactSelection(this, '${
-        contact.name
-      }')">
+      <div class="dropDownContactDiv" onclick="toggleContactSelection(this, '${contact.name}')">
           <div class="contactWrapper">
-            <div class="dropDownContactIcon" style="background-color: ${
-              contact.color
-            };"> ${getInitials(contact.name)}</div>
+            <div class="dropDownContactIcon" style="background-color: ${contact.color};"> ${getInitials(contact.name)}</div>
             <div class="dropDownContactName">${contact.name}</div>
-          </div>
-            <div class="checkBoxIconDiv">
+          </div> 
+          <div class="checkBoxIconDiv">
             <img class="checkBoxIcon"src="../img/checkbox-icon.svg" />
            </div>
       </div>
@@ -60,7 +55,7 @@ function contactDropDownList(contacts) {
 
 /**
  * Generates category dropdown list.
- * @param {Array} categories  - List of categories .
+ * @param {Array} categories - List of categories .
  */
 function categoryDropDownList(categories) {
   let categoryDropdownHTML = "";
@@ -68,10 +63,8 @@ function categoryDropDownList(categories) {
     categoryDropdownHTML += `<div class="dropDownCategoryDiv">${category}</div>`;
   });
   categoryDropdownHTML += `<div class="dropDownCategoryDiv">Create new Category</div>`;
-
   let dropDownCategory = document.querySelector(".dropDownCategory");
   dropDownCategory.innerHTML = categoryDropdownHTML;
-
   let categoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
   categoryDivs.forEach((categoryDiv) => {
     categoryDiv.addEventListener("click", function () {
@@ -83,7 +76,7 @@ function categoryDropDownList(categories) {
 /**
  * Creates a new task based on the form values selected
  * @param {boolean} isAddTaskOpenFromBoard
- * @param {string} taskCategory
+ * @param {string} taskCategory - The assigned taskcategory from the board, to display it in the right tasklist.
  */
 function createTask(isAddTaskOpenFromBoard, taskCategory) {
   let formValues = getAddTaskFormValues();
@@ -117,44 +110,56 @@ function createTask(isAddTaskOpenFromBoard, taskCategory) {
 
 /**
  * Gets form values for creating a task
- * @returns {Object} Form values.
+ * @returns {Object} - Form values.
  */
 function getAddTaskFormValues() {
   let formValues = {};
   let titleInput = document.querySelector(".titleInput");
   let descriptionTextArea = document.querySelector(".descriptionTextArea");
-  let assignedContacts = document.querySelectorAll(".selectedContact");
   let dueDateInput = document.querySelector(".dateInput");
-  let prioButtons = document.querySelectorAll(".prioButtonsDiv button");
   let categoryInput = document.querySelector(".categorySelect");
   let subtaskList = document.querySelectorAll(".subtaskLI .subtaskText");
 
   formValues.title = titleInput.value.trim();
   formValues.description = descriptionTextArea.value.trim();
-  formValues.assignedContacts = Array.from(assignedContacts).map((contact) => {
+  formValues.assignedContacts = getAssignedContacts(); 
+  formValues.dueDate = dueDateInput.value;
+  formValues.priority = getSelectedPriority();  
+  formValues.category = categoryInput.value.trim();
+  formValues.categoryColor = getCategoryColor(formValues.category);
+  formValues.subtasks = Array.from(subtaskList).map(subtask => subtask.textContent.trim());
+  return formValues;
+}
+
+/**
+ * Auxiliary function to get the formvalues for the assigned contacts
+ * @returns {Object} - Name, color and initials from the contact
+ */
+function getAssignedContacts() {
+  let assignedContacts = document.querySelectorAll(".selectedContact");
+  return Array.from(assignedContacts).map((contact) => {
     let name = contact.querySelector(".dropDownContactName").textContent.trim();
-    let color = contact.querySelector(".dropDownContactIcon").style
-      .backgroundColor;
+    let color = contact.querySelector(".dropDownContactIcon").style.backgroundColor;
     let initials = getInitials(name);
     return { name, color, initials };
   });
-  formValues.dueDate = dueDateInput.value;
+}
+
+/**
+ * Auxiliary function to get the formvalues for the assigned priobutton
+ * @returns {string} the path from the src of the image to display on the task.
+ */
+function getSelectedPriority() {
+  let prioButtons = document.querySelectorAll(".prioButtonsDiv button");
+  let priority = null;
   prioButtons.forEach((button) => {
     if (button.classList.contains("selected")) {
       let buttonImageSrc = button.querySelector("img").src;
-      let relativeImagePath = buttonImageSrc.substring(
-        buttonImageSrc.indexOf("/img")
-      );
-      formValues.priority = relativeImagePath;
+      let relativeImagePath = buttonImageSrc.substring(buttonImageSrc.indexOf("/img"));
+      priority = relativeImagePath;
     }
   });
-  formValues.category = categoryInput.value.trim();
-  formValues.categoryColor = getCategoryColor(formValues.category);
-  formValues.subtasks = Array.from(subtaskList).map((subtask) =>
-    subtask.textContent.trim()
-  );
-
-  return formValues;
+  return priority;
 }
 
 /**
@@ -168,7 +173,7 @@ function setMinDate() {
 
 /**
  * Finds the index of a contact in the contacts array based on the name
- * @param {*} contactName -Name of the contacts
+ * @param {*} contactName - Name of the contacts
  * @param {*} contacts - List of contact objects
  * @returns Index of the contact
  */
@@ -228,12 +233,7 @@ function selectTaskCategory(selectedCategoryDiv) {
       if (categoryDiv.textContent.trim() === "Create new Category") {
         changeInputField(categoryInput, newCategoryInput, newCategoryIconDiv);
       } else {
-        highlightSelectedTask(
-          categoryInput,
-          categoryDiv,
-          dropDownCategoryDivs,
-          newCategoryInput
-        );
+        highlightSelectedTask(categoryInput,  categoryDiv, dropDownCategoryDivs, newCategoryInput);
       }
     }
   });
@@ -262,12 +262,7 @@ function changeInputField(categoryInput, newCategoryInput, newCategoryIconDiv) {
  * @param {NodeList} dropDownCategoryDivs - Category dropdown divs.
  * @param {HTMLElement} newCategoryInput - New category input.
  */
-function highlightSelectedTask(
-  categoryInput,
-  categoryDiv,
-  dropDownCategoryDivs,
-  newCategoryInput
-) {
+function highlightSelectedTask(categoryInput, categoryDiv, dropDownCategoryDivs, newCategoryInput) {
   categoryInput.value = categoryDiv.textContent.trim();
   dropDownCategoryDivs.forEach((div) => {
     div.classList.remove("selectedCategory");
@@ -287,9 +282,7 @@ function changeInputToDefault() {
   let newCategoryIconDiv = document.querySelector(".newCategoryIconDiv");
   let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
   let categoryInvalidDiv = document.querySelector(".categoryInvalidDiv");
-  dropDownCategoryDivs.forEach((div) => {
-    div.classList.remove("selectedCategory");
-  });
+  dropDownCategoryDivs.forEach((div) => {div.classList.remove("selectedCategory");});
   categoryInput.value = "";
   newCategoryInput.value = "";
   newCategoryInput.classList.add("invisible");
@@ -308,16 +301,10 @@ function addNewCategory() {
   let newCategoryInput = document.querySelector(".newCategoryInput");
   let newCategoryIconDiv = document.querySelector(".newCategoryIconDiv");
   let newCategory = newCategoryInput.value.trim();
-
   if (newCategory === "") {
     showCategoryError(categoryInvalidDiv, newCategoryInput);
   } else {
-    addCategoryAndHighlight(
-      newCategory,
-      categoryInput,
-      newCategoryInput,
-      newCategoryIconDiv
-    );
+    addCategoryAndHighlight(newCategory, categoryInput, newCategoryInput, newCategoryIconDiv);
     hideCategoryError();
   }
 }
@@ -328,8 +315,7 @@ function addNewCategory() {
  * @param {HTMLElement} newCategoryInput
  */
 function showCategoryError(categoryInvalidDiv, newCategoryInput) {
-  categoryInvalidDiv.textContent =
-    "Please enter a category consisting of maximum 16 letters.";
+  categoryInvalidDiv.textContent = "Please enter a category consisting of maximum 16 letters.";
   categoryInvalidDiv.classList.remove("invisible");
   newCategoryInput.classList.add("warning");
 }
@@ -342,46 +328,6 @@ function hideCategoryError() {
   let newCategoryInput = document.querySelector(".newCategoryInput");
   categoryInvalidDiv.classList.add("invisible");
   newCategoryInput.classList.remove("warning");
-}
-
-/**
- * Creates a subtask
- */
-function createSubtask() {
-  let subtaskInput = document.querySelector(".subtaskInput");
-  let subtaskValue = subtaskInput.value.trim();
-  let subtaskList = document.querySelector(".subtaskList");
-  let subtaskInvalidDiv = document.querySelector(".subtaskInvalidDiv");
-
-  if (subtaskValue !== "") {
-    let subtaskIndex = subtaskList.children.length;
-    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="16" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
-    subtaskList.innerHTML += subtaskListHTML;
-    subtaskInput.value = "";
-    hideSubtaskError();
-  } else {
-    showSubtaskError(subtaskInvalidDiv, subtaskInput);
-  }
-}
-
-/**
- * Checks values to disable or enable the create task button
- */
-function checkValuesForCreateTaskButton() {
-  let createTaskButton = document.querySelector(".createTaskButton");
-  let titleInput = document.querySelector(".titleInput");
-  let dateInput = document.querySelector(".dateInput");
-  let categorySelect = document.querySelector(".categorySelect");
-
-  if (
-    titleInput.value !== "" &&
-    dateInput.value !== "" &&
-    categorySelect.value !== ""
-  ) {
-    createTaskButton.removeAttribute("disabled");
-  } else {
-    createTaskButton.setAttribute("disabled", "disabled");
-  }
 }
 
 /**
@@ -420,3 +366,31 @@ function getCategoryColor(category) {
       return `${prefix + "default)"}`;
   }
 }
+
+/**
+ * Checks values to disable or enable the create task button
+ */
+function checkValuesForCreateTaskButton() {
+  let createTaskButton = document.querySelector(".createTaskButton");
+  let titleInput = document.querySelector(".titleInput");
+  let dateInput = document.querySelector(".dateInput");
+  let categorySelect = document.querySelector(".categorySelect");
+  if (titleInput.value !== "" && dateInput.value !== "" && categorySelect.value !== "") {
+    createTaskButton.removeAttribute("disabled");
+  } else {
+    createTaskButton.setAttribute("disabled", "disabled");
+  }
+}
+
+/**
+ * If the clicked element is not part of or a trigger for any popup it closes any open popups by adding the 'invisible' class to them
+ * @param {Event} event - The click event on the document
+ */
+document.addEventListener("click", function (event) {
+  if (!event.target.closest(".taskCardMovePopup") && !event.target.closest(".dropDownContacts") && !event.target.closest(".dropDownCategory") && !event.target.classList.contains("taskCardMoveButton") &&
+    !event.target.classList.contains("contactsSelect") &&
+    !event.target.classList.contains("categorySelect")
+  ) {
+    document.querySelectorAll(".taskCardMovePopup, .dropDownContacts, .dropDownCategory").forEach((popup) => { popup.classList.add("invisible");});
+  }
+});

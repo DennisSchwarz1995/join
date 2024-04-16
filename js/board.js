@@ -48,12 +48,7 @@ function generateTasks() {
  * Checks for empty task lists and generates empty task placeholders
  */
 function checkAndGenerateEmptyTask() {
-  let taskListClasses = [
-    "toDoTaskList",
-    "inProgressTaskList",
-    "awaitFeedbackTaskList",
-    "doneTaskList",
-  ];
+  let taskListClasses = ["toDoTaskList", "inProgressTaskList", "awaitFeedbackTaskList", "doneTaskList",];
   taskListClasses.forEach((listClass) => {
     let taskList = document.querySelector(`.${listClass}`);
     if (taskList) {
@@ -242,13 +237,9 @@ function getCategoryFromClassList(classList) {
  * @param {object} task - The task object containing subtasks
  */
 function updateTaskProgress(task) {
-  let completedSubtasks = task.subtasks.filter(
-    (subtask) => subtask.completed
-  ).length;
+  let completedSubtasks = task.subtasks.filter((subtask) => subtask.completed).length;
   let progress = (completedSubtasks / task.subtasks.length) * 100;
-  let progressBarFill = document.querySelector(
-    `#task-${task.id} .taskProgressBarFill`
-  );
+  let progressBarFill = document.querySelector(`#task-${task.id} .taskProgressBarFill`);
   if (progressBarFill) {
     progressBarFill.style.width = `${progress}%`;
   }
@@ -361,6 +352,7 @@ function highlightAssignedContacts(assignedContacts) {
     }
   });
 }
+
 /**
  * Highlight the selected task category in the dropdown
  */

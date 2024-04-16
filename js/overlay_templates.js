@@ -204,7 +204,6 @@ function generateAddTaskOverlay(contacts) {
  * @param {Object} task -Task object to be edited 
  */
   function generateEditTaskHTML(task) {
-   console.log(task);
     let editTaskOverlay = document.querySelector(".taskCardDetailedView");
     let editTaskHTML = `
     <div class="closeButtonWrapper">

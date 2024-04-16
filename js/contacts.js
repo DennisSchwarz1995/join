@@ -381,21 +381,17 @@ function createContactCard(contact) {
   initialsDiv.classList.add("userInitialsDiv");
   initialsDiv.textContent = getInitials(contact.name);
   initialsDiv.style.background = contact.color;
-
+  
   let infoDiv = document.createElement("div");
   infoDiv.classList.add("contactInfoDiv");
-
   let nameSpan = document.createElement("span");
   nameSpan.classList.add("contactNameSpan");
   nameSpan.textContent = contact.name;
-
   let emailSpan = document.createElement("span");
   emailSpan.classList.add("contactMailSpan");
   emailSpan.textContent = contact.email;
-
   infoDiv.appendChild(nameSpan);
   infoDiv.appendChild(emailSpan);
-
   contactCard.appendChild(initialsDiv);
   contactCard.appendChild(infoDiv);
 

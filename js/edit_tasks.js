@@ -64,13 +64,11 @@ function clearTaskSelectorDropDowns() {
   let contactDropdown = document.querySelector(".dropDownContacts");
   let categoryArrow = document.querySelector(".categoryDiv .dropDownArrow");
   let contactArrow = document.querySelector(".assignedDiv .dropDownArrow");
-
   if (categoryDropdown.classList.contains("visible")) {
     categoryDropdown.classList.remove("visible");
     categoryDropdown.classList.add("invisible");
     categoryArrow.classList.remove("rotate");
   }
-
   if (contactDropdown.classList.contains("visible")) {
     contactDropdown.classList.remove("visible");
     contactDropdown.classList.add("invisible");
@@ -342,7 +340,6 @@ function toggleContactSelection(contactDiv, contactName) {
   let checkBoxIcon = contactDiv.querySelector(".checkBoxIcon");
   let checkBoxIconDiv = contactDiv.querySelector(".checkBoxIconDiv");
   let isSelected = checkBoxIcon.classList.contains("selectedContactCheckBox");
-
   if (!isSelected) {
     checkBoxIcon.classList.add("selectedContactCheckBox");
     contactDiv.classList.add("selectedContact");
@@ -365,12 +362,7 @@ function toggleContactSelection(contactDiv, contactName) {
  * @param {HTMLElement} newCategoryInput -new category input
  * @param {HTMLElement} newCategoryIconDiv -new category icon html element
  */
-function addCategoryAndHighlight(
-  newCategory,
-  categoryInput,
-  newCategoryInput,
-  newCategoryIconDiv
-) {
+function addCategoryAndHighlight(newCategory, categoryInput, newCategoryInput, newCategoryIconDiv) {
   categories.push(newCategory);
   categoryDropDownList(categories);
   categoryInput.value = newCategory;
@@ -378,17 +370,31 @@ function addCategoryAndHighlight(
   newCategoryInput.classList.add("invisible");
   categoryInput.classList.remove("invisible");
   newCategoryIconDiv.classList.add("d-none");
-
   let dropDownCategoryDivs = document.querySelectorAll(".dropDownCategoryDiv");
   dropDownCategoryDivs.forEach((div) => {
     if (div.textContent.trim() === newCategory) {
-      highlightSelectedTask(
-        categoryInput,
-        div,
-        dropDownCategoryDivs,
-        newCategoryInput
-      );
+      highlightSelectedTask(categoryInput, div, dropDownCategoryDivs, newCategoryInput);
       toggleDropdown(true);
     }
   });
+}
+
+/**
+ * Creates a subtask
+ */
+function createSubtask() {
+  let subtaskInput = document.querySelector(".subtaskInput");
+  let subtaskValue = subtaskInput.value.trim();
+  let subtaskList = document.querySelector(".subtaskList");
+  let subtaskInvalidDiv = document.querySelector(".subtaskInvalidDiv");
+
+  if (subtaskValue !== "") {
+    let subtaskIndex = subtaskList.children.length;
+    let subtaskListHTML = `<li class="subtaskLI" data-index="${subtaskIndex}"><span class="subtaskText">${subtaskValue}</span> <div class="subtaskEditDiv"><input maxlength="16" class="subtaskEditInput invisible"/><img src="../img/check-icon-darkblue.svg" alt="check-icon" class="subtaskSaveIcon invisible" onclick="saveEditedSubtask(${subtaskIndex})"></div> <div class="subtaskIconDiv"><img class="editSubtask" src="../img/edit-pencil.svg" alt="edit-pencil" onclick="editSubtask(${subtaskIndex})"> <img class="deleteSubtask" src="../img/delete-trash.svg" alt="delete-trash" onclick="deleteSubtask(${subtaskIndex})"></div></li>`;
+    subtaskList.innerHTML += subtaskListHTML;
+    subtaskInput.value = "";
+    hideSubtaskError();
+  } else {
+    showSubtaskError(subtaskInvalidDiv, subtaskInput);
+  }
 }
