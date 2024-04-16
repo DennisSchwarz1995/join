@@ -152,3 +152,8 @@
     align-items: center !important;
   }
 }
+
+.board {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
